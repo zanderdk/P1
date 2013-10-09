@@ -1,0 +1,43 @@
+%preamble
+\input{Preamble/preamble.tex}
+\usepackage{booktabs} %skal bruges hvis der bruges PDF2LaTEX             
+%preamble slut
+\begin{document}
+\includepdf{Frontpage.pdf}
+\cleardoublepage
+%\clearpage
+%\cleardoublepage
+\input{Titlepage/TitlepageEn.tex} %synopsis
+\cleardoublepage
+%---------Preface---------------
+\input{Chapters/Preface.tex}
+\cleardoublepage
+\tableofcontents
+
+%---------Introduction---------------
+\chapter{Introduction}
+%\input{Chapters/intro.tex}
+
+%---------ProblemAnalysis------------
+\chapter{Problem Analysis}
+
+%---------Problem statement---------
+\chapter{Problem Statement}
+
+%---------ProblemSolution------------
+\chapter{Problem Solution}
+
+
+\chapter{Discussion}
+
+
+\chapter{Conclusion}
+
+%---------Reference---------
+\bibliography{Bibtex/References}\label{lastpage}
+
+%-----------Appendix-------------
+\appendix
+\chapter{Appendix}
+
+\end{document}
