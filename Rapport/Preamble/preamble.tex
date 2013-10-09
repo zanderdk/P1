@@ -1,0 +1,183 @@
+\documentclass[a4paper,11pt,fleqn,twoside,openright]{memoir} % Brug openright hvis chapters skal starte på højresider; openany, oneside
+
+%%%% PACKAGES %%%%
+\usepackage{fourier}   %font
+% ¤¤ Oversættelse og tegnsætning ¤¤ %
+\usepackage[ansinew]{inputenc}					% Gør det muligt at bruge æ, ø og å i sine .tex-filer
+\usepackage[english]{babel}							% Dansk sporg, f.eks. tabel, figur og kapitel
+\usepackage[T1]{fontenc}								% Hjælper med orddeling ved æ, ø og å. Sætter fontene til at være ps-fonte, i stedet for bmp					
+\usepackage{latexsym}										% LaTeX symboler
+\usepackage{xcolor,ragged2e,fix-cm}			% Justering af elementer
+\usepackage{pdfpages}										% Gør det muligt at inkludere pdf-dokumenter med kommandoen \includepdf[pages=]{fil.pdf}	
+\pretolerance=2500 											% Gør det muligt at justre afstanden mellem ord (højt tal, mindre orddeling og mere space mellem ord)
+\usepackage{ulem}                       % Gennemstregning af ord med koden \sout{}
+																			
+% ¤¤ Figurer og tabeller – floats  ¤¤ %
+\usepackage{flafter}										% Sørger for at dine floats ikke optræder i teksten før de er sat ind.
+\usepackage{multirow}                		% Fletning af rækker
+\usepackage{hhline}                   	% Dobbelte horisontale linier
+\usepackage{multicol}         	        % Fletning af kolonner
+\usepackage{colortbl} 									% Muligøre farver i tabeller
+\usepackage{here}												% Gør det muligt at placere figurer hvor du vil.   \begin{figure}[!h] % Will not be floating.
+\usepackage{wrapfig}										% Indsættelse af figurer omsvøbt af tekst. \begin{wrapfigure}{Placering}{Størrelse}
+\usepackage{floatflt}										% Indsættelse af tabeller omsvøbt af tekst.
+\pdfoptionpdfminorversion=6							% Muliggør inkludering af pdf dokumenter, af version 1.6 og højere
+\usepackage{placeins}	
+% ¤¤ Matematiske formler og maskinkode ¤¤
+\usepackage{amsmath,amssymb,stmaryrd} 	% Bedre matematik og ekstra fonte
+\usepackage{textcomp}                 	% Adgang til tekstsymboler
+\usepackage{mathtools}									% Udvidelse af amsmath-pakken.
+\usepackage{eso-pic}										% Tilføj billedekommandoer på hver side
+\usepackage{lipsum}											% Dummy text \lipsum[..]
+
+% ¤¤ PDF og billede optimering ¤¤ %
+\usepackage{graphicx} 									% Pakke til jpeg/png billeder
+
+% ¤¤ Referencer, bibtex og url'er ¤¤ %
+\usepackage{url}
+
+%% Define a new 'leo' style for the package that will use a smaller font.
+\makeatletter
+\def\url@leostyle{%
+  \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\ttfamily}}}
+\makeatother
+%% Now actually use the newly defined style.
+\urlstyle{leo}
+
+\usepackage[english]{varioref}						% Giver flere bedre mulighed for at lave krydshenvisninger
+\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
+
+
+% ¤¤ Floats ¤¤ %
+\let\newfloat\relax 										% Memoir har allerede defineret denne men det gør float pakken også
+\usepackage{float}
+
+\usepackage[marginclue,inline,draft,english,silent]{fixme}			
+
+% Indsæt rettelser og lignende med \fixme{...} Med final i stedet for draft, udløses en error for hver fixme, der ikke er slettet, når rapporten bygges.
+
+%%%% CUSTOM SETTINGS %%%%
+
+% ¤¤ Marginer ¤¤ %
+\setlrmarginsandblock{3.5cm}{2.5cm}{*}	% \setlrmarginsandblock{Indbinding}{Kant}{Ratio}
+\setulmarginsandblock{2.5cm}{3.0cm}{*}	% \setulmarginsandblock{Top}{Bund}{Ratio}
+\checkandfixthelayout 									% Laver forskellige beregninger og sætter de almindelige længder op til brug ikke memoir pakker
+
+%	¤¤ Afsnitsformatering ¤¤ %
+\setlength{\parindent}{0mm}           	% Størrelse af indryk
+\setlength{\parskip}{3mm}          			% Afstand mellem afsnit ved brug af double Enter
+\linespread{1,1}												% Linie afstand
+
+% ¤¤ Litteraturlisten ¤¤ %
+\bibpunct{[}{]}{,}{a}{}{;}					% Definerer de 6 parametre ved Harvard henvisning (bl.a. parantestype og seperatortegn)
+\bibliographystyle{bibtex/harvard} 			% Udseende af litteraturlisten
+
+% ¤¤ Indholdsfortegnelse ¤¤ %
+\setsecnumdepth{subsubsection}		 			% Dybden af nummerede overkrifter (part/chapter/section/subsection)
+\maxsecnumdepth{subsubsection}					% Ændring af dokumentklassens grænse for nummereringsdybde
+\settocdepth{subsection} 								% Dybden af indholdsfortegnelsen
+
+% ¤¤ Visuelle referencer ¤¤ %
+\usepackage[colorlinks]{hyperref}			 	% Giver mulighed for at ens referencer bliver til klikbare hyperlinks. .. [colorlinks]{..}
+\hypersetup{pdfborder = 0}							% Fjerner ramme omkring links i fx indholsfotegnelsen og ved kildehenvisninger ¤¤
+\hypersetup{														%	Opsætning af hyperlinks
+    colorlinks = false,
+    linkcolor = black,
+    anchorcolor = black,
+    citecolor = black
+}
+
+\definecolor{gray}{gray}{0.80}					% Definerer farven grå
+
+% ¤¤ Opsætning af figur- og tabeltekst ¤¤ %
+ 	\captionnamefont{
+ 		\small\bfseries\itshape}						% Opsætning af tekstdelen ("Figur" eller "Tabel")
+  \captiontitlefont{\small}							% Opsætning af nummerering
+  \captiondelim{. }											% Seperator mellem nummerering og figurtekst
+  \hangcaption													%	Venstrejusterer flere-liniers figurtekst under hinanden
+  \captionwidth{\linewidth}							% Bredden af figurteksten
+	\setlength{\belowcaptionskip}{10pt}		% Afstand under figurteksten
+
+% ¤¤ Sidehoved ¤¤ %
+\pagestyle{plain}
+		
+% ¤¤ Navngivning ¤¤ %
+\addto\captionsenglish{
+%	\renewcommand\appendixname{Bilag}
+	\renewcommand\contentsname{Table Of Contents}	
+%	\renewcommand\appendixpagename{Bilag}
+	\renewcommand\cftchaptername{\chaptername~}
+%	\renewcommand\cftappendixname{\appendixname~}
+%	\renewcommand\appendixtocname{Bilag}
+}
+%Appendix opsætning. Toc er sætter appendix kapitlerne i indholdfortegnelsen og head sætter en overskrift til appendix kapitlet
+
+\usepackage{appendix}
+%\usepackage[toc,page]{appendix}
+
+
+% ¤¤ Kapiteludssende ¤¤ %
+
+\definecolor{numbercolor}{gray}{0.7}
+\newif\ifchapternonum
+
+\makechapterstyle{jenor}{
+  \renewcommand\printchaptername{}
+  \renewcommand\printchapternum{}
+  \renewcommand\printchapternonum{\chapternonumtrue}
+  \renewcommand\chaptitlefont{\fontfamily{pbk}\fontseries{db}\fontshape{n}\fontsize{25}{35}\selectfont\raggedleft}
+  \renewcommand\chapnumfont{\fontfamily{pbk}\fontseries{m}\fontshape{n}\fontsize{1in}{0in}\selectfont\color{numbercolor}}
+  \renewcommand\printchaptertitle[1]{%
+    \noindent
+    \ifchapternonum
+    \begin{tabularx}{\textwidth}{X}
+    {\let\\\newline\chaptitlefont ##1\par}
+    \end{tabularx}
+    \par\vskip-2.5mm\hrule
+    \else
+    \begin{tabularx}{\textwidth}{Xl}
+    {\parbox[b]{\linewidth}{\chaptitlefont ##1}} & \raisebox{-15pt}{\chapnumfont \thechapter}
+    \end{tabularx}
+    \par\vskip2mm\hrule
+    \fi
+  }
+}
+
+\chapterstyle{jenor}
+
+% ¤¤ Fjerner den vertikale afstand mellem listeopstillinger og punktopstillinger ¤¤ %
+\let\olditemize=\itemize							
+\def\itemize{\olditemize\setlength{\itemsep}{-1ex}}
+\let\oldenumerate=\enumerate						
+\def\enumerate{\oldenumerate\setlength{\itemsep}{-1ex}}
+
+
+%%%% CUSTOM COMMANDS %%%%
+
+% ¤¤ Billede hack ¤¤ %
+\newcommand{\figur}[4]{
+		\begin{figure}[H] \centering
+			\includegraphics[width=#1\textwidth]{billeder/#2}
+			\caption{#3}\label{#4}
+		\end{figure}
+}
+
+% ¤¤ Specielle tegn ¤¤ %
+\newcommand{\celcius}{^{\circ}C}
+\newcommand{\gr}{^{\circ}}
+\newcommand{\g}{\cdot}
+
+% ¤¤ Promille-hack (\promille) ¤¤ %
+\newcommand{\promille}{%
+  \relax\ifmmode\promillezeichen
+        \else\leavevmode\(\mathsurround=0pt\promillezeichen\)\fi}
+\newcommand{\promillezeichen}{%
+  \kern-.05em%
+  \raise.5ex\hbox{\the\scriptfont0 0}%
+  \kern-.15em/\kern-.15em%
+  \lower.25ex\hbox{\the\scriptfont0 00}}
+
+
+%%%% ORDDELING %%%%
+
+\hyphenation{hvad hvem hvor MPa kon-se-kvens-klas-se bjæl-ken byg-ning-er e-le-ment brud-li-ni-er frem-løbs-tem-pe-ra-tur-en Bjæl-ker-ne ind-be-ret-tel-se be-hand-ler-en ana-ly-se stig-ning-en hænd-el-ser in-te-res-sen-ter-ne følg-en-de in-te-res-sen-ter in-te-res-sent-ana-ly-sen pro-blem-for-mu-le-ring pro-ble-mer pro-ble-ma-tisk kraft-y-del-ser vur-de-rer grebs-styr-ke da-ta-ana-ly-se sundheds-sektor u-sande grebs-styrke} 
