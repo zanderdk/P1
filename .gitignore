@@ -30,7 +30,7 @@
 *.vrb
 *.xdy
 *.tdo
-*.pdf
+/Report/*.pdf
 .DS_Store
 *~
 *.fls
