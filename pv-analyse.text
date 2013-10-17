@@ -1,0 +1,104 @@
+Problemstilling
+===============
+
+-   Hvordan systematiserer man indendørs navigation i sygehuse, således at man
+    tager højde for forskellige personers udgangspunkter og egenskaber?
+
+    -   Hvordan generer man en rute i et sygehus, der tilser forskellige
+        brugergruppers særlige behov?
+
+
+
+Interessanter
+=============
+
+-   Ansatte (øget effektivitet, da færre brugere spørger efter hjælp. Nemmere,
+    hurtigere at finde rundt mellem afdelinger)
+
+-   Udefrakommende (lettere at finde rundt)
+
+    -   Patienter (højere fremmøde, da lettere at finde ambulatorier. Bedre
+        mentalt image af et sygehus, da mindre komplekst)
+
+    -   Besøgende (nemmere at finde bekendte)
+
+-   Ledelsen (flere ressourcer tilgængelig, indirekte af øget effektivitet af
+    ansatte)
+
+
+
+State of the art
+================
+
+-   Color-coding på gangene
+
+-   2D-kort i hall'en
+
+-   Receptionisten
+
+-   Århus universitet (app)
+
+<http://www.version2.dk/artikel/wifi-pejling-paa-mobilen-skal-forhindre-patienter-i-fare-vild-paa-supersygehus-i-aarhus
+>
+
+-   Nokia osv. indoor navigation standard
+    <http://press.nokia.com/2012/08/23/accurate-mobile-indoor-positioning-industry-alliance-called-in-location-to-promote-deployment-of-location-based-indoor-services-and-solutions/>
+
+
+
+Mennesket:
+==========
+
+-   Brugere: alle folk der skal finde rundt
+
+-   Brugergrupper:
+
+    -   Ansatte:
+
+        -   Den hurtigste vej mellem afdelinger
+
+    -   Handicappede:
+
+        -   Undgår ufremkommelige ruter
+
+    -   Besøgende der ikke kan finde vej:
+
+        -   Præcis navigation til specifikke rum
+
+-   Ledelsen:
+
+    -   Er det favorabelt at implementere lettere vejvisning?
+
+    -   Ledelsen støtter i højere grad, hvis det er billigt at implementere.
+
+    -   Hvis der bruges eksisterende infrastruktur, bliver implementeringsfasen
+        nemmere.
+
+-   Fysiske omgivelser:
+
+    -   Gangarealer med farvekoder eksisterer allerede
+
+    -   Lokalenumre eksisterer allerede
+
+-   Inddragelse af brugere:
+
+
+
+Organisation
+============
+
+-   
+
+
+
+Teknologien
+===========
+
+-   Modellen med rum/personer skal være opdateret med sygehusets database.
+
+
+
+Omverden
+========
+
+-   Etik: Generel teknologisk afhængighed
