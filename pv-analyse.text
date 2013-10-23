@@ -1,11 +1,20 @@
-Problemstilling
-===============
+Initierende problem
+===================
 
 -   Hvordan systematiserer man indendørs navigation i sygehuse, således at man
     tager højde for forskellige personers udgangspunkter og egenskaber?
 
-    -   Hvordan generer man en rute i et sygehus, der tilser forskellige
-        brugergruppers særlige behov?
+-   Hvordan systematiserer man indendørs navigation i sygehuse, således at man
+    er i stand til at generere en specifik rute for forskellige personer og
+    deres egenskaber?
+
+
+
+Udkast problemformulering
+=========================
+
+-   How can a piece of software compute a route in a hospital that meets the
+    requirements of different groups of users?
 
 
 
@@ -37,12 +46,65 @@ State of the art
 -   Receptionisten
 
 -   Århus universitet (app)
-
-<http://www.version2.dk/artikel/wifi-pejling-paa-mobilen-skal-forhindre-patienter-i-fare-vild-paa-supersygehus-i-aarhus
->
+    <http://www.version2.dk/artikel/wifi-pejling-paa-mobilen-skal-forhindre-patienter-i-fare-vild-paa-supersygehus-i-aarhus
+    >
 
 -   Nokia osv. indoor navigation standard
     <http://press.nokia.com/2012/08/23/accurate-mobile-indoor-positioning-industry-alliance-called-in-location-to-promote-deployment-of-location-based-indoor-services-and-solutions/>
+
+-   Lodestar <http://www.alexandra.dk/dk/projekter/sider/lodestar.aspx> -
+    navigationssystem til sygehus. Personlig assistent.
+
+
+
+Nuværende problemer
+===================
+
+-   Kan være svært at finde vej i en kompleks bygning som f.eks. et sygehus.
+
+-   Ikke-intuitive systemer, feks. dårlig skiltning.
+
+-   Navigering tager ikke højde for personer med suboptimale evner.
+
+
+
+Samfundsrelevans
+================
+
+
+
+
+
+Etisk problemer:
+================
+
+-   Overvågning af personlokation mulig (afhængig af løsning)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
