@@ -3,7 +3,7 @@
 \usepackage{booktabs} %skal bruges hvis der bruges PDF2LaTEX             
 %preamble slut
 \begin{document}
-\includepdf{Frontpage.pdf}
+%\includepdf{Frontpage.pdf}
 \cleardoublepage
 %\clearpage
 %\cleardoublepage
@@ -15,24 +15,22 @@
 \tableofcontents
 
 %---------Introduction---------------
-\chapter{Introduction}
-%\input{Chapters/intro.tex}
 
-%---------ProblemAnalysis------------
-\chapter{Problem Analysis}
-\input{Chapters/probanal.tex}
+\input{Chapters/intro.tex}
+
+\input{Chapters/problem_analysis.tex}
 
 %---------Problem statement---------
-\chapter{Problem Statement}
+\input{Chapters/problem_statement.tex}
 
 %---------ProblemSolution------------
-\chapter{Problem Solution}
+\input{Chapters/problem_solution.tex}
 
 
-\chapter{Discussion}
+\input{Chapters/discussion.tex}
 
 
-\chapter{Conclusion}
+\input{Chapters/conclusion.tex}
 
 %---------Reference---------
 \bibliography{Bibtex/References}\label{lastpage}
