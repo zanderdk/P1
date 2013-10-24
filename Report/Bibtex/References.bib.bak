@@ -1,5 +1,29 @@
-% This file was created with JabRef 2.6.
-% Encoding: Cp1252
+% This file was created with JabRef 2.9.2.
+% Encoding: UTF8
+
+@ELECTRONIC{wiki_navi,
+  author = {Wikipedia},
+  month = {10},
+  year = {2013},
+  title = {Navigation},
+  language = {English},
+  organization = {Wikipedia.org},
+  url = {http://en.wikipedia.org/wiki/Navigation},
+  owner = {Simon},
+  timestamp = {2013.10.24}
+}
+
+@ELECTRONIC{wiki_pos,
+  author = {Wikipedia},
+  month = {10},
+  year = {2013},
+  title = {Position},
+  language = {English},
+  organization = {Wikipedia.org},
+  url = {http://en.wikipedia.org/wiki/Position_(disambiguation)},
+  owner = {Simon},
+  timestamp = {2013.10.24}
+}
 
 @comment{jabref-meta: selector_publisher:}
 
