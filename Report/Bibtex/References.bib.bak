@@ -25,6 +25,18 @@
   timestamp = {2013.10.24}
 }
 
+@ELECTRONIC{wiki_srs,
+  author = {Wikipedia},
+  month = {10},
+  year = {2013},
+  title = {Spatial reference system},
+  language = {English},
+  organization = {Wikipedia.org},
+  url = {http://en.wikipedia.org/wiki/Spatial_reference_system},
+  owner = {Simon},
+  timestamp = {2013.10.24}
+}
+
 @comment{jabref-meta: selector_publisher:}
 
 @comment{jabref-meta: selector_author:}
