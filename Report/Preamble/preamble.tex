@@ -65,6 +65,16 @@
 
 % Indsæt rettelser og lignende med \fixme{...} Med final i stedet for draft, udløses en error for hver fixme, der ikke er slettet, når rapporten bygges.
 
+\newcommand{\appendixpages}[0]{
+     \intcalcAdd
+      {1}
+      {
+        \intcalcSub
+        {\getpagerefnumber{TotPages}}
+        {\getpagerefnumber{appendix_start}}
+        }
+    }
+
 %%%% CUSTOM SETTINGS %%%%
 
 % ¤¤ Marginer ¤¤ %
