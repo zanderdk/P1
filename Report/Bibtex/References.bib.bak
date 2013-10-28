@@ -1,6 +1,43 @@
 % This file was created with JabRef 2.9.2.
 % Encoding: UTF8
 
+@ELECTRONIC{,
+  author = {Schultz Information},
+  month = {Juni},
+  year = {2013},
+  title = {Job
+	
+	Portør},
+  language = {Danish},
+  organization = {Undervisningsministeriet},
+  url = {http://www.ug.dk/job/sundhedomsorgogpleje/andethosparb/portoer.aspx},
+  owner = {AndersBærbar},
+  timestamp = {2013.10.28}
+}
+
+@STANDARD{,
+  organization = {Hjørring sygehus},
+  author = {Laila Kirkeby Matthiassen},
+  language = {Danish},
+  type = {Interwiev},
+  month = {Oktober},
+  year = {2013},
+  owner = {AndersBærbar},
+  timestamp = {2013.10.28}
+}
+
+@ELECTRONIC{,
+  author = {Helen Osborne},
+  month = {October},
+  year = {2001},
+  title = {In Other Words…Tools to Help Patients Navigate Their Way Around Hospitals},
+  language = {English},
+  organization = {Boston Globe's On Call Magazine},
+  url = {http://www.healthliteracy.com/article.asp?PageID=3756},
+  owner = {AndersBærbar},
+  timestamp = {2013.10.28}
+}
+
 @ELECTRONIC{wiki_navi,
   author = {Wikipedia},
   month = {10},
