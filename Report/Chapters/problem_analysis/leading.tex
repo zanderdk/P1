@@ -1,0 +1,119 @@
+\section{Leading Technologies}
+
+http://www.wifarer.com/hospitals
+http://www.meridianapps.com/products
+http://www.smartindoor.com/
+https://www.indooratlas.com/
+
+
+\subsection{Position Technologies}
+
+  \subsection{Satellites}
+
+  \subsection{Cellular Communication Network}
+
+  \subsection{Infra-red}
+
+  \subsection{Blue-tooth}
+
+  \subsection{WIFI}
+
+  \subsection{Summary of Position Technologies}
+
+\subsection{Positioning Techniques}
+
+  \subsection{Cell of Origin}
+
+  \subsection{Angle of Arrival}
+
+  \subsection{Angle difference of Arrival}
+
+  \subsection{Time of Arrival}
+
+  \subsection{Time difference of Arrival}
+
+  \subsection{Triangulation}
+
+  \subsection{Location Fingerprinting}
+
+  \subsection{Summary of Position Techniques}
+
+\subsection{Information Techniques}
+
+  \subsubsection{2 Dimensional map}
+
+  \subsubsection{3 Dimensional map}
+
+  \subsubsection{Text directions}
+
+  \subsubsection{Summary of Information Techniques}
+
+\subsection{Path finding Algorithms}
+
+  Path finding algorithms is used for finding a path between to locations, the source and the destination. By searching its way from the source to the destination, until a path is found. These algorithms also make it possible to calculate the optimal path, I.e. the shortest.
+
+  The algorithms to perform searches they makes use of a weighted graph. A graph, G is a set of nodes V, connected by links E.
+  Information about destinations, rooms, entrances and exits would be represented as nodes and hallways and stairs would be represented as links. The distance to travel from node to node via a particular link, would be represented as a weight W(e).
+
+  A important factor of a searching algorithm is correctness and also the time required to calculate the optimized path.
+  The algorithms can be rated by their worst-case time, to ensure a responsive performance.
+
+  \begin{figure}[h!]
+  \caption{A picture of a gull.}
+  \centering
+    \includegraphics[width=0.5\textwidth]{/Imaǵes/pathfinding}
+  \end{figure}
+
+  \subsubsection{Dijkstra's Algorithm}
+
+  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. Its loops through steps until all nodes to the target node is optimized with least cost, then points out the shortest path from source node, to target node. The need of every node being evaluated, the complexity of algorithm is proportional with the number of nodes, which means that a lot of computational power is required to calculate the result. The computational cost is calculated O(N*N), where N is the quantity of nodes in the graph.
+
+  Another disadvantage with Dijkstra's algorithm is that its not possible to calculate negative weighted values, which could potentially cause the algorithm to engage in an infinite loop. A negative weighted value could mean saving money over loosing by passing through a certain area.
+
+  We consider the problem: find shortest path from source to target.
+
+  Where P is the source node, Q is the target and R is the evaluating node
+
+  The nodes are subdivided into three sets:
+
+  Set A - Optimized nodes (least costly path from P is known)
+  Set B - Temporary nodes (evaluated cost of path from P but not part of set A)
+  Set C - Remaining nodes
+
+  The links are subdivided into three other sets:
+
+  Set I - Links used in the set A
+  Set II - Not part of set I (one and only one link of this set will lead to each node in set B)
+  Set III - Remaining links (rejected or not yet considered)
+
+  At first all nodes is assigned to set C and all links to set III, P is then assigned to set A.
+  Then we loop through following steps until Q is part of set A.
+
+  Step 1. Consider all the links r connecting the node just assigned to set A. If R is part of set C assign to set B and assign r to set II.
+  If R is part of set B, then investigate if the use of link r is less costly from P to R than the existing link in set II. If less costly assign link r and reject existing link in set II, otherwise reject r to set III.
+
+  Step 2. For each node in set B where there'Ps only one path in set I and set II, the node with minimum cost from P is assign to set A and with the corresponding link assign to set I.
+
+  %\subsubsection{Bellman-Ford Algorithm}
+%%%not relevant right now
+  %is based on 3 separate algorithms
+
+
+  \subsubsection{A* Algorithm}
+
+  Firstly A* is an informed search algorithm, where Dijkstra's is uninformed. A* utilises the principle of a heuristic estimation to determine which node to test next.
+
+  - If h is zero, then only g affects the result and making it work like Dijkstra's algorithm
+
+  - If h < g, the algorithm will guaranteed find the shortest path from source to target, at a slow running time.
+
+  - If h == g, the algorithm will only extract the best path, but this not always possible due to obstacles.
+
+  - If h > g, the algorithm will find a path fast not its not always the optimal.
+
+  This means that the heuristic estimation should be reasonable, and not overestimate the distance between to the evaluating node and the target node. But should be just right for the final chosen path to be the optimal path and the for the complexity of the algorithm to be at a minimum.
+
+  \subsubsection{Summary of Algorithms}
+
+  %SCHEME OF ADVANTAGES AND DISADVANTAGES
+  %======================================
