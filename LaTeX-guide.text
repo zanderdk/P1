@@ -1,0 +1,20 @@
+LaTeX
+=====
+
+1.  Chapter bruges til overemne f.eks. problem analyse
+
+2.  Section bruges som et underemne til chapter
+
+3.  Paragraph bruges som brødtekst
+
+4.  Brug \\fixme{…} til kommentarer/ting der skal ændres
+
+
+
+
+
+Git
+===
+
+1.  Husk at pull før man committer. Ellers overskriver man muligvis andres
+    ændringer!
