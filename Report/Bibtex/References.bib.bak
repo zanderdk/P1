@@ -1,121 +1,84 @@
 % This file was created with JabRef 2.9.2.
 % Encoding: UTF8
 
-@ARTICLE{compassdude_triangulation,
-  author = {Compassdude.com},
-  title = {Triangulation},
-  journaltitle = {Triangulation},
-  year = {2013},
-  url = {http://www.compassdude.com/compass-triangulation.shtml},
-  owner = {Simon},
-  timestamp = {2013.10.29}
-}
-
 @ELECTRONIC{ugd_port,
   author = {Schultz Information},
+  month = {Juni},
+  year = {2013},
   title = {Job
 	
 	Portør},
-  year = {2013},
-  url = {http://www.ug.dk/job/sundhedomsorgogpleje/andethosparb/portoer.aspx},
   language = {Danish},
   organization = {Undervisningsministeriet},
-  month = {Juni},
+  url = {http://www.ug.dk/job/sundhedomsorgogpleje/andethosparb/portoer.aspx},
   owner = {AndersBærbar},
   timestamp = {2013.10.28}
 }
 
-@ARTICLE{survey_pos,
-  author = {Liu, Hui and Darabi, Houshang and Banerjee, Pat and Liu, Jing},
-  title = {Survey of wireless indoor positioning techniques and systems},
-  journaltitle = {Survey of wireless indoor positioning techniques and systems},
-  year = {2007},
-  volume = {37},
-  issue = {6},
-  month = {11},
-  pages = {1067-1080},
-  issn = {1094-6977},
-  url = {http://neptune.cp.eng.chula.ac.th/blog/wp-content/uploads/2013/01/2007-Survey-of-Wireless-Indoor-Positioning.pdf},
-  __markedentry = {[Simon:6]},
-  abstract = {Wireless indoor positioning systems have become very popular in recent
-	years. These systems have been successfully used in many applications
-	such as asset tracking and inventory management. This paper provides
-	an overview of the existing wireless indoor positioning solutions
-	and attempts to classify different techniques and systems. Three
-	typical location estimation schemes of triangulation, scene analysis,
-	and proximity are analyzed. We also discuss location fingerprinting
-	in detail since it is used in most current system or solutions. We
-	then examine a set of properties by which location systems are evaluated,
-	and apply this evaluation method to survey a number of existing systems.
-	Comprehensive performance comparisons including accuracy, precision,
-	complexity, scalability, robustness, and cost are presented.},
-  journal = {Systems, Man, and Cybernetics, Part C: Applications and Reviews,
-	IEEE Transactions on},
-  owner = {Simon},
-  publisher = {IEEE},
-  timestamp = {2013.10.29}
-}
-
-@OTHER{int_laila,
-  author = {Laila Kirkeby Matthiassen},
-  institution = {Hjørring},
-  language = {Danish},
-  month = {Oktober},
-  organization = {Hjørring sygehus},
-  owner = {AndersBærbar},
-  timestamp = {2013.10.28},
+@STANDARD{int_laila,
   title = {Interwiev},
+  organization = {Hjørring sygehus},
+  institution = {Hjørring},
+  author = {Laila Kirkeby Matthiassen},
+  language = {Danish},
   type = {Interwiev},
-  year = {2013}
+  month = {Oktober},
+  year = {2013},
+  owner = {AndersBærbar},
+  timestamp = {2013.10.28}
 }
 
 @ELECTRONIC{art_Osborne,
   author = {Helen Osborne},
-  title = {In Other Words…Tools to Help Patients Navigate Their Way Around Hospitals},
+  month = {October},
   year = {2001},
-  url = {http://www.healthliteracy.com/article.asp?PageID=3756},
+  title = {In Other Words…Tools to Help Patients Navigate Their Way Around Hospitals},
   language = {English},
   organization = {Boston Globe's On Call Magazine},
-  month = {October},
+  url = {http://www.healthliteracy.com/article.asp?PageID=3756},
   owner = {AndersBærbar},
   timestamp = {2013.10.28}
 }
 
-@WWW{wiki_navi,
+@ELECTRONIC{wiki_navi,
   author = {Wikipedia},
+  month = {10},
+  year = {2013},
   title = {Navigation},
-  year = {2013},
+  language = {English},
+  organization = {Wikipedia.org},
   url = {http://en.wikipedia.org/wiki/Navigation},
-  language = {English},
-  organization = {Wikipedia.org},
-  month = {10},
   owner = {Simon},
   timestamp = {2013.10.24}
 }
 
-@WWW{wiki_pos,
+@ELECTRONIC{wiki_pos,
   author = {Wikipedia},
+  month = {10},
+  year = {2013},
   title = {Position},
-  year = {2013},
-  url = {http://en.wikipedia.org/wiki/Position_(disambiguation)},
   language = {English},
   organization = {Wikipedia.org},
-  month = {10},
+  url = {http://en.wikipedia.org/wiki/Position_(disambiguation)},
   owner = {Simon},
   timestamp = {2013.10.24}
 }
 
-@WWW{wiki_srs,
+@ELECTRONIC{wiki_srs,
   author = {Wikipedia},
-  title = {Spatial reference system},
+  month = {10},
   year = {2013},
-  url = {http://en.wikipedia.org/wiki/Spatial_reference_system},
+  title = {Spatial reference system},
   language = {English},
   organization = {Wikipedia.org},
-  month = {10},
+  url = {http://en.wikipedia.org/wiki/Spatial_reference_system},
   owner = {Simon},
   timestamp = {2013.10.24}
 }
+
+@comment{jabref-meta: selector_publisher:}
+
+@comment{jabref-meta: selector_author:}
 
 @comment{jabref-meta: selector_journal:}
 
