@@ -34,6 +34,7 @@
 % ¤¤ PDF og billede optimering ¤¤ %
 \usepackage{graphicx} 									% Pakke til jpeg/png billeder
 \graphicspath{{Images/}}
+\usepackage{tikz}
 
  % support for sidste side page number
 %\usepackage{lastpage}
@@ -53,8 +54,10 @@
 %% Now actually use the newly defined style.
 \urlstyle{leo}
 
-\usepackage[english]{varioref}						% Giver flere bedre mulighed for at lave krydshenvisninger
-\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
+\usepackage[english]{varioref}
+\usepackage[colorlinks]{hyperref} 
+\usepackage{cleveref}						% Giver flere bedre mulighed for at lave krydshenvisninger
+%\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
 
 
 % ¤¤ Floats ¤¤ %
@@ -87,9 +90,14 @@
 \setlength{\parskip}{3mm}          			% Afstand mellem afsnit ved brug af double Enter
 \linespread{1,1}												% Linie afstand
 
-% ¤¤ Litteraturlisten ¤¤ %
-\bibpunct{[}{]}{,}{a}{}{;}					% Definerer de 6 parametre ved Harvard henvisning (bl.a. parantestype og seperatortegn)
-\bibliographystyle{bibtex/harvard} 			% Udseende af litteraturlisten
+
+
+\usepackage[
+    bibencoding=utf8,
+    hyperref=true,
+    backend=biber
+]{biblatex}
+\bibliography{Bibtex/References.bib}
 
 % ¤¤ Indholdsfortegnelse ¤¤ %
 \setsecnumdepth{subsubsection}		 			% Dybden af nummerede overkrifter (part/chapter/section/subsection)
@@ -97,7 +105,7 @@
 \settocdepth{subsection} 								% Dybden af indholdsfortegnelsen
 
 % ¤¤ Visuelle referencer ¤¤ %
-\usepackage[colorlinks]{hyperref}			 	% Giver mulighed for at ens referencer bliver til klikbare hyperlinks. .. [colorlinks]{..}
+		 	% Giver mulighed for at ens referencer bliver til klikbare hyperlinks. .. [colorlinks]{..}
 \hypersetup{pdfborder = 0}							% Fjerner ramme omkring links i fx indholsfotegnelsen og ved kildehenvisninger ¤¤
 \hypersetup{														%	Opsætning af hyperlinks
     colorlinks = false,
@@ -106,7 +114,6 @@
     citecolor = black
 }
 
-\definecolor{gray}{gray}{0.80}					% Definerer farven grå
 
 % ¤¤ Opsætning af figur- og tabeltekst ¤¤ %
  	\captionnamefont{
@@ -120,15 +127,7 @@
 % ¤¤ Sidehoved ¤¤ %
 \pagestyle{plain}
 		
-% ¤¤ Navngivning ¤¤ %
-\addto\captionsenglish{
-%	\renewcommand\appendixname{Bilag}
-	\renewcommand\contentsname{Table Of Contents}	
-%	\renewcommand\appendixpagename{Bilag}
-	\renewcommand\cftchaptername{\chaptername~}
-%	\renewcommand\cftappendixname{\appendixname~}
-%	\renewcommand\appendixtocname{Bilag}
-}
+
 %Appendix opsætning. Toc er sætter appendix kapitlerne i indholdfortegnelsen og head sætter en overskrift til appendix kapitlet
 
 \usepackage{appendix}
@@ -170,33 +169,3 @@
 \let\oldenumerate=\enumerate						
 \def\enumerate{\oldenumerate\setlength{\itemsep}{-1ex}}
 
-
-%%%% CUSTOM COMMANDS %%%%
-
-% ¤¤ Billede hack ¤¤ %
-\newcommand{\figur}[4]{
-		\begin{figure}[H] \centering
-			\includegraphics[width=#1\textwidth]{billeder/#2}
-			\caption{#3}\label{#4}
-		\end{figure}
-}
-
-% ¤¤ Specielle tegn ¤¤ %
-\newcommand{\celcius}{^{\circ}C}
-\newcommand{\gr}{^{\circ}}
-\newcommand{\g}{\cdot}
-
-% ¤¤ Promille-hack (\promille) ¤¤ %
-\newcommand{\promille}{%
-  \relax\ifmmode\promillezeichen
-        \else\leavevmode\(\mathsurround=0pt\promillezeichen\)\fi}
-\newcommand{\promillezeichen}{%
-  \kern-.05em%
-  \raise.5ex\hbox{\the\scriptfont0 0}%
-  \kern-.15em/\kern-.15em%
-  \lower.25ex\hbox{\the\scriptfont0 00}}
-
-
-%%%% ORDDELING %%%%
-
-\hyphenation{hvad hvem hvor MPa kon-se-kvens-klas-se bjæl-ken byg-ning-er e-le-ment brud-li-ni-er frem-løbs-tem-pe-ra-tur-en Bjæl-ker-ne ind-be-ret-tel-se be-hand-ler-en ana-ly-se stig-ning-en hænd-el-ser in-te-res-sen-ter-ne følg-en-de in-te-res-sen-ter in-te-res-sent-ana-ly-sen pro-blem-for-mu-le-ring pro-ble-mer pro-ble-ma-tisk kraft-y-del-ser vur-de-rer grebs-styr-ke da-ta-ana-ly-se sundheds-sektor u-sande grebs-styrke} 
