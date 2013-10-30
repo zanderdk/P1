@@ -37,15 +37,15 @@ https://www.indooratlas.com/
 
   Triangulation is a method used for estimating the position of an object. The method uses the properties of triangles. Triangulation has two derivatives: literation and angulation.
 
- \paragraph{Literation}
+ \paragraph{Lateration}
 
-  Trilateration is commonly used technique for positioning.  Trilateration uses the distance between known locations and and the point to be determined, to estimate the location.\cite{tri_lateration}  There are two types of trilateration two dimensional and three dimensional. The two dimensional are use in robots that navigates in only one plane, like robot vacuum cleaners. 
-  trilateration in three dimensions are used in GPS positioning, and other practical applications for positioning
-  we will only explain three dimensional trilateration.
+  Lateration is commonly used technique for positioning.  Lateration uses the distance between known locations and and the point to be determined, to estimate the location.\cite{tri_lateration}  There are two types of lateration two dimensional and three dimensional. The two dimensional are use in robots that navigates in only one plane, like robot vacuum cleaners. 
+  lateration in three dimensions are used in GPS positioning, and other practical applications for positioning
+  we will only explain three dimensional lateration.
   \begin{figure}[h!]
   \centering
   \includegraphics[width=3in]{trilateration}
-  \caption{Source: http://ixbtlabs.com/articles/gpssystem/}
+  \caption{Example of lateration with three know positions.\newline Source: http://ixbtlabs.com/articles/gpssystem/}
   \label{fig:trilateration}
   \end{figure}
   
@@ -56,6 +56,7 @@ https://www.indooratlas.com/
   The intersection of two spheres is a circle. By determining the distance to a second know point it is possible to circumscribe the range of possible position to a smaller area.
   This is illustrated as the blue circle on figure \ref{fig:trilateration}, and is the intersection between sphere A and B.
   A third sphere that overlaps the intersection between the first two spheres, will mark 2 points where all three spheres is collapsing. In fare most situations there are only one of these locations that lies on the Earth's surface, the other point will often be fare in to the sky or deep inside earth. So by sorting one point from, there is only one possible position left. 
+  In some very rare situation it is possible that both point lies on the Earth's surface, and in such situations the use of four spheres will determine witch of the to positions is the right one.
 
 
 
