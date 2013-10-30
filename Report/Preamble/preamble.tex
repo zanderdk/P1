@@ -8,28 +8,28 @@
 \usepackage[english]{babel}							% Dansk sporg, f.eks. tabel, figur og kapitel
 \usepackage[T1]{fontenc}								% Hjælper med orddeling ved æ, ø og å. Sætter fontene til at være ps-fonte, i stedet for bmp					
 \usepackage{latexsym}										% LaTeX symboler
-\usepackage{xcolor,ragged2e,fix-cm}			% Justering af elementer
-\usepackage{pdfpages}										% Gør det muligt at inkludere pdf-dokumenter med kommandoen \includepdf[pages=]{fil.pdf}	
-\pretolerance=2500 											% Gør det muligt at justre afstanden mellem ord (højt tal, mindre orddeling og mere space mellem ord)
-\usepackage{ulem}                       % Gennemstregning af ord med koden \sout{}
+%\usepackage{xcolor,ragged2e,fix-cm}			% Justering af elementer
+
+%\pretolerance=2500 											% Gør det muligt at justre afstanden mellem ord (højt tal, mindre orddeling og mere space mellem ord)
+%\usepackage{ulem}                       % Gennemstregning af ord med koden \sout{}
 																			
 % ¤¤ Figurer og tabeller – floats  ¤¤ %
-\usepackage{flafter}										% Sørger for at dine floats ikke optræder i teksten før de er sat ind.
-\usepackage{multirow}                		% Fletning af rækker
-\usepackage{hhline}                   	% Dobbelte horisontale linier
-\usepackage{multicol}         	        % Fletning af kolonner
-\usepackage{colortbl} 									% Muligøre farver i tabeller
-\usepackage{here}												% Gør det muligt at placere figurer hvor du vil.   \begin{figure}[!h] % Will not be floating.
-\usepackage{wrapfig}										% Indsættelse af figurer omsvøbt af tekst. \begin{wrapfigure}{Placering}{Størrelse}
-\usepackage{floatflt}										% Indsættelse af tabeller omsvøbt af tekst.
-\pdfoptionpdfminorversion=6							% Muliggør inkludering af pdf dokumenter, af version 1.6 og højere
-\usepackage{placeins}	
+%\usepackage{flafter}										% Sørger for at dine floats ikke optræder i teksten før de er sat ind.
+%\usepackage{multirow}                		% Fletning af rækker
+%\usepackage{hhline}                   	% Dobbelte horisontale linier
+%\usepackage{multicol}         	        % Fletning af kolonner
+%\usepackage{colortbl} 									% Muligøre farver i tabeller
+%\usepackage{here}												% Gør det muligt at placere figurer hvor du vil.   \begin{figure}[!h] % Will not be floating.
+%\usepackage{wrapfig}										% Indsættelse af figurer omsvøbt af tekst. \begin{wrapfigure}{Placering}{Størrelse}
+%\usepackage{floatflt}										% Indsættelse af tabeller omsvøbt af tekst.
+%\pdfoptionpdfminorversion=6							% Muliggør inkludering af pdf dokumenter, af version 1.6 og højere
+%\usepackage{placeins}	
 % ¤¤ Matematiske formler og maskinkode ¤¤
-\usepackage{amsmath,amssymb,stmaryrd} 	% Bedre matematik og ekstra fonte
-\usepackage{textcomp}                 	% Adgang til tekstsymboler
-\usepackage{mathtools}									% Udvidelse af amsmath-pakken.
-\usepackage{eso-pic}										% Tilføj billedekommandoer på hver side
-\usepackage{lipsum}											% Dummy text \lipsum[..]
+\usepackage{amsmath} 	% Bedre matematik og ekstra fonte
+%\usepackage{textcomp}                 	% Adgang til tekstsymboler
+%\usepackage{mathtools}									% Udvidelse af amsmath-pakken.
+%\usepackage{eso-pic}										% Tilføj billedekommandoer på hver side
+%\usepackage{lipsum}											% Dummy text \lipsum[..]
 
 % ¤¤ PDF og billede optimering ¤¤ %
 \usepackage{graphicx} 									% Pakke til jpeg/png billeder
@@ -59,10 +59,6 @@
 \usepackage{cleveref}						% Giver flere bedre mulighed for at lave krydshenvisninger
 %\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
 
-
-% ¤¤ Floats ¤¤ %
-\let\newfloat\relax 										% Memoir har allerede defineret denne men det gør float pakken også
-\usepackage{float}
 
 \usepackage[marginclue,inline,draft,english,silent]{fixme}			
 
@@ -100,8 +96,8 @@
 \bibliography{Bibtex/References.bib}
 
 % ¤¤ Indholdsfortegnelse ¤¤ %
-\setsecnumdepth{subsubsection}		 			% Dybden af nummerede overkrifter (part/chapter/section/subsection)
-\maxsecnumdepth{subsubsection}					% Ændring af dokumentklassens grænse for nummereringsdybde
+\setsecnumdepth{subsection}		 			% Dybden af nummerede overkrifter (part/chapter/section/subsection)
+%\maxsecnumdepth{subsubsection}					% Ændring af dokumentklassens grænse for nummereringsdybde
 \settocdepth{subsection} 								% Dybden af indholdsfortegnelsen
 
 % ¤¤ Visuelle referencer ¤¤ %
@@ -116,13 +112,13 @@
 
 
 % ¤¤ Opsætning af figur- og tabeltekst ¤¤ %
- 	\captionnamefont{
- 		\small\bfseries\itshape}						% Opsætning af tekstdelen ("Figur" eller "Tabel")
-  \captiontitlefont{\small}							% Opsætning af nummerering
-  \captiondelim{. }											% Seperator mellem nummerering og figurtekst
-  \hangcaption													%	Venstrejusterer flere-liniers figurtekst under hinanden
-  \captionwidth{\linewidth}							% Bredden af figurteksten
-	\setlength{\belowcaptionskip}{10pt}		% Afstand under figurteksten
+ % 	\captionnamefont{
+ % 		\small\bfseries\itshape}						% Opsætning af tekstdelen ("Figur" eller "Tabel")
+ %  \captiontitlefont{\small}							% Opsætning af nummerering
+ %  \captiondelim{. }											% Seperator mellem nummerering og figurtekst
+ %  \hangcaption													%	Venstrejusterer flere-liniers figurtekst under hinanden
+ %  \captionwidth{\linewidth}							% Bredden af figurteksten
+	% %\setlength{\belowcaptionskip}{10pt}		% Afstand under figurteksten
 
 % ¤¤ Sidehoved ¤¤ %
 \pagestyle{plain}
@@ -130,7 +126,7 @@
 
 %Appendix opsætning. Toc er sætter appendix kapitlerne i indholdfortegnelsen og head sætter en overskrift til appendix kapitlet
 
-\usepackage{appendix}
+%\usepackage{appendix}
 %\usepackage[toc,page]{appendix}
 
 
@@ -164,8 +160,8 @@
 \chapterstyle{jenor}
 
 % ¤¤ Fjerner den vertikale afstand mellem listeopstillinger og punktopstillinger ¤¤ %
-\let\olditemize=\itemize							
-\def\itemize{\olditemize\setlength{\itemsep}{-1ex}}
-\let\oldenumerate=\enumerate						
-\def\enumerate{\oldenumerate\setlength{\itemsep}{-1ex}}
+%\let\olditemize=\itemize							
+%\def\itemize{\olditemize\setlength{\itemsep}{-1ex}}
+%\let\oldenumerate=\enumerate						
+%\def\enumerate{\oldenumerate\setlength{\itemsep}{-1ex}}
 

@@ -37,7 +37,7 @@ http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
 
   Triangulation is a method used for estimating the position of an object. The method uses the properties of triangles. Triangulation has two derivatives: literation and angulation.
 
- \paragraph{Lateration}
+ \subsubsection{Lateration}
 
   Lateration is commonly used technique for positioning.  Lateration uses the distance between known locations and and the point to be determined, to estimate the location.\cite{tri_lateration}  There are two types of lateration two dimensional and three dimensional. The two dimensional are use in robots that navigates in only one plane, like robot vacuum cleaners. 
   lateration in three dimensions are used in GPS positioning, and other practical applications for positioning.
@@ -60,7 +60,7 @@ http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
 
 
 
-  \paragraph{Angulation}
+  \subsubsection{Angulation}
 
   Angulation uses the technique called Angle of Arrival (AOA), which can compute the location of a source. The parameters needed are as minimum two relative angles between a remote point and the source, and the distance between the remote points. The source is at the location where the lines formed by the angle direction lines intercept. 
 
@@ -80,6 +80,21 @@ http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html
   The disadvantages of AOA are the need of large and complex hardware requirements, and degradation of the location estimate as the target moves away from the measuring units. In order to perform accurate position of the target, very accurate angle measurements need to be performed. This can become a problem if the measuring is done in wireless networks, because of shadowing, multipath reflections arriving from misleading directions etc. Therefore angulation is best performed in free space.
 
   \subsection{Location Fingerprinting}
+
+  Location fingerprinting refers to the algorithms that first collect characteristics (fingerprints) of a scene and then matches these a priori characteristics with the characteristics of the location the source is in, to determine the source' location.
+
+  There are two stages for location fingerprinting. The offline state where a site survey is performed in the environment. The characteristics of known locations are stored in databases. In the online state, these a priori characteristics are used to match the location of the source.
+
+  The main challenge of location fingerprinting is the possibility of variating signal strengths corrupting characteristics data.
+
+  Some of the existing location fingerprinting-based positioning algorithms will be described below.
+
+  \subsubsection{k-nearest-neighbour}
+
+  The k-nearest-neighbour (k-NN) algorithm simply compares a data set to $k$ closest-neighbour data sets, meaning data sets that are close to the original data set. The closeness is called the distance and is typically computed using the Euclidean distance or the Hamming distance.\cite{Liu2007, wiki_knn}
+
+  In location fingerprinting, k-NN uses the online Received Signal Strengths (RSS) to find the closest $k$ locations from the a priori RSS.
+
 
   \subsection{Summary of Position Techniques}
 
