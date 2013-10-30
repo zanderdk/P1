@@ -37,7 +37,26 @@ https://www.indooratlas.com/
 
   Triangulation is a method used for estimating the position of an object. The method uses the properties of triangles. Triangulation has two derivatives: literation and angulation.
 
-  \paragraph{Literation}
+ \paragraph{Literation}
+
+  Trilateration is commonly used technique for positioning.  Trilateration uses the distance between known locations and and the point to be determined, to estimate the location.\cite{tri_lateration}  There are two types of trilateration two dimensional and three dimensional. The two dimensional are use in robots that navigates in only one plane, like robot vacuum cleaners. 
+  trilateration in three dimensions are used in GPS positioning, and other practical applications for positioning
+  we will only explain three dimensional trilateration.
+  \begin{figure}[h!]
+  \centering
+  \includegraphics[width=3in]{trilateration}
+  \caption{Source: http://ixbtlabs.com/articles/gpssystem/}
+  \label{fig:trilateration}
+  \end{figure}
+  
+
+  Trilateration in three dimensions is possible in fare most situations if and only if the distance to three known positions is defined or possible to calculate.
+  If we know a distance to one of these three positions we know that the point we are seeking is in the surface of a sphere, with center at the know position, and with a radius equals to the distance to the center. This is illustrated on figure \ref{fig:trilateration} as the surface of the sphere A.
+
+  The intersection of two spheres is a circle. By determining the distance to a second know point it is possible to circumscribe the range of possible position to a smaller area.
+  This is illustrated as the blue circle on figure \ref{fig:trilateration}, and is the intersection between sphere A and B.
+  A third sphere that overlaps the intersection between the first two spheres, will mark 2 points where all three spheres is collapsing. In fare most situations there are only one of these locations that lies on the Earth's surface, the other point will often be fare in to the sky or deep inside earth. So by sorting one point from, there is only one possible position left. 
+
 
 
   \paragraph{Angulation}
@@ -61,7 +80,7 @@ https://www.indooratlas.com/
 
   \subsection{Summary of Position Techniques}
 
-\subsection{Information Techniques}
+  \subsection{Information Techniques}
 
   \subsubsection{2 Dimensional map}
 
@@ -81,11 +100,12 @@ https://www.indooratlas.com/
   A important factor of a searching algorithm is correctness and also the time required to calculate the optimized path.
   The algorithms can be rated by their worst-case time, to ensure a responsive performance.
 
-  \begin{figure}[h!]
-  \caption{A picture of a gull.}
-  \centering
+
+  %\begin{figure}[h!]
+  %\caption{A picture of a gull.}
+  %\centering
     %\includegraphics[width=0.5\textwidth]{/Images/pathfinding}
-  \end{figure}
+  %\end{figure}
 
   \subsubsection{Dijkstra's Algorithm}
 
