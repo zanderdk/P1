@@ -1,6 +1,56 @@
 % This file was created with JabRef 2.9.2.
 % Encoding: UTF8
 
+@INPROCEEDINGS{Boontrai2009,
+  author = {Boontrai, D. and Jingwangsa, T. and Cherntanomwong, P.},
+  title = {Indoor localization technique using passive RFID tags},
+  booktitle = {Communications and Information Technology, 2009. ISCIT 2009. 9th
+	International Symposium on},
+  year = {2009},
+  pages = {922-926},
+  doi = {10.1109/ISCIT.2009.5340979},
+  abstract = {In this paper, radio frequency identification (RFID) technology is
+	used for localization system. The location of a RFID reader is estimated
+	based on the known locations of RFID tags using the UHF band RFID
+	system. The new location estimation method based on the angulation
+	technique is proposed to determine the reader location in real time.
+	For angulation technique, the RFID reader is held on the camera tripod
+	and it is considered as the target to be localized. The passive tags
+	are attached at the known location and considered as the references.
+	In this case, the RFID tags are put in the horizontal straight line
+	on different sides on the walls (around the corner). The required
+	parameter is the angle between the tag and the reader. In this paper,
+	a compass is employed to measure the angle between the tag and the
+	reader. Therefore, at least two angles are needed and further used
+	to calculate the true location of the reader by using two formulated
+	linear equations. This technique is verified using the experiment
+	data. Two experiments are conducted with two different distances
+	between tags and reader, i.e. 100 cm and 150 cm. The experiment results
+	of location estimation show that the average location estimation
+	error is around 16 cm for the 100 cm distance and around 20 cm for
+	the 150 cm distance. This implies that the proposed method is satisfied
+	to use for indoor applications.},
+  keywords = {UHF devices;indoor radio;radio direction-finding;radiofrequency identification;UHF
+	system;angulation technique;indoor localization technique;linear
+	equation;location estimation method;passive RFID tags;radio frequency
+	identification;Cameras;Costs;Equations;Estimation error;Goniometers;Passive
+	RFID tags;Patient monitoring;RFID tags;Radiofrequency identification;Wireless
+	LAN;RFID;compass;indoor localization}
+}
+
+@ARTICLE{4343996, 
+author={Hui Liu and Darabi, H. and Banerjee, P. and Jing Liu}, 
+journal={Systems, Man, and Cybernetics, Part C: Applications and Reviews, IEEE Transactions on}, 
+title={Survey of Wireless Indoor Positioning Techniques and Systems}, 
+year={2007}, 
+volume={37}, 
+number={6}, 
+pages={1067-1080}, 
+abstract={Wireless indoor positioning systems have become very popular in recent years. These systems have been successfully used in many applications such as asset tracking and inventory management. This paper provides an overview of the existing wireless indoor positioning solutions and attempts to classify different techniques and systems. Three typical location estimation schemes of triangulation, scene analysis, and proximity are analyzed. We also discuss location fingerprinting in detail since it is used in most current system or solutions. We then examine a set of properties by which location systems are evaluated, and apply this evaluation method to survey a number of existing systems. Comprehensive performance comparisons including accuracy, precision, complexity, scalability, robustness, and cost are presented.}, 
+keywords={indoor radio;radiowave propagation;location fingerprinting;wireless indoor positioning technique;Automation;Costs;Fingerprint recognition;Image analysis;Inventory management;Object detection;Radio frequency;Robustness;Scalability;Wireless sensor networks;Indoor location sensing;location fingerprinting;positioning algorithm;radio frequency (RF);wireless localization}, 
+doi={10.1109/TSMCC.2007.905750}, 
+ISSN={1094-6977},}
+
 @ARTICLE{compassdude_triangulation,
   author = {Compassdude.com},
   title = {Triangulation},
@@ -22,16 +72,6 @@
   owner = {zander},
   timestamp = {2013.10.29}
 }
-
-@INPROCEEDINGS{5340979, 
-author={Boontrai, D. and Jingwangsa, T. and Cherntanomwong, P.}, 
-booktitle={Communications and Information Technology, 2009. ISCIT 2009. 9th International Symposium on}, 
-title={Indoor localization technique using passive RFID tags}, 
-year={2009}, 
-pages={922-926}, 
-abstract={In this paper, radio frequency identification (RFID) technology is used for localization system. The location of a RFID reader is estimated based on the known locations of RFID tags using the UHF band RFID system. The new location estimation method based on the angulation technique is proposed to determine the reader location in real time. For angulation technique, the RFID reader is held on the camera tripod and it is considered as the target to be localized. The passive tags are attached at the known location and considered as the references. In this case, the RFID tags are put in the horizontal straight line on different sides on the walls (around the corner). The required parameter is the angle between the tag and the reader. In this paper, a compass is employed to measure the angle between the tag and the reader. Therefore, at least two angles are needed and further used to calculate the true location of the reader by using two formulated linear equations. This technique is verified using the experiment data. Two experiments are conducted with two different distances between tags and reader, i.e. 100 cm and 150 cm. The experiment results of location estimation show that the average location estimation error is around 16 cm for the 100 cm distance and around 20 cm for the 150 cm distance. This implies that the proposed method is satisfied to use for indoor applications.}, 
-keywords={UHF devices;indoor radio;radio direction-finding;radiofrequency identification;UHF system;angulation technique;indoor localization technique;linear equation;location estimation method;passive RFID tags;radio frequency identification;Cameras;Costs;Equations;Estimation error;Goniometers;Passive RFID tags;Patient monitoring;RFID tags;Radiofrequency identification;Wireless LAN;RFID;compass;indoor localization}, 
-doi={10.1109/ISCIT.2009.5340979},}
 
 @ELECTRONIC{ugd_port,
   author = {Schultz Information},
