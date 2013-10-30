@@ -1,5 +1,5 @@
 %!TEX root = ../Master.tex
-\documentclass[a4paper,11pt,fleqn,twoside,openright]{memoir} % Brug openright hvis chapters skal starte på højresider; openany, oneside
+\documentclass[a4paper,11pt,twoside,openright]{memoir} % Brug openright hvis chapters skal starte på højresider; openany, oneside
 
 %%%% PACKAGES %%%%
 \usepackage{fourier}   %font
@@ -7,8 +7,10 @@
 \usepackage[ansinew]{inputenc}					% Gør det muligt at bruge æ, ø og å i sine .tex-filer
 \usepackage[english]{babel}							% Dansk sporg, f.eks. tabel, figur og kapitel
 \usepackage[T1]{fontenc}								% Hjælper med orddeling ved æ, ø og å. Sætter fontene til at være ps-fonte, i stedet for bmp					
-\usepackage{latexsym}										% LaTeX symboler
-%\usepackage{xcolor,ragged2e,fix-cm}			% Justering af elementer
+\usepackage{latexsym}		
+\usepackage{csquotes}
+								% LaTeX symboler
+\usepackage[table]{xcolor}			% Justering af elementer
 
 %\pretolerance=2500 											% Gør det muligt at justre afstanden mellem ord (højt tal, mindre orddeling og mere space mellem ord)
 %\usepackage{ulem}                       % Gennemstregning af ord med koden \sout{}
@@ -60,7 +62,8 @@
 %\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
 
 
-\usepackage[marginclue,inline,draft,english,silent]{fixme}			
+\usepackage[marginclue,inline,draft,mode=multiuser,silent]{fixme}
+\FXRegisterAuthor{si}{asi}{Simon}			
 
 % Indsæt rettelser og lignende med \fixme{...} Med final i stedet for draft, udløses en error for hver fixme, der ikke er slettet, når rapporten bygges.  
 
