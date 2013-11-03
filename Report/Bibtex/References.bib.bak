@@ -1,6 +1,12 @@
 % This file was created with JabRef 2.9.2.
 % Encoding: UTF8
 
+@ELECTRONIC{map,
+  author = {Sygehus vendsyssel},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.03}
+}
+
 @INPROCEEDINGS{Boontrai2009,
   author = {Boontrai, D. and Jingwangsa, T. and Cherntanomwong, P.},
   title = {Indoor localization technique using passive RFID tags},
@@ -8,7 +14,6 @@
 	International Symposium on},
   year = {2009},
   pages = {922-926},
-  doi = {10.1109/ISCIT.2009.5340979},
   abstract = {In this paper, radio frequency identification (RFID) technology is
 	used for localization system. The location of a RFID reader is estimated
 	based on the known locations of RFID tags using the UHF band RFID
@@ -30,6 +35,7 @@
 	error is around 16 cm for the 100 cm distance and around 20 cm for
 	the 150 cm distance. This implies that the proposed method is satisfied
 	to use for indoor applications.},
+  doi = {10.1109/ISCIT.2009.5340979},
   keywords = {UHF devices;indoor radio;radio direction-finding;radiofrequency identification;UHF
 	system;angulation technique;indoor localization technique;linear
 	equation;location estimation method;passive RFID tags;radio frequency
@@ -41,35 +47,35 @@
 @ARTICLE{compassdude_triangulation,
   author = {Compassdude.com},
   title = {Triangulation},
-  journaltitle = {Triangulation},
   year = {2013},
-  url = {http://www.compassdude.com/compass-triangulation.shtml},
+  journaltitle = {Triangulation},
   owner = {Simon},
-  timestamp = {2013.10.29}
+  timestamp = {2013.10.29},
+  url = {http://www.compassdude.com/compass-triangulation.shtml}
 }
 
 @ELECTRONIC{tri_lateration,
   author = {Andrei Economov},
-  title = {GPS system},
+  month = {11},
   year = {2000},
-  url = {http://ixbtlabs.com/articles/gpssystem/},
+  title = {GPS system},
   language = {English},
   organization = {ixbtlab},
-  month = {11},
+  url = {http://ixbtlabs.com/articles/gpssystem/},
   owner = {zander},
   timestamp = {2013.10.29}
 }
 
 @ELECTRONIC{ugd_port,
   author = {Schultz Information},
+  month = {Juni},
+  year = {2013},
   title = {Job
 	
 	Portør},
-  year = {2013},
-  url = {http://www.ug.dk/job/sundhedomsorgogpleje/andethosparb/portoer.aspx},
   language = {Danish},
   organization = {Undervisningsministeriet},
-  month = {Juni},
+  url = {http://www.ug.dk/job/sundhedomsorgogpleje/andethosparb/portoer.aspx},
   owner = {AndersBærbar},
   timestamp = {2013.10.28}
 }
@@ -77,12 +83,12 @@
 @ARTICLE{Liu2007,
   author = {Hui Liu and Darabi, H. and Banerjee, P. and Jing Liu},
   title = {Survey of Wireless Indoor Positioning Techniques and Systems},
+  journal = {Systems, Man, and Cybernetics, Part C: Applications and Reviews,
+	IEEE Transactions on},
   year = {2007},
   volume = {37},
-  number = {6},
   pages = {1067-1080},
-  issn = {1094-6977},
-  doi = {10.1109/TSMCC.2007.905750},
+  number = {6},
   abstract = {Wireless indoor positioning systems have become very popular in recent
 	years. These systems have been successfully used in many applications
 	such as asset tracking and inventory management. This paper provides
@@ -95,8 +101,8 @@
 	and apply this evaluation method to survey a number of existing systems.
 	Comprehensive performance comparisons including accuracy, precision,
 	complexity, scalability, robustness, and cost are presented.},
-  journal = {Systems, Man, and Cybernetics, Part C: Applications and Reviews,
-	IEEE Transactions on},
+  doi = {10.1109/TSMCC.2007.905750},
+  issn = {1094-6977},
   keywords = {indoor radio;radiowave propagation;location fingerprinting;wireless
 	indoor positioning technique;Automation;Costs;Fingerprint recognition;Image
 	analysis;Inventory management;Object detection;Radio frequency;Robustness;Scalability;Wireless
@@ -119,12 +125,12 @@
 
 @ELECTRONIC{art_Osborne,
   author = {Helen Osborne},
-  title = {In Other Words…Tools to Help Patients Navigate Their Way Around Hospitals},
+  month = {October},
   year = {2001},
-  url = {http://www.healthliteracy.com/article.asp?PageID=3756},
+  title = {In Other Words…Tools to Help Patients Navigate Their Way Around Hospitals},
   language = {English},
   organization = {Boston Globe's On Call Magazine},
-  month = {October},
+  url = {http://www.healthliteracy.com/article.asp?PageID=3756},
   owner = {AndersBærbar},
   timestamp = {2013.10.28}
 }
@@ -137,7 +143,6 @@
 	Conference on},
   year = {2009},
   pages = {377-381},
-  doi = {10.1109/IROS.2009.5354260},
   abstract = {Biologically-inspired swarm of robots with collaboration towards a
 	common mission has a broad range of applications. However, the required
 	dynamic localization among autonomous robots for such swarm collaboration,
@@ -156,6 +161,7 @@
 	beamforming techniques can be employed to receive and transmit signal
 	towards the desired robot therefore improving energy efficiency and
 	prolonging robot lifetime.},
+  doi = {10.1109/IROS.2009.5354260},
   keywords = {antenna arrays;array signal processing;mobile robots;multi-robot systems;angulation
 	technique;autonomous robots;beamforming techniques;energy-efficient
 	wireless communications;multiple antennas;phase shifts;robot localization;swarm
@@ -165,46 +171,55 @@
 	communications}
 }
 
+@ARTICLE{wiki_knn,
+  author = {Wikipedia},
+  title = {k-nearest neighbors algorithm},
+  year = {2013},
+  owner = {Simon},
+  timestamp = {2013.10.30},
+  url = {http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}
+}
+
 @ELECTRONIC{wiki_navi,
   author = {Wikipedia},
-  title = {Navigation},
+  month = {10},
   year = {2013},
-  url = {http://en.wikipedia.org/wiki/Navigation},
+  title = {Navigation},
   language = {English},
   organization = {Wikipedia.org},
-  month = {10},
+  url = {http://en.wikipedia.org/wiki/Navigation},
   owner = {Simon},
   timestamp = {2013.10.24}
 }
 
 @ELECTRONIC{wiki_pos,
   author = {Wikipedia},
-  title = {Position},
+  month = {10},
   year = {2013},
-  url = {http://en.wikipedia.org/wiki/Position_(disambiguation)},
+  title = {Position},
   language = {English},
   organization = {Wikipedia.org},
-  month = {10},
+  url = {http://en.wikipedia.org/wiki/Position_(disambiguation)},
   owner = {Simon},
   timestamp = {2013.10.24}
 }
 
 @ELECTRONIC{wiki_srs,
   author = {Wikipedia},
-  title = {Spatial reference system},
+  month = {10},
   year = {2013},
-  url = {http://en.wikipedia.org/wiki/Spatial_reference_system},
+  title = {Spatial reference system},
   language = {English},
   organization = {Wikipedia.org},
-  month = {10},
+  url = {http://en.wikipedia.org/wiki/Spatial_reference_system},
   owner = {Simon},
   timestamp = {2013.10.24}
 }
 
 @ELECTRONIC{map_confusing,
   title = {Map},
-  url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
   organization = {Simon.com},
+  url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
   owner = {AndersBærbar},
   timestamp = {2013.10.29}
 }
