@@ -1,37 +1,8 @@
 %!TEX root = ../Master.tex
-
-
-%\documentclass[11pt]{article}
-%\ifx\pdfoutput\undefined 
-%\usepackage[dvips]{graphicx}
-%\else
-%\usepackage[pdftex]{graphicx} 
-%\usepackage{type1cm} \fi
-%    \usepackage[ansinew]{inputenc}
-%    \usepackage{a4}
-
-%\begin{document} 
-%\phantomsection
-%\pdfbookmark[0]{Synopsis}{titelblad}
 \thispagestyle{empty}
-%\begin{titlepage}
-%\begin{nopagebreak}
-{\samepage 
-\begin{tabular}{r}
-	\parbox{\textwidth}{  \raisebox{11mm}{\includegraphics[height=1.2cm]{aauLogoEn.png}}
-	\hfill \parbox{7cm}{\begin{tabular}{l} %4.90
-		{\small \textbf{Department of Computer Science}}\\
-		{\small Strandvejen 12-14} \\
-		{\small 9000 Aalborg} \\
-		{\small Telephone (+45) 99 40 97 30} \\
-		{\small http://www.tnb.aau.dk}
-	\end{tabular}}
-	}
-\end{tabular}
 
-\begin{tabular}{cc}
-	\parbox{8cm}{
-	\begin{description}
+\begin{minipage}[t]{0.7\linewidth}
+\begin{description}
 		\item { \textbf{Title:}}\\ 
 			Indoor navigation
     		\item { \textbf{Theme:}}\\ 
@@ -74,25 +45,24 @@
 		}
 			
 		\item { \textbf{Total no. of pages:} \pageref{TotPages}} 
-		\item { \textbf{Completed:} XXXXXXXXXXXXXX}
+		\item { \textbf{Completed:} 18. december 2013}
 	\end{description}
-	\vfill } &
-	\parbox{7cm}{
- 	 \vspace{.15cm}
-  	\hfill 
-  	\begin{tabular}{l}
-  		{ Synopsis:}\bigskip \\
-  		\fbox{
-  		\parbox{6.5cm}{\bigskip
+\end{minipage} 
+\hfill
+\begin{minipage}[t]{0.3\linewidth}
+		\includegraphics[height=3cm]{aauLogoEn.png}\\
+		\vspace{0.5cm}\\
+		\small \textbf{First year} \\
+		\small \textbf{Software}\\
+		\small Strandvejen 12-14 \\
+		\small 9000 Aalborg \\
+		\small \url{http://www.tnb.aau.dk}\\
+		\vspace{2cm}\\
+		\fbox{
+  		\parbox{5cm}{\bigskip
      		{\vfill{\small \input{Titlepage/synopsis.tex}
      		\bigskip}}
      	}}
-   	\end{tabular}}
-\end{tabular}
-}%samepage end
-\\
-\vfill
-\noindent{\footnotesize{\textit{The contents of this report is freely accessible, however publication (with source references) is only allowed upon agreement with the authors.}}}
-%\end{nopagebreak}
-%\end{titlepage}
-%\end{document}
+\end{minipage}
+
+\vspace{5mm}\footnotesize{\textit{The contents of this report is freely accessible, however publication (with source references) is only allowed upon agreement with the authors.}}
