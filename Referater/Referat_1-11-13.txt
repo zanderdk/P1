@@ -1,0 +1,16 @@
+organisation:
+Hospitalers infrastrukturer/indretning eks. wifi hotspot.
+organisation kan være folk som indirekte bliver påvirket af at andre kan finde vej på hospitaler.
+
+Teknologi:
+Der skal bevises et teknologisk grundlag for indendørs navigation.
+udelukkelsesmetode af teknologiske der muligører vores løsninger. 
+
+eksempel på opstilling af platforme som muliggør indørs navigation:
+først beskriv virkemåde. 
+styrker/svagheder.
+kan vi bruge dette??
+
+to do:
+begynd og designe løsnings struktur (flowchart)
+første udkast til afgrænsning. (wayfinding)
