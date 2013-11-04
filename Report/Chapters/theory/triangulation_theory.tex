@@ -1,6 +1,26 @@
 %!TEX root = ../../Master.tex
 \section{Triangulation}
 
+\subsection{subsection name}
+
+  \begin{figure}[ht!]
+  \centering
+  \includegraphics[width=3in]{trilateration}
+  \caption{Example of lateration with three know positions.}
+  \label{fig:trilateration}
+  \end{figure}
+  
+
+  Trilateration in three dimensions is possible in fare most situations if and only if the distance to three known positions is defined or possible to calculate.
+  If we know a distance to one of these three positions we know that the point we are seeking is in the surface of a sphere, with center at the know position, and with a radius equals to the distance to the center. This is illustrated on \cref{fig:trilateration} as the surface of the sphere A.
+
+  The intersection of two spheres is a circle. By determining the distance to a second know point it is possible to circumscribe the range of possible position to a smaller area.
+  This is illustrated as the blue circle on \cref{fig:trilateration}, and is the intersection between sphere A and B.
+  A third sphere that overlaps the intersection between the first two spheres, will mark 2 points where all three spheres is collapsing. In fare most situations there are only one of these locations that lies on the Earth's surface, the other point will often be fare in to the sky or deep inside earth. So by sorting one point from, there is only one possible position left. 
+  In some very rare situation it is possible that both point lies on the Earth's surface, and in such situations the use of four spheres will determine witch of the to positions is the right one.
+
+
+
 \subsection{Angulation}
 
 
