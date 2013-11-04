@@ -1,0 +1,32 @@
+%!TEX root = ../../Master.tex
+
+
+\subsection{Positioning}
+
+  Triangulation is a method used for estimating the position of an object. The method uses the properties of triangles. Triangulation has two derivatives: literation and angulation.
+
+ \subsubsection{Lateration}
+
+  Lateration is commonly used technique for positioning.  Lateration uses the distance between known locations and and the point to be determined, to estimate the location.\cite{tri_lateration}  There are two types of lateration two dimensional and three dimensional. The two dimensional are use in robots that navigates in only one plane, like robot vacuum cleaners. 
+  lateration in three dimensions are used in GPS positioning, and other practical applications for positioning.
+
+  \subsubsection{Angulation}
+
+  Angulation uses the technique called Angle of Arrival (AOA), which can compute the location of a source. The parameters needed are as minimum two relative angles between a remote point and the source, and the distance between the remote points. The source is at the location where the lines formed by the angle direction lines intercept. 
+
+  In 2D, as few as two remote points are needed, given the source is not directly in between the remote points. However to improve accuracy and remove ambiguity  another remote point is needed. In 3D, as few as three remote points are needed. However as with 2D, another remote point improves accuracy and removes ambiguity. \cite{Liu2007, Sun2009, Boontrai2009}
+
+
+  \subsubsection{Location Fingerprinting}
+
+
+  Location fingerprinting is another techinque used for positioning. It refers to the algorithms that first collect characteristics (fingerprints) of a scene and then matches these a priori characteristics with the characteristics of the location the source is in, to determine the source' location.
+
+  There are two stages for location fingerprinting. The offline state where a site survey is performed in the environment. The characteristics of known locations are stored in databases. In the online state, these a priori characteristics are used to match the location of the source.
+
+  The main challenge of location fingerprinting is the possibility of variating signal strengths corrupting characteristics data.
+
+  \subsubsection{Summary}
+
+
+  All of the above described technologies need remote points to find a position. As described in \cref{sub:infra}, many hospitals have WiFi hotspots located around the hospital. These WiFi hotspots can be used as the remote points, given that the coverage of the network is good.
