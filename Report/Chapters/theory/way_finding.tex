@@ -8,7 +8,7 @@
 
   \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{Graph}
+    \includegraphics[width=0.5\textwidth]{Graph}
     \caption{A Graph}
     \label{overflow}
   \end{figure}
@@ -22,7 +22,7 @@
 
   \begin{figure}[ht!]
     \centering
-    \frame{\includegraphics[width=\textwidth]{Dijkstra}}
+    \frame{\includegraphics[width=0.5\textwidth]{Dijkstra}}
     \caption{Dijkstra's algorithm in action}
     \label{overflow}
   \end{figure}
@@ -56,7 +56,7 @@
 
   \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth/3]{DijkstraX}
+    \includegraphics[width=0.5\textwidth]{DijkstraX}
     \caption{Dijkstra calculation}
     \label{overflow}
   \end{figure}
@@ -69,7 +69,7 @@
 
   \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{BestFirst} 
+    \includegraphics[width=0.5\textwidth]{BestFirst} 
     \caption{Best-First-Search in action}
     \label{bestfirst}
   \end{figure}
@@ -91,12 +91,12 @@
 
   \begin{figure}[ht!]
     \centering
-    \includegraphics[width=\textwidth]{AstarHlow}
+    \includegraphics[width=0.5\textwidth]{AstarHlow}
     \caption{A* algorithm with an admissible heuristic value}
     \label{astar}
   \end{figure}
 
-  There is multiple ways to calculate the heuristic value(estimated cost) to the target node, but an ideal choice would be the Euclidean \ref{equation:Euclidean} \sinote{brug evt. cref i stedet. Den indsætter selv eq. og nummer.} distance, as no path can be shorter than the direct distance between two nodes.
+  There are multiple ways to calculate the heuristic value(estimated cost) to the target node, but an ideal choice would be the Euclidean \ref{equation:Euclidean} \sinote{brug evt. cref i stedet. Den indsætter selv eq. og nummer.} distance, as no path can be shorter than the direct distance between two nodes.
   \begin{equation} \label{equation:Euclidean}
     dist((x, y), (a, b)) = \sqrt{(x - a)^2 + (y - b)^2}
   \end{equation}
