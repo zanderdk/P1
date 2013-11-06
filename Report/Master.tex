@@ -1,5 +1,5 @@
 %preamble
-\input{Preamble/preamble}
+\input{Preamble/preamble.tex}
 %\usepackage{booktabs} %skal bruges hvis der bruges PDF2LaTEX             
 %preamble slut
 \begin{document}
@@ -7,10 +7,10 @@
 \cleardoublepage
 %\clearpage
 %\cleardoublepage
-\include{Titlepage/TitlepageEn} %synopsis
+\input{Titlepage/TitlepageEn.tex} %synopsi.texs
 \cleardoublepage
 %---------Preface---------------
-\include{Chapters/Preface}
+\input{Chapters/Preface.tex}
 \cleardoublepage
 \tableofcontents
 
@@ -18,30 +18,30 @@
 \listoffixmes
 %---------Introduction---------------
 
-\include{Chapters/intro}
+\input{Chapters/intro.tex}
 
 %\input{Chapters/initiating_problem.tex}
 
-\include{Chapters/problem_analysis}
+\input{Chapters/problem_analysis.tex}
 
 %---------Problem statement---------
-\include{Chapters/problem_statement}
+\input{Chapters/problem_statement.tex}
 
-\include{Chapters/theory}
+\input{Chapters/theory.tex}
 
 %---------ProblemSolution------------
-\include{Chapters/problem_solution}
+\input{Chapters/problem_solution.tex}
 
 
-\include{Chapters/discussion}
+\input{Chapters/discussion.tex}
 
 
-\include{Chapters/conclusion}
+\input{Chapters/conclusion.tex}
 
 %---------Reference---------
 \printbibliography
 
 %-----------Appendix-------------
-\include{Chapters/appendix.tex}
+\input{Chapters/appendix.tex}
 \label{lastpage}
 \end{document}
