@@ -18,7 +18,7 @@
 
   \subsubsection{Dijkstra's Algorithm}
 
-  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all nodes to the target node is optimized with the least cost, then points out the shortest path from source node, to target node. Because of the need of every node being evaluated, the complexity of algorithm is proportional to the number of nodes, which means that a lot of computational power is required to calculate the result. \sinote{Vis kompleksitet med store O notation?} \cite{Dijkstra}
+  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all nodes to the target node is optimized with the least cost, then points out the shortest path from source node, to target node. Because of the need of every node being evaluated, the complexity of algorithm is proportional to the number of nodes, which means that a lot of computational power is required to calculate the result. Depending on how the graph is stored, its possible to improve efficiency, but a simple linear search through all nodes, the run time is $O(V^2)$. \cite{Dijkstra}
 
   \begin{figure}[ht!]
     \centering
@@ -33,26 +33,27 @@
 
   The nodes are subdivided into three sets:
 
-\sinote{Forslår description environment her. Skaber mere overblik}
-  Set $A$ - Optimized nodes (least costly path from $P$ is known)
-  Set $B$ - Temporary nodes (evaluated cost of path from $P$ but not part of set $A$)
-  Set $C$ - Remaining nodes
+  \begin{description}
+    \item[Set $A$]{Optimized nodes (least costly path from $P$ is known)}
+    \item[Set $B$]{Temporary nodes (evaluated cost of path from $P$ but not part of set $A$)}
+    \item[Set $C$]{Remaining nodes}
+  \end{description}
 
   The links are subdivided into three other sets:
 
-\sinote{Forslår description environment her. Skaber mere overblik}
-  Set \RN{1} - Links used in the set $A$
-  Set \RN{2} - Not part of set I (one and only one link of this set will lead to each node in set $B$)
-  Set \RN{3} - Remaining links (rejected or not yet considered)
+  \begin{description}
+    \item[Set \RN{1}]{Links used in the set $A$}
+    \item[Set \RN{2}]{Not part of set I (one and only one link of this set will lead to each node in set $B$)}
+    \item[Set \RN{3}]{Remaining links (rejected or not yet considered)}
+  \end{description}
 
   At first all nodes is assigned to set $C$ and all links to set \RN{3}, P is then assigned to set $A$.
-  Then we loop through following steps until $Q$ is part of set $A$.
+  Then we loop through following steps until $Q$ is part of set $A$. R is the evaluating node, and r is the connected link.
 
-\sinote{Forslår description environment her. Skaber mere overblik}
-  Step 1. Consider all the links r connecting the node just assigned to set $A$. If $R$ is part of set $C$ assign to set $B$ and assign r to set \RN{2}. \sinote{simon: R eller r?}
-  If R is part of set $B$, then investigate if the use of link r is less costly from $P$ to R than the existing link in set \RN{2}. If less costly assign link r and reject existing link in set \RN{2}, otherwise reject r to set \RN{3}.
-
-  Step 2. For each node in set $B$ where there is only one path in set \RN{1} and set \RN{2}, the node with minimum cost from $P$ is assign to set $A$ and with the corresponding link assign to set \RN{1}.
+  \begin{description}
+    \item[Step 1.]{Consider all the links r connecting the node just assigned to set $A$. If $R$ is part of set $C$ assign to set $B$ and assign link r to set \RN{2}. If node R is part of set $B$, then investigate if the use of link r is less costly from $P$ to R than the existing link in set \RN{2}. If less costly assign link r and reject existing link in set \RN{2}, otherwise reject r to set \RN{3}.}
+    \item[Step 2.]{For each node in set $B$ where there is only one path in set \RN{1} and set \RN{2}, the node with minimum cost from $P$ is assign to set $A$ and with the corresponding link assign to set \RN{1}.}
+  \end{description}
 
   \begin{figure}[ht!]
     \centering
@@ -63,7 +64,7 @@
 
   \subsubsection{Best-First-Search}
 
-  Best-First-Search is search algorithm like Dijkstra's algorithm, with the exception that is uses heuristic to estimate how far target the node is the an evaluating node, then it repeatedly choose the node with the least cost, until target node is reached. \sinote{nok bedst du selv lige læser denne sætning igennem igen. Skal måske omformuleres} The final path is not guaranteed the shortest, however it it not as complex as Dijkstra's algorithm which means it is much faster to calculate. \cite{BestFirst}
+  Best-First-Search is a search algorithm like Dijkstra's, with the exception that a heuristic value is calculated to estimate how far target the node is from the an evaluating node. The algorithm then repeatedly choose a node with the least cost, until target node is reached. The final path is not guaranteed the shortest, however it it not as complex as Dijkstra's algorithm which means it is much faster to calculate. \cite{BestFirst}
 
   But when obstacles are introduced, like walls, the Best-First-Search algorithm fails to find a path that is close to optimal.
 
@@ -78,14 +79,15 @@
 
   If you would combine Dijkstra's algorithm with Best-First-Search algorithm, you would get the A* algorithm which also utilises the principle of a heuristic estimation to determine which node to test next. It uses a evaluation function $f(x) = g(x) + h(x)$, where $g(x)$ describes the cost from the start to the node being evaluated, and $h(x)$ is a heuristic function that estimates the cost from the evaluating node to the target node. \cite{http://theory.stanford.edu/}
 
-\sinote{brug evt itemize}
-  - If $h(x)$ is zero, then only $g$ affects the result and making it work like Dijkstra's algorithm.
+  \begin{itemize}
+    \item If $h(x)$ is zero, then only $g$ affects the result and making it work like Dijkstra's algorithm.
 
-  - If $h(x) < g(x)$, the algorithm will guaranteed find the shortest path from source to target, at a slow running time.
+    \item If $h(x) < g(x)$, the algorithm will guaranteed find the shortest path from source to target, at a slow running time.
 
-  - If $h(x) == g(x)$ \sinote{bare = i stedet for ==?}, the algorithm will only extract the best path, but this not always possible due to obstacles.
+    \item $h(x) = g(x)$, the algorithm will only extract the best path, but this not always possible due to obstacles.
 
-  - If $h(x) > g(x)$, the algorithm will find a path fast not its not always the optimal, then works like the Best-First-Search algorithm.\sinote{skal måske omformuleres?}
+    \item If $h(x) > g(x)$, the algorithm will find a path very fast but not always the optimal, like the Best-First-Search algorithm.
+  \end{itemize}
 
   This means that the heuristic estimation should be reasonable, $h(x)$ should be admissible and not overestimate the distance between the evaluating node and the target node. But should be just right for the final chosen path to be the optimal path and the for the complexity of the algorithm to be at a minimum. Each step the algorithm evaluates the value of $f(x)$ of each node to pick the next node with the smallest cost.
 
@@ -96,7 +98,7 @@
     \label{astar}
   \end{figure}
 
-  There are multiple ways to calculate the heuristic value(estimated cost) to the target node, but an ideal choice would be the Euclidean \ref{equation:Euclidean} \sinote{brug evt. cref i stedet. Den indsætter selv eq. og nummer.} distance, as no path can be shorter than the direct distance between two nodes.
+  There are multiple ways to calculate the heuristic value(estimated cost) to the target node, but an ideal choice would be the Euclidean \cref{equation:Euclidean} distance, as no path can be shorter than the direct distance between two nodes.
   \begin{equation} \label{equation:Euclidean}
     dist((x, y), (a, b)) = \sqrt{(x - a)^2 + (y - b)^2}
   \end{equation}
