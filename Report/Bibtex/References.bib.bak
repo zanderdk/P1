@@ -209,7 +209,17 @@
   timestamp = {2013.11.04}
 }
 
-@ARTICLE{,
+@ARTICLE{Union2004,
+  author = {European Union},
+  title = {COUNCIL DIRECTIVE 93/36/EEC of 14 June 1993 coordinating procedures
+	for the award of public supply contracts},
+  year = {2004},
+  owner = {Simon},
+  timestamp = {2013.11.06},
+  url = {http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:1993L0036:20040501:EN:PDF}
+}
+
+@ARTICLE{Vendsyssel,
   author = {Sygehus Vendsyssel},
   title = {Sygehus Vendsyssel},
   owner = {Simon},
