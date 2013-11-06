@@ -165,6 +165,13 @@
   timestamp = {2013.10.28}
 }
 
+@ELECTRONIC{,
+  author = {Region Sjælland},
+  url = {http://www.regionsjaelland.dk/dinregion/undervisningsmateriale/Sygehusplanen/Sider/default.aspx},
+  owner = {Simon},
+  timestamp = {2013.11.06}
+}
+
 @INPROCEEDINGS{Sun2009,
   author = {Yi Sun and Jizhong Xiao and Cabrera-Mora, F.},
   title = {Robot localization and energy-efficient wireless communications by

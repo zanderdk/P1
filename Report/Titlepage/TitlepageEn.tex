@@ -1,16 +1,14 @@
 %!TEX root = ../Master.tex
 \thispagestyle{empty}
 
+\samepage{
 \begin{minipage}[t]{0.7\linewidth}
-\begin{description}
-		\item { \textbf{Title:}}\\ 
+	\parbox{8cm}{
+	\begin{description}
+			\item { \textbf{Title:}}\\ 
 			Indoor navigation
     		\item { \textbf{Theme:}}\\ 
 			XXXXXXXXXXXXXX
-	\end{description}
-	
-	\parbox{8cm}{
-	\begin{description}
 		\item { \textbf{Project period:}}\\
 			7/11/2013\\
 			18/12/2013
@@ -31,11 +29,7 @@
  			Rikke Hagensby Jensen\\
  		\item { \textbf{Assistant Supervisor:}}\\
  			Erik Stubkjær\\
-  	\end{description}
-	}
-
-	\begin{description}
-		\item { \textbf{No. printed Copies:} X}
+ 					\item { \textbf{No. printed Copies:} X}
 		\item { \textbf{No. of Pages:}
 		\intcalcSub{\getpagerefnumber{TotPages}}{\appendixpages}
 
@@ -46,7 +40,8 @@
 			
 		\item { \textbf{Total no. of pages:} \pageref{TotPages}} 
 		\item { \textbf{Completed:} 18. december 2013}
-	\end{description}
+  	\end{description}
+	}
 \end{minipage} 
 \hfill
 \begin{minipage}[t]{0.3\linewidth}
@@ -65,4 +60,6 @@
      	}}
 \end{minipage}
 
-\vspace{5mm}\footnotesize{\textit{The contents of this report is freely accessible, however publication (with source references) is only allowed upon agreement with the authors.}}
+\vfill\footnotesize{\textit{The contents of this report is freely accessible, however publication (with source references) is only allowed upon agreement with the authors.}}
+
+}

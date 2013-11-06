@@ -1,39 +1,38 @@
 %!TEX root = ../Master.tex
-\documentclass[a4paper,14pt,twoside,openright]{memoir} % Brug openright hvis chapters skal starte på højresider; openany, oneside
+\documentclass[a4paper,12pt,twoside,openright]{memoir} % Brug openright hvis chapters skal starte pÃ¥ hÃ¸jresider; openany, oneside
 
 %%%% PACKAGES %%%%
-\usepackage{fourier}   %font
-% ¤¤ Oversættelse og tegnsætning ¤¤ %
-\usepackage[ansinew]{inputenc}					% Gør det muligt at bruge æ, ø og å i sine .tex-filer
-\usepackage[english]{babel}							% Dansk sporg, f.eks. tabel, figur og kapitel
-\usepackage[T1]{fontenc}								% Hjælper med orddeling ved æ, ø og å. Sætter fontene til at være ps-fonte, i stedet for bmp					
-\usepackage{latexsym}		
-\usepackage{csquotes}
-								% LaTeX symboler
-\usepackage[table]{xcolor}			% Justering af elementer
 
-%\pretolerance=2500 											% Gør det muligt at justre afstanden mellem ord (højt tal, mindre orddeling og mere space mellem ord)
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+\usepackage{fourier}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[table]{xcolor}
+\usepackage{microtype}			% Justering af elementer
+
+%\pretolerance=2500 											% GÃ¸r det muligt at justre afstanden mellem ord (hÃ¸jt tal, mindre orddeling og mere space mellem ord)
 %\usepackage{ulem}                       % Gennemstregning af ord med koden \sout{}
 																			
-% ¤¤ Figurer og tabeller – floats  ¤¤ %
-%\usepackage{flafter}										% Sørger for at dine floats ikke optræder i teksten før de er sat ind.
-%\usepackage{multirow}                		% Fletning af rækker
+% Â¤Â¤ Figurer og tabeller â€“ floats  Â¤Â¤ %
+%\usepackage{flafter}										% SÃ¸rger for at dine floats ikke optrÃ¦der i teksten fÃ¸r de er sat ind.
+%\usepackage{multirow}                		% Fletning af rÃ¦kker
 %\usepackage{hhline}                   	% Dobbelte horisontale linier
 %\usepackage{multicol}         	        % Fletning af kolonner
-%\usepackage{colortbl} 									% Muligøre farver i tabeller
-%\usepackage{here}												% Gør det muligt at placere figurer hvor du vil.   \begin{figure}[!h] % Will not be floating.
-%\usepackage{wrapfig}										% Indsættelse af figurer omsvøbt af tekst. \begin{wrapfigure}{Placering}{Størrelse}
-%\usepackage{floatflt}										% Indsættelse af tabeller omsvøbt af tekst.
-%\pdfoptionpdfminorversion=6							% Muliggør inkludering af pdf dokumenter, af version 1.6 og højere
+%\usepackage{colortbl} 									% MuligÃ¸re farver i tabeller
+%\usepackage{here}												% GÃ¸r det muligt at placere figurer hvor du vil.   \begin{figure}[!h] % Will not be floating.
+%\usepackage{wrapfig}										% IndsÃ¦ttelse af figurer omsvÃ¸bt af tekst. \begin{wrapfigure}{Placering}{StÃ¸rrelse}
+%\usepackage{floatflt}										% IndsÃ¦ttelse af tabeller omsvÃ¸bt af tekst.
+%\pdfoptionpdfminorversion=6							% MuliggÃ¸r inkludering af pdf dokumenter, af version 1.6 og hÃ¸jere
 %\usepackage{placeins}	
-% ¤¤ Matematiske formler og maskinkode ¤¤
+% Â¤Â¤ Matematiske formler og maskinkode Â¤Â¤
 \usepackage{amsmath} 	% Bedre matematik og ekstra fonte
 %\usepackage{textcomp}                 	% Adgang til tekstsymboler
 %\usepackage{mathtools}									% Udvidelse af amsmath-pakken.
-%\usepackage{eso-pic}										% Tilføj billedekommandoer på hver side
+%\usepackage{eso-pic}										% TilfÃ¸j billedekommandoer pÃ¥ hver side
 %\usepackage{lipsum}											% Dummy text \lipsum[..]
 
-% ¤¤ PDF og billede optimering ¤¤ %
+% Â¤Â¤ PDF og billede optimering Â¤Â¤ %
 \usepackage{graphicx} 									% Pakke til jpeg/png billeder
 \graphicspath{{Images/}}
 \usepackage{tikz}
@@ -46,7 +45,7 @@
 \usepackage{refcount}
 
 
-% ¤¤ Referencer, bibtex og url'er ¤¤ %
+% Â¤Â¤ Referencer, bibtex og url'er Â¤Â¤ %
 \usepackage{url}
 
 %% Define a new 'leo' style for the package that will use a smaller font.
@@ -60,7 +59,7 @@
 \usepackage[english]{varioref}
 \usepackage[colorlinks]{hyperref} 
 \usepackage{cleveref}						% Giver flere bedre mulighed for at lave krydshenvisninger
-%\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
+%\usepackage{natbib}											% Litteraturliste med forfatter-Ã¥r og nummererede referencer
 
 
 \usepackage[marginclue,inline,draft,mode=multiuser,silent]{fixme}
@@ -73,7 +72,7 @@
 \FXRegisterAuthor{ch}{ach}{Christian}
 
 
-% Indsæt rettelser og lignende med \fixme{...} Med final i stedet for draft, udløses en error for hver fixme, der ikke er slettet, når rapporten bygges.  
+% IndsÃ¦t rettelser og lignende med \fixme{...} Med final i stedet for draft, udlÃ¸ses en error for hver fixme, der ikke er slettet, nÃ¥r rapporten bygges.  
 
 \newcommand{\appendixpages}[0]{
      \intcalcAdd
@@ -87,15 +86,15 @@
 
 %%%% CUSTOM SETTINGS %%%%
 
-% ¤¤ Marginer ¤¤ %
+% Â¤Â¤ Marginer Â¤Â¤ %
 \setlrmarginsandblock{3.5cm}{2.5cm}{*}	% \setlrmarginsandblock{Indbinding}{Kant}{Ratio}
 \setulmarginsandblock{2.5cm}{3.0cm}{*}	% \setulmarginsandblock{Top}{Bund}{Ratio}
-\checkandfixthelayout 									% Laver forskellige beregninger og sætter de almindelige længder op til brug ikke memoir pakker
+\checkandfixthelayout 									% Laver forskellige beregninger og sÃ¦tter de almindelige lÃ¦ngder op til brug ikke memoir pakker
 
-%	¤¤ Afsnitsformatering ¤¤ %
-\setlength{\parindent}{0mm}           	% Størrelse af indryk
+%	Â¤Â¤ Afsnitsformatering Â¤Â¤ %
+\setlength{\parindent}{0mm}           	% StÃ¸rrelse af indryk
 \setlength{\parskip}{3mm}          			% Afstand mellem afsnit ved brug af double Enter
-\linespread{1,1}												% Linie afstand
+\linespread{1,2}												% Linie afstand
 
 
 
@@ -106,15 +105,15 @@
 ]{biblatex}
 \bibliography{Bibtex/References.bib}
 
-% ¤¤ Indholdsfortegnelse ¤¤ %
+% Â¤Â¤ Indholdsfortegnelse Â¤Â¤ %
 \setsecnumdepth{subsection}		 			% Dybden af nummerede overkrifter (part/chapter/section/subsection)
-%\maxsecnumdepth{subsubsection}					% Ændring af dokumentklassens grænse for nummereringsdybde
+%\maxsecnumdepth{subsubsection}					% Ã†ndring af dokumentklassens grÃ¦nse for nummereringsdybde
 \settocdepth{subsection} 								% Dybden af indholdsfortegnelsen
 
-% ¤¤ Visuelle referencer ¤¤ %
+% Â¤Â¤ Visuelle referencer Â¤Â¤ %
 		 	% Giver mulighed for at ens referencer bliver til klikbare hyperlinks. .. [colorlinks]{..}
-\hypersetup{pdfborder = 0}							% Fjerner ramme omkring links i fx indholsfotegnelsen og ved kildehenvisninger ¤¤
-\hypersetup{														%	Opsætning af hyperlinks
+\hypersetup{pdfborder = 0}							% Fjerner ramme omkring links i fx indholsfotegnelsen og ved kildehenvisninger Â¤Â¤
+\hypersetup{														%	OpsÃ¦tning af hyperlinks
     colorlinks = false,
     linkcolor = black,
     anchorcolor = black,
@@ -122,26 +121,26 @@
 }
 
 
-% ¤¤ Opsætning af figur- og tabeltekst ¤¤ %
+% Â¤Â¤ OpsÃ¦tning af figur- og tabeltekst Â¤Â¤ %
  % 	\captionnamefont{
- % 		\small\bfseries\itshape}						% Opsætning af tekstdelen ("Figur" eller "Tabel")
- %  \captiontitlefont{\small}							% Opsætning af nummerering
+ % 		\small\bfseries\itshape}						% OpsÃ¦tning af tekstdelen ("Figur" eller "Tabel")
+ %  \captiontitlefont{\small}							% OpsÃ¦tning af nummerering
  %  \captiondelim{. }											% Seperator mellem nummerering og figurtekst
  %  \hangcaption													%	Venstrejusterer flere-liniers figurtekst under hinanden
  %  \captionwidth{\linewidth}							% Bredden af figurteksten
 	% %\setlength{\belowcaptionskip}{10pt}		% Afstand under figurteksten
 
-% ¤¤ Sidehoved ¤¤ %
+% Â¤Â¤ Sidehoved Â¤Â¤ %
 \pagestyle{plain}
 		
 
-%Appendix opsætning. Toc er sætter appendix kapitlerne i indholdfortegnelsen og head sætter en overskrift til appendix kapitlet
+%Appendix opsÃ¦tning. Toc er sÃ¦tter appendix kapitlerne i indholdfortegnelsen og head sÃ¦tter en overskrift til appendix kapitlet
 
 %\usepackage{appendix}
 %\usepackage[toc,page]{appendix}
 
 
-% ¤¤ Kapiteludssende ¤¤ %
+% Â¤Â¤ Kapiteludssende Â¤Â¤ %
 
 \definecolor{numbercolor}{gray}{0.7}
 \newif\ifchapternonum
@@ -171,7 +170,7 @@
 %\chapterstyle{jenor}
 \chapterstyle{demo}
 
-% ¤¤ Fjerner den vertikale afstand mellem listeopstillinger og punktopstillinger ¤¤ %
+% Â¤Â¤ Fjerner den vertikale afstand mellem listeopstillinger og punktopstillinger Â¤Â¤ %
 %\let\olditemize=\itemize							
 %\def\itemize{\olditemize\setlength{\itemsep}{-1ex}}
 %\let\oldenumerate=\enumerate						
