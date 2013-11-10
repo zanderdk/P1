@@ -9,7 +9,10 @@
 \usepackage[english]{babel}
 \usepackage{csquotes}
 \usepackage[table]{xcolor}
-\usepackage{microtype}			% Justering af elementer
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[short]{datetime}
+\usepackage{adjustbox}			% Justering af elementer
 
 %\pretolerance=2500 											% Gør det muligt at justre afstanden mellem ord (højt tal, mindre orddeling og mere space mellem ord)
 %\usepackage{ulem}                       % Gennemstregning af ord med koden \sout{}
@@ -62,7 +65,7 @@
 %\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
 
 
-\usepackage[marginclue,inline,mode=multiuser,silent]{fixme}
+\usepackage[marginclue,draft,inline,mode=multiuser,silent]{fixme}
 \FXRegisterAuthor{si}{asi}{Simon}
 \FXRegisterAuthor{jo}{ajo}{Jonas}
 \FXRegisterAuthor{ka}{aka}{Kasper}
@@ -83,6 +86,9 @@
         {\getpagerefnumber{appendix_start}}
         }
     }
+\newcommand{\numberpages}[0]{
+  \intcalcSub{\getpagerefnumber{TotPages}}{\appendixpages}
+}
 
 %%%% CUSTOM SETTINGS %%%%
 
@@ -95,6 +101,9 @@
 \setlength{\parindent}{0mm}           	% Størrelse af indryk
 \setlength{\parskip}{3mm}          			% Afstand mellem afsnit ved brug af double Enter
 \linespread{1,2}												% Linie afstand
+% length of abstract indentations
+\setlength{\absleftindent}{0mm}
+\setlength{\absrightindent}{0mm} 
 
 
 

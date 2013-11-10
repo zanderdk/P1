@@ -1,65 +1,47 @@
 %!TEX root = ../Master.tex
-\thispagestyle{empty}
+\newdate{project_start}{7}{11}{2013}
+\newdate{project_end}{18}{12}{2013}
+\author{Alexander Dalsgaard Krog \andnext\\
+		Anders Lykke Matthiassen \andnext\\
+		Carsten Larsen \andnext\\
+		Christian Heider Nielsen \andnext\\
+		Jonas Madsen \andnext\\
+		Kasper Kohsel Terndrup \and\\
+		Simon Vandel Sillesen}
 
-\samepage{
-\begin{minipage}[t]{0.7\linewidth}
-	\parbox{8cm}{
+\begin{titlingpage}
+\adjustbox{valign=t}{\begin{minipage}{0.5\textwidth}
+\begin{flushleft}
 	\begin{description}
-			\item { \textbf{Title:}}\\ 
-			Indoor navigation
-    		\item { \textbf{Theme:}}\\ 
-			Fra eksisterende software til modeller
-		\item { \textbf{Project period:}}\\
-			7/11/2013\\
-			18/12/2013
- 		\hspace{4cm}
-		\item { \textbf{Project group:}}\\
-  			Group SW1B2-6
- 		\hspace{4cm}
-		\item {\textbf{Members:}}\\
-			Alexander Dalsgaard Krog\\
-			Anders Lykke Matthiassen\\
-			Carsten Larsen\\
-			Christian Heider Nielsen\\
-			Jonas Madsen\\
-			Kasper Kohsel Terndrup\\
-			Simon Vandel Sillesen\\
-		\hspace{2cm}
-		\item { \textbf{Supervisor:}}\\
- 			Rikke Hagensby Jensen\\
- 		\item { \textbf{Assistant Supervisor:}}\\
- 			Erik Stubkjær\\
- 					\item { \textbf{No. printed Copies:} X}
-		\item { \textbf{No. of Pages:}
-		\intcalcSub{\getpagerefnumber{TotPages}}{\appendixpages}
-
-		} 
-		\item { \textbf{No. of Appendix Pages:}
-		\appendixpages
-		}
-			
-		\item { \textbf{Total no. of pages:} \pageref{TotPages}} 
-		\item { \textbf{Completed:} 18. december 2013}
-  	\end{description}
-	}
-\end{minipage} 
-\hfill
-\begin{minipage}[t]{0.3\linewidth}
-		\includegraphics[height=3cm]{aauLogoEn.jpg}\\
-		\vspace{0.5cm}\\
+		\item[Title] \hfill \\ Indoor Navigation
+		\item[Theme] \hfill \\ From Existing Software to Models
+		\item[Project period] \hfill \\ \displaydate{project_start} to \\ \displaydate{project_end}
+		\item[Project group] \hfill \\ SW1B2-6
+		\item[Authors] \hfill \\ \theauthor
+		\item[Supervisor] \hfill \\ Rikke Hagensby Jensen
+		\item[Assistant Supervisor] \hfill \\ Erik Stubkjær
+		\item[No. of Pages] \numberpages
+		\item[No. of Appendix Pages] \appendixpages
+		\item[Total no. of pages] \pageref{TotPages}
+		\item[Completed] \displaydate{project_end}
+	\end{description}
+\end{flushleft}
+\end{minipage}}
+\begin{minipage}[t]{0.5\textwidth}
+\begin{flushright}
+	\includegraphics[height=3cm]{aauLogoEn.jpg}\\
 		\small \textbf{First student year} \\
 		\small \textbf{Software}\\
 		\small Strandvejen 12-14 \\
 		\small 9000 Aalborg \\
 		\small \url{http://www.tnb.aau.dk}\\
-		\vspace{2cm}\\
+		\bigskip
 		\fbox{
-  		\parbox{5cm}{\bigskip
-     		{\vfill{\small \input{Titlepage/synopsis.tex}
-     		\bigskip}}
+  		\parbox{\linewidth}{
+     		{\input{Titlepage/synopsis.tex}
+     		}
      	}}
+\end{flushright}
 \end{minipage}
-
 \vfill\footnotesize{\textit{The contents of this report is freely accessible, however publication (with source references) is only allowed upon agreement with the authors.}}
-
-}
+\end{titlingpage}
