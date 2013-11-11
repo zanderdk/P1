@@ -1,7 +1,8 @@
 %!TEX root = ../../Master.tex
-\section{Analogue Navigation in Hospitals} % (fold)
+\section{Analogue Navigation in Hospitals} % (fold 
+\chnote{Technology afsnit?}
 \label{sec:anal_nav}
-In this section we will discuss existing analogue navigation platforms. We will in this section describe the strengths and weaknesses of existing analogue navigation platforms, in order to use this knowledge for our solution. Our main source for \cref{sec:anal_nav} is a trip to Sygehus Nord in Aalborg. All figures in this section, was taken during the research at Sygehus Nord. Some of the assumptions made in \cref{sec:anal_nav} are based on the information gathered during the research. 
+In this section we will discuss existing analogue navigation platforms. We will in this section describe the strengths and weaknesses of existing analogue navigation platforms, in order to use this knowledge for our solution. Our main source for \cref{sec:anal_nav} is a trip to Sygehus Nord in Aalborg. All figures in this section, was taken during the research at Sygehus Nord \chnote{False}. Some of the assumptions made in \cref{sec:anal_nav} are based on the information gathered during the research. 
 
 \subsection{Signs} \label{sub:sign}
 Signs can be placed that mark different areas of the hospital. \enquote{Main entrance} and \enquote{Ambulance entrance}\cite{signs_hospital} signs can be used to mark key places that the visitor can navigate from\cite{art_Osborne}.
@@ -48,6 +49,8 @@ Places that use this method of navigation would seamlessly offer an easy way of 
 
 A problem with colour coding is that it is very static. If for example some rooms switches their function the stripes on the wall have to be repainted which will be a lot of work. If there are stripes leading to all the different departments, the information could potentially clutch up and become confusing. This method also shares a downside together with the signs, as people with reading disorder could have trouble with this form of navigation.
 
+\chnote{Farveblinde?}
+
 \begin{figure}[htb]
   \begin{center} 
     \includegraphics[width=0.5\textwidth]{stribe2.jpg}
@@ -65,11 +68,12 @@ Visitors are able to call the hospital's main number, and ask questions to a liv
 The limitations regarding the phone, are high as the informer is limited by only having his/her voice as their tool. Miscommunication can occur as directions only can be delivered by words. As said before, this form of navigation strictly depends on an assigned personal to answer the phone. If no one is at the phone, it becomes utterly useless.
 If the service is used often, more than one employee might be assigned to the phone. It could become an expensive service if there is a dedicated staff assigned to the phone.
 
+\chnote{Positively providing jobs}
 
 \subsection{Human Interaction}\label{sub:human}
 Visitors can ask the staff including the receptionist regarding navigation around the hospital \cite{job}. Very much like the phone, however human interaction has an advantage of being more precise. There will be less confusion as body language can be used in the answering of the question \cite{body_vs_phone}.
 
-At \enquote{Sygehus Nord Aalborg} a receptionist booth is located at the main entrance. See \cref{fig:rec_booth}. If the visitor arrives at an entrance different from the main one, they might not know where the receptionist is if they need help. The information received from the receptions have to be memorized when the visitor ventures away from the desk. This means that directions could become hard to remember if they have to get to a distant location inside the building. A way the receptionist could help the visitor remember, would be to write a note but even so the text could be misunderstood or in other ways mixed up.
+At \enquote{Sygehus Nord Aalborg} a receptionist booth is located at the main entrance. See \cref{fig:rec_booth}. If the visitor arrives at an entrance different from the main one, they might not know where the receptionist is if they need help. The information received from the receptions have to be memorized when the visitor ventures away from the desk. This means that directions could become hard to remember if they have to get to a distant location inside the building. A way the receptionist could help the visitor remember, would be to write a note but even so the text could be misunderstood \chnote{misperceived.} or in other ways mixed up.
 
   \begin{figure}[ht!]
     \centering
@@ -80,4 +84,6 @@ At \enquote{Sygehus Nord Aalborg} a receptionist booth is located at the main en
 
 \subsubsection{Summary} % (fold)
   We found that in order to have a good navigation platform, the platform needs to be fast to interpret (\cref{sub:sign}), give a fast overview (\cref{sub:map}), be precise (\cref{sub:human}) and easy to understand (\cref{sub:col}). The design of our product has to avoid the weaknesses we have discovered in \cref{sec:anal_nav}. This means that the product must not display irrelevant information (\cref{sub:sign}), must deal with the representation of multiple floors in a non-confusing way (\cref{sub:map}), must deal with positioning without user interaction (\cref{sub:map}), and must be efficient in man hours to maintain (\cref{sub:pho}).
+
+  \chnote{Beginning prerequisites/needs?}
 
