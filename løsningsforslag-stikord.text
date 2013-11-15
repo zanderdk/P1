@@ -1,0 +1,46 @@
+Løsningsforslag
+===============
+
+Kravspecifikation
+-----------------
+
+-   Skal navigere på tværs af etager fra nuværende position til ønsket rum i
+    sygehus.
+
+-   Gør brug af positionering fra ekstern service.
+
+-   Kan betragtes som server-delen. Kunne forestille sig, at en anden tjeneste
+    laver den grafiske repræsentation af de genererede data.
+
+-   Ingen mærkbar ventetid ved rutegenerering.
+
+-   Skal finde den hurtigste rute ud fra brugerens fysiske egenskaber.
+
+-   Løbende opdatering af positionering. f.eks. 10 gange i sekundet.
+
+-   Skal tage højde for elevator og trapper
+
+
+
+Tanker (hvordan opfyldes disse krav)
+------------------------------------
+
+-   Gør brug af kortdata repræsenteret af “knudepunkter”. En knude er et sted
+    hvor brugeren har flere muligheder for retningsskift.
+
+-   Vil bruge grafteori til at bestemme mest optimale rute.
+
+-   En hurtig opdateringstid på positioneringen, giver mulighed for
+    retningsbestemmelse af brugeren.
+
+-   Hvornår kan det betale sig at vente på elevatoren, kontra at tage trapperne?
+    Yderligere optimering: Hvor er elevatoren i forhold til brugeren?
+
+Afgrænsning (hvilke krav vælger vi at opfylde?)
+-----------------------------------------------
+
+-   Navigation på tværs af etager
+
+-   Fokus på effektiv algoritme
+
+-   Mest optimale rute, der tager højde for brugers fysiske begrænsninger

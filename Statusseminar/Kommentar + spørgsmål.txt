@@ -1,0 +1,29 @@
+Sprog
+    Ordforklaringer.
+    Undgå skråstreger.
+    Brug passive sætningskonstruktioner.
+    Kommafejl, en masse.
+    Rapport starter meget pludseligt; undgå at starte et kapitel med et spørgsmål.
+    Mange påstande.
+    Mere bestemt/konkret sprog, undgå hvis, måske, kunne vi etc..
+Litteratur:
+    Skal være ordnede i forhold til anvendt rækkefølge
+    Dato for tilgang.
+    Genovervej kilder, kommentar på eventuelt bias.
+        7 er ubrugelig, henviser ikke til noget specifikt.
+        8 virker upålidelig.
+        9 overvej bias.
+Rapportstruktur:
+    Afgrænsning efter formulering
+    Løsningsmuligheder (interessenter?) vs løsningsideer?
+Kopiering:
+    Kopiering fra kilde i afsnit 2.4
+
+Spørgsmål:
+
+1.  Hvad er et smarthouse og hvorfor er det mere sikkert?
+2.  Hvilken problemstilling forsøger i på at afdække? Er det sikkerhed i hjemmet eller er det home automation?
+3.  Hvor ofte er hjemmehjælpere ude for at skrue op eller ned for varmen? (2.6.2)
+4.  Hvad er jeres fjernbetjeningsløsning og hvordan skal den fungere?
+5.  Hvad er et IHC-anlæg? Sparer det strøm? Hvilket formål tjener det?
+6.  Hvad indebærer det at logge sig ind i huset? Og er det relevant for ældre?
