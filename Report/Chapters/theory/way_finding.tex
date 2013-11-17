@@ -13,12 +13,12 @@
   Path finding algorithms are used for finding a path between two locations, the source and the destination. By searching its way from the source to the destination, until a path is found. These algorithms also make it possible to calculate the optimal path, i.e. the shortest.
 
   The algorithms to perform searches make use of a weighted graph. A graph, $G$ is a set of vertices $V$, connected by edges $E$.
-  Information about destinations, rooms, entrances and exits would be represented as vertices and hallways and stairs would be represented as edges. The distance to travel from vertex to vertex via a particular edge, would be represented as a weight $W(e)$.
+  Information about destinations, rooms, entrances and exits would be represented as vertices and hallways and stairs would be represented as edges. The distance to travel from vertex to vertex via a particular edge, would be represented as a weight $W(e)$. As illustrated in \cref{fig:graph}
 
   \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\textwidth]{Graph}
-    \caption{A Graph}
+    \caption{Weighted graph}
     \label{fig:graph}
   \end{figure}
 
@@ -27,7 +27,7 @@
 
   \subsubsection{Dijkstra's Algorithm}
 
-  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. Depending on how the graph is stored, its possible to improve efficiency, but a simple linear search through all vertices, the run time is $O(V^2)$. \cite{Dijkstra}
+  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result.
 
   \begin{figure}[ht!]
     \centering
@@ -64,6 +64,8 @@
     \item[Step 2.]{For each vertex in set $B$ where there is only one path in set \RN{1} and set \RN{2}, the vertex with minimum cost from $P$ is assign to set $A$ and with the corresponding edge assign to set \RN{1}.}
   \end{description}
 
+  In this example \cref{fig:dijkstra_calc}, the first vertex B is assigned to set $A$, and edge $AB$ is part of set \RN{1}.
+
   \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\textwidth]{DijkstraX}
@@ -75,7 +77,7 @@
 
   Best-First-Search is a search algorithm like Dijkstra's, with the exception that a heuristic value is calculated to estimate how far target the vertex is from the an evaluating vertex. The algorithm then repeatedly choose a vertex with the least cost, until target vertex is reached. The final path is not guaranteed the shortest, however it it not as complex as Dijkstra's algorithm which means it is much faster to calculate. \cite{BestFirst}
 
-  But when obstacles are introduced, like walls, the Best-First-Search algorithm fails to find a path that is close to optimal.
+  But when obstacles are introduced, like walls, see example \cref{bestfirst}. The Best-First-Search algorithm fails to find a path that is close to optimal.
 
   \begin{figure}[ht!]
     \centering
@@ -100,6 +102,8 @@
 
   This means that the heuristic estimation should be reasonable, $h(x)$ should be admissible and not overestimate the distance between the evaluating vertex and the target vertex. But should be just right for the final chosen path to be the optimal path and the for the complexity of the algorithm to be at a minimum. Each step the algorithm evaluates the value of $f(x)$ of each vertex to pick the next vertex with the smallest cost.
 
+  As in the example \cref{astar}, the algorithm expand both paths alternately,x because the $f(x)$ value for each hall shifts as the algorithm progress. 
+
   \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\textwidth]{AstarHlow}
@@ -114,7 +118,7 @@
 
   \subsubsection{Summary of Algorithms}
 
-  Path algorithms searches for a path to target. Some focuses on finding a path fast, others finding the most optimal path. Using the A* algorithm with a heuristic model that is admissible, which underestimates the cost to the target path, assure an optimal path without calculating every vertex. See \cref{tbl:scheme}
+  Path algorithms searches for a path to target. Some focuses on finding a path fast, others finding the most optimal path. Using the A* algorithm with a heuristic model that is admissible, which underestimates the cost to the target path, assure an optimal path without calculating every vertex. See \cref{tbl:scheme}.
   
   \begin{table}[ht!]
     \centering
