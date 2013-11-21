@@ -9,12 +9,12 @@ Sprog
 Litteratur:
     Skal være ordnede i forhold til anvendt rækkefølge
     Dato for tilgang.
-    Genovervej kilder, kommentar på eventuelt bias.
+    Genovervej kilder, kommenter på eventuelt bias.
         7 er ubrugelig, henviser ikke til noget specifikt.
-        8 virker upålidelig.
+        8 virker upålidelig. Yderligere så er der fejl i link.
         9 overvej bias.
 Rapportstruktur:
-    Afgrænsning efter formulering
+    Afgrænsning efter formulering.
     Løsningsmuligheder (interessenter?) vs løsningsideer?
 Kopiering:
     Kopiering fra kilde i afsnit 2.4

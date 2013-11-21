@@ -1,0 +1,31 @@
+%!TEX root = ../../Master.tex
+\section{Specification} % (fold)
+\label{sec:specification}
+
+
+\begin{itemize}
+	\item The program must be able to generate a route to a user given destination.
+	\item The user must have the ability to personalize the generated route through the following parameters.
+			\begin{itemize}
+				\item Are stairs to be avoided or preferred?
+				\item Are elevators to be avoided or preferred?
+				\item Are disabled-friendly routes a must?
+				\item Should the route be fastest in time, shortest in distance, or have the least number of climbs like stairs?
+			\end{itemize}
+	\item The program must represent the route instructions either as text, audio or pictographic.
+	\item The program must be accessible from the (three) most popular mobile operating systems. \sinote{Three skal måske senere rettes}
+	\item The program must be able to support different building complexes while a map is available.
+	\item The program must be able to manage maps from external sources.
+	\item The user interface must be intuitive, simple but still give a quick overview of data representation.
+	\item The program should cache up to 50MB of maps in order to save bandwidth.
+	\item The program must update its position at start, at each route branch and if the device is going off the route.
+	\item The program must maintain the user's position without communicating with external factors.
+	\item The program must be able to position itself by the use of radio triangulation or location fingerprinting.
+	\item The maximum waiting time during initial route generation must not exceed 2 seconds.
+\end{itemize}
+
+\sinote{til analysen: Kilden vurderer den samlede accepterede ventetid til mellem 2 og 4 sekunder [http://cba.unl.edu/research/articles/548/download.pdf]}
+
+\sinote{til løsningen: Vi afsætter 500 ms til selve rutegenereringen, som måles fra modtagelse af positionsdata og ruteindstillinger, til udregningen af ruten er færdiggjort. Dette giver minimum 1500 ms til at repræsentere instrukser.}
+
+% section specification (end)
