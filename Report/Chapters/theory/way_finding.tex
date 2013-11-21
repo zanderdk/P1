@@ -10,7 +10,7 @@
 
 \subsection{Path Finding Algorithms}
 
-  Path finding algorithms are used for finding a path between two locations, the source and the destination. By searching its way from the source to the destination, until a path is found. These algorithms also make it possible to calculate the optimal path, i.e. the shortest.
+  Path finding algorithms are used for finding a path between two locations, the source and the destination. By searching its way from the source to the destination, until a path is found. These algorithms also make it possible to calculate the optimal path, i.e. the shortest. \cite{Cormen2009}
 
   The algorithms to perform searches make use of a weighted graph. A graph, $G$ is a set of vertices $V$, connected by edges $E$.
   Information about destinations, rooms, entrances and exits would be represented as vertices and hallways and stairs would be represented as edges. The distance to travel from vertex to vertex via a particular edge, would be represented as a weight $W(e)$. As illustrated in \cref{fig:graph}
@@ -27,7 +27,7 @@
 
   \subsubsection{Dijkstra's Algorithm}
 
-  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result.
+  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959}
 
   \begin{figure}[ht!]
     \centering
@@ -73,9 +73,9 @@
     \label{fig:dijkstra_calc}
   \end{figure}
 
-  \subsubsection{Best-First-Search}
+  \subsubsection{Greedy Best-First-Searches}
 
-  Best-First-Search is a search algorithm like Dijkstra's, with the exception that a heuristic value is calculated to estimate how far target the vertex is from the an evaluating vertex. The algorithm then repeatedly choose a vertex with the least cost, until target vertex is reached. The final path is not guaranteed the shortest, however it it not as complex as Dijkstra's algorithm which means it is much faster to calculate. \cite{BestFirst}
+  A greedy Best-First-Search is a search algorithms like Dijkstra's, with the exception that a heuristic value is calculated to estimate how far target the vertex is from the an evaluating vertex. The algorithm then repeatedly choose a vertex with the least cost, until target vertex is reached. The final path is not guaranteed the shortest, however it it not as complex as Dijkstra's algorithm which means it is much faster to calculate. \cite{Bailey}
 
   But when obstacles are introduced, like walls, see example \cref{bestfirst}. The Best-First-Search algorithm fails to find a path that is close to optimal.
 
@@ -88,7 +88,7 @@
 
   \subsubsection{A* Algorithm}
 
-  If you would combine Dijkstra's algorithm with Best-First-Search algorithm, you would get the A* algorithm which also utilises the principle of a heuristic estimation to determine which vertex to test next. It uses a evaluation function $f(x) = g(x) + h(x)$, where $g(x)$ describes the cost from the start to the vertex being evaluated, and $h(x)$ is a heuristic function that estimates the cost from the evaluating vertex to the target vertex. \cite{http://theory.stanford.edu/}
+  If you would combine Dijkstra's algorithm with Best-First-Search algorithm, you would get the A* algorithm which also utilises the principle of a heuristic estimation to determine which vertex to test next. It uses a evaluation function $f(x) = g(x) + h(x)$, where $g(x)$ describes the cost from the start to the vertex being evaluated, and $h(x)$ is a heuristic function that estimates the cost from the evaluating vertex to the target vertex. \cite{Patel2013}
 
   \begin{itemize}
     \item If $h(x)$ is zero, then only $g$ affects the result and making it work like Dijkstra's algorithm.

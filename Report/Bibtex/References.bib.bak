@@ -1,355 +1,324 @@
-% This file was created with JabRef 2.9.2.
+% This file was created with JabRef 2.10b2.
 % Encoding: UTF8
 
-@ELECTRONIC{map,
-  author = {Sygehus vendsyssel},
-  url = {http://www.sygehusvendsyssel.rn.dk/NR/rdonlyres/0242C7F0-AD23-446E-A073-77C1AAF36D1A/0/kort_med_indgange.pdf},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.03}
+
+@Electronic{map,
+  Author                   = {Sygehus vendsyssel},
+  Url                      = {http://www.sygehusvendsyssel.rn.dk/NR/rdonlyres/0242C7F0-AD23-446E-A073-77C1AAF36D1A/0/kort_med_indgange.pdf},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.03}
 }
 
-@INPROCEEDINGS{Boontrai2009,
-  author = {Boontrai, D. and Jingwangsa, T. and Cherntanomwong, P.},
-  title = {Indoor localization technique using passive RFID tags},
-  booktitle = {Communications and Information Technology, 2009. ISCIT 2009. 9th
-	International Symposium on},
-  year = {2009},
-  pages = {922-926},
-  abstract = {In this paper, radio frequency identification (RFID) technology is
-	used for localization system. The location of a RFID reader is estimated
-	based on the known locations of RFID tags using the UHF band RFID
-	system. The new location estimation method based on the angulation
-	technique is proposed to determine the reader location in real time.
-	For angulation technique, the RFID reader is held on the camera tripod
-	and it is considered as the target to be localized. The passive tags
-	are attached at the known location and considered as the references.
-	In this case, the RFID tags are put in the horizontal straight line
-	on different sides on the walls (around the corner). The required
-	parameter is the angle between the tag and the reader. In this paper,
-	a compass is employed to measure the angle between the tag and the
-	reader. Therefore, at least two angles are needed and further used
-	to calculate the true location of the reader by using two formulated
-	linear equations. This technique is verified using the experiment
-	data. Two experiments are conducted with two different distances
-	between tags and reader, i.e. 100 cm and 150 cm. The experiment results
-	of location estimation show that the average location estimation
-	error is around 16 cm for the 100 cm distance and around 20 cm for
-	the 150 cm distance. This implies that the proposed method is satisfied
-	to use for indoor applications.},
-  doi = {10.1109/ISCIT.2009.5340979},
-  keywords = {UHF devices;indoor radio;radio direction-finding;radiofrequency identification;UHF
-	system;angulation technique;indoor localization technique;linear
-	equation;location estimation method;passive RFID tags;radio frequency
-	identification;Cameras;Costs;Equations;Estimation error;Goniometers;Passive
-	RFID tags;Patient monitoring;RFID tags;Radiofrequency identification;Wireless
-	LAN;RFID;compass;indoor localization}
+@InProceedings{Boontrai2009,
+  Title                    = {Indoor localization technique using passive RFID tags},
+  Author                   = {Boontrai, D. and Jingwangsa, T. and Cherntanomwong, P.},
+  Booktitle                = {Communications and Information Technology, 2009. ISCIT 2009. 9th International Symposium on},
+  Year                     = {2009},
+  Pages                    = {922-926},
+
+  Abstract                 = {In this paper, radio frequency identification (RFID) technology is used for localization system. The location of a RFID reader is estimated based on the known locations of RFID tags using the UHF band RFID system. The new location estimation method based on the angulation technique is proposed to determine the reader location in real time. For angulation technique, the RFID reader is held on the camera tripod and it is considered as the target to be localized. The passive tags are attached at the known location and considered as the references. In this case, the RFID tags are put in the horizontal straight line on different sides on the walls (around the corner). The required parameter is the angle between the tag and the reader. In this paper, a compass is employed to measure the angle between the tag and the reader. Therefore, at least two angles are needed and further used to calculate the true location of the reader by using two formulated linear equations. This technique is verified using the experiment data. Two experiments are conducted with two different distances between tags and reader, i.e. 100 cm and 150 cm. The experiment results of location estimation show that the average location estimation error is around 16 cm for the 100 cm distance and around 20 cm for the 150 cm distance. This implies that the proposed method is satisfied to use for indoor applications.},
+  Doi                      = {10.1109/ISCIT.2009.5340979},
+  Keywords                 = {UHF devices;indoor radio;radio direction-finding;radiofrequency identification;UHF system;angulation technique;indoor localization technique;linear equation;location estimation method;passive RFID tags;radio frequency identification;Cameras;Costs;Equations;Estimation error;Goniometers;Passive RFID tags;Patient monitoring;RFID tags;Radiofrequency identification;Wireless LAN;RFID;compass;indoor localization}
 }
 
-@ARTICLE{compassdude_triangulation,
-  author = {Compassdude.com},
-  title = {Triangulation},
-  year = {2013},
-  journaltitle = {Triangulation},
-  owner = {Simon},
-  timestamp = {2013.10.29},
-  url = {http://www.compassdude.com/compass-triangulation.shtml}
+@Article{compassdude_triangulation,
+  Title                    = {Triangulation},
+  Author                   = {Compassdude.com},
+  Year                     = {2013},
+
+  Journaltitle             = {Triangulation},
+  Owner                    = {Simon},
+  Timestamp                = {2013.10.29},
+  Url                      = {http://www.compassdude.com/compass-triangulation.shtml}
 }
 
-@ELECTRONIC{signs_wall,
-  author = {Mark Easton},
-  title = {Grassroots government},
-  language = {English},
-  organization = {BBC},
-  url = {http://www.bbc.co.uk/blogs/thereporters/markeaston/2011/02/grassroots_government.html},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{signs_wall,
+  Title                    = {Grassroots government},
+  Author                   = {Mark Easton},
+  Language                 = {English},
+  Organization             = {BBC},
+  Url                      = {http://www.bbc.co.uk/blogs/thereporters/markeaston/2011/02/grassroots_government.html},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{tri_lateration,
-  author = {Andrei Economov},
-  month = {11},
-  year = {2000},
-  title = {GPS system},
-  language = {English},
-  organization = {ixbtlab},
-  url = {http://ixbtlabs.com/articles/gpssystem/},
-  owner = {zander},
-  timestamp = {2013.10.29}
+@Electronic{tri_lateration,
+  Title                    = {GPS system},
+  Author                   = {Andrei Economov},
+  Language                 = {English},
+  Month                    = {11},
+  Organization             = {ixbtlab},
+  Url                      = {http://ixbtlabs.com/articles/gpssystem/},
+  Year                     = {2000},
+
+  Owner                    = {zander},
+  Timestamp                = {2013.10.29}
 }
 
-@ELECTRONIC{signs_hospital,
-  author = {Gill Hitchcock},
-  title = {Monitor appoints Henshaw to chair troubled Morecambe Bay trust},
-  language = {English},
-  url = {http://www.theguardian.com/healthcare-network/2012/feb/08/henshaw-chair-troubled-morecambe-bay-nhs-trust},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{signs_hospital,
+  Title                    = {Monitor appoints Henshaw to chair troubled Morecambe Bay trust},
+  Author                   = {Gill Hitchcock},
+  Language                 = {English},
+  Url                      = {http://www.theguardian.com/healthcare-network/2012/feb/08/henshaw-chair-troubled-morecambe-bay-nhs-trust},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{ugd_port,
-  author = {Schultz Information},
-  month = {Juni},
-  year = {2013},
-  title = {Job
-	
-	Portør},
-  language = {Danish},
-  organization = {Undervisningsministeriet},
-  url = {http://www.ug.dk/job/sundhedomsorgogpleje/andethosparb/portoer.aspx},
-  owner = {AndersBærbar},
-  timestamp = {2013.10.28}
+@Electronic{ugd_port,
+  Title                    = {Job
+Portør},
+  Author                   = {Schultz Information},
+  Language                 = {Danish},
+  Month                    = {Juni},
+  Organization             = {Undervisningsministeriet},
+  Url                      = {http://www.ug.dk/job/sundhedomsorgogpleje/andethosparb/portoer.aspx},
+  Year                     = {2013},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.10.28}
 }
 
-@ELECTRONIC{signs_hospital2,
-  author = {Leah},
-  title = {Leah's Learning Log (Graphic design)},
-  language = {English},
-  howpublished = {Blogger},
-  url = {http://leah1979.blogspot.dk/2012/07/signs-and-symbols.html},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{signs_hospital2,
+  Title                    = {Leah's Learning Log (Graphic design)},
+  Author                   = {Leah},
+  HowPublished             = {Blogger},
+  Language                 = {English},
+  Url                      = {http://leah1979.blogspot.dk/2012/07/signs-and-symbols.html},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ARTICLE{Liu2007,
-  author = {Hui Liu and Darabi, H. and Banerjee, P. and Jing Liu},
-  title = {Survey of Wireless Indoor Positioning Techniques and Systems},
-  journal = {Systems, Man, and Cybernetics, Part C: Applications and Reviews,
-	IEEE Transactions on},
-  year = {2007},
-  volume = {37},
-  pages = {1067-1080},
-  number = {6},
-  abstract = {Wireless indoor positioning systems have become very popular in recent
-	years. These systems have been successfully used in many applications
-	such as asset tracking and inventory management. This paper provides
-	an overview of the existing wireless indoor positioning solutions
-	and attempts to classify different techniques and systems. Three
-	typical location estimation schemes of triangulation, scene analysis,
-	and proximity are analyzed. We also discuss location fingerprinting
-	in detail since it is used in most current system or solutions. We
-	then examine a set of properties by which location systems are evaluated,
-	and apply this evaluation method to survey a number of existing systems.
-	Comprehensive performance comparisons including accuracy, precision,
-	complexity, scalability, robustness, and cost are presented.},
-  doi = {10.1109/TSMCC.2007.905750},
-  issn = {1094-6977},
-  keywords = {indoor radio;radiowave propagation;location fingerprinting;wireless
-	indoor positioning technique;Automation;Costs;Fingerprint recognition;Image
-	analysis;Inventory management;Object detection;Radio frequency;Robustness;Scalability;Wireless
-	sensor networks;Indoor location sensing;location fingerprinting;positioning
-	algorithm;radio frequency (RF);wireless localization}
+@Article{Liu2007,
+  Title                    = {Survey of Wireless Indoor Positioning Techniques and Systems},
+  Author                   = {Hui Liu and Darabi, H. and Banerjee, P. and Jing Liu},
+  Journal                  = {Systems, Man, and Cybernetics, Part C: Applications and Reviews, IEEE Transactions on},
+  Year                     = {2007},
+  Number                   = {6},
+  Pages                    = {1067-1080},
+  Volume                   = {37},
+
+  Abstract                 = {Wireless indoor positioning systems have become very popular in recent years. These systems have been successfully used in many applications such as asset tracking and inventory management. This paper provides an overview of the existing wireless indoor positioning solutions and attempts to classify different techniques and systems. Three typical location estimation schemes of triangulation, scene analysis, and proximity are analyzed. We also discuss location fingerprinting in detail since it is used in most current system or solutions. We then examine a set of properties by which location systems are evaluated, and apply this evaluation method to survey a number of existing systems. Comprehensive performance comparisons including accuracy, precision, complexity, scalability, robustness, and cost are presented.},
+  Doi                      = {10.1109/TSMCC.2007.905750},
+  ISSN                     = {1094-6977},
+  Keywords                 = {indoor radio;radiowave propagation;location fingerprinting;wireless indoor positioning technique;Automation;Costs;Fingerprint recognition;Image analysis;Inventory management;Object detection;Radio frequency;Robustness;Scalability;Wireless sensor networks;Indoor location sensing;location fingerprinting;positioning algorithm;radio frequency (RF);wireless localization}
 }
 
-@OTHER{int_laila,
-  author = {Laila Kirkeby Matthiassen},
-  institution = {Hjørring},
-  language = {Danish},
-  month = {Oktober},
-  organization = {Hjørring sygehus},
-  owner = {AndersBærbar},
-  timestamp = {2013.10.28},
-  title = {Interwiev},
-  type = {Interwiev},
-  year = {2013}
+@Other{int_laila,
+  Title                    = {Interwiev},
+  Author                   = {Laila Kirkeby Matthiassen},
+  Institution              = {Hjørring},
+  Language                 = {Danish},
+  Month                    = {Oktober},
+  Organization             = {Hjørring sygehus},
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.10.28},
+  Type                     = {Interwiev},
+  Year                     = {2013}
 }
 
-@ELECTRONIC{art_Osborne,
-  author = {Helen Osborne},
-  month = {October},
-  year = {2001},
-  title = {In Other Words…Tools to Help Patients Navigate Their Way Around Hospitals},
-  language = {English},
-  organization = {Boston Globe's On Call Magazine},
-  url = {http://www.healthliteracy.com/article.asp?PageID=3756},
-  owner = {AndersBærbar},
-  timestamp = {2013.10.28}
+@Electronic{art_Osborne,
+  Title                    = {In Other Words…Tools to Help Patients Navigate Their Way Around Hospitals},
+  Author                   = {Helen Osborne},
+  Language                 = {English},
+  Month                    = {October},
+  Organization             = {Boston Globe's On Call Magazine},
+  Url                      = {http://www.healthliteracy.com/article.asp?PageID=3756},
+  Year                     = {2001},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.10.28}
 }
 
-@ELECTRONIC{,
-  author = {Region Sjælland},
-  url = {http://www.regionsjaelland.dk/dinregion/undervisningsmateriale/Sygehusplanen/Sider/default.aspx},
-  owner = {Simon},
-  timestamp = {2013.11.06}
+@Electronic{Patel2013,
+  Title                    = {Introduction to A*},
+  Author                   = {Amit Patel},
+  Language                 = {English},
+  Month                    = {November},
+  Url                      = {http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html},
+  Year                     = {2013},
+
+  Owner                    = {heider},
+  Timestamp                = {2013.11.21}
 }
 
-@INPROCEEDINGS{Sun2009,
-  author = {Yi Sun and Jizhong Xiao and Cabrera-Mora, F.},
-  title = {Robot localization and energy-efficient wireless communications by
-	multiple antennas},
-  booktitle = {Intelligent Robots and Systems, 2009. IROS 2009. IEEE/RSJ International
-	Conference on},
-  year = {2009},
-  pages = {377-381},
-  abstract = {Biologically-inspired swarm of robots with collaboration towards a
-	common mission has a broad range of applications. However, the required
-	dynamic localization among autonomous robots for such swarm collaboration,
-	though usually implicitly assumed, has not been properly studied.
-	In this paper, we address the roles of multiple antennas in localization
-	and energy-efficient wireless communications for a swarm of robots.
-	Following the gradient of signal powers along a trajectory, a robot
-	can track the direction of a source robot. With three or more properly
-	placed antennas that sense different phase shifts of carrier, a robot
-	can localize a source. By lateration, three collaborative robots
-	can localize a source with known distances to it. Via angulation
-	technique, three robots can determine their geometric relationship
-	with knowing two angles and one distance between them. The techniques
-	can be extended from the 2-D to the 3-D space for application of
-	wall-climbing robots. On the basis of knowledge of robot locations,
-	beamforming techniques can be employed to receive and transmit signal
-	towards the desired robot therefore improving energy efficiency and
-	prolonging robot lifetime.},
-  doi = {10.1109/IROS.2009.5354260},
-  keywords = {antenna arrays;array signal processing;mobile robots;multi-robot systems;angulation
-	technique;autonomous robots;beamforming techniques;energy-efficient
-	wireless communications;multiple antennas;phase shifts;robot localization;swarm
-	collaboration;wall-climbing robots;Array signal processing;Collaboration;Energy
-	efficiency;Intelligent robots;Orbital robotics;Receiving antennas;Robot
-	localization;Robot sensing systems;Ultrasonic imaging;Wireless communication;antennas;robotic;wireless
-	communications}
+@Electronic{Sjaelland,
+  Author                   = {Region Sjælland},
+  Url                      = {http://www.regionsjaelland.dk/dinregion/undervisningsmateriale/Sygehusplanen/Sider/default.aspx},
+
+  Owner                    = {Simon},
+  Timestamp                = {2013.11.06}
 }
 
-@ELECTRONIC{information_overload,
-  author = {Alvin Toffler},
-  title = {Information overload},
-  url = {http://en.wikipedia.org/wiki/Information_overload#cite_note-1},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@InProceedings{Sun2009,
+  Title                    = {Robot localization and energy-efficient wireless communications by multiple antennas},
+  Author                   = {Yi Sun and Jizhong Xiao and Cabrera-Mora, F.},
+  Booktitle                = {Intelligent Robots and Systems, 2009. IROS 2009. IEEE/RSJ International Conference on},
+  Year                     = {2009},
+  Pages                    = {377-381},
+
+  Abstract                 = {Biologically-inspired swarm of robots with collaboration towards a common mission has a broad range of applications. However, the required dynamic localization among autonomous robots for such swarm collaboration, though usually implicitly assumed, has not been properly studied. In this paper, we address the roles of multiple antennas in localization and energy-efficient wireless communications for a swarm of robots. Following the gradient of signal powers along a trajectory, a robot can track the direction of a source robot. With three or more properly placed antennas that sense different phase shifts of carrier, a robot can localize a source. By lateration, three collaborative robots can localize a source with known distances to it. Via angulation technique, three robots can determine their geometric relationship with knowing two angles and one distance between them. The techniques can be extended from the 2-D to the 3-D space for application of wall-climbing robots. On the basis of knowledge of robot locations, beamforming techniques can be employed to receive and transmit signal towards the desired robot therefore improving energy efficiency and prolonging robot lifetime.},
+  Doi                      = {10.1109/IROS.2009.5354260},
+  Keywords                 = {antenna arrays;array signal processing;mobile robots;multi-robot systems;angulation technique;autonomous robots;beamforming techniques;energy-efficient wireless communications;multiple antennas;phase shifts;robot localization;swarm collaboration;wall-climbing robots;Array signal processing;Collaboration;Energy efficiency;Intelligent robots;Orbital robotics;Receiving antennas;Robot localization;Robot sensing systems;Ultrasonic imaging;Wireless communication;antennas;robotic;wireless communications}
 }
 
-@ARTICLE{Union2004,
-  author = {European Union},
-  title = {COUNCIL DIRECTIVE 93/36/EEC of 14 June 1993 coordinating procedures
-	for the award of public supply contracts},
-  year = {2004},
-  owner = {Simon},
-  timestamp = {2013.11.06},
-  url = {http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:1993L0036:20040501:EN:PDF}
+@Electronic{information_overload,
+  Title                    = {Information overload},
+  Author                   = {Alvin Toffler},
+  Url                      = {http://en.wikipedia.org/wiki/Information_overload#cite_note-1},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ARTICLE{Vendsyssel,
-  author = {Sygehus Vendsyssel},
-  title = {Sygehus Vendsyssel},
-  owner = {Simon},
-  timestamp = {2013.11.06},
-  url = {http://www.sygehusvendsyssel.rn.dk/}
+@Article{Union2004,
+  Title                    = {COUNCIL DIRECTIVE 93/36/EEC of 14 June 1993 coordinating procedures for the award of public supply contracts},
+  Author                   = {European Union},
+  Year                     = {2004},
+
+  Owner                    = {Simon},
+  Timestamp                = {2013.11.06},
+  Url                      = {http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:1993L0036:20040501:EN:PDF}
 }
 
-@ELECTRONIC{pros_analog_map,
-  author = {Viscomvibz},
-  month = {March 17},
-  year = {2012},
-  language = {English},
-  url = {pros_analog_map},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Article{Vendsyssel,
+  Title                    = {Sygehus Vendsyssel},
+  Author                   = {Sygehus Vendsyssel},
+
+  Owner                    = {Simon},
+  Timestamp                = {2013.11.06},
+  Url                      = {http://www.sygehusvendsyssel.rn.dk/}
 }
 
-@ARTICLE{wiki_knn,
-  author = {Wikipedia},
-  title = {k-nearest neighbors algorithm},
-  year = {2013},
-  owner = {Simon},
-  timestamp = {2013.10.30},
-  url = {http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}
+@Electronic{pros_analog_map,
+  Author                   = {Viscomvibz},
+  Language                 = {English},
+  Month                    = {March 17},
+  Url                      = {pros_analog_map},
+  Year                     = {2012},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{wiki_navi,
-  author = {Wikipedia},
-  month = {10},
-  year = {2013},
-  title = {Navigation},
-  language = {English},
-  organization = {Wikipedia.org},
-  url = {http://en.wikipedia.org/wiki/Navigation},
-  owner = {Simon},
-  timestamp = {2013.10.24}
+@Article{wiki_knn,
+  Title                    = {k-nearest neighbors algorithm},
+  Author                   = {Wikipedia},
+  Year                     = {2013},
+
+  Owner                    = {Simon},
+  Timestamp                = {2013.10.30},
+  Url                      = {http://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm}
 }
 
-@ELECTRONIC{wiki_pos,
-  author = {Wikipedia},
-  month = {10},
-  year = {2013},
-  title = {Position},
-  language = {English},
-  organization = {Wikipedia.org},
-  url = {http://en.wikipedia.org/wiki/Position_(disambiguation)},
-  owner = {Simon},
-  timestamp = {2013.10.24}
+@Electronic{wiki_navi,
+  Title                    = {Navigation},
+  Author                   = {Wikipedia},
+  Language                 = {English},
+  Month                    = {10},
+  Organization             = {Wikipedia.org},
+  Url                      = {http://en.wikipedia.org/wiki/Navigation},
+  Year                     = {2013},
+
+  Owner                    = {Simon},
+  Timestamp                = {2013.10.24}
 }
 
-@ELECTRONIC{wiki_srs,
-  author = {Wikipedia},
-  month = {10},
-  year = {2013},
-  title = {Spatial reference system},
-  language = {English},
-  organization = {Wikipedia.org},
-  url = {http://en.wikipedia.org/wiki/Spatial_reference_system},
-  owner = {Simon},
-  timestamp = {2013.10.24}
+@Electronic{wiki_pos,
+  Title                    = {Position},
+  Author                   = {Wikipedia},
+  Language                 = {English},
+  Month                    = {10},
+  Organization             = {Wikipedia.org},
+  Url                      = {http://en.wikipedia.org/wiki/Position_(disambiguation)},
+  Year                     = {2013},
+
+  Owner                    = {Simon},
+  Timestamp                = {2013.10.24}
 }
 
-@ELECTRONIC{body_vs_phone,
-  title = {Body Language vs Verbal Communication},
-  url = {http://stepbystepmediation.com/body-language-vs-verbal-communication/},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{wiki_srs,
+  Title                    = {Spatial reference system},
+  Author                   = {Wikipedia},
+  Language                 = {English},
+  Month                    = {10},
+  Organization             = {Wikipedia.org},
+  Url                      = {http://en.wikipedia.org/wiki/Spatial_reference_system},
+  Year                     = {2013},
+
+  Owner                    = {Simon},
+  Timestamp                = {2013.10.24}
 }
 
-@MANUAL{job,
-  title = {Job Description: Medical Receptionist},
-  organization = {Leawood, KS. 
-	
-	2006},
-  note = {AAFP: Job Descriptions, Performance Appraisals, and other Employee
-	Forms},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{body_vs_phone,
+  Title                    = {Body Language vs Verbal Communication},
+  Url                      = {http://stepbystepmediation.com/body-language-vs-verbal-communication/},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{map_confusing,
-  title = {Map},
-  organization = {Simon.com},
-  url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
-  owner = {AndersBærbar},
-  timestamp = {2013.10.29}
+@Manual{job,
+  Title                    = {Job Description: Medical Receptionist},
+  Note                     = {AAFP: Job Descriptions, Performance Appraisals, and other Employee Forms},
+  Organization             = {Leawood, KS. 
+2006},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{map_hospital,
-  url = {http://healthcare.utah.edu/hospital/map/},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{map_confusing,
+  Title                    = {Map},
+  Organization             = {Simon.com},
+  Url                      = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.10.29}
 }
 
-@ELECTRONIC{map_survey,
-  title = {Navigation survey},
-  url = {http://eelke.com/files/pubs/INS_survey.pdf},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{map_hospital,
+  Url                      = {http://healthcare.utah.edu/hospital/map/},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{porter,
-  title = {Portørerne - en medarbejdergruppe tæt på patienterne},
-  language = {Danish},
-  url = {http://www.hvidovrehospital.dk/menu/Afdelinger/Serviceafdelingen/Portoer/Portoerfunktionen.htm?siu=true},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{map_survey,
+  Title                    = {Navigation survey},
+  Url                      = {http://eelke.com/files/pubs/INS_survey.pdf},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{signs_reading,
-  title = {Reading Disabilities},
-  howpublished = {PBS},
-  url = {http://www.pbs.org/parents/education/learning-disabilities/types/reading/},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{porter,
+  Title                    = {Portørerne - en medarbejdergruppe tæt på patienterne},
+  Language                 = {Danish},
+  Url                      = {http://www.hvidovrehospital.dk/menu/Afdelinger/Serviceafdelingen/Portoer/Portoerfunktionen.htm?siu=true},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
-@ELECTRONIC{wall_map,
-  title = {Dublin Visitor Centre Photo: Our Dublin City Wall map will help you
-	plan your perfect visit to Ireland's capital!},
-  url = {http://www.tripadvisor.com/LocationPhotoDirectLink-g186605-d4501948-i70464545-Dublin_Visitor_Centre-Dublin_County_Dublin.html},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+@Electronic{signs_reading,
+  Title                    = {Reading Disabilities},
+  HowPublished             = {PBS},
+  Url                      = {http://www.pbs.org/parents/education/learning-disabilities/types/reading/},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
+}
+
+@Electronic{wall_map,
+  Title                    = {Dublin Visitor Centre Photo: Our Dublin City Wall map will help you plan your perfect visit to Ireland's capital!},
+  Url                      = {http://www.tripadvisor.com/LocationPhotoDirectLink-g186605-d4501948-i70464545-Dublin_Visitor_Centre-Dublin_County_Dublin.html},
+
+  Owner                    = {AndersBærbar},
+  Timestamp                = {2013.11.04}
 }
 
 @comment{jabref-meta: selector_publisher:}
