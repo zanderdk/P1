@@ -419,6 +419,12 @@
   timestamp = {2013.11.21}
 }
 
+@ELECTRONIC{QR_urlbad,
+  url = {http://www.swanisland.net/cyber-agility-blog-tips/159-use-caution-with-qr-codes},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
 @ELECTRONIC{signs_reading,
   title = {Reading Disabilities},
   howpublished = {PBS},
