@@ -1,0 +1,13 @@
+QR-code -> Kamera
+RFID -> modtager
+Wifi -> Radio -> Radio modtager
+Internetopkobling
+Bruger -> human error -> dynamisk kontra statisk
+
+Båndbreddekrav:
+    Programmet skal cache op til 50MB kort mellem hver brug
+
+Positioneringskrav:
+    Programmet skal opdatere sin position ved start, ved hver forgrening og hvis enheden forlader ruten.
+    Programmet skal løbende vedligeholde sin position uden at kommunikere med eksterne faktorer. 
+    Programmet skal kunne positionere sig selv ved hjælp af radio-triangulering eller lokation fingerprinting.
