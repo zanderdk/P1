@@ -2,17 +2,39 @@
 \section{Organization} % (fold)
 \label{sec:organization}
 
-\sinote{Infrastruktur nødvendig skal beskrives her.}
 
-\sinote{Beskriv hvordan et hospital er som et miljø}
+\sinote{Må gerne læses i gennem og kritiseres}
 
-Interference with medical device
+In order to create a good navigational system for a hospital, certain factors must be considered. When deciding new features for a hospital, installation \& maintenance costs and compatibility with the existing hardware are a big subject. Therefore this section will describe how the existing infrastructure in hospitals is and how this will affect the navigational system.
 
-Incidents of radio frequency interference between cellular phones, radio broadcasters, wifi devices and medical devices have been reported. Older models of pacemaker, defibrillators and hearing aid devices was being influenced by near encounter of cellular phones causing undesirable effects as not having control of heartbeat etc. The problem was that RF fields were interfering, but standards have made both for medical devices and consumer devices to these does not occur any more. 
+\subsection{WiFi}
 
-http://ewh.ieee.org/soc/embs/comar/interfer.htm
+Most hospitals have good WiFi coverage around their cadastral. A visit to \enquote{Sygehus Nord} in Aalborg revealed that multiple locations around the hospital had a sufficient amount of WiFi hotspots in range, in order to be used in Location Based Services. See \cref{fig:wifi1,fig:wifi2,fig:wifi3}.
 
-http://www.ce-mag.com/archive/06/ARG/case.htm
+\begin{figure}
+\centering
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{wifi_sygehus_nord1.png}
+    \caption{Graph of signal strength grouped by channels. Location A} \label{fig:wifi1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{wifi_sygehus_nord2.png}
+    \caption{Graph of signal strength grouped by channels. Location B} \label{fig:wifi2}
+  \end{minipage}
+    \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{wifi_sygehus_nord3.png}
+    \caption{List of WiFi networks} \label{fig:wifi3}
+  \end{minipage}
+  \end{figure}
+
+
+\subsection{Interference with medical device}
+
+Incidents of radio frequency interference between cellular phones, radio broadcasters, WiFi devices and medical devices have been reported. Older models of pacemakers, defibrillators and hearing aid devices were being influenced by near encounter of cellular phones causing undesirable effects like not having control of heartbeat etc.. The problem was that radio frequency fields were interfering with medical equipment. This has however now been addressed in modern standards, meaning that interference with medical devices does not occur any more. \cite{Man1998,Case}
 
 \sinote{Skriv ikke om politik i dette område. Beslutningstagen skal flyttes op i interessenter}
 

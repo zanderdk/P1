@@ -166,6 +166,16 @@
 	algorithm;radio frequency (RF);wireless localization}
 }
 
+@ELECTRONIC{Man1998,
+  author = {IEEE Committee on Man and Radiation},
+  year = {1998},
+  title = {Radiofrequency Interference With Medical Devices},
+  organization = {Institute of Electrical and Electronics Engineers},
+  url = {http://ewh.ieee.org/soc/embs/comar/interfer.htm},
+  owner = {Simon},
+  timestamp = {2013.11.24}
+}
+
 @OTHER{int_laila,
   author = {Laila Kirkeby Matthiassen},
   institution = {Hjørring},
@@ -391,6 +401,12 @@
 
 @ELECTRONIC{QR_image,
   url = {http://mashable.com/2011/04/18/qr-code-design-tips/},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{QR_information,
+  url = {http://archive.is/20120715010216/http://sandiego.bbb.org/article/consumer-alert-qr-code-safety-28037},
   owner = {AndersBærbar},
   timestamp = {2013.11.21}
 }
