@@ -2,23 +2,23 @@
 
 \sinote{Explain like i'm 5. Skal være meget nem at forstå.}
 
-\subsection{Path Finding Algorithms}
+\subsection{Pathfinding Algorithms}
 
-  In \cref{sec:specification} we specified that our solution need to find the shortest weighted path to the destination.
-  To better understanding path finding we examined different algorithms. We discovered that some algorithms have a high accuracy but finds the path slowly, and conversely.
+  In \cref{sec:specification} we specified that our solution needs to find the shortest weighted path to the destination.
+  To better understanding pathfinding we examined different algorithms. We discovered that some algorithms have a high accuracy but is slow at finding the path, and conversely.
   We have compared some well known path finding algorithms by evaluating their calculation time and route precision.
 
-  Here we have made a compare of 3 frequently used algorithms: 
+  In the following we compare 3 frequently used algorithms:
   \begin{itemize}
-  \setlength{\itemsep}{1pt}
-  \setlength{\parskip}{0pt}
-  \setlength{\parsep}{0pt}
-  \item \textbf{Dijkstra's Algorithm} Always finds the shortest path but have long calculation time on more complex graphs.
-  \item \textbf{Greedy Best-First-Searches} Is a wary fast Algorithm but does not always find the shortest path.
-  \item \textbf{A* Algorithm} is an extension of Dijkstra's Algorithm but have less calculation time using heuristic values.
+    \setlength{\itemsep}{1pt}
+    \setlength{\parskip}{0pt}
+    \setlength{\parsep}{0pt}
+    \item \textbf{Dijkstra's Algorithm} Always finds the shortest path but has long calculation time on more complex graphs.
+    \item \textbf{Greedy Best-First-Searches} Is a very fast algorithm but does not always find the shortest path.
+    \item \textbf{A* Algorithm} Is an extension of Dijkstra's Algorithm but has less calculation time using heuristic values.
 \end{itemize}
 
-We have chosen A* algorithm because it always finds the shortest path, and still have a fairly computing time. This algorithm also makes it easier to implement stairs and elevators, because of the heuristic values. In this section we will describe A* and Dijkstra's because Dijkstra's because A* is an extension of Dijkstra's.
+The A* algorithm was chosen as the algoritm of choice because it always finds the shortest path, and still has a reasonable fast computing time. This algorithm also makes it easier to implement stairs and elevators, because of the heuristic values. In this section we will describe A* and Dijkstra's because A* is an extension of Dijkstra's.
 
 
   %Path finding algorithms are used for finding a path between two locations, the source and the destination. By searching its way from the source to the destination, until a path is found. These algorithms also make it possible to calculate the optimal path, i.e. the shortest. \cite{Cormen2009}
@@ -44,28 +44,43 @@ We have chosen A* algorithm because it always finds the shortest path, and still
   \SetKwFunction{algo}{dijkstra}
   \SetKwProg{myalg}{Function}{}{}
   \myalg{\algo{graph g}}{}
-   $k = A \; list \; of \; vertices$\;
-   $u \gets start$\;
+   $k \gets $ A list of vertices\;
+   $u \gets $ start vertex\;
+   $d \gets $ destination vertex\;
+
+   \tcc{Assign every permanent and temporary entry to a high integer. In this case infinity.}
   \For{\textbf{each} v in g}
   {
-    $p[v] \gets infinity$\;
-    $t[v] \gets infinity$\;
+    $p[v] \gets  0$\;
+    $t[v] \gets \infty$\;
   }
+  \tcc{Start vertex has permanent label 0}
   $p[u] \gets 0$\;
-  \While{p[destination] = infinity}
+  \While{p[d] = $\infty$}
   {
-    \For{\textbf{each} neighbors v of u}
+    \For{\textbf{each} neighbour v of u}
     {
-      $buf \gets p[v] + distBetween(v, u)$\;
-      \If{buf < $t[v]$ \textbf{and} $p[v]$ = infinity}
+      $buf \gets p[u] + distBetween(v, u)$\;
+      \If{buf < $t[v]$ \textbf{and} $p[v] = 0$}
       {
         $t[v] \gets buf$;
       }
     } 
-    $u \gets v \; for \; smallest \; t[v] \; where \; p[v] = infinity$\;
+    $u \gets v \; for \; smallest \; t[v] \; where \; p[v] = 0$\;
     $p[u] \gets t[u]$\;
-    $add \; u \; to \; k$\;
   }
+  \While{p[u] != 0}
+  {
+  \For{\textbf{each} neighbour v of u}
+      {
+        \If{ $v$ is not in $k$ \textbf{and} $p[u] = p[v] + distBetween(v, u)$}{
+        add $u$ to $k$\;
+        $u \gets v$\;
+        \textbf{Break}\;
+        }
+      }
+    }
+  Reverse k\;
   \Return $k$\;
  \caption{Dijkstra's Algorithm}
 \end{algorithm}
