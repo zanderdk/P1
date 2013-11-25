@@ -345,6 +345,66 @@
   timestamp = {2013.10.24}
 }
 
+@ELECTRONIC{acc_dead,
+  url = {http://www.britannica.com/EBchecked/topic/154249/dead-reckoning},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_engi,
+  url = {http://www.dimensionengineering.com/info/accelerometers},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_inacc,
+  url = {http://perso-etis.ensea.fr/~pierandr/cours/M1_SIC/AN3397.pdf},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_iPhone,
+  url = {http://www.memsjournal.com/2010/12/motion-sensing-in-the-iphone-4-mems-accelerometer.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_LIS302DL,
+  url = {http://www.st.com/web/catalog/sense_power/FM89/SC444/PF152913},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_nokia,
+  url = {http://developer.nokia.com/info/sw.nokia.com/id/4284ae69-d37a-4319-bdf0-d4acdab39700/Sensor_plugin_S60_3rd_ed.exe.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_piezo,
+  url = {http://www.pcb.com/techsupport/tech_accel.aspx#.UpMZS8RLNrU},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_price,
+  url = {http://ancillotti.hubpages.com/hub/Smartphones-Accelerometers},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_ps3,
+  url = {http://benheck.com/03-22-2008/inside-the-dualshock-3-controller},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{acc_vulkan,
+  url = {http://vulcan.wr.usgs.gov/Glossary/Seismicity/description_seismic_monitoring.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
 @ELECTRONIC{body_vs_phone,
   title = {Body Language vs Verbal Communication},
   url = {http://stepbystepmediation.com/body-language-vs-verbal-communication/},
@@ -448,6 +508,24 @@
   url = {http://www.swanisland.net/cyber-agility-blog-tips/159-use-caution-with-qr-codes},
   owner = {AndersBærbar},
   timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{RFID_tag_tec1,
+  url = {http://www.scienceprog.com/how-does-rfid-tag-technology-works/},
+  owner = {Carsten},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{RFID_tag_tec2,
+  url = {http://www.enigmatic-consulting.com/Communications_articles/RFID/Link_budgets.html},
+  owner = {Carsten},
+  timestamp = {2013.11.25}
+}
+
+@ELECTRONIC{RFID_tag_tec3,
+  url = {http://www.rf-id.com/6information/rfid_info_techexplained.htm},
+  owner = {Carsten},
+  timestamp = {2013.11.25}
 }
 
 @ELECTRONIC{signs_reading,
