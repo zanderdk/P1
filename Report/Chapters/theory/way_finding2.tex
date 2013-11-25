@@ -52,19 +52,19 @@ We have chosen A* algorithm because it always finds the shortest path, and still
     $t[v] \gets infinity$\;
   }
   $p[u] \gets 0$\;
-  \While{p[destination] = 0}
+  \While{p[destination] = infinity}
   {
     \For{\textbf{each} neighbors v of u}
     {
       $buf \gets p[v] + distBetween(v, u)$\;
       \If{buf < $t[v]$ \textbf{and} $p[v]$ = infinity}
       {
-        $t[v]$ = buf;
+        $t[v] \gets buf$;
       }
-      $u \gets v \; for \; smallest \; t[v] \; where \; p[v] = infinity$\;
-      $p[u] \gets t[u]$\;
-      $add \; u \; to \; k$\;
     } 
+    $u \gets v \; for \; smallest \; t[v] \; where \; p[v] = infinity$\;
+    $p[u] \gets t[u]$\;
+    $add \; u \; to \; k$\;
   }
   \Return $k$\;
  \caption{Dijkstra's Algorithm}
