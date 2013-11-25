@@ -53,6 +53,15 @@
 	LAN;RFID;compass;indoor localization}
 }
 
+@ELECTRONIC{Case,
+  author = {David A. Case},
+  title = {Deploying WLAN in a Hospital Setting: Understanding the Issues},
+  organization = {Compliance Engineering},
+  url = {http://www.ce-mag.com/archive/06/ARG/case.htm},
+  owner = {Simon},
+  timestamp = {2013.11.24}
+}
+
 @ARTICLE{compassdude_triangulation,
   author = {Compassdude.com},
   title = {Triangulation},
