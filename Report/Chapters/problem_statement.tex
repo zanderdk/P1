@@ -5,21 +5,31 @@
 
 %Delformuleringer op til 3. Spørgsmål man kan svare på. Formuler spørgsmål ud fra konklusionen fra prob anal.
 
-\sinote{Beskriv at vi vil lave rutegenering. Skal passe med kravspecifikation i technical delen}
 
 In the problem analysis we covered the different problems associated with indoor navigation in a hospital.
 We discovered that there are many problems tied to the use of analogue navigation systems. We now have knowledge about the incompatibility with indoor navigations, and existing technologies such as GPS.
-Based on the problem analysis (\cref{cha:problem_analysis}), we have delimited the initiating problem (\cref{sub:init}) to one problem statement:
+% Based on the problem analysis (\cref{cha:problem_analysis}), we have delimited the initiating problem (\cref{sub:init}) to one problem statement:
 
-\textit{\textbf{How can a software solution create an individually optimized indoor navigation path, through the use of an established positioning system and a portable computing device?}}
+% \textit{\textbf{How can a software solution create an individually optimized indoor navigation path, through the use of an established positioning system and a portable computing device?}}
 
-In order to solve this problem we need to divide this problem statement into several smaller problems.
+
+With this knowledge we designed a specification for a possible solution.
 
 
 \input{Chapters/problem_statement/specification.tex}
 
+This specification outlines a solution to the initial problem. In order to solve this solution it has to be split up into several subproblems.
+
+\begin{itemize}
+	\item How can a device position a user inside a multi layered building where GPS is not accesible?
+	\item How can a device calculate a route inside a multi layered building suiting user preferences?
+	\item How can a route be represented to a potentially disabled user in an intuitive way that still allows for a quick overview.
+\end{itemize}
+
+In this paper we will design a solution that fits the \fordinal{2} subproblem. This leaves us with the following problem statement:
+
+\begin{displayquote}
+    \textit{How can a device calculate a route inside a multi layered building suiting user preferences?}\label{sub:problem_statement}
+\end{displayquote}
+
 \sinote{Beskriv hvordan deployment fungerer. Beskriv modellering af data, krav af servere osv.}
-
-\sinote{Kravspecifikation. Der skal være sammenhæng mellem krav i prob anal og så denne kravspecifikation}
-
-
