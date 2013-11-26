@@ -134,6 +134,17 @@
   timestamp = {2013.10.29}
 }
 
+@ARTICLE{ventetid,
+  author = {Brett S. Gardner},
+  title = {Responsive Web Design: Enriching the User Experience},
+  journal = {Sigma},
+  year = {2011},
+  volume = {11},
+  pages = {13-19},
+  owner = {Abstrakten},
+  timestamp = {2013.11.26}
+}
+
 @ELECTRONIC{signs_hospital,
   author = {Gill Hitchcock},
   title = {Monitor appoints Henshaw to chair troubled Morecambe Bay trust},
@@ -239,6 +250,18 @@
   url = {http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html},
   owner = {heider},
   timestamp = {2013.11.21}
+}
+
+@ARTICLE{individforskelle,
+  author = {Raffaella Nori, Sonia Grandicelli and Fiorella Guisberti},
+  title = {Individual Differences in Visuo-Spatial Working Memory And Real-World
+	Wayfinding},
+  journal = {Swiss Journal of Psychology},
+  year = {2009},
+  volume = {68},
+  pages = {7-16},
+  owner = {Abstrakten},
+  timestamp = {2013.11.26}
 }
 
 @ARTICLE{visual_impairment,
@@ -377,7 +400,7 @@
   timestamp = {2013.10.24}
 }
 
-@ARTICLE{,
+@ARTICLE{MCI,
   author = {William J. Tippett, Jang-Han Lee, Konstantine K. Zakzanis, Sandra
 	E. Black, Richard Mraz and Simon J. Graham},
   title = {Visually navigating a virtual world with real-world iimpairment:
