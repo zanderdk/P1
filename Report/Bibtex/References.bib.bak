@@ -3,6 +3,9 @@
 
 @ELECTRONIC{map,
   author = {Sygehus vendsyssel},
+  title = {Indgangsoversigt},
+  language = {Dansih},
+  organization = {sygehusvendsyssel},
   url = {http://www.sygehusvendsyssel.rn.dk/NR/rdonlyres/0242C7F0-AD23-446E-A073-77C1AAF36D1A/0/kort_med_indgange.pdf},
   owner = {AndersBærbar},
   timestamp = {2013.11.03}
@@ -18,6 +21,17 @@
   pages = {151-159},
   owner = {Abstrakten},
   timestamp = {2013.11.26}
+}
+
+@ELECTRONIC{acc_price,
+  author = {Ancillotti},
+  month = {June 9},
+  year = {2011},
+  title = {Smartphones Accelerometers},
+  language = {English},
+  url = {http://ancillotti.hubpages.com/hub/Smartphones-Accelerometers},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
 }
 
 @ELECTRONIC{Apple,
@@ -73,6 +87,18 @@
 	LAN;RFID;compass;indoor localization}
 }
 
+@ELECTRONIC{acc_dead,
+  author = {Encyclopædia Britannica},
+  month = {27 Nov.},
+  year = {2013},
+  title = {dead reckoning},
+  language = {English},
+  organization = {Encyclopædia Britannica},
+  url = {http://www.britannica.com/EBchecked/topic/154249/dead-reckoning},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
 @STANDARD{gamle_teknologi,
   title = {EASY LIFE, INTELLIGENT SYSTEMS, AND LIFE 2.0: EUROPEAN RESEARCH ON
 	ICT FOR AGING ADULTS},
@@ -122,6 +148,18 @@
   timestamp = {2013.11.21}
 }
 
+@ELECTRONIC{acc_iPhone,
+  author = {St.J. Dixon-Warren},
+  month = {December 23},
+  year = {2010},
+  title = {MOTION SENSING IN THE IPHONE 4: MEMS ACCELEROMETER},
+  language = {English},
+  organization = {Mems journal},
+  url = {http://www.memsjournal.com/2010/12/motion-sensing-in-the-iphone-4-mems-accelerometer.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
 @ELECTRONIC{signs_wall,
   author = {Mark Easton},
   title = {Grassroots government},
@@ -144,6 +182,16 @@
   timestamp = {2013.10.29}
 }
 
+@ELECTRONIC{acc_engi,
+  author = {Dimension Engineering},
+  title = {A beginner’s guide to accelerometers},
+  language = {English},
+  organization = {Dimension Engineering},
+  url = {http://www.dimensionengineering.com/info/accelerometers},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
 @ARTICLE{ventetid,
   author = {Brett S. Gardner},
   title = {Responsive Web Design: Enriching the User Experience},
@@ -153,6 +201,18 @@
   pages = {13-19},
   owner = {Abstrakten},
   timestamp = {2013.11.26}
+}
+
+@ELECTRONIC{acc_ps3,
+  author = {Benamin J. Heckendorn},
+  month = {March 22nd},
+  year = {2008},
+  title = {Inside the Dualshock 3 controller},
+  language = {English},
+  organization = {Benheck.com},
+  url = {http://benheck.com/03-22-2008/inside-the-dualshock-3-controller},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
 }
 
 @ELECTRONIC{signs_hospital,
@@ -239,6 +299,33 @@
   year = {2013}
 }
 
+@ELECTRONIC{map_survey,
+  author = {Navid Fallah, Ilias Apostolopoulos, Kostas Bekris, Eelke Folmer},
+  month = {September 26},
+  year = {2012},
+  title = {Indoor Human Navigation Systems -a Survey},
+  language = {English},
+  organization = {Department of Comp. Science and Eng., University of Nevada, Reno,
+	NV 89557, USA
+	
+	Computer Science Department, Rutgers University, Piscataway, NJ 08854,
+	USA},
+  url = {http://eelke.com/files/pubs/INS_survey.pdf},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.04}
+}
+
+@ELECTRONIC{acc_nokia,
+  author = {Nokia},
+  title = {Sensor Plug-in for 60 3rd Edition SDK for Symbian OS, for C++, MR,
+	for Nokia 5500 Sport},
+  language = {English},
+  organization = {Nokia},
+  url = {http://developer.nokia.com/info/sw.nokia.com/id/4284ae69-d37a-4319-bdf0-d4acdab39700/Sensor_plugin_S60_3rd_ed.exe.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
 @ELECTRONIC{art_Osborne,
   author = {Helen Osborne},
   month = {October},
@@ -260,6 +347,16 @@
   url = {http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html},
   owner = {heider},
   timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{acc_piezo,
+  author = {PCB Piezotronics},
+  year = {2013},
+  title = {Function of Piezoelectric Accelerometers},
+  language = {English},
+  url = {http://www.pcb.com/techsupport/tech_accel.aspx#.UpMZS8RLNrU},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
 }
 
 @ARTICLE{individforskelle,
@@ -284,6 +381,18 @@
   pages = {447-458},
   owner = {Abstrakten},
   timestamp = {2013.11.26}
+}
+
+@ELECTRONIC{acc_inacc,
+  author = {Kurt Seifert and Oscar Camacho},
+  month = {02},
+  year = {2007},
+  title = {Implementing Positioning Algorithms Using Accelerometers},
+  language = {English},
+  organization = {Freescale},
+  url = {http://perso-etis.ensea.fr/~pierandr/cours/M1_SIC/AN3397.pdf},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
 }
 
 @ELECTRONIC{Sjaelland,
@@ -337,6 +446,18 @@
   timestamp = {2013.11.04}
 }
 
+@ELECTRONIC{acc_vulkan,
+  author = {Lyn Topinka},
+  month = {09},
+  year = {2004},
+  title = {Seismometers, Seismographs, and Seismograms, etc.},
+  language = {English},
+  organization = {USGS},
+  url = {http://vulcan.wr.usgs.gov/Glossary/Seismicity/description_seismic_monitoring.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.25}
+}
+
 @ARTICLE{Union2004,
   author = {European Union},
   title = {COUNCIL DIRECTIVE 93/36/EEC of 14 June 1993 coordinating procedures
@@ -345,6 +466,18 @@
   owner = {Simon},
   timestamp = {2013.11.06},
   url = {http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CONSLEG:1993L0036:20040501:EN:PDF}
+}
+
+@ELECTRONIC{map_hospital,
+  author = {University of Utah},
+  title = {Hospital Floor Map},
+  language = {English},
+  organization = {University of Utah
+	
+	Health care},
+  url = {http://healthcare.utah.edu/hospital/map/},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.04}
 }
 
 @ARTICLE{Vendsyssel,
@@ -424,62 +557,11 @@
   timestamp = {2013.11.26}
 }
 
-@ELECTRONIC{acc_dead,
-  url = {http://www.britannica.com/EBchecked/topic/154249/dead-reckoning},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_engi,
-  url = {http://www.dimensionengineering.com/info/accelerometers},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_inacc,
-  url = {http://perso-etis.ensea.fr/~pierandr/cours/M1_SIC/AN3397.pdf},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_iPhone,
-  url = {http://www.memsjournal.com/2010/12/motion-sensing-in-the-iphone-4-mems-accelerometer.html},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
 @ELECTRONIC{acc_LIS302DL,
+  title = {LIS302DLMEMS motion sensor 3-axis ±2g/±8g smart digital output 'piccolo'
+	accelerometer},
+  organization = {Life Argumented},
   url = {http://www.st.com/web/catalog/sense_power/FM89/SC444/PF152913},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_nokia,
-  url = {http://developer.nokia.com/info/sw.nokia.com/id/4284ae69-d37a-4319-bdf0-d4acdab39700/Sensor_plugin_S60_3rd_ed.exe.html},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_piezo,
-  url = {http://www.pcb.com/techsupport/tech_accel.aspx#.UpMZS8RLNrU},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_price,
-  url = {http://ancillotti.hubpages.com/hub/Smartphones-Accelerometers},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_ps3,
-  url = {http://benheck.com/03-22-2008/inside-the-dualshock-3-controller},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.25}
-}
-
-@ELECTRONIC{acc_vulkan,
-  url = {http://vulcan.wr.usgs.gov/Glossary/Seismicity/description_seismic_monitoring.html},
   owner = {AndersBærbar},
   timestamp = {2013.11.25}
 }
@@ -506,19 +588,6 @@
   url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
   owner = {AndersBærbar},
   timestamp = {2013.10.29}
-}
-
-@ELECTRONIC{map_hospital,
-  url = {http://healthcare.utah.edu/hospital/map/},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
-}
-
-@ELECTRONIC{map_survey,
-  title = {Navigation survey},
-  url = {http://eelke.com/files/pubs/INS_survey.pdf},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
 }
 
 @ELECTRONIC{porter,
