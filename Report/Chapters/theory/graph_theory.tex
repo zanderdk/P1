@@ -1,10 +1,18 @@
 \section{Graph theory}
 
 \subsection{Storing a complex building as a graph}
-
 \subsubsection{Multiple floors}
 
-Tag højde for vertex der har samme x,y men ligger på forskellige floors. Dette skal tages højde for, da vi i afsnit A star finder ud af at heurestic estimation typisk benytter euclids distance formel.
+A complex such as a hospital usually consist of multiple floors, connected by stairs and elevators as observed at the visit to Sygehus Nord. Representing floors in a graph could be shown by having edges in between different floors. Elevators or stairs represented by vertices that connects the edges between the floors. Having a graph that models the whole complex can have complications such as overlapping vertices coordinates. Estimating a heuristic value between destination and vertices on the other side of, such as floors. Means that the heuristic models that does not account for obstacles, would cause the Astar algorithm to expand vertices, leading to vertices below the destination on a separate floor than the desired.
 
+%indsæt billed her
+
+If the complex is divided into separate floor graphs, the algorithm would not have to account for the z coordinate in its heuristic value. A algorithm could evaluate if the source and destination is on the same floor, if not the algorithm could divide the problem into Astar searches. First finding a path leading to an elevator or stair which lead the destinations floor. The optimal path from one floor to another can be pre-calculated and stored. 
+
+%Indsæt billede her
+
+%Hospitals has many doors and hallways because of their need of rooms for patients, storage and etc.
 \subsubsection{Multiple buildings}
 
+The previously described method for modelling floors allows the algorithm to comprehend from complexes of multiple buildings. By only  
+A complex can be a collection of multiple building, if  
