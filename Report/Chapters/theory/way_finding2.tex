@@ -2,7 +2,7 @@
 
 \sinote{Explain like i'm 5. Skal være meget nem at forstå.}
 
-\subsection{Pathfinding Algorithms}
+\section{Pathfinding Algorithms}
 
   In \cref{sec:specification} we specified that our solution needs to find the shortest weighted path to the destination.
   To better understanding pathfinding we examined different algorithms. We discovered that some algorithms have a high accuracy but is slow at finding the path, and conversely.
@@ -33,7 +33,7 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
 
   %An important factor of a searching algorithm is correctness and also the time required to calculate the optimized path. The algorithms can be rated by their worst-case time, to ensure a responsive performance.
 
-  \subsubsection{Dijkstra's Algorithm}
+  \subsection{Dijkstra's Algorithm}
 
 
   A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959}
@@ -132,7 +132,7 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
     \label{fig:dijkstra_calc}
   \end{figure}
 
-  \subsubsection{A* Algorithm}
+  \subsection{A* Algorithm}
 
   If you would combine Dijkstra's algorithm with Best-First-Search algorithm, you would get the A* algorithm which also utilises the principle of a heuristic estimation to determine which vertex to test next. It uses a evaluation function $f(x) = g(x) + h(x)$, where $g(x)$ describes the cost from the start to the vertex being evaluated, and $h(x)$ is a heuristic function that estimates the cost from the evaluating vertex to the target vertex. \cite{Patel2013}
 
@@ -162,7 +162,7 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
     dist((x, y), (a, b)) = \sqrt{(x - a)^2 + (y - b)^2}
   \end{equation}
 
-  \subsubsection{Summary of Algorithms}
+  \subsection{Summary of Algorithms}
 
   Path algorithms searches for a path to target. Some focuses on finding a path fast, others finding the most optimal path. Using the A* algorithm with a heuristic model that is admissible, which underestimates the cost to the target path, assure an optimal path without calculating every vertex. See \cref{tbl:scheme}.
   
