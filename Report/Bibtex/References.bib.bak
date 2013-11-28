@@ -509,6 +509,15 @@
 	communications}
 }
 
+@ELECTRONIC{QR_urlbad,
+  author = {SWAN ISLAND NETWORKS, INC.},
+  language = {English},
+  organization = {SWAN ISLAND NETWORKS, INC.},
+  url = {http://www.swanisland.net/cyber-agility-blog-tips/159-use-caution-with-qr-codes},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
 @ELECTRONIC{information_overload,
   author = {Alvin Toffler},
   title = {Information overload},
@@ -639,8 +648,8 @@
   timestamp = {2013.11.26}
 }
 
-@ELECTRONIC{acc_LIS302DL,
-  title = {LIS302DLMEMS motion sensor 3-axis ±2g/±8g smart digital output 'piccolo'
+@ELECTRONIC{acc_lis302dl,
+  title = {LIS302DLMEMS motion sensor 3-axis 2g/8g smart digital output 'piccolo'
 	accelerometer},
   organization = {Life Argumented},
   url = {http://www.st.com/web/catalog/sense_power/FM89/SC444/PF152913},
@@ -663,12 +672,6 @@
   url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
   owner = {AndersBærbar},
   timestamp = {2013.10.29}
-}
-
-@ELECTRONIC{QR_urlbad,
-  url = {http://www.swanisland.net/cyber-agility-blog-tips/159-use-caution-with-qr-codes},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.21}
 }
 
 @ELECTRONIC{signs_reading,
