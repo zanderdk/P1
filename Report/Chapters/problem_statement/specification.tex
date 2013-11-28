@@ -21,17 +21,29 @@ In order to optimize navigation, the limits of systems in current use must be co
 The first three parameters are able to establish most bounderies the users might have, wether it is physical or psychological, while still keeping input to a minimum, another requirement we expand on later. The last parameter is less essential, since all usergroups could always use the least physical strenuous, however in order to optimize the route specifically for the user, this option should be given as well. This last parameter could also be an indrect input, based on other input, such as the travelling speed of the user and previous choices. In any way, the program should be able to choose different criterias for the choice of optimal route.
 
 \begin{itemize}
-	\item The user interface must be intuitive, simple but still give a quick overview of data representation.
-	\item The maximum waiting time during initial route generation must not exceed 2 seconds.
+	\item The user interface must be intuitive, simple and still give a quick overview of data representation.
+\end{itemize}
+It is essential to display all the nessesary information, and nothing more. However, if the information is displayed staticly, this can prove to be impossible, since the criterias for 'nessesary information' changes with the user. See both \cref{sec:anal_nav} and \cref{sec:interusers} The advantage of a software solution in this regard, is the ability to shift the information displayed, based on the users current situation. In order to fully optimize, this must be incorporated into a solution.
+
+\begin{itemize}
+	\item The maximum waiting time during route generating should not under normal conditions exceed 2 seconds.
+\end{itemize}
+Studies have shown that the patience of a user, is fairly low. See \cref{sec:interusers}. The user must experience that the solution better than the alternatives, before agreeing with that statement. it therefore become important to relay information before the user feels that time is being used ineffeciently.
+
+\begin{itemize}
 	\item The program must represent the route instructions either as text, audio or pictographic.
 \end{itemize}
+Since the solution will be dealing with a wide varity of users (See \cref{sec:interusers}), the means of relaying information to the user, should cater to the different needs of the users.
 
 
 \subsection{Technical requirements}
 
 \begin{itemize}
-	\item The program must be able to generate a route to a given destination. 
-		{Problems with current navigation systems, include relying on the users ability to figure out the optimal route with sometimes confusing information displayed by a stationaire map. See \cref{sub:map}. In a software solution this could, and should, be handled by the system.}
+	\item The program must be able to generate the optimal route to a given destination.
+\end{itemize} 
+Problems with current navigation systems, include relying on the users ability to figure out the optimal route with sometimes confusing information displayed by a stationaire map. See \cref{sub:map}. In a software solution this could, and should, be handled by the system.
+
+\begin{itemize}
 	\item The program must be able to position itself by the use of radio triangulation or location fingerprinting.
 	\item The program must maintain the user's position without communicating with external factors.
 	\item The program must be able to detect deviation from the route, and recalculate accordingly.
