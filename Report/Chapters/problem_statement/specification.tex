@@ -21,9 +21,9 @@ In order to optimize navigation, the limits of systems in current use must be co
 The first three parameters are able to establish most bounderies the users might have, wether it is physical or psychological, while still keeping input to a minimum, another requirement we expand on later. The last parameter is less essential, since all usergroups could always use the least physical strenuous, however in order to optimize the route specifically for the user, this option should be given as well. This last parameter could also be an indrect input, based on other input, such as the travelling speed of the user and previous choices. In any way, the program should be able to choose different criterias for the choice of optimal route.
 
 \begin{itemize}
-	\item[2] The user interface must be intuitive, simple but still give a quick overview of data representation.
-	\item[2] The maximum waiting time during initial route generation must not exceed 2 seconds.
-	\item[2] The program must represent the route instructions either as text, audio or pictographic.
+	\item The user interface must be intuitive, simple but still give a quick overview of data representation.
+	\item The maximum waiting time during initial route generation must not exceed 2 seconds.
+	\item The program must represent the route instructions either as text, audio or pictographic.
 \end{itemize}
 
 
@@ -37,11 +37,5 @@ The first three parameters are able to establish most bounderies the users might
 	\item The program must be able to detect deviation from the route, and recalculate accordingly.
 	\item The program must be able to support different building complexes.
 \end{itemize}
-
-
-
-\sinote{til analysen: Kilden vurderer den samlede accepterede ventetid til mellem 2 og 4 sekunder [http://cba.unl.edu/research/articles/548/download.pdf]}
-
-\sinote{til løsningen: Vi afsætter 500 ms til selve rutegenereringen, som måles fra modtagelse af positionsdata og ruteindstillinger, til udregningen af ruten er færdiggjort. Dette giver minimum 1500 ms til at repræsentere instrukser.}
 
 % section specification (end)
