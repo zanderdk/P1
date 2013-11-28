@@ -589,6 +589,15 @@
   timestamp = {2013.11.04}
 }
 
+@ELECTRONIC{,
+  author = {Wikipedia},
+  title = {Glossary of graph theory},
+  organization = {Wikipedia},
+  url = {http://en.wikipedia.org/wiki/Glossary_of_graph_theory},
+  owner = {Simon},
+  timestamp = {2013.11.28}
+}
+
 @ARTICLE{wiki_knn,
   author = {Wikipedia},
   title = {k-nearest neighbors algorithm},
