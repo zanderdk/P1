@@ -38,16 +38,34 @@ Since the solution will be dealing with a wide varity of users (See \cref{sec:in
 
 \subsection{Technical requirements}
 
+Technical requirements are all the requirements that will only indirectly affect the user. This concerns matters on resolving navigation problems while under certain limitations, such as being indoor or momentary isolation. These requirements are the backbone of the solution, all are thus paramount for the uttermost basic functions of a solution.
+
 \begin{itemize}
 	\item The program must be able to generate the optimal route to a given destination.
-\end{itemize} 
+\end{itemize}
 Problems with current navigation systems, include relying on the users ability to figure out the optimal route with sometimes confusing information displayed by a stationaire map. See \cref{sub:map}. In a software solution this could, and should, be handled by the system.
 
 \begin{itemize}
-	\item The program must be able to position itself by the use of radio triangulation or location fingerprinting.
-	\item The program must maintain the user's position without communicating with external factors.
+	\item The program must be able to position the user through the use of radio triangulation or location fingerprinting.
+\end{itemize}
+The ability to position the user, is the first step required in order to establish a route to any desired location.
+\kanote{Er ikke helt sikker på, hvor præcist i rapporten vi underbygger hvorfor radio er godt? Kan/skal vi stryge det sidste?}
+
+\begin{itemize}
+	\item The user's movements must be traced even without communicating with external factors.
+\end{itemize}
+Because of the indoor environment present at a hospital, the user might momentarily loose a connection to a given positioning system. Therefore any device in charge of positioning the user, should be able to do this to a certain extend, without communcating with external factors.
+\kanote{hvor skriver vi om det her?}
+
+\begin{itemize}
 	\item The program must be able to detect deviation from the route, and recalculate accordingly.
+\end{itemize}	
+Ability to react to deviation from the route, is one of the strongpoints of using software for navigation. A typical reason for failure while navigating, is becoming lost. Many times this realization only comes, after retracing your way back to the original route has become too complicated, or at a point, where the original route is no longer optimal. Therefore an optimal solution should have the ability to reasses the situation in case of devation, wether it was a misstep done by the user, or a circumstantial problem with the route.
+\kanote{hvor skriver vi om det her?}
+
+\begin{itemize}
 	\item The program must be able to support different building complexes.
 \end{itemize}
+Any kind of tool takes a bit of effort to understand at first, and this solution will be no different. If the solution however was to be applied in multiple places, chances are that the user might already have had dealings with it. This could reducing the users need to familiarize with the solution, and will create a more pleasent user experience. See \cref{sec:interusers}
 
 % section specification (end)
