@@ -1,6 +1,7 @@
 %!TEX root = ../../Master.tex
 \section{Graph theory}
 
+<<<<<<< Updated upstream
 Graph theory is used to model some kind of relationship between objects. These objects could be anything. In graph theory objects are called \enquote{nodes} or \enquote{vertices}. The two terms can be used interchangeably. In this paper, vertices will describe coordinates or POI (points of interest) in a hospital. By definition, each vertex $v$ has a non-empty set of edges $E$. An edge is basically connecting two vertices and thereby providing a relationship between these vertices. See \cref{fig:labeled_graph}. Now in order to describe the relationship between two vertices, we use an weighted graph in which an edge has a number attribute called a weight.\cite{wiki_graph_glos,MIT2012}
 
 We can describe these definitions formally.\cite{MIT2012}
@@ -15,7 +16,14 @@ We can describe these definitions formally.\cite{MIT2012}
     \label{fig:labeled_graph}
   \end{figure}
 
-\subsection{Storing a complex building as a graph}
+\subsection{Storing a complex as a graph}
+
+\subsubsection{Representing a floor}
+
+Every decision and every change direct is a vertex in our graph, is modelled by vertices connected with edges. Exits, elevators, stair and bridges are vertices for getting from a floor to another, including another building. Vertices that does not classify as one of the previously mentioned are doors, intersection and a change of walking direction. Connecting the vertices are edges with a weight, which could be weighted with the distance in meters from one vertex to another.
+
+%indsæt billed
+
 \subsubsection{Multiple floors}
 
 A complex such as a hospital usually consist of multiple floors, connected by stairs and elevators as observed at the visit to Sygehus Nord. Representing floors in a graph could be shown by having edges in between different floors. Elevators or stairs represented by vertices that connects the edges between the floors. Having a graph that models the whole complex can have complications such as overlapping vertices coordinates. Estimating a heuristic value between destination and vertices on the other side of, such as floors. Means that the heuristic models that does not account for obstacles, would cause the Astar algorithm to expand vertices, leading to vertices below the destination on a separate floor than the desired.
@@ -26,8 +34,6 @@ If the complex is divided into separate floor graphs, the algorithm would not ha
 
 %Indsæt billede her
 
-%Hospitals has many doors and hallways because of their need of rooms for patients, storage and etc.
 \subsubsection{Multiple buildings}
 
-The previously described method for modelling floors allows the algorithm to comprehend from complexes of multiple buildings. By only  
-A complex can be a collection of multiple building, if  
+The previously described method for modelling floors allows the algorithm to comprehend from complexes of multiple buildings. By not having to account for a complex with multiple buildings and floors, each floor would have its own identification. Allowing for an exit from one building to another through a bridge. This simplifies a lookup if an individual is the destination floor height physically but not in the right building, because a floor height is not relevant.
