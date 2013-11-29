@@ -89,7 +89,18 @@
   language = {English},
   organization = {HowStuffWorks, inc},
   url = {http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/rfid2.htm},
-  owner = {AndersBærbar},
+  owner = {AndersBærbar}
+}
+
+@ELECTRONIC{linked_list_def,
+  author = {Paul E. Black},
+  month = {26 June},
+  year = {2013},
+  title = {Definition of linked list},
+  language = {English},
+  organization = {National Institute of Standards and Technology},
+  url = {http://xlinux.nist.gov/dads//HTML/linkedList.html},
+  owner = {zander},
   timestamp = {2013.11.28}
 }
 
