@@ -1,7 +1,9 @@
 %!TEX root = ../../Master.tex
 \section{Graph theory}
 
-Graph theory is used to model some kind of relationship between objects. These objects could be anything. In graph theory objects are called \enquote{nodes} or \enquote{vertices}. The two terms can be used interchangeably. In this paper, vertices will describe coordinates or POI (points of interest) in a hospital. By definition, each vertex $v$ has a non-empty set of edges $E$. An edge is basically connecting two vertices and thereby providing a relationship between these vertices. See \cref{fig:labeled_graph}. Now in order to describe the relationship between two vertices, we use an weighted graph in which an edge has a number attribute called a weight.\cite{wiki_graph_glos,MIT2012}
+Graph theory is frequently used in computer science to model some kind of relationship between objects. These objects could be anything. Graph theory is a preferred method to model building complexes, because it can precisely model how e.g. a hallway in a hospital is connected to a room.
+
+In graph theory objects are called \enquote{nodes} or \enquote{vertices}. The two terms can be used interchangeably. In this paper, vertices will describe coordinates or POI (points of interest) in a hospital. Another term in graph theory is an edge. This is basically connecting two vertices and thereby providing a relationship between these vertices. See \cref{fig:labeled_graph}. An edge can be seen as a possible route connecting one coordinate to another. Now in order to describe the relationship between two vertices, we use an weighted graph in which an edge has a number attribute called a weight. A weight can describe the time, distance or any other metric that in some way can describe how two connected vertices are related.\cite{wiki_graph_glos,MIT2012}
 
 We can describe these definitions formally.\cite{MIT2012}
 \begin{mydef}
