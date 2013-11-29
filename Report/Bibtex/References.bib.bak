@@ -154,12 +154,12 @@
   timestamp = {2013.11.25}
 }
 
-@STANDARD{gamle_teknologi,
+@ARTICLE{gamle_teknologi,
+  author = {Carrie Bath Peterson, Neeli Rashmi Prasad},
   title = {EASY LIFE, INTELLIGENT SYSTEMS, AND LIFE 2.0: EUROPEAN RESEARCH ON
 	ICT FOR AGING ADULTS},
-  organization = {Center for TeleInFrastruktur},
   institution = {Aalborg University},
-  author = {Carrie Bath Peterson, Neeli Rashmi Prasad},
+  organization = {Center for TeleInFrastruktur},
   owner = {Abstrakten},
   timestamp = {2013.11.26}
 }
@@ -412,18 +412,16 @@
 
 @ELECTRONIC{map_survey,
   author = {Navid Fallah, Ilias Apostolopoulos, Kostas Bekris, Eelke Folmer},
-  month = {September 26},
+  month = {9},
   year = {2012},
-  title = {Indoor Human Navigation Systems -a Survey},
+  title = {Indoor Human Navigation Systems - a Survey},
   language = {English},
   organization = {Department of Comp. Science and Eng., University of Nevada, Reno,
-	NV 89557, USA
-	
-	Computer Science Department, Rutgers University, Piscataway, NJ 08854,
-	USA},
+	NV 89557, USA Computer Science Department, Rutgers University, Piscataway,
+	NJ 08854, USA},
   url = {http://eelke.com/files/pubs/INS_survey.pdf},
-  owner = {AndersBærbar},
-  timestamp = {2013.11.04}
+  owner = {Simon},
+  timestamp = {2013.11.29}
 }
 
 @ELECTRONIC{acc_nokia,
@@ -794,6 +792,12 @@
 
 @ELECTRONIC{wifihowitworks2,
   url = {http://www.webopedia.com/index.php/DidYouKnow/Computer_Science/2008/wireless_networks_explained.asp},
+  owner = {Carsten},
+  timestamp = {2013.11.29}
+}
+
+@ELECTRONIC{wifihowitworks3,
+  url = {http://www.wi-fiplanet.com/columns/article.php/3674591},
   owner = {Carsten},
   timestamp = {2013.11.29}
 }
