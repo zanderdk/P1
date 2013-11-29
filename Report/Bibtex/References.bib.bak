@@ -82,6 +82,17 @@
   timestamp = {2013.11.21}
 }
 
+@ELECTRONIC{RFID_magnetic,
+  author = {Kevin Bonsor and Wesley Fenlon},
+  year = {~2011},
+  title = {RFID Tags Past and Present},
+  language = {English},
+  organization = {HowStuffWorks, inc},
+  url = {http://electronics.howstuffworks.com/gadgets/high-tech-gadgets/rfid2.htm},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.28}
+}
+
 @INPROCEEDINGS{Boontrai2009,
   author = {Boontrai, D. and Jingwangsa, T. and Cherntanomwong, P.},
   title = {Indoor localization technique using passive RFID tags},
@@ -160,6 +171,16 @@
   url = {http://www.ce-mag.com/archive/06/ARG/case.htm},
   owner = {Simon},
   timestamp = {2013.11.24}
+}
+
+@ELECTRONIC{RFID_car,
+  author = {Jonathan Collins},
+  title = {Passive Tags Track Cars},
+  language = {English},
+  organization = {RFID Journal},
+  url = {http://www.rfidjournal.com/articles/view?1078},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.29}
 }
 
 @ARTICLE{compassdude_triangulation,
@@ -367,6 +388,16 @@
   year = {2013}
 }
 
+@ELECTRONIC{RFID_AllTypes,
+  author = {Melina},
+  title = {RFID Tags: Active, Semi-passive, and Passive},
+  language = {English},
+  organization = {Barcoding Blog, Inc.},
+  url = {http://blog.barcoding.com/2009/04/rfid-tags-active-semi-passive-and-passive/},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.29}
+}
+
 @ELECTRONIC{MIT2012,
   author = {MIT},
   month = {12},
@@ -439,6 +470,19 @@
   timestamp = {2013.11.25}
 }
 
+@ELECTRONIC{signs_AED,
+  author = {dr R.W. Koster},
+  month = {June 3},
+  year = {2008},
+  title = {To the ILCOR councils, National Resuscitation Councils, AED manufacturers,
+	public and governmental organisations},
+  language = {English},
+  organization = {ILCOR Task Force AED},
+  url = {http://www.ilcor.org/data/letter-ILCOR-AED-sign.pdf},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.29}
+}
+
 @ARTICLE{individforskelle,
   author = {Raffaella Nori, Sonia Grandicelli and Fiorella Guisberti},
   title = {Individual Differences in Visuo-Spatial Working Memory And Real-World
@@ -483,6 +527,18 @@
   url = {http://www.regionsjaelland.dk/dinregion/undervisningsmateriale/Sygehusplanen/Sider/default.aspx},
   owner = {Simon},
   timestamp = {2013.11.06}
+}
+
+@ELECTRONIC{RFiD_inc,
+  author = {INC. STAFF},
+  month = {SEP 20},
+  year = {2010},
+  title = {How to use RFID technology},
+  language = {English},
+  organization = {Inc},
+  url = {http://www.inc.com/guides/2010/09/how-to-use-rfid-technology.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.29}
 }
 
 @INPROCEEDINGS{Sun2009,
@@ -603,7 +659,7 @@
 
 @ELECTRONIC{wiki_graph_glos,
   author = {Wikipedia},
-  title = {Glossary of graph theory},
+  title = {Graph theory},
   organization = {Wikipedia},
   url = {http://en.wikipedia.org/wiki/Graph_theory},
   owner = {Simon},
@@ -693,6 +749,33 @@
   url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
   owner = {AndersBærbar},
   timestamp = {2013.10.29}
+}
+
+@ELECTRONIC{RFID_brobizz,
+  title = {RFID},
+  language = {Dansih},
+  organization = {AGIS Fire \& Security},
+  url = {http://www.agisfs.dk/detail/vb1-Realtime-Inventory-Solutions-demo},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.29}
+}
+
+@ELECTRONIC{RFID_FAQ,
+  title = {FREQUENTLY ASKED QUESTIONS},
+  language = {English},
+  organization = {RFID Journal},
+  url = {http://www.rfidjournal.com/site/faqs#Anchor-What-363},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.29}
+}
+
+@ELECTRONIC{RFID_semiActive,
+  title = {What's the difference between passive and active tags?},
+  language = {English},
+  organization = {RFID Journal},
+  url = {http://www.rfidjournal.com/faq/show?68},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.29}
 }
 
 @ELECTRONIC{signs_reading,
