@@ -786,6 +786,18 @@
   timestamp = {2013.11.04}
 }
 
+@ELECTRONIC{wifihowitworks1,
+  url = {http://www.webopedia.com/TERM/W/Wi_Fi.html},
+  owner = {Carsten},
+  timestamp = {2013.11.29}
+}
+
+@ELECTRONIC{wifihowitworks2,
+  url = {http://www.webopedia.com/index.php/DidYouKnow/Computer_Science/2008/wireless_networks_explained.asp},
+  owner = {Carsten},
+  timestamp = {2013.11.29}
+}
+
 @comment{jabref-meta: selector_publisher:}
 
 @comment{jabref-meta: selector_author:}
