@@ -183,6 +183,18 @@
   timestamp = {2013.11.29}
 }
 
+@ELECTRONIC{Goo_street,
+  author = {The United States District Court of Columbia},
+  month = {5},
+  year = {2010},
+  title = {Jury Trial Demand},
+  language = {English},
+  organization = {The United States District Court of Columbia},
+  url = {https://epic.org/privacy/googlespyfi/Keyes.pdf},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.02}
+}
+
 @ARTICLE{compassdude_triangulation,
   author = {Compassdude.com},
   title = {Triangulation},
@@ -332,6 +344,16 @@
   timestamp = {2013.12.02}
 }
 
+@ELECTRONIC{Goo_Turtle,
+  author = {Google},
+  title = {Google Maps API},
+  language = {English},
+  organization = {Google Inc.},
+  url = {http://www.morethanamap.com/demos/streetview/underwater},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.02}
+}
+
 @ELECTRONIC{acc_ps3,
   author = {Benamin J. Heckendorn},
   month = {March 22nd},
@@ -475,6 +497,16 @@
   timestamp = {2013.11.24}
 }
 
+@ELECTRONIC{Goo_Indoor,
+  author = {Google Maps},
+  title = {Google Maps},
+  language = {Danish},
+  organization = {Google Inc.},
+  url = {https://www.google.de/maps/preview#!data=!1m4!1m3!1d440!2d9.991052!3d57.0122838},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.02}
+}
+
 @OTHER{int_laila,
   author = {Laila Kirkeby Matthiassen},
   institution = {Hjørring},
@@ -508,6 +540,18 @@
   url = {http://www.youtube.com/watch?v=h9wxtqoa1jY},
   owner = {Simon},
   timestamp = {2013.11.28}
+}
+
+@ELECTRONIC{Goo_Indoor,
+  author = {Asher Moses},
+  month = {March},
+  year = {2013},
+  title = {Inside out: Google launches indoor maps},
+  language = {English},
+  organization = {The Sydney Morning Herald},
+  url = {http://www.smh.com.au/digital-life/smartphone-apps/inside-out-google-launches-indoor-maps-20130312-2fxz2.html},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.02}
 }
 
 @ELECTRONIC{acc_nokia,
