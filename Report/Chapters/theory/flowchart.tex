@@ -1,0 +1,33 @@
+%!TEX root = ../../Master.tex
+
+\section{Flowchart}
+
+% Define block styles
+\tikzstyle{decision} = [diamond, draw, fill=blue!20, text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse, fill=red!20, minimum height=2em]
+    
+\begin{tikzpicture}[node distance = 4cm, auto]
+    % Place nodes
+    \node [cloud] (fp) {Find Path};
+      \node [decision, below of=fp] (iu) {Is source on same floor as dest.};
+        \node [block, right of=iu] (fg) {Perform A* on floor graph};
+        \node [block, left of=iu] (exits) {Find exits to destination floor};
+          \node [block, below of=exits] (multi) {Perform A* on source and dest. floor to exits};
+          \node [block, below of=multi] (costs) {Evaluate total costs};
+
+        \node [cloud, below of=iu] at (4,-7) (return) {Return path};
+
+    % Draw edges
+    \path [line] (fp) -- (iu);
+    \path [line] (iu) -- node {yes}(fg);
+    \path [line] (iu) -- node {no}(exits);
+    \path [line] (exits) -- (multi);
+    \path [line] (multi) -- (costs);
+    \path [line] (fg) -- (return);
+    \path [line] (costs) -- (return);
+
+\end{tikzpicture}
+
+The pathfinding solution begins by looking up the floor of source and destination, if both are on the same floor, then perform the A* on the floor graph. Otherwise find all exits on source and destination floor, return cost of shortest exits to exits. When found perform A* from source and destination vertex to exit vertices. Evaluate final shortest path and return.
