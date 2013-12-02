@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct Graph {
+  Floor *head;
+} Graph;
 /**
  * @brief Structure containing a floor
  *
@@ -118,3 +121,7 @@ typedef struct Edge {
     Vertex *vertex2;
 } Edge;
 
+typedef struct Path {
+  unsigned int weight;
+  Vertex **PathVertices;
+} Path;
