@@ -43,6 +43,16 @@
   timestamp = {2013.11.03}
 }
 
+@ELECTRONIC{wifi_devices,
+  author = {Wi-Fi staff},
+  title = {Certified Products},
+  language = {English},
+  organization = {Wi-Fi},
+  url = {http://www.wi-fi.org/certified-products-search},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.02}
+}
+
 @ELECTRONIC{acc_price,
   author = {Ancillotti},
   month = {June 9},
@@ -128,6 +138,16 @@
 	identification;Cameras;Costs;Equations;Estimation error;Goniometers;Passive
 	RFID tags;Patient monitoring;RFID tags;Radiofrequency identification;Wireless
 	LAN;RFID;compass;indoor localization}
+}
+
+@ELECTRONIC{wifi_works,
+  author = {Marshall Brain and Bernadette Johnson and Tracy V. Wilson},
+  title = {How WiFi Works},
+  language = {English},
+  organization = {How stuff works},
+  url = {http://www.howstuffworks.com/wireless-network.htm},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.02}
 }
 
 @ELECTRONIC{body_vs_phone,
