@@ -38,3 +38,5 @@
 *.xml
 *.lox
 /Referater/*.pdf
+/Source/latex/
+/Source/html/
