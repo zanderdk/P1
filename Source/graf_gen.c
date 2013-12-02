@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define NUM_VERTEX 100
+#define NUM_VERTEX 10
 #define MAX_WEIGHT 5
 #define MAX_EDGES_PER_VERTEX 3
 #define MAX_X 10
@@ -49,14 +49,63 @@ void printXML(Graph *g);
 void xmlOpenTag(char *name, FILE *xml);
 void xmlCloseTag(char *name, FILE *xml);
 void xmlWriteInt(char *format, int var, FILE *xml);
+void printForLatex(Graph *G);
+void printVertices(FILE *f, Graph *g);
+void printEdges(FILE *f, Graph *g);
 
 int main(void) {
     srand(time(NULL));
     Graph *g = makeGraph();
 
-    printXML(g);
-
+    //printXML(g);
+    printForLatex(g);
     //printGraph(g);
+}
+
+void printForLatex(Graph *g) {
+    FILE *latex = fopen("graph.txt", "w");
+
+    printVertices(latex, g);
+    printEdges(latex, g);
+
+    fclose(latex);
+}
+
+void printVertices(FILE *f, Graph *g) {
+    char buffer[100];
+
+
+    int i;
+
+    for (i = 0; i < NUM_VERTEX; i++) {
+        Vertex *v = getVertex(g, i);
+        int x = v->x;
+        int y = v->y;
+        int id = v->id;
+        sprintf(buffer, "\\Vertex[d=10,x=%d ,y=%d]{%d}\n", x, y, id);
+        fputs(buffer, f);
+    }
+}
+
+void printEdges(FILE *f, Graph *g) {
+    char buffer[100];
+
+
+    int i;
+    int j;
+
+    for (i = 0; i < NUM_VERTEX; i++) {
+        Vertex *v = getVertex(g, i);
+
+        for (j = 0; j < v->degree; j++) {
+            Edge *e = v->edges[j];
+            int label = e->weight;
+            int vertex1Id = e->connectingVertex1->id;
+            int vertex2Id = e->connectingVertex2->id;
+            sprintf(buffer, "\\Edge[label = $%d$](%d)(%d)\n", label, vertex1Id, vertex2Id);
+            fputs(buffer, f);
+        }
+    }
 }
 
 void printXML(Graph *g) {
@@ -169,12 +218,13 @@ void setConnectingVertexInEdges(Graph *g) {
 
             int random;
             Edge *e;
+            e = v->edges[j];
 
             /* continue to getVertex until a vertex has been generated
                that is unique to v */
             do {
                 random = rand() % NUM_VERTEX;
-                e = v->edges[j];
+
                 e->connectingVertex1 = v;
                 e->connectingVertex2 = getVertex(g, random);
             } while (e->connectingVertex2->id == v->id);
