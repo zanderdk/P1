@@ -768,6 +768,18 @@
   timestamp = {2013.11.21}
 }
 
+@ELECTRONIC{wifi_hospi,
+  author = {Casper Thomsen},
+  month = {October},
+  year = {2004},
+  title = {Hospitaler skyder millioner i Wi-Fi},
+  language = {Danish},
+  organization = {Computer World},
+  url = {http://www.computerworld.dk/art/25717/hospitaler-skyder-millioner-i-wi-fi},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.02}
+}
+
 @ARTICLE{MCI,
   author = {William J. Tippett and Jang-Han Lee and Konstantine K. Zakzanis and
 	Sandra E. Black and Richard Mraz and Simon J. Graham},
