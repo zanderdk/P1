@@ -390,6 +390,16 @@
   timestamp = {2013.12.02}
 }
 
+@ELECTRONIC{wifi_wall,
+  author = {Yousif Hassan},
+  title = {Make Your Wi-Fi Hi-Fi: The "Truth" About Wireless Signal Interference},
+  language = {English},
+  organization = {far-far-away.com},
+  url = {http://www.far-far-away.com/~yousif/articles/wifi-sig.php},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.03}
+}
+
 @ELECTRONIC{acc_ps3,
   author = {Benamin J. Heckendorn},
   month = {March 22nd},
