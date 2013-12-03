@@ -1,17 +1,4 @@
 /**
- * @brief Contains information about which preferences where whosen
- * @details [long description]
- *
- * @param value [description]
- * @param vertex [description]
- */
-typedef struct RoutePreferences {
-    unsigned int useElevators;
-    unsigned int useStairs;
-} RoutePreferences;
-
-
-/**
  * @brief Sets g value to an vertex
  * @details [long description]
  *
@@ -36,7 +23,7 @@ void setHValue(int value, Vertex *vertex);
  * @param value [description]
  * @param vertex [description]
  */
-void setFValue(int value, Vertex *vertex);
+void calcFValue(Vertex *vertex);
 
 /**
  * @brief Sets parent to a vertex
@@ -65,15 +52,6 @@ void addToClosedList(Vertex **closedList, Vertex *v);
  * @param v The vertex to add to openList.
  */
 void addToOpenList(Vertex **openList, Vertex *v);
-
-/**
- * @brief Removes a vertex from a closed list
- * @details [long description]
- *
- * @param closedList [description]
- * @param v [description]
- */
-void RemoveFromClosedList(Vertex **closedList, Vertex *v);
 
 /**
  * @brief Removes a vertex from an open list
@@ -117,7 +95,7 @@ int isInOpenList(Vertex **openList, Vertex *v);
  * @param RoutePreferences [description]
  */
 void findOptimalRoute(Graph *g, Vertex *start, Vertex *dest,
-                      RoutePreferences *rp);
+                      int mode);
 
 /**
  * @brief Calculates h value using euclidean distance
@@ -128,7 +106,7 @@ void findOptimalRoute(Graph *g, Vertex *start, Vertex *dest,
  * @param v2 [description]
  * @return h value from v1 to v2
  */
-int calcHValue(Vertex *v1, Vertex *v2);
+int calcHValue(Vertex *v1, Vertex *v2, int mode);
 
 /**
  * @brief Adds all the neighbour vertices of v to the array.
