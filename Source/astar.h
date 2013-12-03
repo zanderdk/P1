@@ -1,3 +1,6 @@
+#include "graph.h"
+#include <math.h>
+#include <stdlib.h>
 /**
  * @brief Sets g value to an vertex
  * @details [long description]
@@ -94,7 +97,7 @@ int isInOpenList(Vertex **openList, Vertex *v);
  * @param dest [description]
  * @param RoutePreferences [description]
  */
-void findOptimalRoute(Graph *g, Vertex *start, Vertex *dest,
+void findOptimalRoute(Floor *f, Vertex *start, Vertex *dest,
                       int mode);
 
 /**
@@ -116,3 +119,12 @@ int calcHValue(Vertex *v1, Vertex *v2, int mode);
  * @param neighbours [description]
  */
 void getNeighbourVertices(Vertex *v, Vertex **neighbours);
+
+/**
+ * @brief Calculates the "ordinary" distance between two vertices. This only considers x and y coordinates.
+ *
+ * @param v1 Pointer to a vertex
+ * @param v2 Pointer to a vertex
+ * @return Ordinary distance between v1 and v2 as a double.
+ */
+double DistanceVertices(Vertex *v1, Vertex *v2);
