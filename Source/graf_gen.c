@@ -1,10 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <mxml.h>
 
-#define NUM_VERTEX 10
+
+#define NUM_VERTEX 10000
 #define MAX_WEIGHT 5
-#define MAX_EDGES_PER_VERTEX 3
+#define MAX_EDGES_PER_VERTEX 10
 #define MAX_X 10
 #define MAX_Y 10
 #define MAX_FLOORS 2
@@ -52,15 +54,93 @@ void xmlWriteInt(char *format, int var, FILE *xml);
 void printForLatex(Graph *G);
 void printVertices(FILE *f, Graph *g);
 void printEdges(FILE *f, Graph *g);
+void printMXML(Graph *g);
 
 int main(void) {
     srand(time(NULL));
     Graph *g = makeGraph();
 
+    printMXML(g);
     //printXML(g);
-    printForLatex(g);
+    //printForLatex(g);
     //printGraph(g);
 }
+
+void printMXML(Graph *g) {
+
+
+    mxml_node_t *xml;
+    mxml_node_t *graph;
+    mxml_node_t *vertex;
+    mxml_node_t *xml_x;
+    mxml_node_t *xml_y;
+    mxml_node_t *xml_id;
+    mxml_node_t *xml_floor;
+    mxml_node_t *xml_degree;
+    mxml_node_t *xml_edges;
+    mxml_node_t *xml_edge;
+    mxml_node_t *xml_weight;
+    mxml_node_t *xml_cv1id;
+    mxml_node_t *xml_cv2id;
+
+    xml = mxmlNewXML("1.0");
+    graph = mxmlNewElement(xml, "graph");
+
+    int i;
+    int j;
+
+    for (i = 0; i < NUM_VERTEX; i++) {
+        Vertex *v = getVertex(g, i);
+        int x = v->x;
+        int y = v->y;
+        int id = v->id;
+        vertex = mxmlNewElement(graph, "vertex");
+        xml_x = mxmlNewElement(vertex, "x");
+        mxmlNewInteger(xml_x, x);
+
+        xml_y = mxmlNewElement(vertex, "y");
+        mxmlNewInteger(xml_y, y);
+
+        xml_id = mxmlNewElement(vertex, "id");
+        mxmlNewInteger(xml_id, id);
+
+        xml_floor = mxmlNewElement(vertex, "floor");
+        mxmlNewInteger(xml_floor, v->floor);
+
+        xml_degree = mxmlNewElement(vertex, "degree");
+        mxmlNewInteger(xml_degree, v->degree);
+
+        xml_edges = mxmlNewElement(vertex, "edges");
+
+
+        for (j = 0; j < v->degree; j++) {
+            Edge *e = v->edges[j];
+
+            xml_edge = mxmlNewElement(xml_edges, "edge");
+
+            xml_weight = mxmlNewElement(xml_edge, "weight");
+            mxmlNewInteger(xml_weight, e->weight);
+
+
+            xml_cv1id = mxmlNewElement(xml_edge, "connectingVertex1ID");
+            mxmlNewInteger(xml_cv1id, e->connectingVertex1->id);
+
+            xml_cv2id = mxmlNewElement(xml_edge, "connectingVertex2ID");
+            mxmlNewInteger(xml_cv2id, e->connectingVertex2->id);
+
+
+        }
+
+
+
+    }
+
+    FILE *fp = fopen("graph.xml", "w");
+    mxmlSaveFile(xml, fp, MXML_NO_CALLBACK);
+
+    fclose(fp);
+}
+
 
 void printForLatex(Graph *g) {
     FILE *latex = fopen("graph.txt", "w");
