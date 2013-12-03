@@ -1,42 +1,36 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+typedef struct Floor Floor;
+typedef struct Vertex Vertex;
+typedef struct EdgePointer EdgePointer;
+typedef struct Edge Edge;
+typedef struct Path Path;
 
-typedef struct Graph {
-  Floor *head;
-} Graph;
 /**
  * @brief Structure containing a floor
  *
  */
-typedef struct Floor {
+struct Floor {
     /**
      * The floor number.
      * Two different floors, cannot have the same floor number
      */
-    unsigned int floor;
-
+    unsigned int floorId;
     /**
-     * A pointer to a vertex that is on the floor.
+     * A pointer to the head of the linked list contaning all vertices on the floor. 
+     * Pointer is NULL on end of floor.
      */
     Vertex *vp;
-
-    /**
-     * A pointer to another floor.
-     */
-    Floor *fp;
-} Floor;
+};
 
 
 /**
  * @brief A vertex in a graph
  *
  */
-typedef struct Vertex {
+struct Vertex {
     /**
      * An id of a vertex. Two vertices cannot have the same id.
      */
-    unsigned int id;
+    unsigned int vertexId;
 
     /**
      * Local x coordinate in the hospital.
@@ -57,7 +51,7 @@ typedef struct Vertex {
     /**
      * Which floor id the vertex is on.
      */
-    unsigned int floor;
+    unsigned int floorId;
 
     /**
      * A pointer to an EdgePointer.
@@ -69,21 +63,21 @@ typedef struct Vertex {
      * This could be on the same floor,
      * or on another floor so the floor id must be checked.
      */
-    Vertex *vp;
+    Vertex *nextVp;
 
     /**
      * Used in A* algorithm.
      * parent is the vertex where this struct vertex came from
      */
     Vertex *parent;
-} Vertex;
+};
 
 /**
  * @brief An EdgePointer points to an edge
  * and to the next EdgePointer in the linked list
  *
  */
-typedef struct EdgePointer {
+struct EdgePointer {
     /**
      * A pointer to a edge
      */
@@ -92,36 +86,29 @@ typedef struct EdgePointer {
     /**
      * A pointer to the next EdgePointer. In this way it is a linked list.
      */
-    EdgePointer *next;
-} EdgePointer;
+    EdgePointer *nextEp;
+};
 
 /**
  * @brief An edge is connecting two vertices
  *
  */
-typedef struct Edge {
-    /**
-    * An id of an edge. Two edges cannot have the same id.
-    */
-    unsigned int id;
-
+struct Edge {
     /**
      * The weight of this edge. Could be meters or seconds.
      */
     unsigned int weight;
-
     /**
      * First vertex this edge connects.
      */
     Vertex *vertex1;
-
     /**
      * Second vertex this edge connects.
      */
     Vertex *vertex2;
-} Edge;
+};
 
-typedef struct Path {
+struct Path {
   unsigned int weight;
-  Vertex **PathVertices;
-} Path;
+  unsigned int *pathVertexIds;
+};
