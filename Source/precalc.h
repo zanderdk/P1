@@ -5,7 +5,7 @@
  *
  * @param graph [description]
  */
-void PreCalcPaths(Floor *graph);
+//void PreCalcPaths(Floor *graph);
 
 /**
  * @brief
@@ -15,7 +15,7 @@ void PreCalcPaths(Floor *graph);
  * @param v2 [description]
  * @return [description]
  */
-int isRouteable(Vertex *v1, Vertex *v2);
+//int isRouteable(Vertex *v1, Vertex *v2);
 
 /**
  * @brief Return the optimal path from pre calculated paths.
@@ -24,7 +24,7 @@ int isRouteable(Vertex *v1, Vertex *v2);
  * @param v2 Vertex 2
  * @return Returns a path struct
  */
-Path getPath(Vertex *v1, Vertex *v2);
+//Path getPath(Vertex *v1, Vertex *v2);
 
 /**
  * @brief [brief description]
@@ -35,4 +35,11 @@ Path getPath(Vertex *v1, Vertex *v2);
  * @param list [description]
  * @param weight [description]
  */
-void addPath(Vertex *v1, Vertex *v2, Vertex *list, int weight);
+//void addPath(Vertex *v1, Vertex *v2, Vertex *list, int weight);
+
+
+int Contains(unsigned int id, unsigned int *k, unsigned int V);
+
+int smallestT(unsigned int *t, unsigned int *p, unsigned int V);
+
+void Dijkstra(Graph *graph, int source, int dest);

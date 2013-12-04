@@ -32,10 +32,10 @@ int main(int argc, char const *argv[]) {
             printf("Success!\n");
             break;
         case 2:
-            printf("Case 2\n");
+            PreCalc();
             break;
         case 3:
-            printf("Case 3\n");
+            GenGraph();
             break;
         default:
             printf("Unexpected input\n");
