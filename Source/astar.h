@@ -23,12 +23,12 @@ int GetGValue(Vertex *vertex);
  * @brief Calculates the h value
  * @details [long description]
  *
- * @param v1 [description]
- * @param v2 [description]
+ * @param vertex [description]
+ * @param goal [description]
  * @param mode Sets the mode to be used ie. 0 for normal mode
  * @return h value from v1 to v2
  */
-int CalcHValue(Vertex *v1, Vertex *v2, int mode);
+void CalcHValue(Vertex *vertex, Vertex *goal, int mode);
 
 /**
  * @brief Sets the h value of a vertex
@@ -76,14 +76,13 @@ int GetFValue(Vertex *vertex);
 
 /**
  * @brief Sets the parent of a vertex
- * @details Sets the parent of a vertex as a in calculating the shortest route.
+ * @details Sets the parent of a vertex as a step in calculating the shortest route.
  * The parent will later be used for backtracking the shortest route.
  *
  * @param child The child that gets a parent
  * @param parent The parent to be set
  */
 void SetParentVertex(Vertex *child, Vertex *parent);
-
 
 /**
  * @brief Adds a vertex to the closed list
@@ -163,4 +162,4 @@ void GetNeighbourVertices(Vertex *v, Vertex **neighbours);
  * @param v2 Pointer to a vertex
  * @return Ordinary distance between v1 and v2 as a double.
  */
-double DistanceVertices(Vertex *v1, Vertex *v2);
+double DistanceEuclid(Vertex *v1, Vertex *v2);

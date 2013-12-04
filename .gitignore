@@ -35,7 +35,7 @@
 *~
 *.fls
 *.bcf
-*.xml
+*run.xml
 *.lox
 /Referater/*.pdf
 /Source/latex

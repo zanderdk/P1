@@ -1,7 +1,7 @@
 #include "astar.h"
 #include "graph.h"
 
-double DistanceVertices(Vertex *v1, Vertex *v2) {
+double DistanceEuclid(Vertex *v1, Vertex *v2) {
     int x1 = v1->x;
     int y1 = v1->y;
     int x2 = v2->x;
