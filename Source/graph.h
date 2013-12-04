@@ -10,12 +10,12 @@ typedef struct Path Path;
  */
 struct Floor {
     /**
-     * The floor number.
-     * Two different floors, cannot have the same floor number
+     * Floor identification number.
+     * Two floors cannot have the same ID.
      */
     unsigned int floorId;
     /**
-     * A pointer to the head of the linked list contaning all vertices on the floor. 
+     * A pointer to the head of the linked list contaning all vertices on the floor.
      * Pointer is NULL on end of floor.
      */
     Vertex *vp;
@@ -28,72 +28,73 @@ struct Floor {
  */
 struct Vertex {
     /**
-     * An id of a vertex. Two vertices cannot have the same id.
+     * The ID of the vertex. Two vertices cannot have the same id.
      */
     unsigned int vertexId;
 
     /**
-     * Local x coordinate in the hospital.
+     * Local x coordinate.
      */
     unsigned int x;
 
     /**
-     * Local y coordinate in the hospital.
+     * Local y coordinate.
      */
     unsigned int y;
 
     /**
-     * Describes which type the vertex is.
-     * For example could 1 be stairs, 2 be an elevator
+     * Describes the vertex' type ie. 1 for stairs, 2 for elevator etc.
      */
     unsigned int type;
 
     /**
-     * Which floor id the vertex is on.
+     * ID of the floor the vertex is located on.
      */
     unsigned int floorId;
 
     /**
-     * A pointer to an EdgePointer.
+     * A pointer to the head of the linked list containing pointers to all edges connected to the vertice.
      */
     EdgePointer *ep;
 
     /**
      * A pointer to the next vertex.
-     * This could be on the same floor,
-     * or on another floor so the floor id must be checked.
+     * Only used on startup.
      */
     Vertex *nextVp;
 
     /**
-     * Used in A* algorithm.
-     * parent is the vertex where this struct vertex came from
+     * Used in the A* algorithm for backtracking the shortest route.
+     * Parent is the node before the current in the set which specifies the shortest route to the origin.
      */
     Vertex *parent;
 };
 
 /**
- * @brief An EdgePointer points to an edge
- * and to the next EdgePointer in the linked list
- *
+ * @brief Used for creating a linked list of Edge *.
+ * An EdgePointer points to an edge and to the next EdgePointer in the linked list.
+ * Is NULL on end of list.
  */
 struct EdgePointer {
     /**
-     * A pointer to a edge
+     * A pointer to an edge
      */
     Edge *edge;
 
     /**
-     * A pointer to the next EdgePointer. In this way it is a linked list.
+     * A pointer to the next EdgePointer.
      */
     EdgePointer *nextEp;
 };
 
 /**
- * @brief An edge is connecting two vertices
- *
+ * @brief An edge connects two vertices.
  */
 struct Edge {
+    /**
+     * The ID of the edge. Two edges cannot have the same ID.
+     */
+    unsigned int edgeId;
     /**
      * The weight of this edge. Could be meters or seconds.
      */
@@ -109,6 +110,6 @@ struct Edge {
 };
 
 struct Path {
-  unsigned int weight;
-  unsigned int *pathVertexIds;
+    unsigned int weight;
+    unsigned int *pathVerticeIds;
 };

@@ -1,41 +1,88 @@
 #include "graph.h"
 #include <math.h>
 #include <stdlib.h>
+
 /**
- * @brief Sets g value to an vertex
+ * @brief Sets the g value of a vertex
  * @details [long description]
  *
  * @param value [description]
  * @param vertex [description]
  */
-void setGValue(int value, Vertex *vertex);
+void SetGValue(int value, Vertex *vertex);
 
 /**
- * @brief Sets h value to an vertex
+ * @brief Returns the g value of a vertex
+ * @details [long description]
+ *
+ * @param vertex [description]
+ */
+int GetGValue(Vertex *vertex);
+
+/**
+ * @brief Calculates the h value
+ * @details [long description]
+ *
+ * @param v1 [description]
+ * @param v2 [description]
+ * @param mode Sets the mode to be used ie. 0 for normal mode
+ * @return h value from v1 to v2
+ */
+int CalcHValue(Vertex *v1, Vertex *v2, int mode);
+
+/**
+ * @brief Sets the h value of a vertex
  * @details [long description]
  *
  * @param value [description]
  * @param vertex [description]
  */
-void setHValue(int value, Vertex *vertex);
+void SetHValue(int value, Vertex *vertex);
 
 /**
- * @brief Sets f value to an vertex
+ * @brief Returns the h value of a vertex
  * @details [long description]
+ *
+ * @param vertex [description]
+ */
+int GetHValue(Vertex *vertex);
+
+/**
+ * @brief Calculates the f value of a vertex
+ * @details This function will calculate the f value of a vertex from the g and h value.
+ * It is meant to only be called in the SetGValue function.
  *
  * @param value [description]
  * @param vertex [description]
  */
-void calcFValue(Vertex *vertex);
+void CalcFValue(Vertex *vertex);
 
 /**
- * @brief Sets parent to a vertex
+ * @brief Sets the f value of a vertex
  * @details [long description]
+ *
+ * @param value The value to set
+ * @param vertex The vertex to set the value for
+ */
+int SetFValue(int value, Vertex *vertex);
+
+/**
+ * @brief Returns the f value of a vertex
+ * @details [long description]
+ *
+ * @param vertex [description]
+ */
+int GetFValue(Vertex *vertex);
+
+/**
+ * @brief Sets the parent of a vertex
+ * @details Sets the parent of a vertex as a in calculating the shortest route.
+ * The parent will later be used for backtracking the shortest route.
  *
  * @param child The child that gets a parent
  * @param parent The parent to be set
  */
-void setParentVertex(Vertex *child, Vertex *parent);
+void SetParentVertex(Vertex *child, Vertex *parent);
 
 
 /**
@@ -45,7 +92,7 @@ void setParentVertex(Vertex *child, Vertex *parent);
  * @param closedList The closed list containing already visited vertices.
  * @param v The vertex to add to closedList.
  */
-void addToClosedList(Vertex **closedList, Vertex *v);
+void AddToClosedList(Vertex **closedList, Vertex *v);
 
 /**
  * @brief Adds a vertex to the open list
@@ -54,10 +101,10 @@ void addToClosedList(Vertex **closedList, Vertex *v);
  * @param openList The open list containing already visited vertices.
  * @param v The vertex to add to openList.
  */
-void addToOpenList(Vertex **openList, Vertex *v);
+void AddToOpenList(Vertex **openList, Vertex *v);
 
 /**
- * @brief Removes a vertex from an open list
+ * @brief Removes a vertex from the open list
  * @details [long description]
  *
  * @param openList [description]
@@ -66,7 +113,7 @@ void addToOpenList(Vertex **openList, Vertex *v);
 void RemoveFromOpenList(Vertex **openList, Vertex *v);
 
 /**
- * @brief Is the vertex in closed list?
+ * @brief Is the vertex in closed list
  * @details [long description]
  *
  * @param closedList [description]
@@ -74,10 +121,10 @@ void RemoveFromOpenList(Vertex **openList, Vertex *v);
  * @return 0 if vertex is not in list.
  * 1 if vertex is in list.
  */
-int isInClosedList(Vertex **closedList, Vertex *v);
+int IsInClosedList(Vertex **closedList, Vertex *v);
 
 /**
- * @brief Is the vertex in open list?
+ * @brief Is the vertex in open list
  * @details [long description]
  *
  * @param openList [description]
@@ -85,7 +132,7 @@ int isInClosedList(Vertex **closedList, Vertex *v);
  * @return 0 if vertex is not in list.
  * 1 if vertex is in list.
  */
-int isInOpenList(Vertex **openList, Vertex *v);
+int IsInOpenList(Vertex **openList, Vertex *v);
 
 /**
  * @brief Finds the most optimal route from start to dest vertices
@@ -101,24 +148,13 @@ void findOptimalRoute(Floor *f, Vertex *start, Vertex *dest,
                       int mode);
 
 /**
- * @brief Calculates h value using euclidean distance
- * of v1 and v2.
- * @details [long description]
- *
- * @param v1 [description]
- * @param v2 [description]
- * @return h value from v1 to v2
- */
-int calcHValue(Vertex *v1, Vertex *v2, int mode);
-
-/**
  * @brief Adds all the neighbour vertices of v to the array.
  * neighbours must be allocated big enough to hold all vertices.
  *
  * @param v [description]
  * @param neighbours [description]
  */
-void getNeighbourVertices(Vertex *v, Vertex **neighbours);
+void GetNeighbourVertices(Vertex *v, Vertex **neighbours);
 
 /**
  * @brief Calculates the "ordinary" distance between two vertices. This only considers x and y coordinates.
