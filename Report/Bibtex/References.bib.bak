@@ -566,6 +566,17 @@
   year = {2013}
 }
 
+@ARTICLE{timewaste,
+  author = {Michael McCarthy},
+  title = {Healthy Design},
+  journal = {The Lancet},
+  year = {2004},
+  volume = {364},
+  pages = {405-406},
+  owner = {Abstrakten},
+  timestamp = {2013.12.04}
+}
+
 @ELECTRONIC{RFID_AllTypes,
   author = {Melina},
   title = {RFID Tags: Active, Semi-passive, and Passive},
