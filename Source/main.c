@@ -32,10 +32,10 @@ int main(int argc, char const *argv[]) {
             printf("Success!\n");
             break;
         case 2:
-            printf("lolWhat\n");
+            printf("Case 2\n");
             break;
         case 3:
-            printf("lolWhat\n");
+            printf("Case 3\n");
             break;
         default:
             printf("Unexpected input\n");
