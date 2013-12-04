@@ -1,6 +1,4 @@
 #include "graph.h"
-#include <math.h>
-#include <stdlib.h>
 
 /**
  * @brief Sets the g value of a vertex
