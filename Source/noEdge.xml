@@ -1,0 +1,34 @@
+<Vertices>
+    <Vertex>
+        <id>1</id>
+        <floor>1</floor>
+        <x>4</x>
+        <y>3</y>
+        <neighbours>
+            <n1>
+                <id>2</id>
+                <weight>4</weight>
+            </n1>
+            <n2>
+                <id>4</id>
+                <weight>11</weight>
+            </n2>
+        </neighbours>
+    </Vertex>
+    <Vertex>
+        <id>2</id>
+        <floor>1</floor>
+        <x>7</x>
+        <y>8</y>
+        <neighbours>
+            <n1>
+                <id>1</id>
+                <weight>4</weight>
+            </n1>
+            <n2>
+                <id>3</id>
+                <weight>2</weight>
+            </n2>
+        </neighbours>
+    </Vertex>
+</Vertices>
