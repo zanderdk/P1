@@ -391,9 +391,10 @@
   timestamp = {2013.11.26}
 }
 
-@ELECTRONIC{,
+@ELECTRONIC{GPS_about,
   author = {Garmin},
   title = {What is GPS?},
+  language = {English},
   organization = {Garmin},
   url = {http://www8.garmin.com/aboutGPS/},
   owner = {AndersBærbar},
@@ -605,6 +606,18 @@
   pages = {405-406},
   owner = {Abstrakten},
   timestamp = {2013.12.04}
+}
+
+@ELECTRONIC{GPS_text,
+  author = {Joe Mehaffey},
+  month = {July},
+  year = {1998},
+  title = {Almanac and Ephemeris Data as used by GPS receivers},
+  language = {English},
+  organization = {gpsinformation.net},
+  url = {http://gpsinformation.net/main/almanac.txt},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.05}
 }
 
 @ELECTRONIC{RFID_AllTypes,
