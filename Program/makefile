@@ -2,11 +2,12 @@ CC = gcc
 CFLAGS = -Wall
 DEPDIR = deps
 DF = $(DEPDIR)/$(*F)
-SRCS = ppm.c pixel.c prog.c
+SRCS = main.c
 OUTPUT = program
+VPATH = Sources
 
 all: $(SRCS:.c=.o)
-	$(CC) $^ -o $(OUTPUT) 
+	$(CC) $^ -o $(OUTPUT) $(CFLAGS) 
 
 %.o: %.c
 	$(COMPILE.c) -MMD -o $@ $<
@@ -24,3 +25,4 @@ cleandeps:
 	rm deps/*.P
 
 cleanall: clean cleandeps
+	rm $(OUTPUT)
