@@ -1,4 +1,5 @@
 CC = gcc
+CFLAGS = -Wall
 DEPDIR = deps
 DF = $(DEPDIR)/$(*F)
 SRCS = ppm.c pixel.c prog.c
