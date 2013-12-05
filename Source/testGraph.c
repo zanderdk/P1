@@ -43,7 +43,25 @@ int main(int argc, char const *argv[]) {
 
     printAdjList(graph);
 
-    Dijkstra(graph, 0, 3);
+    int pathList[5];
+    int i;
+    for (i = 0; i < 5 ; ++i ) {
+        pathList[i] = 999;
+    }
+
+    int source = 2;
+    int target = 0;
+    int cost;
+
+    cost = Dijkstra(graph, source, target, pathList);
+
+    printf("From %d ", source);
+
+    PrintList(pathList, 5);
+
+    printf("<- %d ", target);
+
+    printf("Cost: %d\n\n", cost);
 
     return 0;
 }

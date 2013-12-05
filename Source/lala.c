@@ -53,11 +53,13 @@ int IsEmpty(int *list, unsigned int V) {
 void PrintList(unsigned int *list, unsigned int V) {
     int i;
     for (i = 0; i < V; ++i ) {
-        printf("To %u = %u \n", i, list[i]);
+        if (list[i] != 999) {
+            printf("<- %u ", list[i]);
+        }
     }
 }
 
-void Dijkstra(Graph *graph, int sourceId, int targetId) {
+int Dijkstra(Graph *graph, int sourceId, int targetId, int *pathList) {
     unsigned int V = graph->numOfVertices;
 
     unsigned int dist[V];
@@ -95,24 +97,14 @@ void Dijkstra(Graph *graph, int sourceId, int targetId) {
             pCrawl = pCrawl->next;
         }
     }
-    PrintList(dist, V);
-
-    unsigned int stack[V];
-    int n;
-    for (n = 0; n < V ; ++n ) {
-        stack[n] = 999;
-    }
 
     u = targetId;
     int j = 0;
     do {
         u = previous[u];    // Traverse from target to source
-        stack[j] = u;     // Push the vertex into the stack
+        pathList[j] = u;     // Push the vertex into the stack
         j++;
     } while (previous[u] != sourceId);   // Construct the shortest path with a stack S
 
-    printf("\n");
-    PrintList(stack, V);
-    printf("\n");
-    PrintList(previous, V);
+    return dist[targetId];
 }
