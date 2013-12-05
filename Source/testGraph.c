@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "testGraph.h"
-#include "precalc.h"
+#include "lala.h"
 
 int main(int argc, char const *argv[]) {
     Graph *graph = createGraph(5); // 5 Vertices
@@ -44,7 +43,7 @@ int main(int argc, char const *argv[]) {
 
     printAdjList(graph);
 
-    Dijkstra(graph, 0, 2);
+    Dijkstra(graph, 1);
 
     return 0;
 }

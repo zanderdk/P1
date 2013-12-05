@@ -124,8 +124,8 @@ void minHeapify(struct MinHeap *minHeap, int idx) {
 
     if (smallest != idx) {
         // The nodes to be swapped in min heap
-        MinHeapNode *smallestNode = minHeap->array[smallest];
-        MinHeapNode *idxNode = minHeap->array[idx];
+        struct MinHeapNode *smallestNode = minHeap->array[smallest];
+        struct MinHeapNode *idxNode = minHeap->array[idx];
 
         // Swap positions
         minHeap->pos[smallestNode->v] = idx;
