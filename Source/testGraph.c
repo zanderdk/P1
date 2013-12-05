@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]) {
 
     printAdjList(graph);
 
-    Dijkstra(graph, 1);
+    Dijkstra(graph, 0, 3);
 
     return 0;
 }

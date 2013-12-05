@@ -57,19 +57,19 @@ void PrintList(unsigned int *list, unsigned int V) {
     }
 }
 
-void Dijkstra(Graph *graph, int sourceId) {
+void Dijkstra(Graph *graph, int sourceId, int targetId) {
     unsigned int V = graph->numOfVertices;
 
     unsigned int dist[V];
     unsigned int visited[V];
-    unsigned int previous[V];
+    int previous[V];
     int Q[V];
 
     int i;
     for (i = 0; i < V; ++i) {
         dist[i] = INT_MAX;
         visited[i] = 0;
-        previous[i] = 0;
+        previous[i] = 999;
         Q[i] = -1;
     }
 
@@ -96,4 +96,23 @@ void Dijkstra(Graph *graph, int sourceId) {
         }
     }
     PrintList(dist, V);
+
+    unsigned int stack[V];
+    int n;
+    for (n = 0; n < V ; ++n ) {
+        stack[n] = 999;
+    }
+
+    u = targetId;
+    int j = 0;
+    do {
+        u = previous[u];    // Traverse from target to source
+        stack[j] = u;     // Push the vertex into the stack
+        j++;
+    } while (previous[u] != sourceId);   // Construct the shortest path with a stack S
+
+    printf("\n");
+    PrintList(stack, V);
+    printf("\n");
+    PrintList(previous, V);
 }
