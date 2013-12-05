@@ -1,22 +1,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
-#include <mxml.h>
+#include <math.h>
 
 
-#define NUM_VERTEX 100
+#define NUM_VERTEX 3
 #define MAX_WEIGHT 5
-#define MAX_EDGES_PER_VERTEX 10
+#define MAX_EDGES_PER_VERTEX 2
 #define MAX_X 10
 #define MAX_Y 10
 #define MAX_FLOORS 2
+#define VERTEX_STAIR_RATIO 20 /* f.x 20 means every 20th vertex is a stair */
+#define VERTEX_ELEVATOR_RATIO 40 /* f.x 20 means every 20th vertex is an elevator */
 
 typedef struct Vertex Vertex;
 typedef struct Edge Edge;
 typedef struct Graph Graph;
 
 struct Edge {
-    int weight;
+    unsigned int weight;
+    unsigned int edgeId;
     Vertex *vertex1;
     Vertex *vertex2;
 };
@@ -26,8 +29,7 @@ struct Vertex {
     unsigned int x;
     unsigned int y;
     unsigned int type;
-    unsigned int floorId;
-    unsigned int degree;
+    unsigned int degree; /* number of degrees */
     Edge **edges;
 };
 
@@ -36,9 +38,8 @@ struct Graph {
 };
 
 
-
 Graph *makeGraph(void);
-Vertex *createRandomVertex(Graph *g, int vertexId);
+Vertex *createRandomVertex(Graph *g, int floorId, int vertexNumFloor);
 void addVertexToGraph(Graph *g, Vertex *v, int i);
 Edge *createWeightedEdge(Graph *g);
 void addEdgeToVertex(Vertex *v, Edge *e, int i);
@@ -52,18 +53,20 @@ void printForLatex(Graph *G);
 void printVertices(FILE *f, Graph *g);
 void printEdges(FILE *f, Graph *g);
 void printMXML(Graph *g);
+unsigned int genId(int type, int floorId, int vertexNumFloor);
+void makeFloor(Graph *g, int floorId, int numVertices, int *verticesCreated);
 
 int main(void) {
     srand(time(NULL));
     Graph *g = makeGraph();
 
-    printMXML(g);
-    //printXML(g);
+    //printMXML(g);
+    printXML(g);
     //printForLatex(g);
     //printGraph(g);
 }
 
-void printMXML(Graph *g) {
+/*void printMXML(Graph *g) {
 
 
     mxml_node_t *xml;
@@ -134,7 +137,7 @@ void printMXML(Graph *g) {
     mxmlSaveFile(xml, fp, MXML_NO_CALLBACK);
 
     fclose(fp);
-}
+}*/
 
 
 void printForLatex(Graph *g) {
@@ -184,41 +187,23 @@ void printEdges(FILE *f, Graph *g) {
 }
 
 void printXML(Graph *g) {
-    FILE *xml = fopen("graph.xml", "w");
+    int i;
+    int j;
+    FILE *xml = fopen("simon.xml", "w");
+    Vertex *v;
 
     xmlOpenTag("graph", xml);
 
-    int i;
+    xmlOpenTag("edges", xml);
     for (i = 0; i < NUM_VERTEX; i++) {
-        int j;
-        Vertex *v = getVertex(g, i);
-        xmlOpenTag("vertex", xml);
-
-        xmlOpenTag("vertexId", xml);
-        xmlWriteInt("%d", v->vertexId, xml);
-        xmlCloseTag("vertexId", xml);
-
-        xmlOpenTag("x", xml);
-        xmlWriteInt("%d", v->x, xml);
-        xmlCloseTag("x", xml);
-
-        xmlOpenTag("y", xml);
-        xmlWriteInt("%d", v->y, xml);
-        xmlCloseTag("y", xml);
-
-        xmlOpenTag("floorId", xml);
-        xmlWriteInt("%d", v->floorId, xml);
-        xmlCloseTag("floorId", xml);
-
-        xmlOpenTag("degree", xml);
-        xmlWriteInt("%d", v->degree, xml);
-        xmlCloseTag("degree", xml);
-
-        xmlOpenTag("edges", xml);
-
+        v = getVertex(g, i);
         for (j = 0; j < v->degree; j++) {
             Edge *e = v->edges[j];
             xmlOpenTag("edge", xml);
+
+            xmlOpenTag("edgeId", xml);
+            xmlWriteInt("%d", e->edgeId, xml);
+            xmlCloseTag("edgeId", xml);
 
             xmlOpenTag("weight", xml);
             xmlWriteInt("%d", e->weight, xml);
@@ -234,14 +219,50 @@ void printXML(Graph *g) {
 
             xmlCloseTag("edge", xml);
         }
+    }
+    xmlCloseTag("edges", xml);
+
+    xmlOpenTag("vertices", xml);
+
+    for (i = 0; i < NUM_VERTEX; i++) {
+        v = getVertex(g, i);
+        xmlOpenTag("vertex", xml);
+
+        xmlOpenTag("vertexId", xml);
+        xmlWriteInt("%d", v->vertexId, xml);
+        xmlCloseTag("vertexId", xml);
+
+        xmlOpenTag("coord", xml);
+
+        xmlOpenTag("x", xml);
+        xmlWriteInt("%d", v->x, xml);
+        xmlCloseTag("x", xml);
+
+        xmlOpenTag("y", xml);
+        xmlWriteInt("%d", v->y, xml);
+        xmlCloseTag("y", xml);
+
+        xmlCloseTag("coord", xml);
+
+
+        xmlOpenTag("edges", xml);
+
+
+        for (j = 0; j < v->degree; j++) {
+            xmlOpenTag("edgeId", xml);
+            xmlWriteInt("%d", v->edges[j]->edgeId, xml);
+            xmlCloseTag("edgeId", xml);
+        }
 
         xmlCloseTag("edges", xml);
 
 
         xmlCloseTag("vertex", xml);
+
     }
 
 
+    xmlCloseTag("vertices", xml);
     xmlCloseTag("graph", xml);
 
     fclose(xml);
@@ -267,17 +288,42 @@ void xmlOpenTag(char *name, FILE *xml) {
 
 Graph *makeGraph(void) {
     int i;
+    int numFloors;
+    int numVerticesFloor;
+    int verticesRemaining = NUM_VERTEX;
+    int verticesCreated = 0;
+
     Graph *g = (Graph *) malloc(sizeof(Graph));
     g->vertices = (Vertex **) malloc(sizeof(Vertex *) * NUM_VERTEX);
 
-    for (i = 0; i < NUM_VERTEX; i++) {
-        Vertex *v = createRandomVertex(g, i);
-        addVertexToGraph(g, v, i);
+    numFloors = rand() % MAX_FLOORS + 1;
+    numVerticesFloor = floor(  NUM_VERTEX / numFloors);
+
+    for (i = 1; i < numFloors + 1; i++) {
+        verticesRemaining -= numVerticesFloor;
+        /* only use verticesremaining if it is smaller than numverticesfloor */
+        makeFloor(g, i, (verticesRemaining < numVerticesFloor) == 1 ? verticesRemaining :
+                  numVerticesFloor, &verticesCreated);
     }
+
+
 
     setConnectingVertexInEdges(g);
 
     return g;
+}
+
+void makeFloor(Graph *g, int floorId, int numVertices, int *verticesCreated) {
+    int i;
+    Vertex *v;
+
+    for (i = 0; i < numVertices; ) {
+        v = createRandomVertex(g, floorId, i + 1);
+
+        addVertexToGraph(g, v, *verticesCreated);
+        (*verticesCreated)++;
+    }
+
 }
 
 void setConnectingVertexInEdges(Graph *g) {
@@ -307,8 +353,9 @@ void setConnectingVertexInEdges(Graph *g) {
     }
 }
 
-Vertex *createRandomVertex(Graph *g, int vertexId) {
+Vertex *createRandomVertex(Graph *g, int floorId, int vertexNumFloor) {
     int i;
+    int type;
     Vertex *v = (Vertex *) malloc(sizeof(Vertex));
 
     /* randomly select number of edges */
@@ -333,15 +380,28 @@ Vertex *createRandomVertex(Graph *g, int vertexId) {
     int y = rand() % MAX_Y + 1;
     v->y = y;
 
-    /* set floorId */
-    int floorId = vertexId % MAX_FLOORS + 1;
-    v->floorId = floorId;
+    int tempValue = rand() % VERTEX_STAIR_RATIO + VERTEX_ELEVATOR_RATIO;
 
+    /* decide wether the type of the vertex is a stair, elevator or a vertex */
+    if (tempValue == VERTEX_STAIR_RATIO - 1) {
+        type = 3;
+    } else if (tempValue == VERTEX_ELEVATOR_RATIO - 1) {
+        type = 2;
+    } else {
+        type = 1;
+    }
 
-    /* set vertexId */
-    v->vertexId = vertexId;
+    v->vertexId = genId(type, floorId, vertexNumFloor);
 
     return v;
+}
+
+unsigned int genId(int type, int floorId, int vertexNumFloor) {
+    char buffer[48];
+
+    snprintf(buffer, 48, "%d%d%d", type, floorId, vertexNumFloor);
+
+    return atoi(buffer);
 }
 
 void addVertexToGraph(Graph *g, Vertex *v, int i) {

@@ -90,6 +90,7 @@ struct Edge {
      */
     unsigned int edgeId;
     /**
+
      * The weight of this edge. Could be meters or seconds.
      */
     unsigned int weight;

@@ -26,6 +26,8 @@ struct WorkVertex {
     WorkVertex *parentVertex;
 };
 
+void setSetMode(int value, WorkVertex *wv);
+
 /**
  * @brief Sets the g value of a vertex
  * @details [long description]
@@ -47,11 +49,11 @@ unsigned int GetGValue(WorkVertex *wv);
  * @brief Calculates the euclidean "ordinary" distance between two vertices. This only considers x and y coordinates.
  * @details [long description]
  *
- * @param wv [description]
- * @param wvGoal [description]
+ * @param stc [description]
+ * @param goal [description]
  * @return The H value from WorkVertex to Goal
  */
-double CalcHValue(WorkVertex *wv, Vertex *wvGoal);
+double CalcHValue(Vertex *src, Vertex *goal);
 
 /**
  * @brief Sets the h value of a vertex
@@ -60,7 +62,7 @@ double CalcHValue(WorkVertex *wv, Vertex *wvGoal);
  * @param value [description]
  * @param vertex [description]
  */
-double SetHValue(double value, WorkVertex *wv);
+void SetHValue(double value, WorkVertex *wv);
 
 /**
  * @brief Returns the h value of a vertex
@@ -78,7 +80,7 @@ double GetHValue(WorkVertex *wv);
  * @param value [description]
  * @param vertex [description]
  */
-double CalcFValue(WorkVertex *wv);
+double CalcFValue(WorkVertex *src, Vertex *goal);
 
 /**
  * @brief Sets the f value of a vertex
@@ -87,7 +89,7 @@ double CalcFValue(WorkVertex *wv);
  * @param value The value to set
  * @param vertex The vertex to set the value for
  */
-void SetFValue(WorkVertex *wv);
+void SetFValue(double f, WorkVertex *wv);
 
 /**
  * @brief Returns the f value of a vertex
@@ -106,44 +108,6 @@ double GetFValue(WorkVertex *wv);
  * @param parent The parent to be set
  */
 void SetParentVertex(WorkVertex *child, WorkVertex *parent);
-
-/**
- * @brief Adds a Workvertex to an open/closed list.
- *
- * @param list An open/closed list containing pointers to
- *                 already visited WorkVertices.
-                   The openlist must be allocated (calloc with 0 as initial value) big enough to hold all WorkVertex.
-
-   @param listSize How big the list is allocated to. Typically number of all WorkVertices.
- *
- * @param wv The WorkVertex to add to openList.
- *
- * @return 1 if the workVertex was succesfully added to list
- *          0 if the workVertex was not added to the list
- */
-int AddToList(WorkVertex **list, int listSize, WorkVertex *wv);
-
-/**
- * @brief Removes a WorkVertex from a list
- *
- * @param openList [description]
- * @param v [description]
- *
- * @return 1 if the workVertex was succesfully removed from list
- *          0 if the workVertex was not removed from the list
- */
-int RemoveFromList(WorkVertex **list, int listSize, WorkVertex *wv);
-
-/**
- * @brief Is the specified Workvertex in open/closed list
- *
- * @param list [description]
- * @param listSize [description]
- * @param wv The WorkVertex to check if it is in list
- * @return 0 if wv is not in list.
- * 1 if wv is in list.
- */
-int InList(WorkVertex **list, int listSize, WorkVertex *wv);
 
 /**
  * @brief Finds the most optimal route from start to dest vertices on the same floor
@@ -165,3 +129,20 @@ void findOptimalRoute(Floor *f, Vertex *start, Vertex *dest,
  * @param neighbours [description]
  */
 void GetNeighbourVertices(WorkVertex *v, Vertex **neighbours);
+
+Path *reconstruct_path(unsigned int verticesInPath, WorkVertex *end,
+                       WorkVertex **workVertices, int numVertices,
+                       WorkVertex **outNeighborWorkVertex);
+
+WorkVertex *createWorkVertex(Vertex *src);
+
+WorkVertex *getVertexLowestFOpenSet(WorkVertex **workVertices, int numVertices);
+
+int getNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
+                 WorkVertex **outNeighborWorkVertex);
+
+unsigned int getWeight(WorkVertex *src, WorkVertex *targetNeighbor,
+                       WorkVertex **workVertices,
+                       int numVertices, WorkVertex **outNeighborWorkVertex);
+
+int getVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices);
