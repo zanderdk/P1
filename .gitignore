@@ -40,3 +40,4 @@
 /Referater/*.pdf
 /Source/latex
 /Source/html
+*.o
