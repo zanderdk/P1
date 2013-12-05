@@ -16,4 +16,6 @@ all: $(SRCS:.c=.o)
 
 clean:
 	rm *.o
+
+cleandeps:
 	rm deps/*.P
