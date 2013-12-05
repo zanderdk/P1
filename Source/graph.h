@@ -62,12 +62,6 @@ struct Vertex {
      * Only used on startup.
      */
     Vertex *nextVp;
-
-    /**
-     * Used in the A* algorithm for backtracking the shortest route.
-     * Parent is the node before the current in the set which specifies the shortest route to the origin.
-     */
-    Vertex *parent;
 };
 
 /**

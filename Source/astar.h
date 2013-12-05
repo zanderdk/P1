@@ -1,5 +1,31 @@
 #include "graph.h"
 
+typedef struct WorkVertex WorkVertex;
+
+struct WorkVertex {
+    unsigned int g;
+    double h;
+    double f;
+
+    /**
+     * 0 means WorkVertex is not in a set.
+     * 1 means WorkVertex is in closed set.
+     * 2 means WorkVertex is in open set.
+     */
+    int setMode;
+
+    /**
+     * A pointer to the vertex this WorkVertex corresponds to.
+     * The originVertex is used to read values like edges, ids etc.
+     */
+    Vertex *originVertex;
+    /**
+     * Used in the A* algorithm for backtracking the shortest route.
+     * Parent is the node before the current in the set which specifies the shortest route to the origin.
+     */
+    WorkVertex *parentVertex;
+};
+
 /**
  * @brief Sets the g value of a vertex
  * @details [long description]
@@ -7,7 +33,7 @@
  * @param value [description]
  * @param vertex [description]
  */
-void SetGValue(int value, Vertex *vertex);
+void SetGValue(unsigned int value, WorkVertex *wv);
 
 /**
  * @brief Returns the g value of a vertex
@@ -15,18 +41,17 @@ void SetGValue(int value, Vertex *vertex);
  *
  * @param vertex [description]
  */
-int GetGValue(Vertex *vertex);
+unsigned int GetGValue(WorkVertex *wv);
 
 /**
- * @brief Calculates the h value
+ * @brief Calculates the euclidean "ordinary" distance between two vertices. This only considers x and y coordinates.
  * @details [long description]
  *
- * @param vertex [description]
- * @param goal [description]
- * @param mode Sets the mode to be used ie. 0 for normal mode
- * @return h value from v1 to v2
+ * @param wv [description]
+ * @param wvGoal [description]
+ * @return The H value from WorkVertex to Goal
  */
-void CalcHValue(Vertex *vertex, Vertex *goal, int mode);
+double CalcHValue(WorkVertex *wv, Vertex *wvGoal);
 
 /**
  * @brief Sets the h value of a vertex
@@ -35,7 +60,7 @@ void CalcHValue(Vertex *vertex, Vertex *goal, int mode);
  * @param value [description]
  * @param vertex [description]
  */
-void SetHValue(int value, Vertex *vertex);
+double SetHValue(double value, WorkVertex *wv);
 
 /**
  * @brief Returns the h value of a vertex
@@ -43,7 +68,7 @@ void SetHValue(int value, Vertex *vertex);
  *
  * @param vertex [description]
  */
-int GetHValue(Vertex *vertex);
+double GetHValue(WorkVertex *wv);
 
 /**
  * @brief Calculates the f value of a vertex
@@ -53,7 +78,7 @@ int GetHValue(Vertex *vertex);
  * @param value [description]
  * @param vertex [description]
  */
-void CalcFValue(Vertex *vertex);
+double CalcFValue(WorkVertex *wv);
 
 /**
  * @brief Sets the f value of a vertex
@@ -62,7 +87,7 @@ void CalcFValue(Vertex *vertex);
  * @param value The value to set
  * @param vertex The vertex to set the value for
  */
-int SetFValue(int value, Vertex *vertex);
+void SetFValue(WorkVertex *wv);
 
 /**
  * @brief Returns the f value of a vertex
@@ -70,7 +95,7 @@ int SetFValue(int value, Vertex *vertex);
  *
  * @param vertex [description]
  */
-int GetFValue(Vertex *vertex);
+double GetFValue(WorkVertex *wv);
 
 /**
  * @brief Sets the parent of a vertex
@@ -80,61 +105,49 @@ int GetFValue(Vertex *vertex);
  * @param child The child that gets a parent
  * @param parent The parent to be set
  */
-void SetParentVertex(Vertex *child, Vertex *parent);
+void SetParentVertex(WorkVertex *child, WorkVertex *parent);
 
 /**
- * @brief Adds a vertex to the closed list
- * @details [long description]
+ * @brief Adds a Workvertex to an open/closed list.
  *
- * @param closedList The closed list containing already visited vertices.
- * @param v The vertex to add to closedList.
- */
-void AddToClosedList(Vertex **closedList, Vertex *v);
+ * @param list An open/closed list containing pointers to
+ *                 already visited WorkVertices.
+                   The openlist must be allocated (calloc with 0 as initial value) big enough to hold all WorkVertex.
 
-/**
- * @brief Adds a vertex to the open list
- * @details [long description]
+   @param listSize How big the list is allocated to. Typically number of all WorkVertices.
  *
- * @param openList The open list containing already visited vertices.
- * @param v The vertex to add to openList.
+ * @param wv The WorkVertex to add to openList.
+ *
+ * @return 1 if the workVertex was succesfully added to list
+ *          0 if the workVertex was not added to the list
  */
-void AddToOpenList(Vertex **openList, Vertex *v);
+int AddToList(WorkVertex **list, int listSize, WorkVertex *wv);
 
 /**
- * @brief Removes a vertex from the open list
- * @details [long description]
+ * @brief Removes a WorkVertex from a list
  *
  * @param openList [description]
  * @param v [description]
- */
-void RemoveFromOpenList(Vertex **openList, Vertex *v);
-
-/**
- * @brief Is the vertex in closed list
- * @details [long description]
  *
- * @param closedList [description]
- * @param v [description]
- * @return 0 if vertex is not in list.
- * 1 if vertex is in list.
+ * @return 1 if the workVertex was succesfully removed from list
+ *          0 if the workVertex was not removed from the list
  */
-int IsInClosedList(Vertex **closedList, Vertex *v);
+int RemoveFromList(WorkVertex **list, int listSize, WorkVertex *wv);
 
 /**
- * @brief Is the vertex in open list
- * @details [long description]
+ * @brief Is the specified Workvertex in open/closed list
  *
- * @param openList [description]
- * @param v [description]
- * @return 0 if vertex is not in list.
- * 1 if vertex is in list.
+ * @param list [description]
+ * @param listSize [description]
+ * @param wv The WorkVertex to check if it is in list
+ * @return 0 if wv is not in list.
+ * 1 if wv is in list.
  */
-int IsInOpenList(Vertex **openList, Vertex *v);
+int InList(WorkVertex **list, int listSize, WorkVertex *wv);
 
 /**
- * @brief Finds the most optimal route from start to dest vertices
- * based on route preferences.
- * @details [long description]
+ * @brief Finds the most optimal route from start to dest vertices on the same floor
+ * based on mode
  *
  * @param g [description]
  * @param start [description]
@@ -151,13 +164,4 @@ void findOptimalRoute(Floor *f, Vertex *start, Vertex *dest,
  * @param v [description]
  * @param neighbours [description]
  */
-void GetNeighbourVertices(Vertex *v, Vertex **neighbours);
-
-/**
- * @brief Calculates the "ordinary" distance between two vertices. This only considers x and y coordinates.
- *
- * @param v1 Pointer to a vertex
- * @param v2 Pointer to a vertex
- * @return Ordinary distance between v1 and v2 as a double.
- */
-double DistanceEuclid(Vertex *v1, Vertex *v2);
+void GetNeighbourVertices(WorkVertex *v, Vertex **neighbours);

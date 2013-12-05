@@ -53,6 +53,16 @@
   timestamp = {2013.12.02}
 }
 
+@ELECTRONIC{wifi_batt,
+  author = {Wi-Fi Alliance},
+  year = {2005},
+  title = {Wi-Fi CERTIFIED for WMM-Power Save: Support for Advanced Power Save
+	for Mobile and Portable Devices in Wi-Fi Networks},
+  url = {https://www.wi-fi.org/knowledge-center/white-papers/wi-fi-certified%E2%84%A2-wmm%C2%AE-power-save-support-advanced-power-save-mobile},
+  owner = {Simon},
+  timestamp = {2013.12.04}
+}
+
 @ELECTRONIC{acc_price,
   author = {Ancillotti},
   month = {June 9},
@@ -172,6 +182,17 @@
   url = {http://www.britannica.com/EBchecked/topic/154249/dead-reckoning},
   owner = {AndersBærbar},
   timestamp = {2013.11.25}
+}
+
+@ARTICLE{findvejintro,
+  author = {Hans Emborg Bünemann},
+  title = {Find vej på hospitalet},
+  journal = {Mind Design},
+  year = {2012},
+  volume = {54},
+  pages = {1-3},
+  owner = {Abstrakten},
+  timestamp = {2013.12.04}
 }
 
 @STANDARD{gamle_teknologi,
@@ -990,6 +1011,48 @@
   url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
   owner = {AndersBærbar},
   timestamp = {2013.10.29}
+}
+
+@ELECTRONIC{QR_dama,
+  url = {http://www.qrstuff.com/blog/2011/12/14/qr-code-error-correction},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{QR_easy,
+  url = {http://beqrious.com/making-it-easier-to-succeed-with-qr-code-marketing/},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{QR_Google,
+  url = {https://google-developers.appspot.com/chart/infographics/docs/overview},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{QR_image,
+  url = {http://mashable.com/2011/04/18/qr-code-design-tips/},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{QR_information,
+  url = {http://archive.is/20120715010216/http://sandiego.bbb.org/article/consumer-alert-qr-code-safety-28037},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{QR_rel1,
+  url = {http://mashable.com/2010/08/23/how-to-create-qr-codes/},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
+}
+
+@ELECTRONIC{QR_smart,
+  url = {http://www.708media.com/qrcode/qr-code-readers-iphone-android-blackberry-windows-phone-7/},
+  owner = {AndersBærbar},
+  timestamp = {2013.11.21}
 }
 
 @ELECTRONIC{RFID_brobizz,
