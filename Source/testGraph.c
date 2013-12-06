@@ -50,7 +50,7 @@ int main(int argc, char const *argv[]) {
     }
 
     int source = 4;
-    int target = 1;
+    int target = 1rg;
     int cost;
 
     cost = Dijkstra(graph, source, target, pathList);
