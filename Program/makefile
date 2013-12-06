@@ -1,15 +1,17 @@
 CC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -g
 DEPDIR = deps
 DF = $(DEPDIR)/$(*F)
 SRCS = main.c
-OUTPUT = program
 VPATH = Sources
 
-all: $(SRCS:.c=.o)
-	$(CC) $^ -o $(OUTPUT) $(CFLAGS) 
+.PHONY: all
+all: Program
 
-%.o: %.c
+Program: $(SRCS:.c=.o)
+	$(CC) $^ -o $@ $(CFLAGS) 
+
+%.o: %.c | $(DEPDIR)
 	$(COMPILE.c) -MMD -o $@ $<
 	@cp $*.d $(DF).P; \
 	sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
@@ -18,11 +20,17 @@ all: $(SRCS:.c=.o)
 
 -include $(SRCS:%.c=$(DEPDIR)/%.P)
 
-clean:
+$(DEPDIR):
+	mkdir $(DEPDIR)
+
+.PHONY: cleanall
+cleanall: cleanobjs cleandeps
+	rm Program
+
+.PHONY: cleanobjs
+cleanobjs:
 	rm *.o
 
+.PHONY: cleandeps
 cleandeps:
-	rm deps/*.P
-
-cleanall: clean cleandeps
-	rm $(OUTPUT)
+	rm deps

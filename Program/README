@@ -1,6 +1,4 @@
 MAKE USAGE
 
 Sources:
-    Configure sources by changing the SRCS variable in the makefile, or run make with -e SRCS=">>sourcefiles.c<<"
-Output:
-    Configure the output file by modifying the OUTPUT variable in the makefile, or run make with -e OUTPUT=">>filename<<"
+    Configure sources by changing the SRCS variable in the makefile, or run make with -e SRCS=">>sourcefiles.c<<". Multiple source files should be separated by a space.
