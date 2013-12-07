@@ -4,7 +4,7 @@
 #include <math.h>
 
 
-#define NUM_VERTEX 3
+#define NUM_VERTEX 10
 #define MAX_WEIGHT 5
 #define MAX_EDGES_PER_VERTEX 2
 #define MAX_X 10
@@ -58,6 +58,8 @@ unsigned int genId(int type, int floorId, int vertexNumFloor);
 void makeFloor(Graph *g, int floorId, int numVertices, int *verticesCreated,
                int *edgeCounter);
 void makeIdsNotSuck(Graph *g, Edge **src);
+int edgeWithSameVerticesAlreadyCreated(Edge **eSrc, Graph *g, Vertex *v1,
+                                       Vertex *v2);
 
 int main(void) {
     srand(time(NULL));
@@ -193,36 +195,67 @@ void printEdges(FILE *f, Graph *g) {
     }
 }
 
+int edgeIsPrinted(int *array, int id, int size) {
+    int i;
+    for (i = 0; i < size; i++) {
+        if (array[i] == id) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+void addToEdgeIsPrinted(int **array, int id, int size) {
+    int i;
+    for (i = 0; i < size; i++) {
+        if (*array[i] == id) {
+
+        }
+    }
+}
+
 void printXML(Graph *g, int edgeCounter, int numFloors) {
     int i;
     int j;
     FILE *xml = fopen("simon.xml", "w");
     Vertex *v;
+    int size = NUM_VERTEX * MAX_EDGES_PER_VERTEX;
+    int edgeIdsPrinted[size];
+    int arrayCounter = 0;
+
 
     xmlOpenTag("edges", xml);
     for (i = 0; i < NUM_VERTEX; i++) {
         v = getVertex(g, i);
         for (j = 0; j < v->degree; j++) {
+
             Edge *e = v->edges[j];
-            xmlOpenTag("edge", xml);
 
-            xmlOpenTag("edgeId", xml);
-            xmlWriteInt("%d", e->edgeId, xml);
-            xmlCloseTag("edgeId", xml);
+            if (!edgeIsPrinted(edgeIdsPrinted, e->edgeId, size)) {
+                xmlOpenTag("edge", xml);
 
-            xmlOpenTag("weight", xml);
-            xmlWriteInt("%d", e->weight, xml);
-            xmlCloseTag("weight", xml);
+                xmlOpenTag("edgeId", xml);
+                xmlWriteInt("%d", e->edgeId, xml);
+                xmlCloseTag("edgeId", xml);
 
-            xmlOpenTag("vertex1Id", xml);
-            xmlWriteInt("%d", e->vertex1->vertexId, xml);
-            xmlCloseTag("vertex1Id", xml);
+                xmlOpenTag("weight", xml);
+                xmlWriteInt("%d", e->weight, xml);
+                xmlCloseTag("weight", xml);
 
-            xmlOpenTag("vertex2Id", xml);
-            xmlWriteInt("%d", e->vertex2->vertexId, xml);
-            xmlCloseTag("vertex2Id", xml);
+                xmlOpenTag("vertex1Id", xml);
+                xmlWriteInt("%d", e->vertex1->vertexId, xml);
+                xmlCloseTag("vertex1Id", xml);
 
-            xmlCloseTag("edge", xml);
+                xmlOpenTag("vertex2Id", xml);
+                xmlWriteInt("%d", e->vertex2->vertexId, xml);
+                xmlCloseTag("vertex2Id", xml);
+
+                xmlCloseTag("edge", xml);
+                edgeIdsPrinted[arrayCounter] = e->edgeId;
+                arrayCounter++;
+            }
+
+
         }
     }
     xmlCloseTag("edges", xml);
@@ -276,7 +309,7 @@ void printXML(Graph *g, int edgeCounter, int numFloors) {
 
     char buffer[1024];
     sprintf(buffer, "<graph edges=\"%d\" vertices=\"%d\" floors=\"%d\">",
-            edgeCounter - 1, NUM_VERTEX, numFloors);
+            arrayCounter, NUM_VERTEX, numFloors);
     fputs(buffer, real);
 
     while (fgets(buffer, 1024, xml) != NULL) {
@@ -324,7 +357,7 @@ Graph *makeGraph(int *edgeCounter, int *numFloors) {
     *numFloors = rand() % MAX_FLOORS + 1;
     numVerticesFloor = floor(  NUM_VERTEX / *numFloors);
 
-    for (i = 1; i <= *numFloors + 1; i++) {
+    for (i = 1; i < *numFloors + 1; i++) {
         numVertices = verticesRemaining - numVerticesFloor < 0 ? verticesRemaining :
                       numVerticesFloor;
 
@@ -334,13 +367,13 @@ Graph *makeGraph(int *edgeCounter, int *numFloors) {
 
     setConnectingVertexInEdges(g);
 
-    for (i = 0; i < NUM_VERTEX; i++) {
+    /*for (i = 0; i < NUM_VERTEX; i++) {
         v = getVertex(g, i);
         for (j = 0; j < v->degree; j++) {
             e = v->edges[j];
             makeIdsNotSuck(g, &e);
         }
-    }
+    }*/
 
 
     return g;
@@ -407,8 +440,53 @@ void setConnectingVertexInEdges(Graph *g) {
                 e->vertex1 = v;
                 e->vertex2 = getVertex(g, random);
             } while (e->vertex2->vertexId == v->vertexId);
+
+            edgeWithSameVerticesAlreadyCreated(&(v->edges[j]), g, e->vertex1, e->vertex2);
+
         }
     }
+}
+
+int edgeWithSameVerticesAlreadyCreated(Edge **eSrc, Graph *g, Vertex *v1,
+                                       Vertex *v2) {
+    int j;
+    int i;
+    Vertex *v;
+    Edge *e;
+    int targetVertex1;
+    int targetVertex2;
+
+
+
+    int v1Id = v1->vertexId;
+    int v2Id = v2->vertexId;
+
+    for (i = 0; i < NUM_VERTEX; i++) {
+
+        v = getVertex(g, i);
+
+        for (j = 0; j < v->degree; j++) {
+            /* add vertex2 vertex to edges */
+
+            e = v->edges[j];
+
+            if (e->vertex1 != NULL && e->vertex2 != NULL ) {
+                targetVertex1 = e->vertex1->vertexId;
+                targetVertex2 = e->vertex2->vertexId;
+            } else {
+                break;
+            }
+
+
+
+            if ((targetVertex1 == v1Id && targetVertex2 == v2Id) || (targetVertex1 == v2Id
+                    && targetVertex2 == v1Id)) {
+                *eSrc =  v->edges[j];
+                return 1;
+            }
+        }
+    }
+    return 0;
 }
 
 Edge *edgeIsCreated(Graph *g, int edgeCounter) {
