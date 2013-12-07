@@ -23,20 +23,32 @@ We can describe these definitions formally.\cite{MIT2012}
 
 Every decision and every change direct is a vertex in our graph, is modelled by vertices connected with edges. Exits, elevators, stair and bridges are vertices for getting from a floor to another, including another building. Vertices that does not classify as one of the previously mentioned are doors, intersection and a change of walking direction. Connecting the vertices are edges with a weight, which could be weighted with the distance in meters from one vertex to another.
 
-%indsæt billed
-\chnote{Vertices.svg}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Vertices}
+    \caption{Representation of detail in modelling a floor}
+    \label{fig:Vertices}
+  \end{figure}
 
 \subsubsection{Multiple floors}
 
 A complex such as a hospital usually consist of multiple floors, connected by stairs and elevators as observed at the visit to Sygehus Nord. Representing floors in a graph could be shown by having edges in between different floors. Elevators or stairs represented by vertices that connects the edges between the floors. Having a graph that models the whole complex can have complications such as overlapping vertices coordinates. Estimating a heuristic value between destination and vertices on the other side of, such as floors. Means that the heuristic models that does not account for obstacles, would cause the A* algorithm to expand vertices, leading to vertices below the destination on a separate floor than the desired.
 
-%indsæt billed her
-\chnote{buildingAstar.svg}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{buildingAstar}
+    \caption{How many vertices the A* algorithm would expand, if using the euclidean distance as heuristic}
+    \label{fig:buildingAstar}
+  \end{figure}
 
-If the complex is divided into separate floor graphs, the algorithm would not have to account for the z coordinate in its heuristic value. A algorithm could evaluate if the source and destination is on the same floor, if not the algorithm could divide the problem into Astar searches. First finding a path leading to an elevator or stair which lead the destinations floor. The optimal path from one floor to another can be pre-calculated and stored. 
+If the complex is divided into separate floor graphs, the algorithm would not have to account for the z coordinate in its heuristic value. A algorithm could evaluate if the source and destination is on the same floor, if not the algorithm could divide the problem into A* searches. First finding a path leading to an elevator or stair which lead the destinations floor. The optimal path from one floor to another can be pre-calculated and stored. 
 
-%Indsæt billede her
-\chnote{PekhoeS.svg}
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{PekhoeS}
+    \caption{Visual representation of floors}
+    \label{fig:PekhoeS}
+  \end{figure}
 
 \subsubsection{Multiple buildings}
 
