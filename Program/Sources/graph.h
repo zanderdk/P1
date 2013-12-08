@@ -115,4 +115,5 @@ struct Path {
     int sourceId, targetId;
     unsigned int weight;
     unsigned int *pathVerticeIds;
+    int numVertices;
 };

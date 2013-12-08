@@ -26,6 +26,8 @@ struct WorkVertex {
     WorkVertex *parentVertex;
 };
 
+Path *aStar(Vertex *start, Vertex *dest);
+
 void setSetMode(int value, WorkVertex *wv);
 
 /**
@@ -137,6 +139,8 @@ Path *reconstruct_path(unsigned int verticesInPath, WorkVertex *end,
 WorkVertex *createWorkVertex(Vertex *src);
 
 WorkVertex *getVertexLowestFOpenSet(WorkVertex **workVertices, int numVertices);
+
+void addToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertices);
 
 int getNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
                  WorkVertex **outNeighborWorkVertex);
