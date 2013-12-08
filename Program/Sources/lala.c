@@ -54,12 +54,12 @@ void PrintList(unsigned int *list, unsigned int V) {
     int i;
     for (i = 0; i < V; ++i ) {
         if (list[i] != 999) {
-            printf("<- %u ", list[i]);
+            printf("-> %u ", list[i]);
         }
     }
 }
 
-int Dijkstra(Graph *graph, int sourceId, int targetId, int *pathList) {
+int Dijkstra(Graph *graph, int sourceId, int targetId, Path *path) {
     unsigned int V = graph->numOfVertices;
 
     unsigned int dist[V];
@@ -100,11 +100,21 @@ int Dijkstra(Graph *graph, int sourceId, int targetId, int *pathList) {
 
     u = targetId;
     int j = 0;
+    int reversed[V];
     do {
         u = previous[u];    // Traverse from target to source
-        pathList[j] = u;     // Push the vertex into the stack
+        reversed[j] = u;     // Push the vertex into the stack
         j++;
-    } while (previous[u] != sourceId);   // Construct the shortest path with a stack S
+    } while (previous[u] != sourceId);
 
-    return dist[targetId];
+    i = j - 1;
+    int n; // Reverse the list
+    for (n = 0; n < V; ++n) {
+        path->pathVertexIds[n] = reversed[i];
+        i--;
+    }
+
+    path->weight = dist[targetId];
+
+    return j;
 }

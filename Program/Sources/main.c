@@ -2,18 +2,26 @@
 #include <stdlib.h>
 #include "graph.h"
 
+
 int main(int argc, char const *argv[]) {
 
     int choice;
-    int srcFloor, srcId;
-    int destFloor, destId;
+    int srcId;
+    int targetId;
 
     //Continues while loops, keeps prompting user
     while (1) {
         system("clear");
-        printf("1: Find optimal path\n"
-               "2: Pre calculate paths\n"
-               "3: Generate graph\n"
+
+        printf("\nInput [srcId]: ");
+        scanf("%d", &srcId);
+        printf("\nInput [targetId]: ");
+        scanf("%d", &targetId);
+        printf("Success!\n");
+
+        printf("1: Find optimal path preferring stairs\n"
+               "2: Find optimal path preferring elevator\n"
+               "3: Find optimal path\n"
                "\n"
                "Choice: "
               );
@@ -25,17 +33,13 @@ int main(int argc, char const *argv[]) {
 
         switch (choice) {
         case 1:
-            printf("\nInput [srcFloor,srcId]: ");
-            scanf("%d,%d", &srcFloor, &srcId);
-            printf("\nInput [destFloor,destId]: ");
-            scanf("%d,%d", &destFloor, &destId);
-            printf("Success!\n");
+            elevator();
             break;
         case 2:
-            PreCalc();
+            stairs();
             break;
         case 3:
-            GenGraph();
+            optimal();
             break;
         default:
             printf("Unexpected input\n");

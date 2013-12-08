@@ -100,11 +100,18 @@ int Dijkstra(Graph *graph, int sourceId, int targetId, int *pathList) {
 
     u = targetId;
     int j = 0;
+    int reversed[V];
     do {
         u = previous[u];    // Traverse from target to source
-        pathList[j] = u;     // Push the vertex into the stack
+        reversed[j] = u;     // Push the vertex into the stack
         j++;
-    } while (previous[u] != sourceId);   // Construct the shortest path with a stack S
+    } while (previous[u] != sourceId);
+
+    i = V;
+    for (j = 0; j < V; ++j) {
+        pathList[j] = reversed[i];
+        i--;
+    }
 
     return dist[targetId];
 }

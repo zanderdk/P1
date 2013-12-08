@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include "lala.h"
 
+#define nOfVs;
+
 int main(int argc, char const *argv[]) {
-    Graph *graph = createGraph(5); // 5 Vertices
+    Graph *graph = createGraph(nOfVs); // 5 Vertices
     Coordinate coords[8]; // 5 Vertices
     coords[0].x = 3;
     coords[0].y = 6;
@@ -27,6 +29,11 @@ int main(int argc, char const *argv[]) {
     addEdge(graph, 2, 3, 3);
     addEdge(graph, 3, 4, 2);
     addEdge(graph, 4, 0, 4);
+    addEdge(Graph, 4, 5, 1);
+    addEdge(Graph, 5, 6, 1);
+    addEdge(Graph, 6, 7, 1);
+    addEdge(Graph, 7, 8, 1);
+    addEdge(Graph, 8, 9, 1);
     giveCoords(graph, coords);
 
     /*
@@ -43,14 +50,14 @@ int main(int argc, char const *argv[]) {
 
     printAdjList(graph);
 
-    int pathList[5];
+    int pathList[nOfVs];
     int i;
-    for (i = 0; i < 5 ; ++i ) {
+    for (i = 0; i < nOfVs ; ++i ) {
         pathList[i] = 999;
     }
 
-    int source = 4;
-    int target = 1rg;
+    int source = 2;
+    int target = 9;
     int cost;
 
     cost = Dijkstra(graph, source, target, pathList);
@@ -59,7 +66,7 @@ int main(int argc, char const *argv[]) {
 
     PrintList(pathList, 5);
 
-    printf("<- %d ", target);
+    printf("-> %d ", target);
 
     printf("Cost: %d\n\n", cost);
 

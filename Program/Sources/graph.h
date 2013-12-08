@@ -4,6 +4,12 @@ typedef struct Vertex Vertex;
 typedef struct EdgePointer EdgePointer;
 typedef struct Edge Edge;
 typedef struct Path Path;
+typedef struct Graph Graph;
+
+struct Graph {
+    unsigned int numOfVertices;
+    Floor *floors;
+};
 
 /**
  * @brief Structure containing a floor

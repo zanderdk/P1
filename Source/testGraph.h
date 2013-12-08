@@ -21,12 +21,6 @@ typedef struct Graph {
     AdjList *array;
 } Graph;
 
-typedef struct Path {
-    int sourceId, targetId;
-    unsigned int weight;
-    unsigned int *pathVertexIds;
-} Path;
-
 Vertex *addVertex(int id); //
 void addEdge(Graph *graph, int source, int destination, int weight); // Adds an edge to an undirected graph
 Graph *createGraph(int numOfVertices);

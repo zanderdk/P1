@@ -2,8 +2,10 @@
 #include <stdlib.h>
 #include "lala.h"
 
+#define nOfVs 10
+
 int main(int argc, char const *argv[]) {
-    Graph *graph = createGraph(5); // 5 Vertices
+    Graph *graph = createGraph(nOfVs); // 5 Vertices
     Coordinate coords[8]; // 5 Vertices
     coords[0].x = 3;
     coords[0].y = 6;
@@ -27,6 +29,11 @@ int main(int argc, char const *argv[]) {
     addEdge(graph, 2, 3, 3);
     addEdge(graph, 3, 4, 2);
     addEdge(graph, 4, 0, 4);
+    addEdge(graph, 4, 5, 1);
+    addEdge(graph, 5, 6, 1);
+    addEdge(graph, 6, 7, 1);
+    addEdge(graph, 7, 8, 1);
+    addEdge(graph, 8, 9, 1);
     giveCoords(graph, coords);
 
     /*
@@ -43,25 +50,27 @@ int main(int argc, char const *argv[]) {
 
     printAdjList(graph);
 
-    int pathList[5];
+    Path *path = (Path *) malloc(sizeof(Path));
+
+    path->pathVertexIds = (int *) malloc(nOfVs * sizeof(int));
+
     int i;
-    for (i = 0; i < 5 ; ++i ) {
-        pathList[i] = 999;
+    for (i = 0; i < nOfVs ; ++i ) {
+        path->pathVertexIds[i] = 999;
     }
 
-    int source = 4;
-    int target = 1;
-    int cost;
+    int source = 2;
+    int target = 7;
 
-    cost = Dijkstra(graph, source, target, pathList);
+    int numOfPath = Dijkstra(graph, source, target, path);
 
     printf("From %d ", source);
 
-    PrintList(pathList, 5);
+    PrintList(path->pathVertexIds, numOfPath);
 
-    printf("<- %d ", target);
+    printf("-> %d ", target);
 
-    printf("Cost: %d\n\n", cost);
+    printf("Cost: %d\n\n", path->weight);
 
     return 0;
 }
