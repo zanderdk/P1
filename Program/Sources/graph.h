@@ -1,3 +1,4 @@
+#pragma once /* include-guard */
 typedef struct Floor Floor;
 typedef struct Vertex Vertex;
 typedef struct EdgePointer EdgePointer;
@@ -105,6 +106,7 @@ struct Edge {
 };
 
 struct Path {
+    int sourceId, targetId;
     unsigned int weight;
     unsigned int *pathVerticeIds;
 };
