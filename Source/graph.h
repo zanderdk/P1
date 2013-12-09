@@ -1,15 +1,8 @@
-#pragma once /* include-guard */
 typedef struct Floor Floor;
 typedef struct Vertex Vertex;
 typedef struct EdgePointer EdgePointer;
 typedef struct Edge Edge;
 typedef struct Path Path;
-typedef struct Graph Graph;
-
-struct Graph {
-    unsigned int numOfVertices;
-    Floor *floors;
-};
 
 /**
  * @brief Structure containing a floor
@@ -42,12 +35,12 @@ struct Vertex {
     /**
      * Local x coordinate.
      */
-    unsigned int x;
+    int x;
 
     /**
      * Local y coordinate.
      */
-    unsigned int y;
+    int y;
 
     /**
      * Describes the vertex' type ie. 1 for stairs, 2 for elevator etc.
@@ -111,12 +104,11 @@ struct Edge {
     Vertex *vertex2;
 };
 
+ /**
+ * @brief A struct contaning precalculated 
+ */
 struct Path {
     int sourceId, targetId;
     unsigned int weight;
     unsigned int *pathVerticeIds;
-    int numVertices;
 };
-
-Vertex *GetVertexFromId(char *idStr, Floor *point);
-Vertex *NextVertex(Vertex *vp, int id);

@@ -30,6 +30,7 @@
 *.synctex.gz
 *.toc
 *.vrb
+*.o
 *.xdy
 *.tdo
 /Report/*.pdf

@@ -1,8 +1,12 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "XML.h"
 #include "astar.h"
 
+
 int main(void) {
-    FILE *xml = fopen("realtest.xml", "r");
+
+    FILE *xml = fopen("handcrafted.xml", "r");
 
     Floor *floors = readXml(xml);
     fclose(xml);
@@ -11,21 +15,20 @@ int main(void) {
 
 
     Vertex *v1 = floors[0].vp;
-    Vertex *v2 = v1->nextVp;
+    Vertex *v2 = v1->nextVp->nextVp->nextVp->nextVp->nextVp;
 
     printf("%d\n", v1->vertexId);
     printf("%d\n", v2->vertexId);
 
-    Path *path = aStar(v1, v2);
+    Path *path = (Path *) malloc(sizeof(Path));
+
+    AStar(v1, v2, path);
 
     printf("%d\n", path->weight);
 
     for (int i = 0; i < path->numVertices; i++) {
-        if (path->pathVerticeIds[i] != 0) {
-            printf("%d <-", path->pathVerticeIds[i]);
-        }
 
-
+        printf("%d\n", path->pathVerticeIds[i]);
     }
 
 

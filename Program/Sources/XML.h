@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "graph.h"
+#include <stdlib.h>
 
 Floor *readXml(FILE *fp);
 int readAtribute(char *name, FILE *fp);
