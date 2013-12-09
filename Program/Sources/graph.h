@@ -4,6 +4,7 @@ typedef struct Vertex Vertex;
 typedef struct EdgePointer EdgePointer;
 typedef struct Edge Edge;
 typedef struct Path Path;
+typedef struct Paths Paths;
 typedef struct Graph Graph;
 
 struct Graph {
@@ -112,10 +113,16 @@ struct Edge {
 };
 
 struct Path {
-    int sourceId, targetId;
+    int targetId;
     unsigned int weight;
     unsigned int *pathVerticeIds;
     int numVertices;
+};
+
+struct Paths {
+    Path *paths;
+    unsigned int numPaths;
+    int sourceId;
 };
 
 Vertex *GetVertexFromId(char *idStr, Floor *point);

@@ -8,7 +8,10 @@ struct WorkVertex {
 };
 
 struct WVLinkedList {
-    WorkVertex *element
+    WorkVertex *element;
+    WVLinkedList *next;
 };
 
+void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source);
+void GetWorkingGraph(Graph *graph, WVLinkedList *head);
 void GetAllExits(Graph *graph, Vertex *exits);
