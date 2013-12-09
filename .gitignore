@@ -4,6 +4,7 @@
 *.aux
 *.bbl
 *.blg
+*.d
 *.dvi
 *.fdb_latexmk
 *.glg
