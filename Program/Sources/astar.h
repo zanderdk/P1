@@ -26,8 +26,23 @@ struct WorkVertex {
     WorkVertex *parentVertex;
 };
 
+/**
+ * @brief Returns the quickest Path from start to destination.
+ * @details This should only be called when start and dest is on same floor.
+ *
+ * @param start This is a pointer to a vertex that is the start
+ * @param dest This is a pointer to a vertex that is the destination
+ * @return Returns the path calculated
+ */
 Path *aStar(Vertex *start, Vertex *dest);
 
+/**
+ * @brief sets in which set a given WorkVertex is in.
+ * @details [long description]
+ *
+ * @param value mode to set. Can be 0 (no set), 1 (closed set), 2 (open set)
+ * @param wv the WorkVertex to set the which set
+ */
 void setSetMode(int value, WorkVertex *wv);
 
 /**
@@ -51,11 +66,12 @@ unsigned int GetGValue(WorkVertex *wv);
  * @brief Calculates the euclidean "ordinary" distance between two vertices. This only considers x and y coordinates.
  * @details [long description]
  *
- * @param stc [description]
+ * @param src [description]
  * @param goal [description]
+
  * @return The H value from WorkVertex to Goal
  */
-double CalcHValue(Vertex *src, Vertex *goal);
+double distBetween(Vertex *src, Vertex *goal);
 
 /**
  * @brief Sets the h value of a vertex

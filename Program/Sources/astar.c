@@ -8,48 +8,6 @@
 #define CLOSED_SET 1
 #define OPEN_SET 2
 
-void SetGValue(unsigned int value, WorkVertex *wv) {
-    wv->g = value;
-}
-
-unsigned int GetGValue(WorkVertex *wv) {
-    return wv->g;
-}
-
-double distBetween(Vertex *src, Vertex *goal) {
-    int x1 = src->x;
-    int y1 = src->y;
-    int x2 = goal->x;
-    int y2 = goal->y;
-    return sqrt(pow(  (x1 - x2), 2) + pow( (y1 - y2), 2));
-}
-
-void SetHValue(double value, WorkVertex *wv) {
-    wv->h = value;
-}
-
-double GetHValue(WorkVertex *wv) {
-    return wv->h;
-}
-
-double CalcFValue(WorkVertex *src, Vertex *goal) {
-    unsigned int g = src->g;
-    double h = distBetween(src->originVertex, goal);
-    return g + h;
-}
-
-void SetFValue(double f, WorkVertex *wv) {
-    wv->f = f;
-}
-
-double GetFValue(WorkVertex *wv) {
-    return wv->h;
-}
-
-void SetParentVertex(WorkVertex *child, WorkVertex *parent) {
-    child->parentVertex = parent;
-}
-
 Path *aStar(Vertex *start, Vertex *dest) {
     int i;
     WorkVertex *wvStart;
@@ -132,6 +90,7 @@ Path *aStar(Vertex *start, Vertex *dest) {
 Path *reconstruct_path(unsigned int verticesInPath, WorkVertex *end,
                        WorkVertex **workVertices, int numVertices,
                        WorkVertex **outNeighborWorkVertex) {
+
     WorkVertex *parent;
     int i = 0;
     Path *path = (Path *) malloc(sizeof(Path));
@@ -164,6 +123,106 @@ Path *reconstruct_path(unsigned int verticesInPath, WorkVertex *end,
 
     return path;
 }
+
+int getNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
+                 WorkVertex **outNeighborWorkVertex) {
+    int numNeighbors = 0;
+    Vertex *origin = wv->originVertex;
+    int srcId = origin->vertexId;
+    int srcFloor = origin->floorId;
+
+
+    EdgePointer *ep = origin->ep;
+
+    do {
+        Edge *e = ep->edge;
+        /* if vertexId is not same as srcId, create a workVertex based on that vertex
+        if and only if srcVertex and vertex are on the same floor.
+        This is because Astar should only work on 1 floor. */
+        if (e->vertex1->vertexId != srcId && e->vertex1->floorId == srcFloor) {
+            outNeighborWorkVertex[numNeighbors] = createWorkVertex(e->vertex1);
+        }
+        /* if vertexId is not same as srcId, create a workVertex based on that vertex
+                if and only if srcVertex and vertex are on the same floor.
+                This is because Astar should only work on 1 floor. */
+        else if (e->vertex2->vertexId != srcId && e->vertex2->floorId == srcFloor) {
+            outNeighborWorkVertex[numNeighbors] = createWorkVertex(e->vertex2);
+        } else {
+            printf("Could not create workvertex\n");
+        }
+
+        if (!isInWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices,
+                              numVertices)) {
+            addToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
+        }
+
+
+        numNeighbors++;
+
+        /* get next ep */
+        ep = ep->nextEp;
+
+    } while (ep != NULL);
+
+
+
+    return numNeighbors;
+}
+
+WorkVertex *createWorkVertex(Vertex *src) {
+    WorkVertex *wv;
+
+    wv = (WorkVertex *) malloc(sizeof(WorkVertex));
+    wv->originVertex = src;
+
+    return wv;
+}
+
+void SetGValue(unsigned int value, WorkVertex *wv) {
+    wv->g = value;
+}
+
+unsigned int GetGValue(WorkVertex *wv) {
+    return wv->g;
+}
+
+double distBetween(Vertex *src, Vertex *goal) {
+    int x1 = src->x;
+    int y1 = src->y;
+    int x2 = goal->x;
+    int y2 = goal->y;
+    return sqrt(pow(  (x1 - x2), 2) + pow( (y1 - y2), 2));
+}
+
+void SetHValue(double value, WorkVertex *wv) {
+    wv->h = value;
+}
+
+double GetHValue(WorkVertex *wv) {
+    return wv->h;
+}
+
+double CalcFValue(WorkVertex *src, Vertex *goal) {
+    unsigned int g = src->g;
+    double h = distBetween(src->originVertex, goal);
+    return g + h;
+}
+
+void SetFValue(double f, WorkVertex *wv) {
+    wv->f = f;
+}
+
+double GetFValue(WorkVertex *wv) {
+    return wv->h;
+}
+
+void SetParentVertex(WorkVertex *child, WorkVertex *parent) {
+    child->parentVertex = parent;
+}
+
+
+
+
 
 
 unsigned int getWeight(WorkVertex *src, WorkVertex *targetNeighbor,
@@ -225,50 +284,7 @@ void addToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertice
     }
 }
 
-int getNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
-                 WorkVertex **outNeighborWorkVertex) {
-    int numNeighbors = 0;
-    Vertex *origin = wv->originVertex;
-    int srcId = origin->vertexId;
-    int srcFloor = origin->floorId;
 
-
-    EdgePointer *ep = origin->ep;
-
-    do {
-        Edge *e = ep->edge;
-        /* if vertexId is not same as srcId, create a workVertex based on that vertex
-        if and only if srcVertex and vertex are on the same floor.
-        This is because Astar should only work on 1 floor. */
-        if (e->vertex1->vertexId != srcId && e->vertex1->floorId == srcFloor) {
-            outNeighborWorkVertex[numNeighbors] = createWorkVertex(e->vertex1);
-        }
-        /* if vertexId is not same as srcId, create a workVertex based on that vertex
-                if and only if srcVertex and vertex are on the same floor.
-                This is because Astar should only work on 1 floor. */
-        else if (e->vertex2->vertexId != srcId && e->vertex2->floorId == srcFloor) {
-            outNeighborWorkVertex[numNeighbors] = createWorkVertex(e->vertex2);
-        } else {
-            printf("Could not create workvertex\n");
-        }
-
-        if (!isInWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices,
-                              numVertices)) {
-            addToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
-        }
-
-
-        numNeighbors++;
-
-        /* get next ep */
-        ep = ep->nextEp;
-
-    } while (ep != NULL);
-
-
-
-    return numNeighbors;
-}
 
 WorkVertex *getVertexLowestFOpenSet(WorkVertex **workVertices, int numVertices) {
     int i;
@@ -305,13 +321,6 @@ int getVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices) {
     return numSet;
 }
 
-WorkVertex *createWorkVertex(Vertex *src) {
-    WorkVertex *wv;
 
-    wv = (WorkVertex *) malloc(sizeof(WorkVertex));
-    wv->originVertex = src;
-
-    return wv;
-}
 
 
