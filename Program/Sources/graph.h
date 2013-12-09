@@ -22,6 +22,8 @@ struct Floor {
      * Two floors cannot have the same ID.
      */
     unsigned int floorId;
+
+    unsigned int amountOfVertecies;
     /**
      * A pointer to the head of the linked list contaning all vertices on the floor.
      * Pointer is NULL on end of floor.

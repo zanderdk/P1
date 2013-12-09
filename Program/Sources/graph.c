@@ -29,3 +29,15 @@ Vertex *NextVertex(Vertex *vp, int id)
 
 	return NULL;
 }
+
+int CountVertices(int floorId, Floor *graph)
+{
+	int count = 0;
+	Vertex *vp = graph[floorId-1].vp;
+	do
+	{
+		count++;
+		vp = vp->nextVp;
+	}while(vp != NULL);
+	return count;
+}
