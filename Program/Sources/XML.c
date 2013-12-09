@@ -48,7 +48,7 @@ Floor *readXml(FILE *fp)
 		error();
 
 	crawlEdges(&edges, vertices, edgesCount, verticesCount);
-	crawVertices(&vertices, verticesCount);
+	crawVertices(&vertices, verticesCount, &floors);
 	crawlFloors(&floors, vertices, floorsCount, verticesCount);
 
 	return floors;
@@ -71,17 +71,25 @@ void crawlFloors(Floor **floors, Vertex *vertices, int numberOfFloors, int numbe
 }
 
 
-void crawVertices(Vertex **vertices, int last)
+void crawVertices(Vertex **vertices, int last, Floor **floors)
 {
 	int i;
-
+    int flId;
 	for(i = 0; i < last-1; i++){
-		if((*vertices)[i].floorId == (*vertices)[i+1].floorId){
+        flId = (*vertices)[i].floorId-1;
+        (*floors)[flId].amountOfVertecies++;
+
+		if(flId == (*vertices)[i+1].floorId-1){
 			(*vertices)[i].nextVp = &(*vertices)[i+1];
 		}
-		else
-			(*vertices)[i].nextVp = NULL;
+		else{
+			(*vertices)[i].nextVp = NULL; 
+        }
 	}
+
+    flId = (*vertices)[i].floorId-1;
+    (*floors)[flId].amountOfVertecies++;
+
 	(*vertices)[last-1].nextVp = NULL;
 	getFloorAndtype((*vertices)[last-1].vertexId,&(*vertices)[last-1].floorId , &(*vertices)[last-1].type);	
 }
