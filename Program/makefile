@@ -10,10 +10,10 @@ OUTPUT = Program
 all: $(OUTPUT)
 
 $(OUTPUT): $(SRCS:.c=.o)
-	$(CC) $^ -o $@ $(CFLAGS) 
+	$(CC) $(CFLAGS) $^ -o $@ 
 
 %.o: %.c | $(DEPDIR)
-	$(CC) $(CPPFLAGS) $(CFLAGS) -MMD -o $@ $<
+	$(COMPILE.c) -MMD $< -o $@
 	@cp $*.d $(DF).P; \
 	sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
 		-e '/^$$/ d' -e 's/$$/ :/' < $*.d >> $(DF).P; \
@@ -35,3 +35,4 @@ cleanobjs:
 .PHONY: cleandeps
 cleandeps:
 	rm -r deps
+	rm *.d
