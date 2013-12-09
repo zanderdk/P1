@@ -117,3 +117,6 @@ struct Path {
     unsigned int *pathVerticeIds;
     int numVertices;
 };
+
+Vertex *GetVertexFromId(char *idStr, Floor *point);
+Vertex *NextVertex(Vertex *vp, int id);
