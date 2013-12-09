@@ -34,4 +34,4 @@ cleanobjs:
 
 .PHONY: cleandeps
 cleandeps:
-	rm deps
+	rm -r deps
