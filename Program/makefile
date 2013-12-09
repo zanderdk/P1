@@ -4,11 +4,12 @@ DEPDIR = deps
 DF = $(DEPDIR)/$(*F)
 SRCS = main.c
 VPATH = Sources
+OUTPUT = Program
 
 .PHONY: all
 all: Program
 
-Program: $(SRCS:.c=.o)
+$(OUTPUT): $(SRCS:.c=.o)
 	$(CC) $^ -o $@ $(CFLAGS) 
 
 %.o: %.c | $(DEPDIR)
