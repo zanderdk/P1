@@ -1,7 +1,4 @@
 %!TEX root = ../../Master.tex
-
-\sinote{Explain like i'm 5. Skal være meget nem at forstå.}
-
 \section{Pathfinding Algorithms}
 
   In \cref{sec:specification} we specified that our solution needs to find the shortest weighted path to the destination.
@@ -45,7 +42,7 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
   \SetKwProg{myalg}{Function}{}{}
   \myalg{\algo{graph g}}{}
    $k \gets $ A list of vertices\;
-   $u \gets $ start vertex\;
+   $u \gets $ initial start vertex\;
    $d \gets $ destination vertex\;
 
    \tcc{Assign every permanent and temporary entry to a high integer. In this case infinity.}
@@ -66,7 +63,7 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
         $t[v] \gets buf$;
       }
     } 
-    $u \gets v \; for \; smallest \; t[v] \; where \; p[v] = 0$\;
+    $u \gets v \; for \; smallest \; t[v] \; where \; p[v] = 0 \; except$ start vertex\;
     $p[u] \gets t[u]$\;
   }
   \While{p[u] != 0}
