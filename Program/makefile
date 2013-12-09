@@ -7,13 +7,13 @@ VPATH = Sources
 OUTPUT = Program
 
 .PHONY: all
-all: Program
+all: $(OUTPUT)
 
 $(OUTPUT): $(SRCS:.c=.o)
 	$(CC) $^ -o $@ $(CFLAGS) 
 
 %.o: %.c | $(DEPDIR)
-	$(COMPILE.c) -MMD -o $@ $<
+	$(CC) $(CPPFLAGS) $(CFLAGS) -MMD -o $@ $<
 	@cp $*.d $(DF).P; \
 	sed -e 's/#.*//' -e 's/^[^:]*: *//' -e 's/ *\\$$//' \
 		-e '/^$$/ d' -e 's/$$/ :/' < $*.d >> $(DF).P; \
