@@ -1,4 +1,3 @@
-#pragma once /* include-guard */
 typedef struct Floor Floor;
 typedef struct Vertex Vertex;
 typedef struct EdgePointer EdgePointer;
@@ -128,5 +127,6 @@ struct SourcePaths {
     int sourceId;
 };
 
-Vertex *GetVertexFromId(char *idStr, Floor *point);
+Vertex *GetVertexFromId(char *idStr, Graph *graph);
+int CountVertices(int floorId, Graph *graph);
 Vertex *NextVertex(Vertex *vp, int id);
