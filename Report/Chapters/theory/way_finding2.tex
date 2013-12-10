@@ -35,64 +35,6 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
 
   A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959}
 
-\begin{algorithm} \label{algo:Dij}
-  \caption{Dijkstra's Algorithm}
-  \KwResult{Finds the shortest path from start vertex to Vertices}
-  \KwData{graph = graph containing vertices, source = the source vertex to start evaluating from, dist = list distances from source, visited = list of visited vertices, previous = list of vertices with shortest parent, Q = a list vertices to be evaluated, v = evaluating vertex, u = current vertex}
-
-  \SetKwFunction{Dijkstra}{Dijkstra}
-  \SetKwProg{KwFn}{Function}{}{}
-
-  \KwFn{\Dijkstra{graph, source}}{
-
-    \For{\textbf{each} vertex v in graph}{
-      dist[$v$] $\gets \infty$\tcc*{Assign distance from source to as infinite to mark it as not yet computed}
-      visited[$v$] $\gets$ false\tcc*{Boolean to false for not visited}
-      previous[$v$] $\gets$ undefined\tcc*{Assign previous}
-    }
-
-    dist[$source$] $\gets 0$\tcc*{Source dist has distance 0}
-    insert $source$ in $Q$\tcc*{Source dist has distance 0}
-
-    \While{Q \textbf{is not} empty}{
-      $u \gets$ vertex $v$ in $Q$ with smallest dist[]\tcc*{s}
-      remove $u$ from $Q$\tcc*{f}
-      visited[$u$] $\gets$ true\tcc*{s}
-
-      \For{\textbf{each} neighbour v of u}{
-        $alt \gets$ dist[$u$] + distBetween($v$, $u$)\tcc*{g}
-        \If{alt < dist[v]}{
-          dist[$v$] $\gets alt$\tcc*{g}
-          previous[$v$] $\gets u$\tcc*{g}
-          \If{!visited[v]}{
-            insert $v$ into $Q$\tcc*{j}
-          }
-        }
-      }
-    }
-    return dist\tcc*{}
-  }
-\end{algorithm}
-
-\begin{algorithm} \label{algo:FindPath}
-  \caption{Find path to target}
-  \KwResult{Finds the shortest path from start vertex to destination}
-  \KwData{stack = Empty sequence, target = Target vertices, source = Source vertex, u = evaluating vertices, previous = A list of parents with lowest cost from source}
-
-  \SetKwFunction{FindPath}{FindPath}
-  \SetKwProg{KwFn}{Function}{}{}
-
-  \KwFn{\FindPath{previous, source, target}}{
-    $u \gets$
-    $stack \gets$
-    \For{\textbf{each} vertex v in graph}{
-      dist[$v$] $\gets \infty$ \tcc*{Assign distance from source to as infinite to mark it as not yet computed}
-      visited[$v$] $\gets$ false \tcc*{Boolean to false for not visited}
-      previous[$v$] $\gets$ undefined \tcc*{Assign previous}
-    }
-  }
-\end{algorithm}
-
   \begin{figure}[ht!]
     \centering
     \frame{\includegraphics[width=0.5\textwidth]{Dijkstra}}
@@ -100,44 +42,117 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
     \label{fig:dijkstra}
   \end{figure}
 
-  We consider the problem: find shortest path from source to target.
+\begin{algorithm} \label{algo:Dij}
+  \caption{Dijkstra's Algorithm}
+  \KwResult{Finds the shortest path from start vertex to Vertices}
+  \KwData{\\
+  graph \tcc*{graph containing vertices}
+  source \tcc*{the source vertex to start evaluating from}
+  dist \tcc*{list of distances from source}
+  visited \tcc*{list of visited vertices}
+  previous \tcc*{list of vertices with shortest parent}
+  Q \tcc*{A list vertices to be evaluated}
+  v \tcc*{evaluating vertex}
+  u \tcc*{current vertex}
+  }
 
-  Where $P$ is the source vertex, $Q$ is the target and $R$ is the evaluating vertex.
+  \SetKwFunction{Dijkstra}{Dijkstra}
+  \SetKwProg{KwFn}{Function}{}{}
 
-  The vertices are subdivided into three sets:
+  \KwFn{\Dijkstra{graph, source}}{
 
-  \begin{description}
-    \item[Set $A$]{Optimized vertices (least costly path from $P$ is known)}
-    \item[Set $B$]{Temporary vertices (evaluated cost of path from $P$ but not part of set $A$)}
-    \item[Set $C$]{Remaining vertices}
-  \end{description}
+    \For{\textbf{each} vertex v in graph}{
+      dist[$v$] $\gets \infty$\tcc*{Assign distance from source to as infinite}
+      visited[$v$] $\gets$ false\tcc*{Boolean to false for not visited}
+      previous[$v$] $\gets$ undefined\tcc*{Assign previous all as undefined}
+    }
 
-  The edges are subdivided into three other sets:
+    dist[$source$] $\gets 0$\tcc*{Source dist has distance 0}
+    insert $source$ in $Q$\tcc*{Source dist has distance 0}
 
-  \begin{description}
-    \item[Set \RN{1}]{Edges used in the set $A$}
-    \item[Set \RN{2}]{Not part of set I (one and only one edge of this set will lead to each vertex in set $B$)}
-    \item[Set \RN{3}]{Remaining edges (rejected or not yet considered)}
-  \end{description}
+    \While{Q \textbf{is not} empty}{
+      $u \gets$ vertex $v$ in $Q$ with lowest dist[]\tcc*{The new $u$ is the vertex with lowest dist value}
+      remove $u$ from $Q$\tcc*{Remove vertex $u$ from $Q$}
+      visited[$u$] $\gets$ true\tcc*{Mark the new vertex $u$ as visited}
 
-  At first all vertices is assigned to set $C$ and all edges to set \RN{3}, P is then assigned to set $A$.
-  Then we loop through following steps until $Q$ is part of set $A$. R is the evaluating vertex, and r is the connected edge.
+      \For{\textbf{each} neighbour v of u}{
+        $alt \gets$ dist[$u$] + distBetween($v$, $u$)\tcc*{Assign the cost to $v$ from $source$ added the weight between $v$ and $u$}
+        \If{alt < dist[v]\tcc*{If $alt$ is lower than the already assign dist value for vertex $v$}}{
+          dist[$v$] $\gets alt$\tcc*{Store the shortest distance to vertex $v$ from $source$}
+          previous[$v$] $\gets u$\tcc*{Store the short parent $u$ to current vertex $v$}
+          \If{!visited[v]}{
+            insert $v$ into $Q$\tcc*{Add the unvisited $v$ into the $Q$ to be evaluated}
+          }
+        }
+      }
+    }
+    return dist\tcc*{Return the distances in dist}
+  }
+\end{algorithm}
 
-  \begin{description}
-    \item[Step 1.]{Consider all the edges r connecting the vertex just assigned to set $A$. If $R$ is part of set $C$ assign to set $B$ and assign edge r to set \RN{2}. If vertex R is part of set $B$, then investigate if the use of edge r is less costly from $P$ to R than the existing edge in set \RN{2}. If less costly assign edge r and reject existing edge in set \RN{2}, otherwise reject r to set \RN{3}.}
-    \item[Step 2.]{For each vertex in set $B$ where there is only one path in set \RN{1} and set \RN{2}, the vertex with minimum cost from $P$ is assign to set $A$ and with the corresponding edge assign to set \RN{1}.}
-  \end{description}
+\begin{algorithm} \label{algo:FindPath}
+  \caption{Find path to target}
+  \KwResult{Finds the shortest path from start vertex to a target vertex}
+  \KwData{\\
+        stack \tcc*{Empty sequence}
+        target \tcc*{Target vertices}
+        source \tcc*{Source vertex}
+        u \tcc*{evaluating vertices}
+        previous \tcc*{A list of parents with lowest cost from source}
+   }
+
+  \SetKwFunction{FindPath}{FindPath}
+  \SetKwProg{KwFn}{Function}{}{}
+
+  \KwFn{\FindPath{previous, source, target}}{
+    $u \gets target$\;
+    $stack \gets$ empty sequence\;
+    \While{previous[u] \textbf{is not} source}{
+      insert $u$ in stack\tcc*{Insert u vertex in the stack}
+      $u \gets$ previous[$u$]\tcc*{Traverse from target to source}
+    }
+    return
+  }
+\end{algorithm}
+
+  % We consider the problem: find shortest path from source to target.
+
+  % Where $P$ is the source vertex, $Q$ is the target and $R$ is the evaluating vertex.
+
+  % The vertices are subdivided into three sets:
+
+  % \begin{description}
+  %   \item[Set $A$]{Optimized vertices (least costly path from $P$ is known)}
+  %   \item[Set $B$]{Temporary vertices (evaluated cost of path from $P$ but not part of set $A$)}
+  %   \item[Set $C$]{Remaining vertices}
+  % \end{description}
+
+  % The edges are subdivided into three other sets:
+
+  % \begin{description}
+  %   \item[Set \RN{1}]{Edges used in the set $A$}
+  %   \item[Set \RN{2}]{Not part of set I (one and only one edge of this set will lead to each vertex in set $B$)}
+  %   \item[Set \RN{3}]{Remaining edges (rejected or not yet considered)}
+  % \end{description}
+
+  % At first all vertices is assigned to set $C$ and all edges to set \RN{3}, P is then assigned to set $A$.
+  % Then we loop through following steps until $Q$ is part of set $A$. R is the evaluating vertex, and r is the connected edge.
+
+  % \begin{description}
+  %   \item[Step 1.]{Consider all the edges r connecting the vertex just assigned to set $A$. If $R$ is part of set $C$ assign to set $B$ and assign edge r to set \RN{2}. If vertex R is part of set $B$, then investigate if the use of edge r is less costly from $P$ to R than the existing edge in set \RN{2}. If less costly assign edge r and reject existing edge in set \RN{2}, otherwise reject r to set \RN{3}.}
+  %   \item[Step 2.]{For each vertex in set $B$ where there is only one path in set \RN{1} and set \RN{2}, the vertex with minimum cost from $P$ is assign to set $A$ and with the corresponding edge assign to set \RN{1}.}
+  % \end{description}
 
 
 
-  In this example \cref{fig:dijkstra_calc}, the first vertex B is assigned to set $A$, and edge $AB$ is part of set \RN{1}.
+  % In this example \cref{fig:dijkstra_calc}, the first vertex B is assigned to set $A$, and edge $AB$ is part of set \RN{1}.
 
-  \begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{DijkstraX}
-    \caption{Dijkstra calculation}
-    \label{fig:dijkstra_calc}
-  \end{figure}
+  % \begin{figure}[ht!]
+  %   \centering
+  %   \includegraphics[width=0.5\textwidth]{DijkstraX}
+  %   \caption{Dijkstra calculation}
+  %   \label{fig:dijkstra_calc}
+  % \end{figure}
 
   \subsection{A* Algorithm}
 
