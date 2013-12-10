@@ -1,6 +1,6 @@
 #include "graph.h"
 
-Floor *readXml(FILE *fp);
+Graph *readXml(FILE *fp);
 int readAtribute(char *name, FILE *fp);
 void readDefaultAtributes(int *edges, int *vertices, int *floors, FILE *fp);
 void error();
