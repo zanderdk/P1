@@ -9,7 +9,7 @@ typedef struct Graph Graph;
 
 struct Graph {
     unsigned int numOfVertices;
-    unsigned int floors;
+    unsigned int numOfFloors;
     Floor *floors;
 };
 
