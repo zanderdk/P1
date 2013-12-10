@@ -2,6 +2,7 @@
 
 #include "graph.h"
 #include "dijkstra.h"
+#include "privdijkstra.h"
 
 void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) {
     int i, i2;
