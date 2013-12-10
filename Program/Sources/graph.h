@@ -121,7 +121,7 @@ struct Path {
     int numVertices;
 };
 
-struct Paths {
+struct SourcePaths {
     Path *paths;
     unsigned int numPaths;
     int sourceId;
