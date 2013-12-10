@@ -1,55 +1,55 @@
 <graph edges="9" floors="1" vertices="7">
 	<edges>
 		<edge>
-			<edgeId>40001</edgeId>
+			<edgeId>50001</edgeId>
 			<weight>2</weight>
 			<vertexId1>10011</vertexId1>
 			<vertexId2>10013</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40002</edgeId>
+			<edgeId>50002</edgeId>
 			<weight>3</weight>
 			<vertexId1>10011</vertexId1>
 			<vertexId2>10012</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40003</edgeId>
+			<edgeId>50003</edgeId>
 			<weight>1</weight>
 			<vertexId1>10013</vertexId1>
 			<vertexId2>10015</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40004</edgeId>
+			<edgeId>50004</edgeId>
 			<weight>3</weight>
 			<vertexId1>10015</vertexId1>
 			<vertexId2>10014</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40005</edgeId>
+			<edgeId>50005</edgeId>
 			<weight>1</weight>
 			<vertexId1>10014</vertexId1>
 			<vertexId2>10016</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40006</edgeId>
+			<edgeId>50006</edgeId>
 			<weight>2</weight>
 			<vertexId1>10016</vertexId1>
 			<vertexId2>10017</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40007</edgeId>
+			<edgeId>50007</edgeId>
 			<weight>5</weight>
 			<vertexId1>10017</vertexId1>
 			<vertexId2>10012</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40008</edgeId>
+			<edgeId>50008</edgeId>
 			<weight>4</weight>
 			<vertexId1>10012</vertexId1>
 			<vertexId2>10015</vertexId2>
 		</edge>
 		<edge>
-			<edgeId>40009</edgeId>
+			<edgeId>50009</edgeId>
 			<weight>3</weight>
 			<vertexId1>10015</vertexId1>
 			<vertexId2>10017</vertexId2>
@@ -63,8 +63,8 @@
 				<y>1</y>
 			</coord>
 			<edges>
-				<edgeId>40001</edgeId>
-				<edgeId>40002</edgeId>
+				<edgeId>50001</edgeId>
+				<edgeId>50002</edgeId>
 			</edges>
 		</vertex>
 		<vertex>
@@ -74,9 +74,9 @@
 				<y>1</y>
 			</coord>
 			<edges>
-				<edgeId>40002</edgeId>
-				<edgeId>40008</edgeId>
-				<edgeId>40007</edgeId>
+				<edgeId>50002</edgeId>
+				<edgeId>50008</edgeId>
+				<edgeId>50007</edgeId>
 			</edges>
 		</vertex>
 		<vertex>
@@ -86,8 +86,8 @@
 				<y>3</y>
 			</coord>
 			<edges>
-				<edgeId>40001</edgeId>
-				<edgeId>40003</edgeId>
+				<edgeId>50001</edgeId>
+				<edgeId>50003</edgeId>
 			</edges>
 		</vertex>
 		<vertex>
@@ -97,8 +97,8 @@
 				<y>3</y>
 			</coord>
 			<edges>
-				<edgeId>40004</edgeId>
-				<edgeId>40005</edgeId>
+				<edgeId>50004</edgeId>
+				<edgeId>50005</edgeId>
 			</edges>
 		</vertex>
 		<vertex>
@@ -108,10 +108,10 @@
 				<y>2</y>
 			</coord>
 			<edges>
-				<edgeId>40003</edgeId>
-				<edgeId>40004</edgeId>
-				<edgeId>40009</edgeId>
-				<edgeId>40008</edgeId>
+				<edgeId>50003</edgeId>
+				<edgeId>50004</edgeId>
+				<edgeId>50009</edgeId>
+				<edgeId>50008</edgeId>
 			</edges>
 		</vertex>
 		<vertex>
@@ -121,8 +121,8 @@
 				<y>3</y>
 			</coord>
 			<edges>
-				<edgeId>40005</edgeId>
-				<edgeId>40006</edgeId>
+				<edgeId>50005</edgeId>
+				<edgeId>50006</edgeId>
 			</edges>
 		</vertex>
 		<vertex>
@@ -132,9 +132,9 @@
 				<y>1</y>
 			</coord>
 			<edges>
-				<edgeId>40007</edgeId>
-				<edgeId>40009</edgeId>
-				<edgeId>40006</edgeId>
+				<edgeId>50007</edgeId>
+				<edgeId>50009</edgeId>
+				<edgeId>50006</edgeId>
 			</edges>
 		</vertex>
 	</vertices>
