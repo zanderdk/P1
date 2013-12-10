@@ -3,8 +3,9 @@
 #include <string.h>
 #include "graph.h"
 
-Vertex *GetVertexFromId(char *idStr, Floor *graph)
+Vertex *GetVertexFromId(char *idStr, Graph *graph)
 {
+	Floor *floors = graph->floors;
 	int floor = 0;
 	int unsigned id = 0;
 	char floorStr[4];
@@ -17,7 +18,7 @@ Vertex *GetVertexFromId(char *idStr, Floor *graph)
 	sscanf(floorStr, "%d", &floor);
 	floor--;
 
-	return NextVertex(graph[floor].vp, id);
+	return NextVertex(floors[floor].vp, id);
 }
 
 Vertex *NextVertex(Vertex *vp, int id)
@@ -30,10 +31,11 @@ Vertex *NextVertex(Vertex *vp, int id)
 	return NULL;
 }
 
-int CountVertices(int floorId, Floor *graph)
+int CountVertices(int floorId, Graph *graph)
 {
+	Floor *floors = graph->floors;
 	int count = 0;
-	Vertex *vp = graph[floorId-1].vp;
+	Vertex *vp = floors[floorId-1].vp;
 	do
 	{
 		count++;
