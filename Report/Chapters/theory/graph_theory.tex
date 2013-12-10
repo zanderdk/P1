@@ -25,11 +25,12 @@ Every decision and every change direct is a vertex in our graph, is modelled by 
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\textwidth]{Vertices}
-    \caption{Representation of detail in modelling a floor}
-    \label{fig:Vertices}
+    \includegraphics[width=0.5\textwidth]{floorplan_graf}
+    \caption{Representation of a floor with graph}
+    \label{fig:floorplan_graf}
   \end{figure}
-\annote{Nogen som kan redigere billedet så det er mere tydeligt at det grønne er en væg? Eller er der nogen som kan beskrive hvad det er?}
+\
+
 \subsubsection{Multiple floors}
 
 A complex such as a hospital usually consist of multiple floors, connected by stairs and elevators as observed at the visit to Sygehus Nord. Representing floors in a graph could be constructed by having edges in between floors. Elevators or stairs are represented by vertices that connects the edges between the floors. Having a graph that models the whole complex can have complications such as overlapping vertices coordinates. Estimating a heuristic value between destination and vertices on two separate floors, means that the heuristic models that does not account for obstacles, would cause the A* algorithm to expand vertices, leading to vertices below the destination on a separate floor than the desired. See \cref{fig:buildingAstar}.
