@@ -1,0 +1,10 @@
+%!TEX root = ../../Master.tex
+\subsection{Multiple Layer Handling} \label{multlayhan}
+
+When using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. Figure [nummer] displays this problem. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the vertex (b) that is directly below the desired goal (a), regardless of whether it is an exit vertex or not \cref{e_vertex}. After this point has been reached, the A* algorithm will expaned the search from this vertex. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstras algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
+
+The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in figure [nummer]. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the omptimal route, the paths from exit vertex to vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
+
+When using this approch, the runtime will consist of a round of A* runs must done on both the intial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors. When this has been completed the connections, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will dertimine the optimal path.
+
+\kanote{billede: flowchart: Precompute via Dijkstras -->> Startpunkt via A* til exits  +  precomputed  +  slutpunkt via A* til exits. -->> sammenligning}
