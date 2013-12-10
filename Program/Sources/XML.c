@@ -3,7 +3,7 @@
 #include <string.h>
 #include "XML.h"
 
-Floor *readXml(FILE *fp)
+Graph *readXml(FILE *fp)
 {
 	Floor *floors;
 	int i = 0;
@@ -25,14 +25,15 @@ Floor *readXml(FILE *fp)
 	}
 
 	readDefaultAtributes(&edgesCount, &verticesCount, &floorsCount, fp);
-	unsigned long amountToAlloc = floorsCount * sizeof(Floor) +
+	unsigned long amountToAlloc = sizeof(Graph) + floorsCount * sizeof(Floor) +
 		verticesCount * sizeof(Vertex) +	
 		edgesCount * sizeof(Edge) + 
 		edgesCount * 2 * sizeof(EdgePointer);
 
-	floors = malloc(amountToAlloc);
-	memset(floors, 0, amountToAlloc);
+	Graph *graph = malloc(amountToAlloc);
+	memset(graph, 0, amountToAlloc);
 
+	floors = (void *)(graph+1);
 
 	Edge *edges = (Edge *)(floors+floorsCount);
 	Vertex *vertices = (Vertex *)(edges+edgesCount); 
@@ -51,7 +52,11 @@ Floor *readXml(FILE *fp)
 	crawVertices(&vertices, verticesCount, &floors);
 	crawlFloors(&floors, vertices, floorsCount, verticesCount);
 
-	return floors;
+	graph->numOfVertices = verticesCount;
+	graph->numOfFloors = floorsCount;
+	graph->floors = floors;
+
+	return graph;
 }
 
 void crawlFloors(Floor **floors, Vertex *vertices, int numberOfFloors, int numberOfvertices)
