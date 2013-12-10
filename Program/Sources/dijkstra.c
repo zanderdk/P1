@@ -3,17 +3,24 @@
 #include "graph.h"
 #include "dijkstra.h"
 
-void PreComputePaths(Graph *graph, SourcePaths *paths) {
+void PreComputePaths(Graph *graph, SourcePaths *paths, int mode) {
+    int i;
+
     /* Allocate memory for the work vertices and setup the linked list */
-    WorkVertex WorkVertices = malloc(graph->numOfVertices * sizeof(WorkVertex));
     WVLinkedList *wVLinkedListHead = malloc(graph->numOfVertices * sizeof(WVLinkedList));
-    wVLinkedListHead->element = WorkVertices;
     wVLinkedListHead->next = wVLinkedListHead + sizeof(WVLinkedList);
     GetWorkingGraph(graph, wVLinkedListHead);
 
     /* Get all exit nodes in the graph */
-    Vertex *exits[2048];
+    WorkVertex *exits[2048];
+    WorkVertex **exitsPtr = exits;
     GetAllExits(graph, exits);
+
+    /* Pre-compute paths for all exits in the graph */
+    while (exitsPtr != NULL) {
+        Dijkstra(wVLinkedListHead, *exitsPtr, mode);
+        exitsPtr++;
+    }
 }
 
 void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
@@ -24,29 +31,35 @@ void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
     for (i = 0; i < graph->numOfFloors; ++i) {
         tempPtr = graph->floors[i]->vp;
         while (tempPtr != NULL) {
-            tempPtr2->element->vertex = tempPtr;
+            tempPtr2->workVertex.vertex = tempPtr;
+            tempPtr2->workVertex.dist = tempPtr;
             tempPtr2->next = tempPtr2 + sizeof(WVLinkedList);
-            tempPtr2->next->element = tempPtr2->element + sizeof(WorkVertex);
             tempPtr2 = tempPtr2->next;
             tempPtr = vp->nextVp
         }
     }
 }
-void GetAllExits(Graph *graph, Vertex **exits) {
+void GetAllExits(Graph *graph, WVLinkedList *workingGraph, WorkVertex **exits) {
     int i;
     Vertex *tempPtr;
+    WVLinkedList *tempPtr2 = workingGraph;
     Vertex **itPtr = exits;
+
     for (i = 0; i < graph->numOfFloors; ++i) {
         tempPtr = graph->floors[i]->vp;
         while (tempPtr != NULL) {
             if (tempPtr->type == 1 || tempPtr->type == 2) {
-                *itPtr = tempPtr;
+                while (tempPtr2->workVertex.vertex != tempPtr) {
+                    tempPtr2 = tempPtr2->head;
+                }
+                *itPtr = tempPtr2;
                 itPtr++;
             }
         }
     }
+    *itPtr = NULL;
 }
 
-void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source) {
+void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode) {
 
 }

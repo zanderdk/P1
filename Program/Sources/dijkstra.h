@@ -12,8 +12,8 @@ struct WVLinkedList {
     WVLinkedList *next;
 };
 
-void PreComputePaths(Graph *graph, SourcePaths *paths, int mode);
+void PreComputePaths(Graph *graph, SourcePaths **paths, int mode);
 void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode);
 void GetWorkingGraph(Graph *graph, WVLinkedList *head);
-void GetAllExits(Graph *graph, Vertex **exits);
-void GetPathsFromWGraph(WVLinkedList *workingGraph, Vertex **exits, )
+void GetAllExits(Graph *graph, WVLinkedList *workingGraph, WorkVertex **exits, unsigned int count);
+void SetPathsFromWGraph(WVLinkedList *workingGraph, WorkVertex **exits, SourcePaths *paths);
