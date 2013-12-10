@@ -8,10 +8,12 @@ struct WorkVertex {
 };
 
 struct WVLinkedList {
-    WorkVertex *element;
+    WorkVertex workVertex;
     WVLinkedList *next;
 };
 
-void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source);
+void PreComputePaths(Graph *graph, SourcePaths *paths, int mode);
+void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode);
 void GetWorkingGraph(Graph *graph, WVLinkedList *head);
-void GetAllExits(Graph *graph, Vertex *exits);
+void GetAllExits(Graph *graph, Vertex **exits);
+void GetPathsFromWGraph(WVLinkedList *workingGraph, Vertex **exits, )
