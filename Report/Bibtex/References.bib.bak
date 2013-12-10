@@ -262,7 +262,7 @@ A Unique Way to Bridge Offline and Online Media},
   Keywords                 = {UHF devices;indoor radio;radio direction-finding;radiofrequency identification;UHF system;angulation technique;indoor localization technique;linear equation;location estimation method;passive RFID tags;radio frequency identification;Cameras;Costs;Equations;Estimation error;Goniometers;Passive RFID tags;Patient monitoring;RFID tags;Radiofrequency identification;Wireless LAN;RFID;compass;indoor localization}
 }
 
-@Electronic{,
+@Electronic{Dempster2013,
   Title                    = {Explainer: what is GPS?},
   Author                   = {Andrew Dempster},
   Month                    = {7 March},
