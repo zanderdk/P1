@@ -4,7 +4,7 @@ typedef struct Vertex Vertex;
 typedef struct EdgePointer EdgePointer;
 typedef struct Edge Edge;
 typedef struct Path Path;
-typedef struct Paths Paths;
+typedef struct SourcePaths SourcePaths;
 typedef struct Graph Graph;
 
 struct Graph {
