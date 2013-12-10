@@ -13,7 +13,7 @@ struct WVLinkedList {
     WVLinkedList *next;
 };
 
-void PreComputePaths(Graph *graph, SourcePaths **paths, int mode);
+void PreComputePaths(Graph *graph, SourcePaths **paths, unsigned int mode);
 void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode);
 void GetWorkingGraph(Graph *graph, WVLinkedList *head);
 void GetAllExits(Graph *graph, WVLinkedList *workingGraph, WorkVertex **exits, unsigned int *count);

@@ -1,9 +1,8 @@
 #include <stdlib.h>
 
-#include "graph.h"
 #include "dijkstra.h"
 
-void PreComputePaths(Graph *graph, SourcePaths **paths, int mode) {
+void PreComputePaths(Graph *graph, SourcePaths **paths, unsigned int mode) {
     /* Allocate memory for the work vertices and setup the linked list */
     WVLinkedList *wVLinkedListHead = malloc(graph->numOfVertices * sizeof(WVLinkedList));
     wVLinkedListHead->next = wVLinkedListHead + sizeof(WVLinkedList);
@@ -12,8 +11,8 @@ void PreComputePaths(Graph *graph, SourcePaths **paths, int mode) {
     /* Get all exit nodes in the graph */
     WorkVertex *exits[2048];
     WorkVertex **exitsPtr = exits;
-    int count = 0;
-    GetAllExits(graph, wVLinkedListHead, exits, *count);
+    unsigned int count = 0;
+    GetAllExits(graph, wVLinkedListHead, exits, &count);
 
     /* Allocate memory for all paths */
 
@@ -32,13 +31,13 @@ void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
     WVLinkedList *tempPtr2 = head;
 
     for (i = 0; i < graph->numOfFloors; ++i) {
-        tempPtr = graph->floors[i]->vp;
+        tempPtr = graph->floors[i].vp;
         while (tempPtr != NULL) {
             tempPtr2->workVertex.vertex = tempPtr;
-            tempPtr2->workVertex.dist = tempPtr;
+            tempPtr2->workVertex.dist = 0;
             tempPtr2->next = tempPtr2 + sizeof(WVLinkedList);
             tempPtr2 = tempPtr2->next;
-            tempPtr = vp->nextVp
+            tempPtr = tempPtr->nextVp;
         }
     }
 }
@@ -46,14 +45,14 @@ void GetAllExits(Graph *graph, WVLinkedList *workingGraph, WorkVertex **exits, u
     int i;
     Vertex *tempPtr;
     WVLinkedList *tempPtr2 = workingGraph;
-    Vertex **itPtr = exits;
+    WorkVertex **itPtr = exits;
 
     for (i = 0; i < graph->numOfFloors; ++i) {
-        tempPtr = graph->floors[i]->vp;
+        tempPtr = graph->floors[i].vp;
         while (tempPtr != NULL) {
             if (tempPtr->type == 1 || tempPtr->type == 2) {
                 while (tempPtr2->workVertex.vertex != tempPtr) {
-                    tempPtr2 = tempPtr2->head;
+                    tempPtr2 = tempPtr2->next;
                 }
                 *itPtr = tempPtr2;
                 itPtr++;
