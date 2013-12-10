@@ -1,8 +1,9 @@
-#include "astar.h"
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <float.h>
+#include "graph.h"
+#include "astar.h"
 
 #define NO_SET 0
 #define CLOSED_SET 1

@@ -2,108 +2,50 @@
 #include <stdio.h>
 #include <time.h>
 #include <math.h>
-
-
-#define NUM_VERTEX 100
-#define MAX_WEIGHT 5
-#define MAX_EDGES_PER_VERTEX 2
-#define MAX_X 10
-#define MAX_Y 10
-#define MAX_FLOORS 1
-#define VERTEX_STAIR_RATIO 7 /* how many percent should be stairs */
-#define VERTEX_ELEVATOR_RATIO 5 /* how many percent should be elevators */
-
-typedef struct Vertex Vertex;
-typedef struct Edge Edge;
-typedef struct Graph Graph;
-
-struct Edge {
-    unsigned int weight;
-    unsigned int edgeId;
-    Vertex *vertex1;
-    Vertex *vertex2;
-};
-
-struct Vertex {
-    unsigned int vertexId;
-    unsigned int x;
-    unsigned int y;
-    unsigned int type;
-    unsigned int degree; /* number of degrees */
-    Edge **edges;
-};
-
-struct Graph {
-    Vertex **vertices;
-};
-
-
-Graph *makeGraph(int *edgeCounter, int *numFloors);
-Vertex *createRandomVertex(Graph *g, int floorId, int vertexNumFloor,
-                           int *edgeCounter);
-void addVertexToGraph(Graph *g, Vertex *v, int i);
-Edge *createWeightedEdge(Graph *g, int *edgeCounter);
-void addEdgeToVertex(Vertex *v, Edge *e, int i);
-Vertex *getVertex(const Graph *g, int index);
-void setConnectingVertexInEdges(Graph *g);
-void printXML(Graph *g, int edgeCounter, int numFloors);
-void xmlOpenTag(char *name, FILE *xml);
-void xmlCloseTag(char *name, FILE *xml);
-void xmlWriteInt(char *format, int var, FILE *xml);
-void printForLatex(Graph *G);
-void printVertices(FILE *f, Graph *g);
-void printEdges(FILE *f, Graph *g);
-void printMXML(Graph *g);
-unsigned int genId(int type, int floorId, int vertexNumFloor);
-void makeFloor(Graph *g, int floorId, int numVertices, int *verticesCreated,
-               int *edgeCounter);
-void makeIdsNotSuck(Graph *g, Edge **src);
-int edgeWithSameVerticesAlreadyCreated(Edge **eSrc, Graph *g, Vertex *v1,
-                                       Vertex *v2);
-int *edgesConnected(Graph *g, Vertex *v, int *array, int *size);
+#include "graf_gen.h"
 
 int main(void) {
     srand(time(NULL));
 
     int edgeCounter = 1;
-    int numFloors;
+    int numOfFloor = 0;
 
-    Graph *g = makeGraph(&edgeCounter, &numFloors);
+    Graph *graph = makeGraph(&edgeCounter, &numOfFloor);
 
-    printXML(g, edgeCounter, numFloors);
+    printXML(graph, edgeCounter, numOfFloor);
 }
 
-
-
-
-int edgeIsPrinted(int *array, int id, int size) {
+Graph *makeGraph(int *edgeCounter, int *numOfFloor) {
     int i;
-    for (i = 0; i < size; i++) {
-        if (array[i] == id) {
-            return 1;
-        }
+    int numVerticesFloor;
+    int verticesRemaining = NUM_VERTEX;
+    int verticesCreated = 0;
+    int numVertices;
+
+    Graph *g = (Graph *) malloc(sizeof(Graph));
+    g->vertices = (Vertex **) calloc(NUM_VERTEX, sizeof(Vertex *));
+
+    *numOfFloor = rand() % MAX_FLOORS + 1;
+    numVerticesFloor = floor(  NUM_VERTEX / *numOfFloor);
+
+    for (i = 1; i < *numOfFloor + 1; i++) {
+        numVertices = verticesRemaining - numVerticesFloor < 0 ? verticesRemaining : numVerticesFloor;
+
+        makeFloor(g, i, numVertices, &verticesCreated, edgeCounter);
+        verticesRemaining -= numVerticesFloor;
     }
-    return 0;
+    setConnectingVertexInEdges(g);
+
+    return g;
 }
 
-void addToEdgeIsPrinted(int **array, int id, int size) {
-    int i;
-    for (i = 0; i < size; i++) {
-        if (*array[i] == id) {
-
-        }
-    }
-}
-
-void printXML(Graph *g, int edgeCounter, int numFloors) {
-    int i;
-    int j;
+void printXML(Graph *g, int edgeCounter, int numOfFloor) {
+    int i, j;
     FILE *xml = fopen("simon.xml", "w");
     Vertex *v;
     int size = NUM_VERTEX * MAX_EDGES_PER_VERTEX;
     int edgeIdsPrinted[size];
     int arrayCounter = 0;
-
 
     xmlOpenTag("edges", xml);
     for (i = 0; i < NUM_VERTEX; i++) {
@@ -112,7 +54,7 @@ void printXML(Graph *g, int edgeCounter, int numFloors) {
 
             Edge *e = v->edges[j];
 
-            if (!edgeIsPrinted(edgeIdsPrinted, e->edgeId, size)) {
+            if (!Contains(edgeIdsPrinted, e->edgeId, size)) {
                 xmlOpenTag("edge", xml);
 
                 xmlOpenTag("edgeId", xml);
@@ -135,15 +77,11 @@ void printXML(Graph *g, int edgeCounter, int numFloors) {
                 edgeIdsPrinted[arrayCounter] = e->edgeId;
                 arrayCounter++;
             }
-
-
         }
     }
     xmlCloseTag("edges", xml);
 
     xmlOpenTag("vertices", xml);
-
-
 
     for (i = 0; i < NUM_VERTEX; i++) {
         v = getVertex(g, i);
@@ -165,7 +103,6 @@ void printXML(Graph *g, int edgeCounter, int numFloors) {
 
         xmlCloseTag("coord", xml);
 
-
         xmlOpenTag("edges", xml);
 
         int *edgesconnected = (int *) calloc(MAX_EDGES_PER_VERTEX, sizeof(int));
@@ -180,13 +117,9 @@ void printXML(Graph *g, int edgeCounter, int numFloors) {
                 xmlWriteInt("%d", edgesconnected[j], xml);
                 xmlCloseTag("edgeId", xml);
             }
-
-
         }
-
         xmlCloseTag("edges", xml);
         xmlCloseTag("vertex", xml);
-
     }
 
 
@@ -201,31 +134,27 @@ void printXML(Graph *g, int edgeCounter, int numFloors) {
 
     char buffer[1024];
     sprintf(buffer, "<graph edges=\"%d\" vertices=\"%d\" floors=\"%d\">",
-            arrayCounter, NUM_VERTEX, numFloors);
+            arrayCounter, NUM_VERTEX, numOfFloor);
     fputs(buffer, real);
 
     while (fgets(buffer, 1024, xml) != NULL) {
         fputs(buffer, real);
     }
 
-
     fclose(real);
-
 }
 
-int containsInt(int *array, int size, int target) {
+int Contains(int *array, int id, int size) {
     int i;
-
     for (i = 0; i < size; i++) {
-        if (array[i] == target) {
+        if (array[i] == id)
             return 1;
-        }
     }
     return 0;
 }
 
 int *edgesConnected(Graph *g, Vertex *v, int *array, int *size) {
-    int i, j, k;
+    int i, j;
     Vertex *v1;
     Edge *e;
 
@@ -234,7 +163,7 @@ int *edgesConnected(Graph *g, Vertex *v, int *array, int *size) {
         for (j = 0; j < v1->degree; j++) {
             e = v1->edges[j];
             if (e->vertex1->vertexId == v->vertexId || e->vertex2->vertexId == v->vertexId) {
-                if (!containsInt(array, *size, e->edgeId)) {
+                if (!Contains(array, e->edgeId, *size)) {
                     array[j] = e->edgeId;
                     (*size)++;
                 }
@@ -263,40 +192,7 @@ void xmlOpenTag(char *name, FILE *xml) {
     fputs(buffer, xml);
 }
 
-Graph *makeGraph(int *edgeCounter, int *numFloors) {
-
-    int i;
-    int j;
-    Vertex *v;
-    Edge *e;
-    int numVerticesFloor;
-    int verticesRemaining = NUM_VERTEX;
-    int verticesCreated = 0;
-    int numVertices;
-
-
-    Graph *g = (Graph *) malloc(sizeof(Graph));
-    g->vertices = (Vertex **) calloc(NUM_VERTEX, sizeof(Vertex *));
-
-    *numFloors = rand() % MAX_FLOORS + 1;
-    numVerticesFloor = floor(  NUM_VERTEX / *numFloors);
-
-    for (i = 1; i < *numFloors + 1; i++) {
-        numVertices = verticesRemaining - numVerticesFloor < 0 ? verticesRemaining :
-                      numVerticesFloor;
-
-        makeFloor(g, i, numVertices, &verticesCreated, edgeCounter);
-        verticesRemaining -= numVerticesFloor;
-    }
-
-    setConnectingVertexInEdges(g);
-
-
-    return g;
-}
-
-void makeFloor(Graph *g, int floorId, int numVertices, int *verticesCreated,
-               int *edgeCounter) {
+void makeFloor(Graph *g, int floorId, int numVertices, int *verticesCreated, int *edgeCounter) {
     int i;
     Vertex *v;
 
@@ -341,16 +237,13 @@ void setConnectingVertexInEdges(Graph *g) {
     }
 }
 
-int edgeWithSameVerticesAlreadyCreated(Edge **eSrc, Graph *g, Vertex *v1,
-                                       Vertex *v2) {
+int edgeWithSameVerticesAlreadyCreated(Edge **eSrc, Graph *g, Vertex *v1, Vertex *v2) {
     int j;
     int i;
     Vertex *v;
     Edge *e;
     int targetVertex1;
     int targetVertex2;
-
-
 
     int v1Id = v1->vertexId;
     int v2Id = v2->vertexId;
@@ -371,8 +264,6 @@ int edgeWithSameVerticesAlreadyCreated(Edge **eSrc, Graph *g, Vertex *v1,
                 break;
             }
 
-
-
             if ((targetVertex1 == v1Id && targetVertex2 == v2Id) || (targetVertex1 == v2Id
                     && targetVertex2 == v1Id)) {
                 *eSrc =  v->edges[j];
@@ -384,8 +275,7 @@ int edgeWithSameVerticesAlreadyCreated(Edge **eSrc, Graph *g, Vertex *v1,
 }
 
 Edge *edgeIsCreated(Graph *g, int edgeCounter) {
-    int i;
-    int j;
+    int i, j;
     int targetId = genId(4, 0, edgeCounter);
     Vertex *v;
     Edge *e;
@@ -403,8 +293,7 @@ Edge *edgeIsCreated(Graph *g, int edgeCounter) {
     return 0;
 }
 
-Vertex *createRandomVertex(Graph *g, int floorId, int vertexNumFloor,
-                           int *edgeCounter) {
+Vertex *createRandomVertex(Graph *g, int floorId, int vertexNumFloor, int *edgeCounter) {
     int i;
     int type;
     Vertex *v = (Vertex *) malloc(sizeof(Vertex));
@@ -472,6 +361,14 @@ void addVertexToGraph(Graph *g, Vertex *v, int i) {
     g->vertices[i] = v;
 }
 
+void addEdgeToVertex(Vertex *v, Edge *e, int i) {
+    v->edges[i] = e;
+}
+
+Vertex *getVertex(const Graph *g, int index) {
+    return g->vertices[index];
+}
+
 Edge *createWeightedEdge(Graph *g, int *edgeCounter) {
     Edge *e = (Edge *) calloc(1, sizeof(Edge));
 
@@ -484,23 +381,13 @@ Edge *createWeightedEdge(Graph *g, int *edgeCounter) {
     return e;
 }
 
-void addEdgeToVertex(Vertex *v, Edge *e, int i) {
-    v->edges[i] = e;
-}
-
-Vertex *getVertex(const Graph *g, int index) {
-    return g->vertices[index];
-}
-
 int getWeight(Vertex *v1, Vertex *v2) {
     int i;
     int degree = v1->degree;
     for (i = 0; i < degree; i++) {
         Edge *e = v1->edges[i];
-        if (e->vertex2->vertexId == v2->vertexId) {
+        if (e->vertex2->vertexId == v2->vertexId)
             return e->weight;
-        }
     }
-
     return 0;
 }

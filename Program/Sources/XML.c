@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "graph.h"
 #include "XML.h"
 
 Graph *readXml(FILE *fp)

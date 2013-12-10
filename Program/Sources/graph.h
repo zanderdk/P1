@@ -12,6 +12,15 @@ struct Graph {
     Floor *floors;
 };
 
+/*
+ids:
+1 vertex
+2 stair vertex
+3 elevator vertex
+4 exit vertex (div exit)
+5 Edge
+*/
+
 /**
  * @brief Structure containing a floor
  *
