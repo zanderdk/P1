@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include "graph.h"
 #include "XML.h"
 #include "astar.h"
 
@@ -7,10 +8,10 @@
 int main(void) {
 
     FILE *xml = fopen("handcrafted.xml", "r");
-
-    Floor *floors = readXml(xml);
+    Graph *graph = readXml(xml);
+    Floor *floors = graph->floors;
     fclose(xml);
-
+    int i;
 
 
 
@@ -26,7 +27,7 @@ int main(void) {
 
     printf("%d\n", path->weight);
 
-    for (int i = 0; i < path->numVertices; i++) {
+    for (i = 0; i < path->numVertices; i++) {
 
         printf("%d\n", path->pathVerticeIds[i]);
     }

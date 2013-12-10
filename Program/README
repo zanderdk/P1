@@ -2,3 +2,5 @@ MAKE USAGE
 
 Sources:
     Configure sources by changing the SRCS variable in the makefile, or run make with -e SRCS=">>sourcefiles.c<<". Multiple source files should be separated by a space.
+
+make -e SRCS="testAstar.c XML.c graph.c astar.c" OUTPUT="astartest"

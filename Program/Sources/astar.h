@@ -1,5 +1,3 @@
-#include "graph.h"
-
 typedef struct WorkVertex WorkVertex;
 
 struct WorkVertex {
