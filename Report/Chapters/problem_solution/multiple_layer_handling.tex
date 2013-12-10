@@ -27,6 +27,9 @@ If a building with three floors and one with two floors are to be represented, t
     \label{fig:floorplan_graf}
   \end{figure}
 \
+\subsection{Reasoning Behind the use of A*}
+The Dijkstra algorithm always finds the shortest route between two positions. But because Dijkstra always calculates every possible path until it gets to the desired destination, a lot of calculations are necessary. If some of these calculations could be avoided, the runtime would be lowered which would suite the usage requirement\cref{irm_tid}. By using A*, the amount of calculations can be reduced because of the logic the algorithm uses, when admissible values are applied correctly.
+
 \subsection{Multiple Layer Handling} \label{multlayhan}
 
 When using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. Figure \ref{fig:buildingAstar} helps illustrate this. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the vertex (b) that is directly below the desired goal (a), regardless of whether it is an exit vertex or not. See \cref{e_vertex}. After this point has been reached, the A* algorithm will expand the search from this vertex. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstras algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
