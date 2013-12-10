@@ -164,8 +164,6 @@ void printXML(Graph *g, int numFloors) {
 
     xmlOpenTag("vertices", xml);
 
-
-
     for (i = 0; i < NUM_VERTEX; i++) {
         v = g->vertices[i];
         xmlOpenTag("vertex", xml);

@@ -35,53 +35,63 @@ The A* algorithm was chosen as the algoritm of choice because it always finds th
 
   A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959}
 
-  \begin{algorithm} \label{algo:Dij}
- \KwResult{Finds the shortest path from start vertex to destination}
-  \tcc{  g = graph, v = vertex, p = list of permanent labels and t = list of temporary labels.}
-  \SetKwFunction{algo}{dijkstra}
-  \SetKwProg{myalg}{Function}{}{}
-  \myalg{\algo{graph g}}{}
-   $k \gets $ A list of vertices\;
-   $u \gets $ initial start vertex\;
-   $d \gets $ destination vertex\;
+\begin{algorithm} \label{algo:Dij}
+  \caption{Dijkstra's Algorithm}
+  \KwResult{Finds the shortest path from start vertex to Vertices}
+  \KwData{graph = graph containing vertices, source = the source vertex to start evaluating from, dist = list distances from source, visited = list of visited vertices, previous = list of vertices with shortest parent, Q = a list vertices to be evaluated, v = evaluating vertex, u = current vertex}
 
-   \tcc{Assign every permanent and temporary entry to a high integer. In this case infinity.}
-  \For{\textbf{each} v in g}
-  {
-    $p[v] \gets  0$\;
-    $t[v] \gets \infty$\;
-  }
-  \tcc{Start vertex has permanent label 0}
-  $p[u] \gets 0$\;
-  \While{p[d] = $\infty$}
-  {
-    \For{\textbf{each} neighbour v of u}
-    {
-      $buf \gets p[u] + distBetween(v, u)$\;
-      \If{buf < $t[v]$ \textbf{and} $p[v] = 0$}
-      {
-        $t[v] \gets buf$;
-      }
-    } 
-    $u \gets v \; for \; smallest \; t[v] \; where \; p[v] = 0 \; except$ start vertex\;
-    $p[u] \gets t[u]$\;
-  }
-  \While{p[u] != 0}
-  {
-  \For{\textbf{each} neighbour v of u}
-      {
-        \If{ $v$ is not in $k$ \textbf{and} $p[u] = p[v] + distBetween(v, u)$}{
-        add $u$ to $k$\;
-        $u \gets v$\;
-        \textbf{Break}\;
+  \SetKwFunction{Dijkstra}{Dijkstra}
+  \SetKwProg{KwFn}{Function}{}{}
+
+  \KwFn{\Dijkstra{graph, source}}{
+
+    \For{\textbf{each} vertex v in graph}{
+      dist[$v$] $\gets \infty$\tcc*{Assign distance from source to as infinite to mark it as not yet computed}
+      visited[$v$] $\gets$ false\tcc*{Boolean to false for not visited}
+      previous[$v$] $\gets$ undefined\tcc*{Assign previous}
+    }
+
+    dist[$source$] $\gets 0$\tcc*{Source dist has distance 0}
+    insert $source$ in $Q$\tcc*{Source dist has distance 0}
+
+    \While{Q \textbf{is not} empty}{
+      $u \gets$ vertex $v$ in $Q$ with smallest dist[]\tcc*{s}
+      remove $u$ from $Q$\tcc*{f}
+      visited[$u$] $\gets$ true\tcc*{s}
+
+      \For{\textbf{each} neighbour v of u}{
+        $alt \gets$ dist[$u$] + distBetween($v$, $u$)\tcc*{g}
+        \If{alt < dist[v]}{
+          dist[$v$] $\gets alt$\tcc*{g}
+          previous[$v$] $\gets u$\tcc*{g}
+          \If{!visited[v]}{
+            insert $v$ into $Q$\tcc*{j}
+          }
         }
       }
     }
-  Reverse k\;
-  \Return $k$\;
- \caption{Dijkstra's Algorithm}
+    return dist\tcc*{}
+  }
 \end{algorithm}
 
+\begin{algorithm} \label{algo:FindPath}
+  \caption{Find path to target}
+  \KwResult{Finds the shortest path from start vertex to destination}
+  \KwData{stack = Empty sequence, target = Target vertices, source = Source vertex, u = evaluating vertices, previous = A list of parents with lowest cost from source}
+
+  \SetKwFunction{FindPath}{FindPath}
+  \SetKwProg{KwFn}{Function}{}{}
+
+  \KwFn{\FindPath{previous, source, target}}{
+    $u \gets$
+    $stack \gets$
+    \For{\textbf{each} vertex v in graph}{
+      dist[$v$] $\gets \infty$ \tcc*{Assign distance from source to as infinite to mark it as not yet computed}
+      visited[$v$] $\gets$ false \tcc*{Boolean to false for not visited}
+      previous[$v$] $\gets$ undefined \tcc*{Assign previous}
+    }
+  }
+\end{algorithm}
 
   \begin{figure}[ht!]
     \centering
