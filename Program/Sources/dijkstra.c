@@ -54,7 +54,7 @@ void GetAllExits(Graph *graph, WVLinkedList *workingGraph, WorkVertex **exits, u
                 while (tempPtr2->workVertex.vertex != tempPtr) {
                     tempPtr2 = tempPtr2->next;
                 }
-                *itPtr = tempPtr2;
+                *itPtr = &(tempPtr2->workVertex);
                 itPtr++;
             }
         }
