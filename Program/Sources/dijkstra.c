@@ -1,5 +1,6 @@
 #include <stdlib.h>
 
+#include "graph.h"
 #include "dijkstra.h"
 
 void PreComputePaths(Graph *graph, SourcePaths **paths, unsigned int mode) {

@@ -1,4 +1,3 @@
-#include "graph.h"
 typedef struct WorkVertex WorkVertex;
 typedef struct WVLinkedList WVLinkedList;
 
