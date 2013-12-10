@@ -3,7 +3,9 @@
 #include "graph.h"
 #include "dijkstra.h"
 
-void PreComputePaths(Graph *graph, SourcePaths **paths, unsigned int mode) {
+void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) {
+    int i, i2;
+
     /* Allocate memory for the work vertices and setup the linked list */
     WVLinkedList *wVLinkedListHead = malloc(graph->numOfVertices * sizeof(WVLinkedList));
     wVLinkedListHead->next = wVLinkedListHead + sizeof(WVLinkedList);
@@ -11,18 +13,22 @@ void PreComputePaths(Graph *graph, SourcePaths **paths, unsigned int mode) {
 
     /* Get all exit nodes in the graph */
     WorkVertex *exits[2048];
-    WorkVertex **exitsPtr = exits;
     unsigned int count = 0;
     GetAllExits(graph, wVLinkedListHead, exits, &count);
 
     /* Allocate memory for all paths */
-
+    *sourcePaths = malloc(count * sizeof(SourcePaths));
+    for (i = 0; i < count; ++i) {
+        (*sourcePaths)[i].paths = malloc((count - 1) * sizeof(Path));
+        (*sourcePaths)[i].numPaths = count - 1;
+        for (i2 = 0; i2 < count - 1; ++i2) {
+            (*sourcePaths)[i].paths[i2].pathVerticeIds = malloc(1024 * sizeof(unsigned int));
+        }
+    }
 
     /* Pre-compute paths for all exits in the graph */
-    while (exitsPtr != NULL) {
-        Dijkstra(wVLinkedListHead, *exitsPtr, mode);
-
-        exitsPtr++;
+    for (i = 0; i < count; ++i) {
+        Dijkstra(wVLinkedListHead, exits[i], mode);
     }
 }
 
