@@ -9,12 +9,11 @@
 #define CLOSED_SET 1
 #define OPEN_SET 2
 
-void cleanUp(WorkVertex **workVertices, int numVertices) {
+void CleanUp(WorkVertex **workVertices, int numVertices) {
     int i;
 
     for (i = 0; i < numVertices; i++) {
         free(workVertices[i]);
-        printf("freed in cleanup\n");
     }
 
     free(workVertices);
@@ -35,7 +34,7 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     WorkVertex **workVertices = (WorkVertex **) calloc(numVertices * 2,
                                 sizeof(WorkVertex *));
     if (workVertices == NULL) {
-        printf("couldnt create fucking mallocandklansdlknaslkd\n");
+        printf("couldn't allocate workvertices\n");
     }
 
     /* Allocate current neighbors array */
@@ -60,7 +59,7 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
             path =  ReconstructPath(current,
                                     numVertices);
 
-            cleanUp(workVertices, createdWorkVertices);
+            CleanUp(workVertices, createdWorkVertices);
             return path;
         }
         //verticesInPath++;
@@ -74,7 +73,6 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
             tempG = GetGValue(current) + weight;
 
             tempF = tempG + DistBetween(curNeighbor->originVertex, dest);
-            //printf("%d has tempF %f\n", curNeighbor->originVertex->vertexId, tempF);
 
             if (curNeighbor->setMode != OPEN_SET || tempF < GetFValue(curNeighbor)) {
                 SetParentVertex(curNeighbor, current);
@@ -111,7 +109,7 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
     }
 
     int i = numsinpath - 1;
-    path->pathVerticeIds = path + sizeof(Path);
+    path->pathVerticeIds =  path + sizeof(Path);
     path->numVertices = numsinpath;
     parent = end->parentVertex;
 
@@ -129,7 +127,7 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
     return path;
 }
 
-WorkVertex *getFromWorkVertices(int targetId, WorkVertex **workVertices,
+WorkVertex *GetFromWorkVertices(int targetId, WorkVertex **workVertices,
                                 int numVertices) {
     int i;
 
@@ -168,9 +166,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
             printf("Could not create workvertex\n");
         }
 
-        existingWV = getFromWorkVertices(vertexFound->vertexId, workVertices, numVertices);
-        //printf("existingWV is %d\n",
-        //existingWV != NULL ? existingWV->originVertex->vertexId : 0);
+        existingWV = GetFromWorkVertices(vertexFound->vertexId, workVertices, numVertices);
         if (existingWV != NULL && existingWV->setMode == CLOSED_SET) {
             /* before we continue, set next ep */
             flag = 1;
@@ -182,7 +178,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
             outNeighborWorkVertex[numNeighbors] = existingWV;
             numNeighbors++;
         } else if (existingWV != NULL && existingWV->setMode == OPEN_SET) {
-            // AddToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
+            //
         } else {
             existingWV = CreateWorkVertex(vertexFound, createdWorkVertices);
 
@@ -190,7 +186,6 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
 
         if (!flag) {
             outNeighborWorkVertex[numNeighbors] = existingWV;
-            //printf("added to workVertices %d\n", existingWV->originVertex->vertexId);
             AddToWorkVertices(existingWV, workVertices, numVertices);
 
             numNeighbors++;
@@ -208,11 +203,10 @@ WorkVertex *CreateWorkVertex(Vertex *src, int *createdWorkVertices) {
 
     wv = (WorkVertex *) calloc(1, sizeof(WorkVertex));
     if (wv == NULL) {
-        printf("couldnt create fucking mallocandklansdlknaslkd\n");
+        printf("failed to create workVertex\n");
     }
     wv->originVertex = src;
     (*createdWorkVertices)++;
-    printf("created workvertex\n");
 
     return wv;
 }
@@ -231,14 +225,6 @@ double DistBetween(Vertex *src, Vertex *goal) {
     int x2 = goal->x;
     int y2 = goal->y;
     return sqrt(pow(  (x1 - x2), 2) + pow( (y1 - y2), 2));
-}
-
-void SetHValue(double value, WorkVertex *wv) {
-    wv->h = value;
-}
-
-double GetHValue(WorkVertex *wv) {
-    return wv->h;
 }
 
 double CalcFValue(WorkVertex *src, Vertex *goal) {
@@ -327,7 +313,6 @@ WorkVertex *GetVertexLowestFOpenSet(WorkVertex **workVertices, int numVertices) 
 
 void SetSetMode(int value, WorkVertex *wv) {
     wv->setMode = value;
-    //printf("%d is now in %d\n", wv->originVertex->vertexId, value);
 }
 
 int GetVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices) {

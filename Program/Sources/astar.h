@@ -2,7 +2,6 @@ typedef struct WorkVertex WorkVertex;
 
 struct WorkVertex {
     unsigned int g;
-    double h;
     double f;
 
     /**
@@ -37,6 +36,7 @@ struct WorkVertex {
  */
 Path *AStar(Vertex *start, Vertex *dest, int numVertices);
 
+void CleanUp(WorkVertex **workVertices, int numVertices);
 
 Path *ReconstructPath(WorkVertex *end, int numVertices);
 
@@ -103,23 +103,6 @@ unsigned int GetGValue(WorkVertex *wv);
  */
 double DistBetween(Vertex *src, Vertex *goal);
 
-/**
- * @brief Sets the h value of a WorkVertex
- * @details [long description]
- *
- * @param value the value to set
- * @param wv the WorkVertex to set a h value to
- */
-void SetHValue(double value, WorkVertex *wv);
-
-/**
- * @brief Returns the h value of a vertex
- * @details [long description]
- *
- * @param wv the WorkVertex to get h value from
- * @return [description]
- */
-double GetHValue(WorkVertex *wv);
 
 /**
  * @brief Calculates the f value of a vertex
@@ -202,6 +185,9 @@ void AddToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertice
  * @return [description]
  */
 unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor);
+
+WorkVertex *GetFromWorkVertices(int targetId, WorkVertex **workVertices,
+                                int numVertices);
 
 /**
  * @brief returns the number of vertices in a given set
