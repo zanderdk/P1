@@ -215,7 +215,7 @@ void SetFValue(double f, WorkVertex *wv) {
 }
 
 double GetFValue(WorkVertex *wv) {
-    return wv->h;
+    return wv->f;
 }
 
 void SetParentVertex(WorkVertex *child, WorkVertex *parent) {
