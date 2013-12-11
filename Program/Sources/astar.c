@@ -9,7 +9,7 @@
 #define CLOSED_SET 1
 #define OPEN_SET 2
 
-Path *AStar(Vertex *start, Vertex *dest) {
+Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     int i;
     WorkVertex *wvStart;
     WorkVertex *current;
@@ -19,9 +19,6 @@ Path *AStar(Vertex *start, Vertex *dest) {
 
     unsigned int tempG = 0;
     double tempF = 0;
-    unsigned int verticesInPath = 0;
-    //int numVertices = GetNumVerticesOnFloor(int floorId, Floor *graph);
-    int numVertices = 7;
 
     WorkVertex **workVertices = (WorkVertex **) calloc(numVertices,
                                 sizeof(WorkVertex *));
@@ -42,17 +39,18 @@ Path *AStar(Vertex *start, Vertex *dest) {
     while (GetVerticesInSet(OPEN_SET, workVertices, numVertices) != 0) {
         /* set current vertex to the vertex in open set with lowest f value */
         current = GetVertexLowestFOpenSet(workVertices, numVertices);
+        //printf("current is now %d\n", current->originVertex->vertexId);
 
         /* is at destination? if so, recontruct the path to get from start to destination */
         if (current->originVertex->vertexId == dest->vertexId) {
-            path =  ReconstructPath(verticesInPath, current,
+            path =  ReconstructPath(current,
                                     numVertices);
             free(workVertices);
             free(curNeighbors);
             return path;
         }
-        verticesInPath++;
-        current->setMode = CLOSED_SET;
+        //verticesInPath++;
+        SetSetMode(CLOSED_SET, current);
         int numNeighbors = GetNeighbors(current, workVertices, numVertices, curNeighbors);
 
         for (i = 0; i < numNeighbors; i++) {
@@ -61,37 +59,49 @@ Path *AStar(Vertex *start, Vertex *dest) {
             tempG = GetGValue(current) + weight;
 
             tempF = tempG + DistBetween(curNeighbor->originVertex, dest);
+            //printf("%d has tempF %f\n", curNeighbor->originVertex->vertexId, tempF);
 
             if (curNeighbor->setMode != OPEN_SET || tempF < GetFValue(curNeighbor)) {
                 SetParentVertex(curNeighbor, current);
                 SetGValue(tempG, curNeighbor);
                 SetFValue(tempF, curNeighbor);
                 if (curNeighbor->setMode != OPEN_SET) {
-                    curNeighbor->setMode = OPEN_SET;
+                    SetSetMode(OPEN_SET, curNeighbor);
                 }
             }
 
         }
     }
-    printf("sdf\n");
+    //printf("sdf\n");
     /* this is only returned if failure */
     return NULL;
 }
 
-Path *ReconstructPath(unsigned int verticesInPath, WorkVertex *end,
-                      int numVertices) {
+Path *ReconstructPath(WorkVertex *end, int numVertices) {
 
     WorkVertex *parent;
+    int numsinpath = 0;
+    parent = end->parentVertex;
+    numsinpath++;
+
+
+    do {
+        parent = parent->parentVertex;
+        numsinpath++;
+    } while (parent != NULL);
+
+    //printf("verticesInPath %d\n", verticesInPath);
     Path *path;
-    path = (Path *) malloc(sizeof(Path) + verticesInPath * sizeof(unsigned int));
-    int i = verticesInPath - 1;
+    path = (Path *) malloc(sizeof(Path) + numsinpath * sizeof(unsigned int));
+    int i = numsinpath - 1;
     path->pathVerticeIds = (unsigned int *) path + sizeof(path);
     //path->pathVerticeIds = (unsigned int *) malloc(sizeof(int) * verticesInPath);
-    path->numVertices = verticesInPath;
+    path->numVertices = numsinpath;
     parent = end->parentVertex;
 
     path->pathVerticeIds[i] = end->originVertex->vertexId;
     path->weight = end->g;
+
     i--;
 
     while (parent != NULL) {
@@ -110,8 +120,10 @@ WorkVertex *getFromWorkVertices(int targetId, WorkVertex **workVertices,
     for (i = 0; i < numVertices; i++) {
         /* If an entry in array is 0, nothing at that position has been set
          Therefore, set it */
-        if (workVertices[i] != NULL
-                && workVertices[i]->originVertex->vertexId == targetId) {
+        if (workVertices[i] == NULL) {
+            break;
+        }
+        if (workVertices[i]->originVertex->vertexId == targetId) {
             return workVertices[i];
         }
     }
@@ -145,17 +157,28 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
         }
 
         existingWV = getFromWorkVertices(vertexFound->vertexId, workVertices, numVertices);
+        //printf("existingWV is %d\n",
+        //existingWV != NULL ? existingWV->originVertex->vertexId : 0);
         if (existingWV != NULL && existingWV->setMode == CLOSED_SET) {
             /* before we continue, set next ep */
             flag = 1;
+
+        } else if (existingWV != NULL
+                   && IsInWorkVertices(existingWV, workVertices, numVertices) == 1) {
+            flag = 1;
+
+            outNeighborWorkVertex[numNeighbors] = existingWV;
+            numNeighbors++;
         } else if (existingWV != NULL && existingWV->setMode == OPEN_SET) {
             // AddToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
         } else {
             existingWV = CreateWorkVertex(vertexFound);
+
         }
 
-        if(flag){
+        if (!flag) {
             outNeighborWorkVertex[numNeighbors] = existingWV;
+            //printf("added to workVertices %d\n", existingWV->originVertex->vertexId);
             AddToWorkVertices(existingWV, workVertices, numVertices);
 
             numNeighbors++;
@@ -239,9 +262,6 @@ unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor) {
     return weight;
 }
 
-
-
-
 int IsInWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertices) {
     int i;
 
@@ -262,7 +282,7 @@ void AddToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertice
     for (i = 0; i < numVertices; i++) {
         /* If an entry in array is 0, nothing at that position has been set
          Therefore, set it */
-        if (workVertices[i] == 0) {
+        if (workVertices[i] == NULL) {
             workVertices[i] = wv;
             break;
         }
@@ -290,6 +310,7 @@ WorkVertex *GetVertexLowestFOpenSet(WorkVertex **workVertices, int numVertices) 
 
 void SetSetMode(int value, WorkVertex *wv) {
     wv->setMode = value;
+    //printf("%d is now in %d\n", wv->originVertex->vertexId, value);
 }
 
 int GetVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices) {
@@ -297,7 +318,7 @@ int GetVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices) {
     int numSet = 0;
 
     for (i = 0; i < numVertices; i++) {
-        if(workVertices[i] == NULL)
+        if (workVertices[i] == NULL)
             break;
         if (workVertices[i]->setMode == setMode) {
             numSet++;
