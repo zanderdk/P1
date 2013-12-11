@@ -80,7 +80,7 @@ Path *AStar(Vertex *start, Vertex *dest) {
     }
 
     /* this is only returned if failure */
-    return path;
+    return NULL;
 }
 
 Path *ReconstructPath(unsigned int verticesInPath, WorkVertex *end,
@@ -130,7 +130,6 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
     WorkVertex *existingWV;
     Vertex *origin = wv->originVertex;
     int srcId = origin->vertexId;
-    int srcFloor = origin->floorId;
 
 
     EdgePointer *ep = origin->ep;
@@ -215,7 +214,7 @@ void SetFValue(double f, WorkVertex *wv) {
 }
 
 double GetFValue(WorkVertex *wv) {
-    return wv->h;
+    return wv->f;
 }
 
 void SetParentVertex(WorkVertex *child, WorkVertex *parent) {
@@ -223,7 +222,7 @@ void SetParentVertex(WorkVertex *child, WorkVertex *parent) {
 }
 
 unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor) {
-    unsigned int weight;
+    unsigned int weight = 0;
     int srcId = src->originVertex->vertexId;
     int targetId = targetNeighbor->originVertex->vertexId;
 
