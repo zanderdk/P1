@@ -17,8 +17,8 @@ Path *AStar(Vertex *start, Vertex *dest) {
     WorkVertex *curNeighbor;
     Path *path;
 
-    unsigned int tempG;
-    double tempF;
+    unsigned int tempG = 0;
+    double tempF = 0;
     unsigned int verticesInPath = 0;
     //int numVertices = GetNumVerticesOnFloor(int floorId, Floor *graph);
     int numVertices = 7;
@@ -58,14 +58,9 @@ Path *AStar(Vertex *start, Vertex *dest) {
         for (i = 0; i < numNeighbors; i++) {
             curNeighbor = curNeighbors[i];
             unsigned int weight = GetWeight(current, curNeighbor);
-
             tempG = GetGValue(current) + weight;
 
             tempF = tempG + DistBetween(curNeighbor->originVertex, dest);
-
-            if (curNeighbor->setMode == CLOSED_SET && tempF >= GetFValue(curNeighbor)) {
-                continue;
-            }
 
             if (curNeighbor->setMode != OPEN_SET || tempF < GetFValue(curNeighbor)) {
                 SetParentVertex(curNeighbor, current);
@@ -78,7 +73,7 @@ Path *AStar(Vertex *start, Vertex *dest) {
 
         }
     }
-
+    printf("sdf\n");
     /* this is only returned if failure */
     return NULL;
 }
@@ -135,6 +130,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
     EdgePointer *ep = origin->ep;
 
     do {
+        int flag = 0;
         Edge *e = ep->edge;
         if (e->vertex1->vertexId != srcId) {
             /* memory leak occurs here */
@@ -151,17 +147,19 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
         existingWV = getFromWorkVertices(vertexFound->vertexId, workVertices, numVertices);
         if (existingWV != NULL && existingWV->setMode == CLOSED_SET) {
             /* before we continue, set next ep */
-            ep = ep->nextEp;
-            continue;
+            flag = 1;
         } else if (existingWV != NULL && existingWV->setMode == OPEN_SET) {
             // AddToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
         } else {
             existingWV = CreateWorkVertex(vertexFound);
         }
-        outNeighborWorkVertex[numNeighbors] = existingWV;
-        AddToWorkVertices(existingWV, workVertices, numVertices);
 
-        numNeighbors++;
+        if(flag){
+            outNeighborWorkVertex[numNeighbors] = existingWV;
+            AddToWorkVertices(existingWV, workVertices, numVertices);
+
+            numNeighbors++;
+        }
 
         /* get next ep */
         ep = ep->nextEp;
@@ -173,7 +171,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
 WorkVertex *CreateWorkVertex(Vertex *src) {
     WorkVertex *wv;
 
-    wv = (WorkVertex *) malloc(sizeof(WorkVertex));
+    wv = (WorkVertex *) calloc(1, sizeof(WorkVertex));
     wv->originVertex = src;
 
     return wv;
@@ -299,12 +297,11 @@ int GetVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices) {
     int numSet = 0;
 
     for (i = 0; i < numVertices; i++) {
-        if (workVertices[i] != 0 && workVertices[i]->setMode == setMode) {
+        if(workVertices[i] == NULL)
+            break;
+        if (workVertices[i]->setMode == setMode) {
             numSet++;
         }
     }
     return numSet;
 }
-
-
-
