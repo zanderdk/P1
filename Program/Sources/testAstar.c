@@ -16,14 +16,17 @@ int main(void) {
 
 
     Vertex *v1 = floors[0].vp;
-    Vertex *v2 = v1->nextVp->nextVp->nextVp->nextVp->nextVp;
+    Vertex *v2 = v1->nextVp->nextVp->nextVp->nextVp->nextVp->nextVp;
 
     printf("%d\n", v1->vertexId);
     printf("%d\n", v2->vertexId);
 
-    Path *path = (Path *) malloc(sizeof(Path));
+    Path *path;
 
-    AStar(v1, v2, path);
+
+    path = AStar(v1, v2);
+
+
 
     printf("%d\n", path->weight);
 
@@ -32,7 +35,8 @@ int main(void) {
         printf("%d\n", path->pathVerticeIds[i]);
     }
 
-
+    free(graph);
+    free(path);
 
     return 0;
 }
