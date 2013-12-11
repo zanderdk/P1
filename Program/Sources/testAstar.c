@@ -13,30 +13,29 @@ int main(void) {
     fclose(xml);
     int i;
 
+    while (1) {
 
+        Vertex *v1 = GetVertexFromId("10011", graph);
+        Vertex *v2 = GetVertexFromId("10016", graph);
 
-    Vertex *v1 = GetVertexFromId("10011", graph);
-    Vertex *v2 = GetVertexFromId("10016", graph);
+        printf("%d\n", v1->vertexId);
+        printf("%d\n", v2->vertexId);
 
-    printf("%d\n", v1->vertexId);
-    printf("%d\n", v2->vertexId);
+        Path *path;
 
-    Path *path;
+        path = AStar(v1, v2, graph);
 
+        printf("%u\n", path->weight);
 
-    path = AStar(v1, v2);
+        for (i = 0; i < path->numVertices; i++) {
 
+            printf("%d\n", path->pathVerticeIds[i]);
+        }
 
-
-    printf("%u\n", path->weight);
-
-    for (i = 0; i < path->numVertices; i++) {
-
-        printf("%d\n", path->pathVerticeIds[i]);
+        free(path);
     }
 
     free(graph);
-    free(path);
 
     return 0;
 }
