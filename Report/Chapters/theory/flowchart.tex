@@ -19,7 +19,7 @@
           \node [block, below of=getSD] (fp) {Find Path};
           \node [decision, below of=fp] (flag) {Quit flag?};
 
-        \node [cloud, below of=flag] at (quit) {Quit};
+        \node [cloud, below of=flag] (quit) {Quit};
 
     % Draw edges
     \path [line] (start) -- (precalc);
@@ -27,8 +27,8 @@
     \path [line] (precalc) -- (getSD);
     \path [line] (getSD) -- (fp);
     \path [line] (fp) -- (flag);
-    \path [line] (flag) -- node {no} (getSD);
-    \path [line] (flag) -- node {yes} (quit);
+    \path [line] (flag) -- ++(-2cm,0) |- node {false} (getSD);
+    \path [line] (flag) -- node {true} (quit);
     
 \end{tikzpicture}
 \caption{Flowchart, Initial process}
