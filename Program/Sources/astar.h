@@ -53,7 +53,7 @@ Path *ReconstructPath(WorkVertex *end, int numVertices);
  * @return the number of nabors of wv.
  */
 int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
-                 WorkVertex **outNeighborWorkVertex);
+                 WorkVertex **outNeighborWorkVertex, int *createdWorkVertices);
 
 /**
  * @brief Creates a workVertex pointer based on a Vertex pointer
@@ -63,7 +63,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
 
  * @return a pointer to the created workVertex
  */
-WorkVertex *CreateWorkVertex(Vertex *src);
+WorkVertex *CreateWorkVertex(Vertex *src, int *createdWorkVertices);
 
 /**
  * @brief sets in which set a given WorkVertex is in.
