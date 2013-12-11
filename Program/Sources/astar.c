@@ -15,14 +15,11 @@ Path *AStar(Vertex *start, Vertex *dest) {
     WorkVertex *current;
     WorkVertex **curNeighbors;
     WorkVertex *curNeighbor;
-    WorkVertex **outNeighborWorkVertex;
     Path *path;
 
     unsigned int tempG;
     double tempF;
     unsigned int verticesInPath = 0;
-
-    unsigned int floorId = start->floorId;
     //int numVertices = GetNumVerticesOnFloor(int floorId, Floor *graph);
     int numVertices = 7;
 
@@ -32,9 +29,6 @@ Path *AStar(Vertex *start, Vertex *dest) {
     /* Allocate current neighbors array */
     curNeighbors = (WorkVertex **) calloc(numVertices,
                                           sizeof(WorkVertex *));
-
-    outNeighborWorkVertex = (WorkVertex **) calloc(numVertices,
-                            sizeof(WorkVertex *));
 
     /* create WorkVertex instance of start vertex and set to open list */
     wvStart = CreateWorkVertex(start);
@@ -54,7 +48,7 @@ Path *AStar(Vertex *start, Vertex *dest) {
             path =  ReconstructPath(verticesInPath, current,
                                     numVertices);
             free(workVertices);
-            free(outNeighborWorkVertex);
+            free(curNeighbors);
             return path;
         }
         verticesInPath++;
@@ -114,9 +108,26 @@ Path *ReconstructPath(unsigned int verticesInPath, WorkVertex *end,
     return path;
 }
 
+WorkVertex *getFromWorkVertices(int targetId, WorkVertex **workVertices,
+                                int numVertices) {
+    int i;
+
+    for (i = 0; i < numVertices; i++) {
+        /* If an entry in array is 0, nothing at that position has been set
+         Therefore, set it */
+        if (workVertices[i] != NULL
+                && workVertices[i]->originVertex->vertexId == targetId) {
+            return workVertices[i];
+        }
+    }
+    return NULL;
+}
+
 int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
                  WorkVertex **outNeighborWorkVertex) {
     int numNeighbors = 0;
+    Vertex *vertexFound;
+    WorkVertex *existingWV;
     Vertex *origin = wv->originVertex;
     int srcId = origin->vertexId;
     int srcFloor = origin->floorId;
@@ -128,19 +139,28 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
         Edge *e = ep->edge;
         if (e->vertex1->vertexId != srcId) {
             /* memory leak occurs here */
-            outNeighborWorkVertex[numNeighbors] = CreateWorkVertex(e->vertex1);
+            vertexFound = e->vertex1;
+            //outNeighborWorkVertex[numNeighbors] = CreateWorkVertex(e->vertex1);
         } else if (e->vertex2->vertexId != srcId) {
             /* memory leak occurs here */
-            outNeighborWorkVertex[numNeighbors] = CreateWorkVertex(e->vertex2);
+            vertexFound = e->vertex2;
+            //outNeighborWorkVertex[numNeighbors] = CreateWorkVertex(e->vertex2);
         } else {
             printf("Could not create workvertex\n");
         }
 
-
-        if (!IsInWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices,
-                              numVertices)) {
-            AddToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
+        existingWV = getFromWorkVertices(vertexFound->vertexId, workVertices, numVertices);
+        if (existingWV != NULL && existingWV->setMode == CLOSED_SET) {
+            /* before we continue, set next ep */
+            ep = ep->nextEp;
+            continue;
+        } else if (existingWV != NULL && existingWV->setMode == OPEN_SET) {
+            // AddToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
+        } else {
+            existingWV = CreateWorkVertex(vertexFound);
         }
+        outNeighborWorkVertex[numNeighbors] = existingWV;
+        AddToWorkVertices(existingWV, workVertices, numVertices);
 
         numNeighbors++;
 
