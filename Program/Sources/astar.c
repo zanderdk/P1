@@ -9,6 +9,10 @@
 #define CLOSED_SET 1
 #define OPEN_SET 2
 
+void cleanUp() {
+
+}
+
 Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     int i;
     WorkVertex *wvStart;
@@ -20,12 +24,11 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     unsigned int tempG = 0;
     double tempF = 0;
 
-    WorkVertex **workVertices = (WorkVertex **) calloc(numVertices,
+    WorkVertex **workVertices = (WorkVertex **) calloc(numVertices * 2,
                                 sizeof(WorkVertex *));
 
     /* Allocate current neighbors array */
-    curNeighbors = (WorkVertex **) calloc(numVertices,
-                                          sizeof(WorkVertex *));
+    curNeighbors = workVertices + numVertices;
 
     /* create WorkVertex instance of start vertex and set to open list */
     wvStart = CreateWorkVertex(start);
@@ -45,8 +48,14 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
         if (current->originVertex->vertexId == dest->vertexId) {
             path =  ReconstructPath(current,
                                     numVertices);
+            int i;
+
+            for (i = 0; i < numVertices; i++) {
+                free(workVertices[i]);
+            }
+
             free(workVertices);
-            free(curNeighbors);
+            //free(curNeighbors);
             return path;
         }
         //verticesInPath++;
@@ -72,7 +81,6 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
 
         }
     }
-    //printf("sdf\n");
     /* this is only returned if failure */
     return NULL;
 }
