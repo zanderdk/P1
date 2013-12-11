@@ -7,8 +7,36 @@
 \tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners, minimum height=4em]
 \tikzstyle{line} = [draw, -latex']
 \tikzstyle{cloud} = [draw, ellipse, fill=red!20, minimum height=2em]
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[node distance = 4cm,auto]
+    % Place nodes
+    \node [cloud] (start) {Start};
+      \node [block, below of=start] (precalc) {Pre calculate};
+        \node [block, right of=precalc] (dij) {Dijkstra's algorithm};
+        \node [block, below of=precalc] (getSD) {Get start and destination};
+          \node [block, below of=getSD] (fp) {Find Path};
+          \node [decision, below of=fp] (flag) {Quit flag?};
+
+        \node [cloud, below of=flag] at (quit) {Quit};
+
+    % Draw edges
+    \path [line] (start) -- (precalc);
+    \path [line] (precalc) -- (dij);
+    \path [line] (precalc) -- (getSD);
+    \path [line] (getSD) -- (fp);
+    \path [line] (fp) -- (flag);
+    \path [line] (flag) -- node {no} (getSD);
+    \path [line] (flag) -- node {yes} (quit);
     
-\begin{tikzpicture}[node distance = 4cm, auto]
+\end{tikzpicture}
+\caption{Flowchart, Initial process}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[node distance = 4cm,auto]
     % Place nodes
     \node [cloud] (fp) {Find Path};
       \node [decision, below of=fp] (iu) {Is source on same floor as dest.};
@@ -27,7 +55,8 @@
     \path [line] (multi) -- (costs);
     \path [line] (fg) -- (return);
     \path [line] (costs) -- (return);
-
 \end{tikzpicture}
+\caption{Flowchart, flawless algorithm}
+\end{figure}
 
 The pathfinding solution begins by looking up the floor of source and destination, if both are on the same floor, then perform the A* on the floor graph. Otherwise find all exits on source and destination floor, return cost of shortest exits to exits. When found perform A* from source and destination vertex to exit vertices. Evaluate final shortest path and return.
