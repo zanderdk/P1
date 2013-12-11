@@ -39,7 +39,7 @@ Path *AStar(Vertex *start, Vertex *dest, Path *path) {
     wvStart = CreateWorkVertex(start);
     SetSetMode(OPEN_SET, wvStart);
     AddToWorkVertices(wvStart, workVertices, numVertices);
-    verticesInPath++;
+
 
     /* calculate and set f value for start to destination vertex */
     SetFValue(CalcFValue(wvStart, dest), wvStart);
@@ -50,17 +50,19 @@ Path *AStar(Vertex *start, Vertex *dest, Path *path) {
 
         /* is at destination? if so, recontruct the path to get from start to destination */
         if (current->originVertex->vertexId == dest->vertexId) {
-            return ReconstructPath(path, verticesInPath, current,
-                                   numVertices);
+            path =  ReconstructPath(path, verticesInPath, current,
+                                    numVertices);
+            free(workVertices);
+            free(outNeighborWorkVertex);
+            return path;
         }
-
+        verticesInPath++;
         current->setMode = CLOSED_SET;
         int numNeighbors = GetNeighbors(current, workVertices, numVertices, curNeighbors);
 
         for (i = 0; i < numNeighbors; i++) {
             curNeighbor = curNeighbors[i];
-            unsigned int weight = GetWeight(current, curNeighbor, workVertices, numVertices,
-                                            outNeighborWorkVertex);
+            unsigned int weight = GetWeight(current, curNeighbor);
 
             tempG = GetGValue(current) + weight;
 
@@ -72,7 +74,6 @@ Path *AStar(Vertex *start, Vertex *dest, Path *path) {
 
             if (curNeighbor->setMode != OPEN_SET || tempF < GetFValue(curNeighbor)) {
                 SetParentVertex(curNeighbor, current);
-                verticesInPath++;
                 SetGValue(tempG, curNeighbor);
                 SetFValue(tempF, curNeighbor);
                 if (curNeighbor->setMode != OPEN_SET) {
@@ -91,31 +92,20 @@ Path *ReconstructPath(Path *path, unsigned int verticesInPath, WorkVertex *end,
                       int numVertices) {
 
     WorkVertex *parent;
-    int i = 0;
+    int i = verticesInPath - 1;
     path->pathVerticeIds = (unsigned int *) malloc(sizeof(int) * verticesInPath);
     path->numVertices = verticesInPath;
     parent = end->parentVertex;
 
     path->pathVerticeIds[i] = end->originVertex->vertexId;
     path->weight = end->g;
-    i++;
+    i--;
 
     while (parent != NULL) {
         path->pathVerticeIds[i] = parent->originVertex->vertexId;
         parent = parent->parentVertex;
-        i++;
+        i--;
     }
-
-
-
-    /*    do {
-            parent = end->parentVertex;
-            path->weight += getWeight(end, parent, workVertices, numVertices,
-                                      outNeighborWorkVertex);
-
-            path->pathVerticeIds[i] = parent->originVertex->vertexId;
-            i++;
-        } while (parent != NULL);*/
 
     return path;
 }
@@ -132,26 +122,21 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
 
     do {
         Edge *e = ep->edge;
-        /* if vertexId is not same as srcId, create a workVertex based on that vertex
-        if and only if srcVertex and vertex are on the same floor.
-        This is because Astar should only work on 1 floor. */
-        if (e->vertex1->vertexId != srcId && e->vertex1->floorId == srcFloor) {
+        if (e->vertex1->vertexId != srcId) {
+            /* memory leak occurs here */
             outNeighborWorkVertex[numNeighbors] = CreateWorkVertex(e->vertex1);
-        }
-        /* if vertexId is not same as srcId, create a workVertex based on that vertex
-                if and only if srcVertex and vertex are on the same floor.
-                This is because Astar should only work on 1 floor. */
-        else if (e->vertex2->vertexId != srcId && e->vertex2->floorId == srcFloor) {
+        } else if (e->vertex2->vertexId != srcId) {
+            /* memory leak occurs here */
             outNeighborWorkVertex[numNeighbors] = CreateWorkVertex(e->vertex2);
         } else {
             printf("Could not create workvertex\n");
         }
 
+
         if (!IsInWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices,
                               numVertices)) {
             AddToWorkVertices(outNeighborWorkVertex[numNeighbors], workVertices, numVertices);
         }
-
 
         numNeighbors++;
 
@@ -213,37 +198,28 @@ void SetParentVertex(WorkVertex *child, WorkVertex *parent) {
     child->parentVertex = parent;
 }
 
-unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor,
-                       WorkVertex **workVertices,
-                       int numVertices, WorkVertex **outNeighborWorkVertex) {
-    int i;
-    unsigned int curId;
-    int numNeighbors = GetNeighbors(src, workVertices, numVertices,
-                                    outNeighborWorkVertex);
-
-
-    WorkVertex *curNeighbor;
+unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor) {
+    unsigned int weight;
     int srcId = src->originVertex->vertexId;
     int targetId = targetNeighbor->originVertex->vertexId;
 
-
     EdgePointer *ep = src->originVertex->ep;
 
-    for (i = 0; i < numNeighbors; i++) {
+    do {
         Edge *e = ep->edge;
-        /* if vertex1Id of edge is same as srcId or vertex2Id is same as targetId
-        the edge connecting src and target has been found. Return the weight of this edge */
+
         if ((e->vertex1->vertexId == srcId && e->vertex2->vertexId == targetId)
-                || (e->vertex2->vertexId == srcId && e->vertex1->vertexId == targetId)) {
-            return e->weight;
-        } else {
-            /* get next ep */
-            ep = ep->nextEp;
+                || (e->vertex1->vertexId == targetId && e->vertex2->vertexId == srcId)) {
+            weight = e->weight;
+            break;
         }
-    }
-    /*only returned if error*/
-    return 0;
+        ep = ep->nextEp;
+    } while (ep != NULL);
+    return weight;
 }
+
+
+
 
 int IsInWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertices) {
     int i;
@@ -306,7 +282,6 @@ int GetVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices) {
     }
     return numSet;
 }
-
 
 
 

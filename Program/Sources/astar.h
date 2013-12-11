@@ -202,9 +202,7 @@ void AddToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertice
  * @param outNeighborWorkVertex [description]
  * @return [description]
  */
-unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor,
-                       WorkVertex **workVertices,
-                       int numVertices, WorkVertex **outNeighborWorkVertex);
+unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor);
 
 /**
  * @brief returns the number of vertices in a given set
@@ -220,4 +218,3 @@ unsigned int GetWeight(WorkVertex *src, WorkVertex *targetNeighbor,
  * @return the number of WorkVertices in the given set
  */
 int GetVerticesInSet(int setMode, WorkVertex **workVertices, int numVertices);
-
