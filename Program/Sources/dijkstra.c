@@ -1,7 +1,8 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 #include "graph.h"
-#include "dijkstra.h"
+/*#include "dijkstra.h"*/
 #include "privdijkstra.h"
 
 void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) {
@@ -42,7 +43,8 @@ void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
         tempPtr = graph->floors[i].vp;
         while (tempPtr != NULL) {
             tempPtr2->workVertex.vertex = tempPtr;
-            tempPtr2->workVertex.dist = 0;
+            tempPtr2->workVertex.dist = -1;
+            tempPtr2->workVertex.visited = 0;
             tempPtr2->next = tempPtr2 + sizeof(WVLinkedList);
             tempPtr2 = tempPtr2->next;
             tempPtr = tempPtr->nextVp;
@@ -74,5 +76,39 @@ void SetPathsFromWGraph(WVLinkedList *workingGraph, WorkVertex **exits, SourcePa
 }
 
 void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode) {
+    WorkVertex *current = source;
+    current->dist = 0;
+
+    SetNeighborWeights(current, workingGraph);
+}
+
+void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph) {
+    Vertex *vertex = current->vertex;
+    EdgePointer *epPtr = vertex->ep;
+    WorkVertex *workPtr;
+    do {
+        if (epPtr->edge->vertex1 != vertex) {
+            workPtr = WVLLLookup(workingGraph, epPtr->edge->vertex1);
+        } else if (epPtr->edge->vertex2 != vertex) {
+            workPtr = WVLLLookup(workingGraph, epPtr->edge->vertex2);
+        } else {
+            printf("FATAL ERROR!\n");
+        }
+
+        if (workPtr->dist == -1 || epPtr->edge->weight < workPtr->dist) {
+            workPtr->dist = epPtr->edge->weight;
+        }
+    } while ((epPtr = epPtr->nextEp));
+}
+
+WorkVertex *WVLLLookup(WVLinkedList *workingGraph, Vertex *target) {
+    WVLinkedList *current = workingGraph;
+    while (current->workVertex.vertex != target) {
+        current = current->next;
+    }
+    return &(current->workVertex);
+}
+
+void WVLLInsertSort(WVLinkedList *workingGraph, WorkVertex *target) {
 
 }
