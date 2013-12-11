@@ -35,10 +35,10 @@ struct WorkVertex {
                 and the weight
  * @return Returns the path calculated through a Path
  */
-Path *AStar(Vertex *start, Vertex *dest, Path *path);
+Path *AStar(Vertex *start, Vertex *dest);
 
 
-Path *ReconstructPath(Path *path, unsigned int verticesInPath, WorkVertex *end,
+Path *ReconstructPath(unsigned int verticesInPath, WorkVertex *end,
                       int numVertices);
 
 /**

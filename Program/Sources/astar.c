@@ -9,13 +9,14 @@
 #define CLOSED_SET 1
 #define OPEN_SET 2
 
-Path *AStar(Vertex *start, Vertex *dest, Path *path) {
+Path *AStar(Vertex *start, Vertex *dest) {
     int i;
     WorkVertex *wvStart;
     WorkVertex *current;
     WorkVertex **curNeighbors;
     WorkVertex *curNeighbor;
     WorkVertex **outNeighborWorkVertex;
+    Path *path;
 
     unsigned int tempG;
     double tempF;
@@ -50,7 +51,7 @@ Path *AStar(Vertex *start, Vertex *dest, Path *path) {
 
         /* is at destination? if so, recontruct the path to get from start to destination */
         if (current->originVertex->vertexId == dest->vertexId) {
-            path =  ReconstructPath(path, verticesInPath, current,
+            path =  ReconstructPath(verticesInPath, current,
                                     numVertices);
             free(workVertices);
             free(outNeighborWorkVertex);
@@ -88,12 +89,15 @@ Path *AStar(Vertex *start, Vertex *dest, Path *path) {
     return path;
 }
 
-Path *ReconstructPath(Path *path, unsigned int verticesInPath, WorkVertex *end,
+Path *ReconstructPath(unsigned int verticesInPath, WorkVertex *end,
                       int numVertices) {
 
     WorkVertex *parent;
+    Path *path;
+    path = (Path *) malloc(sizeof(Path) + verticesInPath * sizeof(unsigned int));
     int i = verticesInPath - 1;
-    path->pathVerticeIds = (unsigned int *) malloc(sizeof(int) * verticesInPath);
+    path->pathVerticeIds = (unsigned int *) path + sizeof(path);
+    //path->pathVerticeIds = (unsigned int *) malloc(sizeof(int) * verticesInPath);
     path->numVertices = verticesInPath;
     parent = end->parentVertex;
 
