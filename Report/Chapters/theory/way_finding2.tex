@@ -183,7 +183,7 @@ Pathfinding algorithms are essentially algorithms that are able to search throug
   When considering these 4 situations, $h(x)$ should be admissible, meaning that the heuristic value should never overestimate the distance between the evaluating vertex and the target vertex. In contrast it should be just right for the final chosen path to be the optimal path and for the complexity of the algorithm to be at a minimum. 
 
   For an example of an A* calculation, see \cref{fig:astar}. 
-  Grey blocks are obstacles such as walls. White blocks are unvisited vertices. S marks the start and G the goal. Blue blocks mark vertices that were added to closed set (were visited) and green blocks mark vertices that were added to open set (were considered to be added to closed set). The point A marks a point where the heuristic value increases because the distance to G increases, causing the evaluation value to get sufficiently big. Big enough for A* to consider another path. Point B marks a point where A* chooses a path around an obstacle.
+  Grey blocks are obstacles such as walls. White blocks are unvisited vertices. S marks the start and G the goal. Blue blocks mark vertices that were added to closed set (were visited) and green blocks mark vertices that were added to open set (were considered to be added to closed set). A marks a point where the heuristic value increases because the distance to G increases, causing the evaluation value to rise above the threshold for when A* considers another path. Point B marks a point where A* chooses a path around an obstacle.
 
   \paragraph{Euclidean distance}\cite{wiki_euclidean}
 
@@ -218,6 +218,7 @@ Pathfinding algorithms are essentially algorithms that are able to search throug
     current = \tcc*{current vertex being evaluated} 
     neighborNodes(vertex) = \tcc*{set of neighbors for every vertex}
     hEstimate(vertex1,vertex2) \tcc*{function that calculates heuristic value from vertex1 to vertex2. Could use euclidean distance}
+    distBetween(vertex1,vertex2) \tcc*{gets cost from vertex1 to vertex2}
     }
 
   \SetKwFunction{Astar}{Astar}
@@ -227,26 +228,29 @@ Pathfinding algorithms are essentially algorithms that are able to search throug
 
     gScore[start] $\gets 0$ \tcc*{Set cost from start to 0}
 
-    fScore[start] $\gets = $ gScore[start] $+$ hEstimate(start,goal) \tcc*{Set f value of start vertex}
+    fScore[start] $\gets $ gScore[start] $+$ hEstimate(start,goal) \tcc*{Set f value of start vertex}
 
     \While{openSet \textbf{is not} empty}{
       current $\gets$ vertex in openSet having the lowest fScore value\;
-      \If{current $=$ goal}{ \tcc*{if current is goal, goal }
-        return reconstructPath(cameFrom, goal)\;
+      
+      \tcc{if current is goal, goal is reached}
+      \If{current $=$ goal}{ 
+
+
+        return reconstructPath(cameFrom, goal) \tcc*{goal is reached so reconstruct path and return it}
         }
       }
     
-
-
-
-
-    remove current from openSet\;
+    \tcc{remove current vertex from openSet and add to closedSet}
+    remove current from openSet \;
     add current to closedSet\;
+
     \For{\textbf{each} neighbor in neighborNodes(current)}{
       tempGScore $\gets$ gScore[current] + distBetween(current,neighbor)\;
 
-      tempGScore $\gets$ tempGScore + heuristicCostEstimate(neighbor,goal)\;
+      tempGScore $\gets$ tempGScore + hEstimate(neighbor,goal)\;
 
+      \tcc{if neighbor is in closedSet and tempFScore $>=$ f value of neighbor, continue}
       \If{neighbor in closedSet and tempFScore $>=$ fScore[neighbor]}{
         continue\;
       }
@@ -266,7 +270,37 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
 
 \end{algorithm}
 
+\begin{algorithm} \label{algo:reconstructPath}
+  \caption{Reconstruct path}
+  \KwResult{reconstructs the shortest path from start vertex to a target vertex}
+  \KwData{\\
+        stack \tcc*{Empty sequence}
+        target \tcc*{Target vertices}
+        source \tcc*{Source vertex}
+        u \tcc*{evaluating vertices}
+        previous \tcc*{A list of parents with lowest cost from source}
+   }
 
+  \SetKwFunction{ReconstructPath}{ReconstructPath}
+  \SetKwProg{KwFn}{Function}{}{}
+
+  \KwFn{\ReconstructPath{cameFrom, currentVertex}}{
+
+    \If{currentNode in cameFrom}{
+      p $\gets$ reconstructPath(cameFrom, cameFrom[currentVertex])
+      return (p currentVertex)
+    }
+    $u \gets target$\;
+    $stack \gets$ empty sequence\;
+    \While{previous[u] \textbf{is not} source}{
+      insert $u$ in stack\tcc*{Insert u vertex in the stack}
+      $u \gets$ previous[$u$]\tcc*{Traverse from target to source}
+    }
+    return
+  }
+\end{algorithm}
+
+\sinote{reconstruct path algorithm skal lige skrives færdig}
 
 
   \begin{figure}[ht!]
