@@ -3,15 +3,42 @@
 #include <string.h>
 #include "graph.h"
 #include "XML.h"
+#include "astar.h"
 #include "dijkstra.h"
 
 #define MBYTE 1024*1024
 #define NUMBER_OF_EXITS 30
 
 
+Vertex **GetExitVertecies(Vertex *start, int *c)
+{
+	int count = 0;
+	int max = 10;
+	Vertex **vp = calloc(10, sizeof(Vertex *));
+	Vertex *v = start;
+
+	do{
+		v = v->nextVp;
+		if(v->type > 1){
+			vp[count] = v;
+			count++;
+		}
+
+		if(count > max-2){
+			max += 10;
+			vp = realloc(vp, sizeof(Vertex *)*max);
+		}
+
+
+	}while(v->nextVp != NULL);
+
+	
+	return vp;
+}
+
 Path *OptimalPath(Vertex *start, Vertex *dest, Graph graph, int mode) {
 
-	path *buf;
+	Path *buf;
 
     if (start->floorId == dest->floorId) {
         //return AStar(start, dest);
@@ -25,11 +52,11 @@ Path *OptimalPath(Vertex *start, Vertex *dest, Graph graph, int mode) {
 
         } else {
 
-        	buf = AStar(start, dest);
-
         }
     }
 }
+
+
 
 int main(int argc, char const *argv[]) {
 
@@ -48,7 +75,12 @@ int main(int argc, char const *argv[]) {
     printf("Graph has: \n Floors: %d\n Vertices: %d\n",
            graph->numOfFloors,
            graph->numOfVertices);
+    int c;
 
+
+    double t = DistBetween(GetVertexFromId("10011", graph), GetVertexFromId("10017", graph));
+    printf("");
+    /*
 
     while (1) {
         printf("Enter first Vertex id: \n");
@@ -64,7 +96,7 @@ int main(int argc, char const *argv[]) {
         break;
     }
 
-
+	*/
 
     return 0;
 }

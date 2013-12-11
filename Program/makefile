@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -g
+CFLAGS = -lm -g -Wall
 DEPDIR = deps
 DF = $(DEPDIR)/$(*F)
 SRCS = main.c
@@ -10,7 +10,7 @@ OUTPUT = Program
 all: $(OUTPUT)
 
 $(OUTPUT): $(SRCS:.c=.o)
-	$(CC) $(CFLAGS) $^ -o $@ 
+	$(CC) $^ $(CFLAGS) -o $@ 
 
 %.o: %.c | $(DEPDIR)
 	$(COMPILE.c) -MMD $< -o $@

@@ -15,8 +15,8 @@ int main(void) {
 
 
 
-    Vertex *v1 = floors[0].vp;
-    Vertex *v2 = v1->nextVp->nextVp->nextVp->nextVp->nextVp->nextVp;
+    Vertex *v1 = GetVertexFromId("10011", graph);
+    Vertex *v2 = GetVertexFromId("10016", graph);
 
     printf("%d\n", v1->vertexId);
     printf("%d\n", v2->vertexId);
@@ -28,7 +28,7 @@ int main(void) {
 
 
 
-    printf("%d\n", path->weight);
+    printf("%u\n", path->weight);
 
     for (i = 0; i < path->numVertices; i++) {
 
