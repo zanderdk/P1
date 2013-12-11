@@ -6,6 +6,7 @@
 *.blg
 *.d
 *.dvi
+*.exe
 *.fdb_latexmk
 *.glg
 *.glo
