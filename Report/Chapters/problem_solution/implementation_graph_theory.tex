@@ -9,17 +9,16 @@ but implementing graph theory in a C program is a an entirely different thing. T
 	\item Linked list representation.
 \end{itemize} 
 
-\subsection{sequentially representation}
-A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another vertex. 
-this requires less memory than using a linked list, because it is know where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
-
-
 \subsection{Linked list representation}
 A linked list is defined as "a list implemented by each item having a link to the next item."\cite{linked_list_def}
 This means that every item in the list has a element pointing to the next item in the list. This way of structuring the data makes it possible to dynamic manipulate the list.\cite{Linked_List}
 
 Inserting new items to a linked list is relatively easy, compared to a sequentially representation of graph. 
 This can be done by redirecting a pointer to a element $A$ in the list to a newly created element $B$, and make the the new element point at location where the first element was pointing to $C$. This example is shown at \cref{fig:link}.
+
+\subsection{Sequentially Representation}
+A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another vertex. 
+This requires less memory than using a linked list, because it is known where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
 
 
 \begin{figure}[h]
