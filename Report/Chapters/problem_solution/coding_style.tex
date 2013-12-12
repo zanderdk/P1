@@ -1,0 +1,29 @@
+%!TEX root = ../../Master.tex
+\section{Coding Style}
+
+\subsection{Bracket Style}
+
+\begin{lstlisting}[style=customc, language=C]
+int Foo(bool isBar) {
+    if (isBar) {
+        bar();
+        return 1;
+    } else
+        return 0;
+}
+\end{lstlisting}
+
+Brackets are attached to the same line as the statement. The brackets have a white space separating the statement and the bracket.
+
+\subsection{Naming conventions}
+
+\begin{itemize}
+	\item Structs should be named with CamelCase. E.g. \texttt{WorkVertex}
+	\item Functions should be named with CamelCase. E.g. \texttt{GetNeighbors}
+	\item Variables should be named with camelCase and can be abbreviated when needed. E.g. \texttt{srcId}
+\end{itemize}
+
+\subsection{Practice Regarding Memory Allocation on the Heap}
+When allocating memory on the heap e.g. malloc/calloc is called, it should always be freed by the function free when the allocated memory is not accessed any more to avoid memory leaks. It is less important whether the memory was allocated inside or outside of a function. The caller of malloc/calloc should always just be clear about who has the responsibility to free this memory after use. 
+
+This means e.g. that if memory is allocated inside a function, the function should always return a pointer to the allocated memory so it can later be freed.
