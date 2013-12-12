@@ -9,7 +9,8 @@ void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode)
     int i, i2;
 
     /* Allocate memory for the work vertices and setup the linked list */
-    WVLinkedList *workingGraph = malloc(graph->numOfVertices * sizeof(WVLinkedList));
+    WVLinkedList *tmp = malloc(graph->numOfVertices * sizeof(WVLinkedList));
+    WVLinkedList *workingGraph = tmp;
     workingGraph->next = workingGraph + sizeof(WVLinkedList);
     GetWorkingGraph(graph, workingGraph);
 
@@ -35,6 +36,7 @@ void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode)
         SetPathsFromWGraph(workingGraph, exits, i, count, *sourcePaths);
         ResetWorkingGraph(workingGraph);
     }
+    free(tmp);
 }
 
 void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
