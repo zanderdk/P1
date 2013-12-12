@@ -89,6 +89,18 @@
   timestamp = {2013.11.21}
 }
 
+@ELECTRONIC{dir_pic,
+  author = {Difference Between},
+  month = {May},
+  year = {2011},
+  title = {Difference Between Directed UnDirected Graphs},
+  language = {English},
+  organization = {www.differencebetween.com},
+  url = {http://cdn.differencebetween.com/wp-content/uploads/2011/05/DifferenceBetween_Directed_UnDirected_Graphs1.jpg},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.11}
+}
+
 @ELECTRONIC{linked_list_def,
   author = {Paul E. Black},
   month = {26 June},
