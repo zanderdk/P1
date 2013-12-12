@@ -1,0 +1,38 @@
+%!TEX root = ../../Master.tex
+\subsection{A*}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+The A* algorithm as described in \cref{subs_astar} was implemented in C in the following way. The design choices will follow below.
+
+\lstinputlisting[style=customc, language=C, firstline=22, lastline=88, caption={Main function AStar}]{../Program/Sources/astar.c}
+
+The main function AStar takes as input a start Vertex pointer, a destination Vertex pointer and the number of vertices on the start floor. In order to not modify these input Vertex pointers, whenever a g, f, setMode or parentVertex of a vertex needs to be stored, a WorkVertex struct is created. It is an extension to a Vertex struct, providing extra \enquote{work} data. The struct WorkVertex is defined below.
+
+\lstinputlisting[style=customc, language=C, firstline=3, lastline=24, caption={WorkVertex struct}]{../Program/Sources/astar.h}
+
+In addition to a g, f, setMode and parentVertex a WorkVertex also has a originVertex member. This is being set to the Vertex pointer the WorkVertex is based upon. 
+
+All workVertices are stored in the pointer to pointer variable workVertices. This is simply an array of pointers to all WorkVertex structs created. This implementation means that there are no closed and open sets, just a flag on each WorkVertex describing which set that particular WorkVertex is in. 
+
+The arrays gScore, fScore, cameFrom as described in \cref{subs_astar}, are dealt with by setting these values directly to a WorkVertex struct. cameFrom is equivalent of the parentVertex member of the WorkVertex struct. This member is being used when the destination has been found and the path needs to be reconstructed. The function reconstructPath takes care of this.
+
+\lstinputlisting[style=customc, language=C, firstline=90, lastline=126, caption={ReconstructPath function}]{../Program/Sources/astar.c}
+
+It simply starts at the destination WorkVertex and follows the parentVertex pointer until it is NULL. When that happens, the start WorkVertex has been reached and the path is reconstructed. The ids of the Vertices in the path is stored in the Path struct and returned a pointer to this Path is returned. By returning the pointer to the Path, the caller of AStar function can simply free the path pointer when it is done with it.
+
+Just before the main AStar function returns it cleans up itself by freeing all allocated WorkVertices. This happens in the CleanUp function.
+
+\lstinputlisting[style=customc, language=C, firstline=12, lastline=20, caption={CleanUp function}]{../Program/Sources/astar.c}

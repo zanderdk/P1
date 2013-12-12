@@ -52,7 +52,6 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     while (GetVerticesInSet(OPEN_SET, workVertices, numVertices) != 0) {
         /* set current vertex to the vertex in open set with lowest f value */
         current = GetVertexLowestFOpenSet(workVertices, numVertices);
-        //printf("current is now %d\n", current->originVertex->vertexId);
 
         /* is at destination? if so, recontruct the path to get from start to destination */
         if (current->originVertex->vertexId == dest->vertexId) {
@@ -62,7 +61,7 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
             CleanUp(workVertices, createdWorkVertices);
             return path;
         }
-        //verticesInPath++;
+
         SetSetMode(CLOSED_SET, current);
         int numNeighbors = GetNeighbors(current, workVertices, numVertices, curNeighbors,
                                         &createdWorkVertices);
@@ -71,7 +70,6 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
             curNeighbor = curNeighbors[i];
             unsigned int weight = GetWeight(current, curNeighbor);
             tempG = GetGValue(current) + weight;
-
             tempF = tempG + DistBetween(curNeighbor->originVertex, dest);
 
             if (curNeighbor->setMode != OPEN_SET || tempF < GetFValue(curNeighbor)) {
@@ -105,7 +103,7 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
     Path *path;
     path = (Path *) malloc(sizeof(Path) + numsinpath * sizeof(unsigned int));
     if (path == NULL) {
-        printf("couldnt create fucking mallocandklansdlknaslkd\n");
+        printf("could not malloc path\n");
     }
 
     int i = numsinpath - 1;

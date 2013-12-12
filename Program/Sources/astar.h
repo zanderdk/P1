@@ -12,7 +12,7 @@ struct WorkVertex {
     int setMode;
 
     /**
-     * A pointer to the vertex this WorkVertex corresponds to.
+     * A pointer to the vertex this WorkVertex is based upon.
      * The originVertex is used to read values like edges, ids etc.
      */
     Vertex *originVertex;

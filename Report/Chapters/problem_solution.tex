@@ -3,69 +3,7 @@
 \label{cha:solution}
 
 
-\section{Structure} % (fold)
-\label{sec:structure}
-
-\begin{description}
-	\item[Generate shortest route] 
-	Generates most optimal route from A to B based on input. Uses a wayfinding algorithm to calculate the most optimal route through a set of vertices from a graph.
-
-	Input:
-	\begin{itemize}
-		\item Start vertice by id (or name)
-		\item Destination vertice by id (or name)
-		\item Graph
-	\end{itemize}
-	Returns list of vertices the route is going through. The list is ordered starting with the vertex closest to A.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\item[Get start position from user] 
-	Asks the user for start vertex. Could be vertex id (or name)
-
-	Returns start vertex.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\item[Get destination from user] 
-	Asks the user for destination vertex. Could be vertex id (or name)
-
-	Returns destination vertex.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\item[Parse file for vertices] 
-	Parses all the vertices out of a file.
-
-	Input:
-	\begin{itemize}
-		\item File containing graph data
-	\end{itemize}
-	Returns all vertices in input file.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\item[Parse file for edges] 
-	Parses all the edges out of a file.
-
-	Input:
-	\begin{itemize}
-		\item File containing graph data
-	\end{itemize}
-	Returns all edges in input file.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\item[Calculate distance between 2 vertices] 
-	Calculates the distance between 2 vertices using e.g. hamming or euclids distance.
-
-	Input:
-	\begin{itemize}
-		\item Vertex1
-		\item Vertex2
-	\end{itemize}
-	Returns the distance between 2 vertices.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-	\item[Get adjacent edges] 
-	Gets all the edges connected to the specified vertex.
-
-	Input:
-	\begin{itemize}
-		\item Vertex
-	\end{itemize}
-	Returns list of found edges.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{description}
+\input{Chapters/problem_solution/code_examples.tex}
 
 \input{Chapters/problem_solution/implementation_graph_theory.tex}
 
