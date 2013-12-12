@@ -1,7 +1,7 @@
 %!TEX root = ../../Master.tex
 \section{Algorithms for pathfinding}
 
-Constructing a model of the real world in math can be done by graph, finding the shortest path from one vertex to another, can be defined as single-pair shortest path problem. Finding the shortest path from vertex $u$ to vertex $v$. Algorithms for solving such problem, which are able to search through a graph for a solution. Searching a graph means systematically following edges in a graph thereby visiting vertices in a graph. Graph search algorithms differentiate themselves by their method of searching through a graph. Algorithms like dijkstra's algorithm are for solving single-source shortest path problem, finding a the shortest path from a source, to all other vertices in a graph. Backtracking from a specific vertex back to the source, it is possible to find the shortest path from a start vertex A to a destination vertex B in a graph \cite{Cormen2009}. Graph search algorithms are more effective than others in finding the shortest path connecting two vertices in a graph. This section describes both Dijkstra's algorithm in \cref{subs_dijkstra} and the A* algorithm in \cref{subs_astar}. These algorithms are very much alike, but they each have different assets. For example; Dijkstra's algorithm always finds the shortest path. However it is it inefficient in terms of speed in finding the shortest path. The A* algorithm will always find the shortest path, just like Dijkstra, given the heuristic value that is supplied is admissible. This is discussed in \cref{subs_astar}. A* differs from Dijkstra in terms of how fast the shortest path is evaluated.
+Finding the shortest path from one vertex to another, can be defined as a single-pair shortest path problem. Maybe all lowest cost and shortest path to all vertices, single-source shortest path problem, would be another variation of the core shortest path problem. Searching a graph means systematically following edges in a graph thereby visiting vertices in a graph. After searching its possible to backtrack from a specific vertex back to the source, an always find shortest path from a start vertex A to a destination vertex B in a graph \cite{Cormen2009}. Graph search algorithms differentiate themselves by their method of searching through a graph. Some graph search algorithms are more effective than others in finding the shortest path connecting two vertices in a graph. This section describes both Dijkstra's algorithm in \cref{subs_dijkstra} and the A* algorithm in \cref{subs_astar}. These algorithms are very much alike, but they each have different assets. For example; Dijkstra's algorithm always finds the shortest path. However it is it inefficient in terms of speed in finding the shortest path. The A* algorithm will always find the shortest path, just like Dijkstra, given the heuristic value that is supplied is admissible. This is discussed in \cref{subs_astar}. A* differs from Dijkstra in terms of how fast the shortest path is evaluated.
 
 %   In \cref{sec:specification} we specified that our solution needs to find the shortest weighted path to the destination.
 %   To better understanding pathfinding we examined different algorithms. We discovered that some algorithms have a high accuracy but is slow at finding the path, and conversely.
@@ -37,12 +37,16 @@ Constructing a model of the real world in math can be done by graph, finding the
 
   A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959}
 
+  \chnote{@SIMON BILLEDET UNDER!}
+
   \begin{figure}[ht!]
     \centering
     \frame{\includegraphics[width=0.5\textwidth]{Dijkstra}}
     \caption{Dijkstra's algorithm in action}
     \label{fig:dijkstra}
   \end{figure}
+
+  This is a pseudocode example of Dijkstra's algorithm.
 
 \begin{algorithm} \label{algo:Dij}
   \caption{Dijkstra's Algorithm}
@@ -52,7 +56,7 @@ Constructing a model of the real world in math can be done by graph, finding the
   source \tcc*{the source vertex to start evaluating from}
   dist \tcc*{list of distances from source}
   visited \tcc*{list of visited vertices}
-  previous \tcc*{list of vertices with shortest parent}
+  parent \tcc*{list of vertices with shortest parent}
   Q \tcc*{A list vertices to be evaluated}
   v \tcc*{evaluating vertex}
   u \tcc*{current vertex}
@@ -66,7 +70,7 @@ Constructing a model of the real world in math can be done by graph, finding the
     \For{\textbf{each} vertex v in graph}{
       dist[$v$] $\gets \infty$\tcc*{Assign distance from source to as infinite}
       visited[$v$] $\gets$ false\tcc*{Boolean to false for not visited}
-      previous[$v$] $\gets$ undefined\tcc*{Assign previous all as undefined}
+      parent[$v$] $\gets$ undefined\tcc*{Assign parent all as undefined}
     }
 
     dist[$source$] $\gets 0$\tcc*{Source dist has distance 0}
@@ -81,7 +85,7 @@ Constructing a model of the real world in math can be done by graph, finding the
         $alt \gets$ dist[$u$] + distBetween($v$, $u$)\tcc*{Assign the cost to $v$ from $source$ added the weight between $v$ and $u$}
         \If{alt < dist[v]\tcc*{If $alt$ is lower than the already assign dist value for vertex $v$}}{
           dist[$v$] $\gets alt$\tcc*{Store the shortest distance to vertex $v$ from $source$}
-          previous[$v$] $\gets u$\tcc*{Store the short parent $u$ to current vertex $v$}
+          parent[$v$] $\gets u$\tcc*{Store the short parent $u$ to current vertex $v$}
           \If{!visited[v]}{
             insert $v$ into $Q$\tcc*{Add the unvisited $v$ into the $Q$ to be evaluated}
           }
@@ -92,6 +96,8 @@ Constructing a model of the real world in math can be done by graph, finding the
   }
 \end{algorithm}
 
+After finding a all $parent$'s a function for back tracing the optimal path can be induced. In the example only return from one vertex to another.
+
 \begin{algorithm} \label{algo:FindPath}
   \caption{Find path to target}
   \KwResult{Finds the shortest path from start vertex to a target vertex}
@@ -100,18 +106,18 @@ Constructing a model of the real world in math can be done by graph, finding the
         target \tcc*{Target vertices}
         source \tcc*{Source vertex}
         u \tcc*{evaluating vertices}
-        previous \tcc*{A list of parents with lowest cost from source}
+        parent \tcc*{A list of parents with lowest cost from source}
    }
 
   \SetKwFunction{FindPath}{FindPath}
   \SetKwProg{KwFn}{Function}{}{}
 
-  \KwFn{\FindPath{previous, source, target}}{
+  \KwFn{\FindPath{parent, source, target}}{
     $u \gets target$\;
     $stack \gets$ empty sequence\;
-    \While{previous[u] \textbf{is not} source}{
+    \While{parent[u] \textbf{is not} source}{
       insert $u$ in stack\tcc*{Insert u vertex in the stack}
-      $u \gets$ previous[$u$]\tcc*{Traverse from target to source}
+      $u \gets$ parent[$u$]\tcc*{Traverse from target to source}
     }
     return
   }
