@@ -1,7 +1,7 @@
 %!TEX root = ../../Master.tex
 \section{Algorithms for pathfinding}
 
-Finding the shortest path from one vertex to another, can be defined as a single-pair shortest path problem. Maybe all lowest cost and shortest path to all vertices, single-source shortest path problem, would be another variation of the core shortest path problem. Searching a graph means systematically following edges in a graph thereby visiting vertices in a graph. After searching its possible to backtrack from a specific vertex back to the source, an always find shortest path from a start vertex A to a destination vertex B in a graph \cite{Cormen2009}. Graph search algorithms differentiate themselves by their method of searching through a graph. Some graph search algorithms are more effective than others in finding the shortest path connecting two vertices in a graph. This section describes both Dijkstra's algorithm in \cref{subs_dijkstra} and the A* algorithm in \cref{subs_astar}. These algorithms are very much alike, but they each have different assets. For example; Dijkstra's algorithm always finds the shortest path. However it is it inefficient in terms of speed in finding the shortest path. The A* algorithm will always find the shortest path, just like Dijkstra, given the heuristic value that is supplied is admissible. This is discussed in \cref{subs_astar}. A* differs from Dijkstra in terms of how fast the shortest path is evaluated.
+Finding the shortest path from one vertex to another, can be defined as a single-pair shortest path problem. Maybe all lowest cost and shortest path to all vertices, single-source shortest path problem, would be another variation of the core shortest path problem. Searching a graph means systematically following edges in a graph thereby visiting vertices in a graph. After searching it is possible to backtrack from a specific vertex back to the source, and always find the shortest path from a start vertex A to a destination vertex B in a graph \cite{Cormen2009}. Graph search algorithms differentiate themselves by their method of searching through a graph. Some graph search algorithms are more effective than others in finding the shortest path connecting two vertices in a graph. This section describes both Dijkstra's algorithm in \cref{subs_dijkstra} and the A* algorithm in \cref{subs_astar}. These algorithms are very much alike, but they each have different assets. For example; Dijkstra's algorithm always finds the shortest path. However it is inefficient in terms of speed in finding the shortest path. The A* algorithm will always find the shortest path, just like Dijkstra, given the heuristic value that is supplied is admissible. This is discussed in \cref{subs_astar}. A* differs from Dijkstra in terms of how fast the shortest path is evaluated.
 
 %   In \cref{sec:specification} we specified that our solution needs to find the shortest weighted path to the destination.
 %   To better understanding pathfinding we examined different algorithms. We discovered that some algorithms have a high accuracy but is slow at finding the path, and conversely.
@@ -35,21 +35,20 @@ Finding the shortest path from one vertex to another, can be defined as a single
   \subsection{Dijkstra's Algorithm}\label{subs_dijkstra}
 
 
-  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated, see \cref{fig:dijkstra}, the complexity of algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959}
+  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated the complexity of the algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959} For an example of Dijkstra's algorithm in action, see \cref{fig:dijkstra}. Grey blocks are obstacles such as walls. White blocks are unvisited vertices. S marks the start and G the goal. Blue blocks mark vertices that were added to closed set (were visited) and green blocks mark vertices that were added to open set (were considered to be added to closed set).  A marks a point that illustrates how many unnecessary vertices are being calculated using Dijkstra's algorithm. B marks a point that shows that does not take into account in which direction the goal is. It just keeps searching the graph blindly until it finds the desired goal.
 
-  \chnote{@SIMON BILLEDET UNDER!}
 
   \begin{figure}[ht!]
     \centering
-    \frame{\includegraphics[width=0.5\textwidth]{Dijkstra}}
+    \frame{\includegraphics[width=0.5\textwidth]{Dijkstra_edited}}
     \caption{Dijkstra's algorithm in action}
     \label{fig:dijkstra}
   \end{figure}
 
   This is a pseudocode example of Dijkstra's algorithm.
 
-\begin{algorithm} \label{algo:Dij}
-  \caption{Dijkstra's Algorithm}
+\begin{algorithm}
+  \caption{Dijkstra's Algorithm}\label{algo:Dij}
   \KwResult{Finds the shortest path from start vertex to Vertices}
   \KwData{\\
   graph \tcc*{graph containing vertices}
