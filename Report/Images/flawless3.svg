@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="flawless4.svg">
+   sodipodi:docname="flawless3.svg">
   <defs
      id="defs4">
     <linearGradient
@@ -43,7 +43,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="228.85393"
+     inkscape:cx="63.693988"
      inkscape:cy="561.92839"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -61,7 +61,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -70,21 +70,21 @@
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="fill:#000000;fill-opacity:0.05836576;fill-rule:nonzero;stroke:none"
+       style="fill:#000000;fill-opacity:0.10588235;fill-rule:nonzero;stroke:none"
        id="rect4340-2"
        width="184.85793"
        height="472.75137"
        x="367.19046"
        y="255.35184" />
     <rect
-       style="fill:#000000;fill-opacity:0.05836577;fill-rule:nonzero;stroke:none"
+       style="fill:#000000;fill-opacity:0.10588235;fill-rule:nonzero;stroke:none"
        id="rect4340-3"
        width="184.85793"
        height="472.75137"
        x="-2.5253983"
        y="255.35184" />
     <rect
-       style="fill:#000000;fill-opacity:0.09727626;fill-rule:nonzero;stroke:none"
+       style="fill:#000000;fill-opacity:0.14901961;fill-rule:nonzero;stroke:none"
        id="rect4340"
        width="184.85793"
        height="472.75137"
@@ -216,7 +216,7 @@
        id="text4164"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         id="tspan4166"></tspan></text>
+         id="tspan4166" /></text>
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
