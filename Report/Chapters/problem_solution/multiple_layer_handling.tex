@@ -6,7 +6,7 @@ The Dijkstra algorithm always finds the shortest route between two positions. Bu
 
 \subsection{Multiple Layer Handling through FLAWLESS} \label{multlayhan}
 
-When using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. Figure \ref{fig:buildingAstar} helps illustrate this. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the vertex (b) that is directly below the desired goal (a), regardless of whether it is an exit vertex or not. See \cref{e_vertex}. After this point has been reached, the A* algorithm will expand the search from this vertex. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstra's algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
+When using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. Figure \ref{fig:buildingAstar} helps illustrate this. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the vertex (b) that is directly below the desired goal (a), regardless of whether it is an exit vertex or not. See \cref{e_vertex}. After this point has been reached, the A* algorithm will expand the search from this vertex. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstras algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
 
 \begin{figure}[ht!]
     \centering
@@ -15,13 +15,17 @@ When using A* to find a path, the use of a euclidean heuristic becomes problemat
     \label{fig:buildingAstar}
   \end{figure}
 
-The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in figure \ref{precomp}. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the optimal route between the initial and final floor, the paths from exit vertex to exit vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
+The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in figure \ref{precomp}. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the optimal route between the intial and final floor, the paths from exit vertex to exit vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
 
-When using this approach, the runtime will consist of a round of A* runs done on both the initial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors. When this has been computed, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will determine the optimal path across the multiple floors. 
+When using this approch, the precalculation is executed at system startup using Dijkstras algorithm, in order to get the optimal connections between all exit vertices. There is no need for a faster algorithm, since there is no user communication during this calculation.
 
-This method of handing multiple floors in a building is named fused locale A* with level-calculation executed at system startup, and shortened to FLAWLESS. 
+The runtime will consist of a round of A* runs done on both the intial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors. 
 
-\kanote{skriv hvordan vi precomputer med Dijkstra}
+When this has been computed, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will dertermine the optimal path across the multiple floors. 
+
+This method of handing multiple floors in a building is named fused locale A* with level-calculation executed at system startup, and shortened to FLAWLESS.
+
+\kanote{indsæt grafik fra christian}
 
 \begin{figure}[ht!]
     \centering
