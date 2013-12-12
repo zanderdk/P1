@@ -5,7 +5,7 @@ struct WorkVertex {
     Vertex *vertex;
     unsigned int dist;
     int visited;
-    Vertex *previous;
+    WorkVertex *previous;
 };
 
 struct WVLinkedList {
@@ -16,6 +16,13 @@ struct WVLinkedList {
 void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode);
 void GetWorkingGraph(Graph *graph, WVLinkedList *head);
 void GetAllExits(Graph *graph, WVLinkedList *workingGraph, WorkVertex **exits, unsigned int *count);
-void SetPathsFromWGraph(WVLinkedList *workingGraph, WorkVertex **exits, SourcePaths *paths);
-void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph);
-WorkVertex *WVLLLookup(WVLinkedList *workingGraph, Vertex *target);
+void SetPathsFromWGraph(WVLinkedList *workingGraph, WorkVertex **exits, int index, int count, SourcePaths *sourcePaths);
+void BacktrackPath(WorkVertex *source, WorkVertex *goal, Path *path);
+void ReversePath(Path *from, Path *to);
+void SetNeighborWeights(WorkVertex *current, WVLinkedList **workingGraph, int mode);
+WVLinkedList *WVLLLookup(WVLinkedList *workingGraph, Vertex *target, WVLinkedList ***previous);
+void WVLLInsertSort(WVLinkedList **workingGraph, WVLinkedList *target, WVLinkedList **previous);
+int Comparer(WVLinkedList *wvll1, WVLinkedList *wvll2);
+void WVLLDelete(WVLinkedList **target, WVLinkedList **previous);
+void WVLLInsert(WVLinkedList **target, WVLinkedList **previous);
+void ResetWorkingGraph(WVLinkedList *workingGraph);
