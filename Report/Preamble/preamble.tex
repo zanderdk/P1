@@ -42,6 +42,25 @@
   stringstyle=\color{orange},
 }
 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape
+}
+ 
+\lstdefinelanguage{XML}
+{
+  basicstyle=\footnotesize\ttfamily\color{blue}\bfseries,
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{blue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
+}
+
 
  %Algorithm
 \usepackage{epstopdf}

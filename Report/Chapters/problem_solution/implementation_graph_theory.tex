@@ -9,6 +9,11 @@ but implementing graph theory in a C program is a an entirely different thing. T
 	\item Linked list representation.
 \end{itemize} 
 
+\subsection{sequentially representation}
+A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another vertex. 
+this requires less memory than using a linked list, because it is know where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
+
+
 \subsection{Linked list representation}
 A linked list is defined as "a list implemented by each item having a link to the next item."\cite{linked_list_def}
 This means that every item in the list has a element pointing to the next item in the list. This way of structuring the data makes it possible to dynamic manipulate the list.\cite{Linked_List}
@@ -97,3 +102,11 @@ Removing an item can be done similarly by changing the element pointing to the i
 \end{tikzpicture}
 \caption{example graph} \label{fig:graph}
 \end{figure}
+
+
+
+\subsection{Representing a Graph as XML}
+
+In order to search through a graph in a C program, the graph needs to be read by the C program. XML was chosen as the markup language for representing a graph, because of it is easy to read for both humans and computers. An example of how a graph is represented as XML is seen in \cref{list:xml_demo}.
+
+\lstinputlisting[language=XML, label=list:xml_demo, caption={An example of a graph represented as XML}]{Chapters/problem_solution/demo_xml.xml}
