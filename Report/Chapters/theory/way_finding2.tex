@@ -278,11 +278,8 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
   \caption{Reconstruct path}
   \KwResult{reconstructs the shortest path from start vertex to a target vertex}
   \KwData{\\
-        stack \tcc*{Empty sequence}
-        target \tcc*{Target vertices}
-        source \tcc*{Source vertex}
-        u \tcc*{evaluating vertices}
-        previous \tcc*{A list of parents with lowest cost from source}
+        currentNode \tcc*{The currentNode being checked}
+        cameFrom \tcc*{The vertex currentNode came from}
    }
 
   \SetKwFunction{ReconstructPath}{ReconstructPath}
@@ -290,21 +287,17 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
 
   \KwFn{\ReconstructPath{cameFrom, currentVertex}}{
 
+    \tcc{If the currentNode being checked is inside cameFrom list, call reconstructPath recursively and return the path from reconstructPath + the current node}
     \If{currentNode in cameFrom}{
-      p $\gets$ reconstructPath(cameFrom, cameFrom[currentVertex])
-      return (p currentVertex)
+      p $\gets$ reconstructPath(cameFrom, cameFrom[currentVertex])\;
+      return (p $+$ currentNode)\;
     }
-    $u \gets target$\;
-    $stack \gets$ empty sequence\;
-    \While{previous[u] \textbf{is not} source}{
-      insert $u$ in stack\tcc*{Insert u vertex in the stack}
-      $u \gets$ previous[$u$]\tcc*{Traverse from target to source}
+    \tcc{currentNode is not in cameFrom list, so no action other than returning currentNode should happen}
+    \Else{
+      return currentNode\;
     }
-    return
   }
 \end{algorithm}
-
-\sinote{reconstruct path algorithm skal lige skrives færdig}
 
 
   \begin{figure}[ht!]
