@@ -1046,10 +1046,22 @@
   timestamp = {2013.11.25}
 }
 
+@ELECTRONIC{arbejdsmiljo_ca,
+  url = {http://www.dsr.dk/Arbejdsmilj%C3%B8/Documents/SATH/Stress_blandt_sygeplejersker_-_September_2008-3.pdf},
+  owner = {Carsten},
+  timestamp = {2013.12.12}
+}
+
 @OTHER{billedafbygningudengraf,
   owner = {Carsten},
   timestamp = {2013.12.10},
   url = {http://compdiag.molgen.mpg.de/pics/floorplan.png}
+}
+
+@ELECTRONIC{Frivillige_guider,
+  url = {http://www.tvmidtvest.dk/indhold/frivillige-guider-paa-sygehuset},
+  owner = {Carsten},
+  timestamp = {2013.12.12}
 }
 
 @MANUAL{job,
@@ -1067,6 +1079,12 @@
   url = {https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/staticmaps/7621.gif},
   owner = {AndersBærbar},
   timestamp = {2013.10.29}
+}
+
+@ELECTRONIC{politisk_styret_ca,
+  url = {http://projekter.aau.dk/projekter/files/52303064/Christina_Larsen_Hovedopgave_12_maj_2011.pdf},
+  owner = {Carsten},
+  timestamp = {2013.12.12}
 }
 
 @ELECTRONIC{QR_dama,
@@ -1144,6 +1162,12 @@
   url = {http://www.pbs.org/parents/education/learning-disabilities/types/reading/},
   owner = {AndersBærbar},
   timestamp = {2013.11.04}
+}
+
+@ELECTRONIC{wifi_navigation_ca,
+  url = {http://www.version2.dk/artikel/wifi-pejling-paa-mobilen-skal-forhindre-patienter-i-fare-vild-paa-supersygehus-i-aarhus},
+  owner = {Carsten},
+  timestamp = {2013.12.12}
 }
 
 @comment{jabref-meta: selector_publisher:}
