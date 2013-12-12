@@ -19,22 +19,33 @@ The solution to this problem lies in a tripartitioning of the pathfinding proces
 
 When using this approch, the precalculation is executed at system startup using Dijkstras algorithm, in order to get the optimal connections between all exit vertices. There is no need for a faster algorithm, since there is no user communication during this calculation.
 
-The runtime will consist of a round of A* runs done on both the intial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors. 
-
-When this has been computed, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will dertermine the optimal path across the multiple floors. 
-
-This method of handing multiple floors in a building is named fused locale A* with level-calculation executed at system startup, and shortened to FLAWLESS.
-
-\kanote{indsæt grafik fra christian}
-
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\textwidth]{precomputedpath}
-    \caption{mangler billedtekst}
+    \includegraphics[width=0.5\textwidth]{flawless1}
+    \caption{Illustration of the precomputation of routes between the floors}
     \label{fig:precomp}
   \end{figure}
 
-\kanote{mangler billedtekst}
+The runtime will consist of a round of A* runs done on both the intial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors. 
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{flawless3}
+    \caption{Illustration of the A* runs}
+    \label{fig:precomp}
+  \end{figure}
+
+When this has been computed, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will dertermine the optimal path across the multiple floors. 
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{flawless4}
+    \caption{Illustration of the added evaluation values, and the route that is chosen}
+    \label{fig:precomp}
+  \end{figure}
+
+This method of handing multiple floors in a building is named fused locale A* with level-calculation executed at system startup, and shortened to FLAWLESS.
+
 
 \subsection{Choosing Stairs or the Elevator}
 
