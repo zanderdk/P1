@@ -1081,6 +1081,12 @@
   timestamp = {2013.10.29}
 }
 
+@ELECTRONIC{Millionkontrakt_giver_Ca,
+  url = {http://www.version2.dk/artikel/region-syddanmark-koeber-stabilt-og-sikkert-wifi-millioner-44628},
+  owner = {Carsten},
+  timestamp = {2013.12.12}
+}
+
 @ELECTRONIC{politisk_styret_ca,
   url = {http://projekter.aau.dk/projekter/files/52303064/Christina_Larsen_Hovedopgave_12_maj_2011.pdf},
   owner = {Carsten},
