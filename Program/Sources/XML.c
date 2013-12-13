@@ -7,7 +7,6 @@
 Graph *readXml(FILE *fp)
 {
 	Floor *floors;
-	int i = 0;
 	char c = 0;
 	char buf[8];
 	int edgesCount, verticesCount, floorsCount;
@@ -97,7 +96,7 @@ void crawVertices(Vertex **vertices, int last, Floor **floors)
     (*floors)[flId].amountOfVertecies++;
 
 	(*vertices)[last-1].nextVp = NULL;
-	getFloorAndtype((*vertices)[last-1].vertexId,&(*vertices)[last-1].floorId , &(*vertices)[last-1].type);	
+	getFloorAndtype((*vertices)[last-1].vertexId, (int *) &((*vertices)[last-1].floorId) , (int *) &(*vertices)[last-1].type);	
 }
 
 void getFloorAndtype(int id, int *floor, int *type)
@@ -165,12 +164,12 @@ void readvertices(FILE *fp, Vertex *vertices, int numberOfvertices, Edge *ep, in
 
 Vertex readVertex(FILE *fp, Edge *ep, int numberOfEdges,  EdgePointer *EdgePointerStart)
 {
-	static EdgePointerCount = 0;
+	static int EdgePointerCount = 0;
 	Vertex v;
 	memset(&v, 0, sizeof(v));
-	unsigned int value, i;
 	char buf[128];
 	memset(buf, 0, 128);
+	int value;
 
 	nextElement(buf, fp);
 
@@ -208,7 +207,7 @@ Vertex readVertex(FILE *fp, Edge *ep, int numberOfEdges,  EdgePointer *EdgePoint
 			break;
 		}
 
-	getFloorAndtype(v.vertexId ,&(v.floorId) , &(v.type));
+	getFloorAndtype(v.vertexId , (int *) &(v.floorId) , (int *) &(v.type));
 
 	return v;	
 }

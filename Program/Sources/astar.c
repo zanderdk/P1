@@ -107,7 +107,7 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
     }
 
     int i = numsinpath - 1;
-    path->pathVerticeIds =  path + sizeof(Path);
+    path->pathVerticeIds =  (unsigned int *)(path+1);
     path->numVertices = numsinpath;
     parent = end->parentVertex;
 
