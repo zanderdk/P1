@@ -17,7 +17,7 @@ When using A* to find a path, the use of a euclidean heuristic becomes problemat
     \label{fig:buildingAstar}
   \end{figure}
 
-The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in figure \ref{fig:precomp}. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the optimal route between the intial and final floor, the paths from exit vertex to exit vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
+The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in \cref{fig:flawless1,fig:flawless2,fig:flawless3}. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the optimal route between the intial and final floor, the paths from exit vertex to exit vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
 
 When using this approch, the precalculation is executed at system startup using Dijkstras algorithm, in order to get the optimal connections between all exit vertices. There is no need for a faster algorithm, since there is no user communication during this calculation.
 
@@ -25,7 +25,7 @@ When using this approch, the precalculation is executed at system startup using 
     \centering
     \includegraphics[width=0.5\textwidth]{flawless1}
     \caption{Illustration of the precomputation of routes between the floors}
-    \label{fig:precomp}
+    \label{fig:flawless1}
   \end{figure}
 
 The runtime will consist of a round of A* runs done on both the intial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors. 
@@ -34,7 +34,7 @@ The runtime will consist of a round of A* runs done on both the intial floor and
     \centering
     \includegraphics[width=0.5\textwidth]{flawless3}
     \caption{Illustration of the A* runs}
-    \label{fig:precomp}
+    \label{fig:flawless2}
   \end{figure}
 
 When this has been computed, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will dertermine the optimal path across the multiple floors. 
@@ -43,7 +43,7 @@ When this has been computed, all the possible combinations of paths will have th
     \centering
     \includegraphics[width=0.5\textwidth]{flawless4}
     \caption{Illustration of the added evaluation values, and the route that is chosen}
-    \label{fig:precomp}
+    \label{fig:flawless3}
   \end{figure}
 
 This method of handing multiple floors in a building is named fused locale A* with level-calculation executed at system startup, and shortened to FLAWLESS.
