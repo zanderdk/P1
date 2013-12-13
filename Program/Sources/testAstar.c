@@ -3,6 +3,7 @@
 #include "graph.h"
 #include "XML.h"
 #include "astar.h"
+#include <time.h>
 
 
 int main(void) {
@@ -12,30 +13,49 @@ int main(void) {
     Floor *floors = graph->floors;
     fclose(xml);
     int i;
+    srand(time(NULL));
+    int count = 0;
+    while (count < 1000000) {
 
-    while (1) {
+        char stid1[6] = "10011";
+        char stid2[6] = "10016";
 
-        Vertex *v1 = GetVertexFromId("10011", graph);
-        Vertex *v2 = GetVertexFromId("10016", graph);
+        /*do {
+            stid1[4] = ((rand() % 6) + 1) + '0';
+            stid2[4] = ((rand() % 6) + 2) + '0';
+        } while (strcmp(stid2, stid1) == 0);*/
 
-        printf("%d\n", v1->vertexId);
-        printf("%d\n", v2->vertexId);
+
+        //printf("%s \n", stid1);
+
+        Vertex *v1 = GetVertexFromId(stid1, graph);
+        Vertex *v2 = GetVertexFromId(stid2, graph);
+
+        /*
+                printf("%d\n", v1->vertexId);
+                printf("%d\n", v2->vertexId);*/
 
         Path *path;
 
-        path = AStar(v1, v2, graph);
+        path = AStar(v1, v2, graph->floors[0].amountOfVertecies);
 
-        printf("%u\n", path->weight);
+        //printf("weight %d\n", path->weight);
 
-        for (i = 0; i < path->numVertices; i++) {
+        /*for (i = 0; i < path->numVertices; i++) {
 
             printf("%d\n", path->pathVerticeIds[i]);
-        }
+        }*/
+
+        //printf("%d \n", count++);
+        count++;
 
         free(path);
+        //sleep(1);
     }
+    printf("finished\n");
 
     free(graph);
+
 
     return 0;
 }
