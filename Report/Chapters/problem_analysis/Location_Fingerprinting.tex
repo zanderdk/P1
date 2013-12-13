@@ -30,7 +30,7 @@ In order for the codes to be efficient, they also have to placed at many locatio
 %Hvorofr er det relevant
 %Hvorfor er det ikke relevant?
 
-RFID (Radio Frequency Identification) is a radio technology that makes it possible, just like barcodes, to identify different objects. the main difference between these two technologies is that the barcode is a line of sight technology, and RFID is wireless, as long as it is within visible distance. The readable distance varies depending on the type of RFID tag. The information exchanged can be in many different formats such as text, numbers, audio or video. The signal is send with via magnetic fields\cite{RFID_magnetic}.
+RFID (Radio Frequency Identification) is a radio technology that makes it possible, just like barcodes, to identify different objects. The main difference between these two technologies is that the barcode is a line of sight technology, and RFID is wireless, as long as it is within visible range of the a receiver. The readable distance varies depending on the type of RFID tag. The information exchanged can be in many different formats such as text, numbers, audio or video. The signal is send with via magnetic fields\cite{RFID_magnetic}.
 
 There are different types of RFID tags each with different purposes. There are the active, semi passive and passive. The active tag can broadcast its radio waves to a RFID reader. The semi passive is different as it has no means of broadcasting on its own and will need the RFID reader to draw power from\cite{RFID_semiActive}. The passive tag does not have its own battery and will therefore need the RFID reader to supply power just like the semi-active tag. The semi-passive tag does however have a battery to supply its circuit with power\cite{RFID_AllTypes}.
 
@@ -38,6 +38,6 @@ The RFID tag is useful because it can help with identifying objects or persons w
 
 In this project the tags could be used to position the users as they go trough the building. The active tags could be on the user or device, and when they comes near a reader the reader could tell a server where the tag have been read. In that way the user will be repositioned every time they comes near a "checkpoint". These "checkpoint" could be placed every time there was a turn or a door, as the route then could be planned from that position.
 
-A problem with this solution would be that the users will not be positioned when they are in a middle of a hallway without doors, as no readers will be near them. To get around this problem, the complex should be filled with readers everywhere. The readers will also run low on power at some time, and will need to have it battery replaced. This could evolve into a major project if all the hallways have been plastered.
+A problem with this and the QR-code solution would be that the users will not be positioned when they are in a middle of a hallway without doors, as no readers will be near them. To get around this problem, the complex should be filled with readers everywhere. This could evolve into a major project if all the hallways have been plastered.
 
 \input{Chapters/problem_analysis/WiFi.tex}
