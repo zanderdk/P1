@@ -2,11 +2,15 @@
 \section{Organization} % (fold)
 \label{sec:organization}
 
+This section will describe how the organizational structure of a hospital is and how the existing infrastructure of a hospital is including requirements for a navigation system.
+
 \input{Chapters/problem_analysis/interessent_admin.tex}
 
-In order to create a good navigational system for a hospital, certain factors must be considered. When deciding new features for a hospital, installation \& maintenance costs and compatibility with the existing hardware are big subjects. Therefore this section will describe how the existing infrastructure in hospitals is and how this will affect the navigational system.
+\subsection{Infrastructure}
 
-\subsection{Wi-Fi} \label{orgwifi}
+In order to create a good navigational system for a hospital, certain factors must be considered. When deciding new features for a hospital, installation \& maintenance costs and compatibility with the existing hardware are big subjects. Therefore this section will describe existing infrastructure in hospitals and how this will affect the navigational system.
+
+\paragraph{Wi-Fi} \label{orgwifi}
 
 Most hospitals have good Wi-Fi coverage in the facility \cite{Millionkontrakt_giver_Ca}. A visit to \enquote{Sygehus Nord} in Aalborg revealed that multiple locations around the hospital had a sufficient amount of Wi-Fi hot spots in range, in order to be used in Location Based Services. See \cref{fig:wifi1,fig:wifi2,fig:wifi3}.
 
@@ -31,22 +35,24 @@ Most hospitals have good Wi-Fi coverage in the facility \cite{Millionkontrakt_gi
   \end{figure}
 
 
-\subsection{Interference with medical device}
+\paragraph{Interference with medical device}
 
-Incidents of radio frequency interference between cellular phones, radio broadcasters, WiFi devices and medical devices have been reported. Older models of pacemakers, defibrillator and hearing aid devices were being influenced by near encounter of cellular phones causing undesirable effects like not having control of heartbeat etc. 
+Incidents of radio frequency interference between cellular phones, radio broadcasters, WiFi devices and medical devices have been reported. Older models of pacemakers, defibrillator and hearing aid devices were being influenced by near encounter of cellular phones causing undesirable effects which could lead to uncontrollable heartbeat. 
 The problem was that radio frequency fields were interfering with medical equipment. This has however now been addressed in modern standards, meaning that interference with medical devices does not occur any more. \cite{Man1998,Case}
 
-\subsection{Temporary out-of-order elements}
+\paragraph{Temporary out-of-order elements}
 
-When mapping a hospital every hall building, stair, elevator etc. has to be considered. Situations may however occur in which some of the mapped elements in fact are temporary out-of-order. This could be an elevator or a hallway being repainted. Updating the navigation system map to include the temporary elements could be a lot of effort. In a situation in which an user of the navigation system is guided through an out-of-order element, the user will most likely find their own way around this obstacle. When this happens, the user is going off-route. The navigation system must support this and act accordingly.
+When mapping a hospital every hall building, stair, elevator etc. has to be considered. Situations may however occur in which some of the mapped elements in fact are temporarily out-of-order. This could be an elevator or a hallway being repainted. Updating the navigation system map to include the temporary elements would be a lot of effort. In a situation in which an user of the navigation system is guided through an out-of-order element, the user will most likely find their own way around this obstacle. When this happens, the user is going off-route. The navigation system must support this and act accordingly.
 
-\subsection{Cross-building support}
+\paragraph{Cross-building support}
 
-Some hospitals will undoubtedly have several building complexes around their cadastral. A good navigational system should work across these platforms providing one, uniform experience. This is both good for the end-user, but as the navigational system can be reused also eases the installation. If support for cross-building complexes has been laid, this could further expand to the navigation system supporting different hospitals independent of each other. The navigation system could then e.g. be installed in all the hospitals in Region Nord, providing an uniform experience for end-users.
+Some hospitals will undoubtedly have several building complexes around their cadastral. A good navigational system should work across these platforms providing one, uniform experience. This is both good for the end-user but also eases the maintenance work for the the navigational, because it can be reused across many different hospitals. If support for cross-building complexes has been laid, this could further expand to the navigation system supporting different hospitals independent of each other. The navigation system could then e.g. be installed in all the hospitals in Region Nordjylland, providing an uniform experience for end-users.
 
 \subsection{Summary of organization}
 
-To round up all this, the extra workload there can occur when navigation is a problem, can be time consuming and stressful for both the Regular staff and the visitors. The problem is not only appearing for visitors whom is not use to hospitals, but also if there are changes in the structure of the hospital, different departments can be moved around, so even veterans wont know where they need to go. Changes in a hospital can happen when The Region, e.g. chooses to save, spend or give different fields of the hospital money. The infra structure or structure in general can be modified, for instance if a region. plans to expand or modify any of the systems which are in advance. For the region to make changes different phases will need to occur: Preparing phase, Decision phase and Implementation phase. For this we have a total of 3 groups to make this happen: parliament, government and the minister-led ministries and the Regional Council. When changes are made some factors must be considered. When deciding new features for a hospital, installation \& maintenance costs and compatibility with the existing hardware are big subjects. For navigation is to work properly WIFI is important, but with WIFI, some problems can occur and this problems are described in the text above.
+To round up, the extra workload that can occur when navigating in a hospital is a problem, because it is time consuming and stressful for both the regular staff and the visitors. The problem is not only affecting visitors but also the staff working at the hospital. 
+
+Changes in a hospital can occur when the region decides to save or spend money. The infrastructure or structure in general can be modified. When these decisions are made, 3 different phases are typically executed: preparing phase, decision phase and implementation phase. When changes are to be made, installation \& maintenance costs and compatibility with the existing hardware, are big subjects.
 
 
 % section organization (end)
