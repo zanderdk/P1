@@ -18,3 +18,22 @@ We can describe these definitions formally.\cite{MIT2012}
   \end{figure}
 
 \input{Chapters/theory/directed_undirected.tex}
+
+\subsection{Representation of graphs}
+
+Two standard ways to represent a graph exists: as a collection of adjacency lists or as an adjacency matrix. Both representations support directed and undirected graphs. Each representation method has its merits \cite{Cormen2009}.
+
+\subsubsection{Adjacency list}
+Adjacency lists provide a very compact way to represent \textbf{sparse} graphs. The keyword is sparse. Adjacency lists are only compact and the preferred representation of graphs if the number of edges in a graph is much less than the number of vertices squared. \cref{fig:labeled_graph,fig:labeled_Directed_undirected} are represented as a collection of adjacency lists.
+
+\subsubsection{Adjacency matrix}
+Adjacency matrices are usually the representation of choice when the graph is \textbf{dense}. This means that adjacency matrices should be used when the number of edges is close to the number of vertices squared. Adjacency matrices also has the merit of providing quick lookup of which vertices are connected. See \cref{fig:adjacency_matrix} for an example.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{adjacency_matrix}
+    \caption{An example of an adjacency matrix. Row and column numbers are vertex ids. The content of the matrix is the weight the connection between row vertex and column vertex has \cite{Cormen2009}}.
+    \label{fig:adjacency_matrix}
+  \end{figure}
+
+
