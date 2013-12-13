@@ -1,20 +1,19 @@
 %!TEX root = ../../Master.tex
-\section{Implementing graph theory}
+\section{Implementing Graph Theory}
 
-Navigate from a to b using graph theory is one thing, 
-but implementing graph theory in a C program is a an entirely different thing. This section will cover two methods to represent a graph in computer memory. 
+Navigate from a to b using graph theory is one thing, but implementing graph theory in a C program is a an entirely different thing. This section will cover two methods to represent a graph in computer memory. 
 
 \begin{itemize}
 	\item Sequential representation.
 	\item Linked list representation.
 \end{itemize} 
 
-\subsection{sequentially representation}
+\subsection{Sequentially Representation}
 A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another vertex. 
 this requires less memory than using a linked list, because it is know where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
 
 
-\subsection{Linked list representation}
+\subsection{Linked List Representation}
 A linked list is defined as "a list implemented by each item having a link to the next item."\cite{linked_list_def}
 This means that every item in the list has a element pointing to the next item in the list. This way of structuring the data makes it possible to dynamic manipulate the list.\cite{Linked_List}
 
