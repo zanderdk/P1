@@ -8,7 +8,7 @@
 void printasd(WVLinkedList *head) {
     WVLinkedList *temp = head;
     do {
-        printf("%d - %u - %u - %p\n", temp->workVertex.vertex->vertexId, temp->workVertex.dist, temp->workVertex.visited, temp->workVertex.previous);
+        printf("%d:%d - edge: %d - %u - %u - %p\n", temp->workVertex.vertex->vertexId, temp->workVertex.vertex->type, temp->workVertex.vertex->ep->edge->edgeId,  temp->workVertex.dist, temp->workVertex.visited, temp->workVertex.previous);
     } while ((temp = temp->next));
 }
 
@@ -16,7 +16,6 @@ void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode)
     int i, i2;
 
     /* Allocate memory for the work vertices and setup the linked list */
-    printf("%d \n", graph->numOfVertices);
     WVLinkedList *tmp = calloc(graph->numOfVertices, sizeof(WVLinkedList));
     WVLinkedList *workingGraph = tmp;
 
@@ -28,6 +27,8 @@ void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode)
     unsigned int count = 0;
     GetAllExits(graph, workingGraph, exits, &count);
 
+
+
     // Allocate memory for all paths
     *sourcePaths = malloc(count * sizeof(SourcePaths));
     for (i = 0; i < count; ++i) {
@@ -38,6 +39,7 @@ void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode)
             (*sourcePaths)[i].paths[i2].pathVerticeIds = malloc(1024 * sizeof(unsigned int));
         }
     }
+
 
     //Pre-compute paths for all exits in the graph
     for (i = 0; i < count; i++) {
@@ -57,7 +59,6 @@ void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
     for (i = 0; i < graph->numOfFloors; i++) {
         tempPtr = graph->floors[i].vp;
         do {
-            printf("%d\n", tempPtr->vertexId);
             tempPtr2->workVertex.vertex = tempPtr;
             tempPtr2->workVertex.dist = -1;
             tempPtr2->workVertex.visited = 0;
@@ -140,13 +141,26 @@ void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode) {
     do {
         current->visited = 1;
         printf("\n");
-        printf("dfghgdf%d\n", current->vertex->vertexId);
+        printf("current %d\n", current->vertex->vertexId);
         tempPtr2 = WVLLLookup(workingGraph, current->vertex, &tempPtr);
-        WVLLInsertSort(&workingGraph, tempPtr2, tempPtr);
+        printf("%p %p %p %p %p\n", tempPtr, *tempPtr, (**tempPtr).workVertex.vertex, (**tempPtr).workVertex.previous, (**tempPtr).next);
+        //printf("%d\n", tempPtr2->workVertex.vertex->vertexId);
+        //printf("%d\n", (*tempPtr)->workVertex.vertex->vertexId);
+        WVLLInsertSort(&workingGraph, tempPtr2, &tempPtr);
         SetNeighborWeights(current, &workingGraph, mode);
         printasd(workingGraph);
         current = &(workingGraph->workVertex);
     } while (!workingGraph->workVertex.visited);
+}
+
+void WVLLInsertSort(WVLinkedList **workingGraph, WVLinkedList *target, WVLinkedList ***previous) {
+    printf("%p %p %p %p %p\n", *previous, **previous, (* **previous).workVertex.vertex, (* **previous).workVertex.previous, (* **previous).next);
+    WVLLDelete(&target, *previous);
+    WVLinkedList **wvllPtr = workingGraph;
+    while (*wvllPtr && Comparer(target, *wvllPtr) > 0) {
+        wvllPtr = &((*wvllPtr)->next);
+    }
+    WVLLInsert(&target, wvllPtr);
 }
 
 void SetNeighborWeights(WorkVertex *current, WVLinkedList **workingGraph, int mode) {
@@ -162,42 +176,29 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList **workingGraph, int mo
         } else {
             printf("FATAL ERROR!\n");
         }
-        if (mode == 0)
-        {
+        if (mode == 0) {
             temp = epPtr->edge->weight + current->dist;
-        }
-        else if (mode == 1 && wvllPtr->workVertex.vertex->type - 1 == 1)
-        {
+        } else if (mode == 1 && wvllPtr->workVertex.vertex->type - 1 == 1) {
             temp = epPtr->edge->weight + current->dist * 100;
-        }
-        else if (mode == 2 && wvllPtr->workVertex.vertex->type - 1 == 2)
-        {
+        } else if (mode == 2 && wvllPtr->workVertex.vertex->type - 1 == 2) {
             temp = epPtr->edge->weight + current->dist * 100;
         }
         if (!wvllPtr->workVertex.visited && (wvllPtr->workVertex.dist == -1 || temp < wvllPtr->workVertex.dist)) {
             wvllPtr->workVertex.dist = temp;
             wvllPtr->workVertex.previous = current;
-            WVLLInsertSort(workingGraph, wvllPtr, prevPtr);
+            WVLLInsertSort(workingGraph, wvllPtr, &prevPtr);
         }
     } while ((epPtr = epPtr->nextEp));
 }
 
 WVLinkedList *WVLLLookup(WVLinkedList *workingGraph, Vertex *target, WVLinkedList ***previous) {
     WVLinkedList *current = workingGraph;
+    *previous = &workingGraph;
     while (current->workVertex.vertex != target) {
         *previous = &(current->next);
         current = current->next;
     }
     return current;
-}
-
-void WVLLInsertSort(WVLinkedList **workingGraph, WVLinkedList *target, WVLinkedList **previous) {
-    WVLLDelete(&target, previous);
-    WVLinkedList **wvllPtr = workingGraph;
-    while (*wvllPtr && Comparer(target, *wvllPtr) > 0) {
-        wvllPtr = &((*wvllPtr)->next);
-    }
-    WVLLInsert(&target, wvllPtr);
 }
 
 int Comparer(WVLinkedList *wvll1, WVLinkedList *wvll2) {
