@@ -1,9 +1,14 @@
 %!TEX root = ../Master.tex
 \chapter{Discussion}
 
+In this chapter the program will be evaluated in context to what there should be improved upon in order to implement the program at a hospital complex. The program will also be looked at in relation to what it could be used for in other situations.
+
 \section{Possible program improvements}
 
-Consider the following situation; an user wants to find the fastest route from first floor to third floor. The user does not have any disabilities so both elevators and stairs can be part of the fastest route. The current program would most likely guide the user to the elevator from the first floor to the third floor. However it would be a problem if the elevator was already in use at the sixth floor. The user would then have to wait for the elevator to descent. This could take some time. If the program had the ability to track the location of the elevator, it could use this information in the algorithm of the program. The program would then have enough data to guide the user up the stairs, providing the user with a faster route.
+Consider the following situation; an user wants to find the fastest route from first floor to third floor. The user does not have any disabilities so both elevators and stairs can be part of the fastest route. The current program would most likely guide the user to the elevator from the first floor to the third floor. However it would be a problem if the elevator was already in use at the sixth floor. The user would then have to wait for the elevator to descent. This could take some time. If the program had the ability to track the location of the elevator, it could use this information in the algorithm of the program. The program would then have enough data to guide the user up the stairs, providing the user with a faster route. 
+\newline
+After the program have generated a route, it will keep the it until it is prompted to make a new one. An improvement to this would be if the program generated a new route if the user got of the route. This means if a hallway is blocked or in another way obstructed, the user will still be able to get to their destination. It should only calculate a new route if the user diverted too much from the original one, otherwise a little inaccuracy from the accelerometer would make the program calculate a new route without it being necessary. In order to implant this, the program should evaluate its coordinates
+after a specific number of seconds.
 
 \subsection{Implementation}
 
@@ -30,10 +35,3 @@ The program will be more useful for the visual impaired if it was able to give d
 \section{External Factors}
 
 A couple of observations that was made throughout the creation of this report considering the external factors, that can compromise the functionality of the program follows. The process of calibrating the graph in relation to the actual building, is considered to be paramount in order for the pathfinding algorithm to be able to find the optimal solution without failure. Since the algorithm is to remove all decision making from the user, it should never produce a less than optimal route. There also lies a problem, in the implementation of the solution. If the users are not properly informed about the solution, they will not adapt it due to its foreign nature, and will continue using the status quo methods of navigation.
-
-
-
-Finde på en ny rute undervejs
-oplæsning - future
-
-Diskussion: synes den er noget tynd. Jeg mangler noget reflekterende. Hvad skal der til før at det bliver et system der kan bruges af jeres målgruppe. Hvilke eventuelle forbedringer til jeres løsninger er der og hvordan kunne disse implementeres?
