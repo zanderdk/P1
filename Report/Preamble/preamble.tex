@@ -74,6 +74,17 @@
 }
 \makeatother
 
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsubsection\expandafter
+    {\expandafter\@fb@subsecFB\subsubsection}%
+  \newcommand\@fb@subsecFB{\FloatBarrier
+    \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}%
+  \g@addto@macro\@afterheading{\@fb@afterHHook}%
+  \gdef\@fb@afterHHook{}%
+}
+\makeatother
+
  %Algorithm
 \usepackage{epstopdf}
 \usepackage[linesnumbered,ruled,vlined]{algorithm2e}
