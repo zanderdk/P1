@@ -1,0 +1,31 @@
+16/12-13: SW1B2-6:
+
+Dagsorden: 
+mundtlige kommentar fra vejleder:
+ - teori afsnit vi for ikke formidlet de algoritmer, medtag eks. for billed 4.4. vi skal vise hvad der forgår, med eks. en tagneserie af eks. på Dj algoritme. definerr og lav egne tegninger til grafen og vores definitationer fra kapitel 4.1. måske skrive om subgraf og graf under vores implemetering.
+
+ - Dj udregner den korteste stig til alle punkter og Hvis man skal udregne A-B, kan det udregnes ved hjælp af en modifiseret Dj SSSP og SPSP. vejleder siger "husk når vi forklarer vores egen implimation at forklarer grafer, A* og Dj, på den måde vi bruger dem på." vi for ikke skrevet alt info ned i reporten, om det vi bruger algoritmerne til og hvordan vi bruger dem.
+
+ - vi skal forklarer A* og Dj algoritmer bedre og i flere steps, flere billederne og komentart til billederne! Der skal flere kommentar til sodokode og illustartioner til.
+
+ - Kilder vejleder kan godt lig nr. metode, forord og tema til projectet.
+
+ - løsnings: del kap. op 2 to til design/implementering og løsning, forklar og vis vores egen algoritme.
+
+ - vi skal beskrive 5.3 (forklar hvorfor vi ikke kan bruges owkids algoritme, og forklar hvordan vi løser det.), 5.4 og 5.5 hvad viser  de og hvordan skal de forståes. ullustre etagier og brugen af de forskellige  algoritmer. beskriv og vis hvad algoritmerne gør og hvad de  ikk skal gøre - hold det i egne tegninger.
+
+ - savner virsuelle reprassentationer af algoritmer og forklar hvordan vi løser problemet i 3D og flere etager.
+
+ - set lijne nr. på kode eks. og beskriv og forklar code eks. skriv ned de vigtigste eks. af vores implementation af koden. vejlederen vi hellere have flere små kodee eks. og skriv lidt om input og output. f.eks. screenshot. Skriv om hvordan vi ville havde vist vores output, hvis vi havde mere tid. Vi spørger vejleder om vi må lave et program som vi vores output.
+
+ - vi skal skrive hvor  vi for vores navn fra i start og måske i appendiks. 
+
+ - vejleder siger vi skal beskrive hvordan vi vægter en graf, vi skal gennerellesere navne og brug hvad teori der defineret af andre og set det i kontekst bagefter.
+
+ - vejleder vil gerne have et mindre udpluk af HTML og forklaring på hvad vi arbejde med af knuder og vertices og floors.
+
+ Spørgsmål:
+
+ - der bliver spurgt om noter til konklusionen og hvor dybt skal vi beskrive det, referrer eller skal vi lave en liste a problemer til mapping af bygningen. Problemet var med hvordan vi skulle mappe floors og graf i en bygning.
+
+ - kerene i vores core regarement var at vi skulle navigere fra A-B. 
