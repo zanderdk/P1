@@ -103,7 +103,7 @@
 
 @ELECTRONIC{linked_list_def,
   author = {Paul E. Black},
-  month = {26 June},
+  month = {6},
   year = {2013},
   title = {Definition of linked list},
   language = {English},
@@ -185,7 +185,7 @@
 
 @ELECTRONIC{acc_dead,
   author = {Encyclopædia Britannica},
-  month = {27 Nov.},
+  month = {11},
   year = {2013},
   title = {dead reckoning},
   language = {English},
@@ -682,6 +682,18 @@
   timestamp = {2013.12.02}
 }
 
+@ELECTRONIC{future_stress,
+  author = {PETER MYERS},
+  month = {Oct},
+  year = {2012},
+  title = {Just how stressful is business travel?},
+  language = {English},
+  organization = {Reuters},
+  url = {http://www.reuters.com/article/2012/10/18/uk-business-travel-stress-idUSLNE89H01Q20121018},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.12}
+}
+
 @ELECTRONIC{acc_nokia,
   author = {Nokia},
   title = {Sensor Plug-in for 60 3rd Edition SDK for Symbian OS, for C++, MR,
@@ -717,6 +729,18 @@
   timestamp = {2013.10.28}
 }
 
+@ELECTRONIC{diss_tomtom,
+  author = {JOHN PASTOR},
+  month = {FEBRUARY},
+  year = {2008},
+  title = {TomTom GO 720 GPS Review},
+  language = {English},
+  organization = {Connectreviews},
+  url = {http://www.connectreviews.com/2008/02/25/tomtom-go-720-gps-review/},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.16}
+}
+
 @ELECTRONIC{Patel2013,
   author = {Amit Patel},
   month = {November},
@@ -749,6 +773,18 @@
   url = {http://www.ilcor.org/data/letter-ILCOR-AED-sign.pdf},
   owner = {AndersBærbar},
   timestamp = {2013.11.29}
+}
+
+@ELECTRONIC{diss_tss,
+  author = {Margaret Rouse},
+  month = {May},
+  year = {2007},
+  title = {text-to-speech (TTS)},
+  language = {English},
+  organization = {SearchMobilecCmputing},
+  url = {http://searchmobilecomputing.techtarget.com/definition/text-to-speech},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.16}
 }
 
 @ARTICLE{visual_impairment,
@@ -983,6 +1019,13 @@
   timestamp = {2013.11.04}
 }
 
+@ELECTRONIC{wiki_dijkstra,
+  author = {Wikipedia},
+  url = {http://en.wikipedia.org/wiki/Dijkstra's_algorithm},
+  owner = {Simon},
+  timestamp = {2013.12.16}
+}
+
 @ELECTRONIC{wiki_graph_glos,
   author = {Wikipedia},
   title = {Graph theory},
@@ -1047,7 +1090,7 @@
 }
 
 @ELECTRONIC{arbejdsmiljo_ca,
-  url = {http://www.dsr.dk/Arbejdsmilj%C3%B8/Documents/SATH/Stress_blandt_sygeplejersker_-_September_2008-3.pdf},
+  url = {http://www.dsr.dk/Arbejdsmiljø/Sygeplejerskers-arbejdsmiljø/Documents/Pixi_psykisk amø blandt sygeplejersker.pdf},
   owner = {Carsten},
   timestamp = {2013.12.12}
 }
@@ -1180,6 +1223,20 @@
   url = {http://www.version2.dk/artikel/wifi-pejling-paa-mobilen-skal-forhindre-patienter-i-fare-vild-paa-supersygehus-i-aarhus},
   owner = {Carsten},
   timestamp = {2013.12.12}
+}
+
+@ELECTRONIC{wiki_euclidean,
+  title = {Euclidean Distance},
+  url = {http://en.wikipedia.org/wiki/Euclidean_distance},
+  owner = {Simon},
+  timestamp = {2013.12.16}
+}
+
+@ELECTRONIC{wiki_manhattan_distance,
+  title = {Taxicab geometry},
+  url = {http://en.wikipedia.org/wiki/Manhattan_distance},
+  owner = {Simon},
+  timestamp = {2013.12.16}
 }
 
 @comment{jabref-meta: selector_publisher:}
