@@ -4,7 +4,7 @@
 In this section the A* algorithm will be explained, and discussed why it is not sufficient on its own. Throughout this chapter, solutions to the various problems will be elaborated. These collective solutions are the foundation for an algorithm FLAWLESS, designed by a group of students, SW1-B2-6 at Aalborg University. 
 
 \subsection{Reasoning Behind the use of A*}
-The Dijkstra algorithm is proven by mathematics, to always find the shortest route between two verticess. But because Dijkstra always calculates every possible path until it gets to the desired destination, a lot of calculations are necessary. If some of these calculations could be avoided, the runtime would be lowered which would suite the usage requirement\cref{irm_tid}. By using A*, the amount of calculations can be reduced because of the logic the algorithm uses, when admissible values are applied correctly.
+The Dijkstra algorithm is proven by mathematics, to always find the shortest route between two vertices. But because Dijkstra always calculates every possible path until it gets to the desired destination, a lot of calculations are necessary. If some of these calculations could be avoided, the runtime would be lowered which would suite the usage requirement\cref{irm_tid}. By using A*, the amount of calculations can be reduced because of the logic the algorithm uses, when admissible values are applied correctly.
 
 \subsection{Multiple Layer Handling through FLAWLESS} \label{multlayhan}
 
@@ -64,7 +64,7 @@ When the algorithm decides whether to choose stairs over elevators when travelli
 
 In \cref{sec:interusers} different people have been described each with their own characteristics, and as concluded, some people don't have the opportunity to take the elevators or the stairs. 
 
-To avoid adding a specific vertex such as an elevator or a stair, the weight connecting this specific vertex is mulitplied with an extremely high number. This means that when the search algorithm travels through the graph, it will not consider e.g. the stairs.
+To avoid adding a specific vertex such as an elevator or a stair, the weight connecting this specific vertex is multiplied with an extremely high number. This means that when the search algorithm travels through the graph, it will not consider e.g. the stairs.
 Another way of resolving the problem is to stop the algorithm from considering the specified vertex is by disabling it. That way the algorithm will never visit this vertex. A problem with this is if the disabled vertex is the only way to the destination.
 
 
