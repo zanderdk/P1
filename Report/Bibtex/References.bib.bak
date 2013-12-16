@@ -103,7 +103,7 @@
 
 @ELECTRONIC{linked_list_def,
   author = {Paul E. Black},
-  month = {26 June},
+  month = {6},
   year = {2013},
   title = {Definition of linked list},
   language = {English},
@@ -185,7 +185,7 @@
 
 @ELECTRONIC{acc_dead,
   author = {Encyclopædia Britannica},
-  month = {27 Nov.},
+  month = {11},
   year = {2013},
   title = {dead reckoning},
   language = {English},
@@ -682,6 +682,18 @@
   timestamp = {2013.12.02}
 }
 
+@ELECTRONIC{future_stress,
+  author = {PETER MYERS},
+  month = {Oct},
+  year = {2012},
+  title = {Just how stressful is business travel?},
+  language = {English},
+  organization = {Reuters},
+  url = {http://www.reuters.com/article/2012/10/18/uk-business-travel-stress-idUSLNE89H01Q20121018},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.12}
+}
+
 @ELECTRONIC{acc_nokia,
   author = {Nokia},
   title = {Sensor Plug-in for 60 3rd Edition SDK for Symbian OS, for C++, MR,
@@ -1047,7 +1059,7 @@
 }
 
 @ELECTRONIC{arbejdsmiljo_ca,
-  url = {http://www.dsr.dk/Arbejdsmilj%C3%B8/Documents/SATH/Stress_blandt_sygeplejersker_-_September_2008-3.pdf},
+  url = {http://www.dsr.dk/Arbejdsmiljø/Sygeplejerskers-arbejdsmiljø/Documents/Pixi_psykisk amø blandt sygeplejersker.pdf},
   owner = {Carsten},
   timestamp = {2013.12.12}
 }
