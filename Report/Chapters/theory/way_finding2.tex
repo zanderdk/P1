@@ -115,8 +115,8 @@ This is a pseudocode example of Dijkstra's algorithm \cite{wiki_dijkstra}. See \
 
 When Dijkstra's algorithm has been performed, the optimal paths can be induced by backtracking. See \cref{algo:FindPath}.
 
-\begin{algorithm} \label{algo:FindPath}
-  \caption{Find path to target}
+\begin{algorithm}
+  \caption{Find path to target}\label{algo:FindPath}
   \KwResult{Finds the shortest path from start vertex to a target vertex}
   \KwData{\\
         stack \tcc*{Empty sequence}
@@ -232,8 +232,8 @@ A* works by maintaining a priority queue of vertices that need to be examined. T
 
 The shortest path is then backtracked by starting from the goal vertex and then traversing the goal's parent until the start vertex has been met. These vertices mark the shortest path.
 
-\begin{algorithm} \label{algo:A*}
-  \caption{A* Algorithm}
+\begin{algorithm} 
+  \caption{A* Algorithm}\label{algo:A*}
   \KwResult{Finds the shortest path from start vertex to goal vertex}
   \KwData{ \\
     source  \tcc*{the source vertex to start evaluating from} 
