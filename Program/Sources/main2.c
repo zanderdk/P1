@@ -16,15 +16,24 @@ int main(int argc, char const *argv[]) {
     Graph *graph = readXml(fp);
     fclose(fp);
     SourcePaths *test;
-    int i;
+    int i, i2, i3;
     printf("Graph has: \n Floors: %d\n Vertices: %d\n",
            graph->numOfFloors,
            graph->numOfVertices);
 
     PreComputePaths(graph, &test, 0);
 
-    for(i = 0; i < test->paths[0].numVertices; i++)
-        printf("%u\n", *(test->paths[0].pathVerticeIds));
+    getchar();
+    for (i = 0; i < 11; i++) {
+        printf("                 -----------------------------------\n");
+        for (i2 = 0; i2 < 10; ++i2) {
+            printf("From: %u\nTo: %u\n", test[i].sourceId, test[i].paths[i2].targetId);
+            for (i3 = 0; i3 < test[i].paths[i2].numVertices; ++i3) {
+                printf("%u\n", test[i].paths[i2].pathVerticeIds[i3]);
+            }
+            printf("\n");
+        }
+    }
 
     return 0;
 }

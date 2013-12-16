@@ -2,7 +2,7 @@
 	<edges>
 		<edge>
 			<edgeId>50011</edgeId>
-			<weight>2</weight>
+			<weight>2</weight>+
 			<vertexId1>20011</vertexId1>
 			<vertexId2>20013</vertexId2>
 		</edge>
@@ -52,25 +52,25 @@
 			<edgeId>50019</edgeId>
 			<weight>2</weight>
 			<vertexId1>20018</vertexId1>
-			<vertexId2>200110</vertexId2>
+			<vertexId2>100110</vertexId2>
 		</edge>
 		<edge>
 			<edgeId>500110</edgeId>
 			<weight>2</weight>
-			<vertexId1>200110</vertexId1>
+			<vertexId1>100110</vertexId1>
 			<vertexId2>200112</vertexId2>
 		</edge>
 		<edge>
 			<edgeId>500111</edgeId>
 			<weight>2</weight>
-			<vertexId1>200110</vertexId1>
+			<vertexId1>100110</vertexId1>
 			<vertexId2>200111</vertexId2>
 		</edge>
 		<edge>
 			<edgeId>500112</edgeId>
 			<weight>2</weight>
 			<vertexId1>20013</vertexId1>
-			<vertexId2>200110</vertexId2>
+			<vertexId2>100110</vertexId2>
 		</edge>
     </edges>
     <vertices>
@@ -174,7 +174,7 @@
 			</edges>
 		</vertex>
 		<vertex>
-			<vertexId>200110</vertexId>
+			<vertexId>100110</vertexId>
 			<coord>
 				<x>1</x>
 				<y>1</y>

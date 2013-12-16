@@ -14,11 +14,11 @@ struct WVLinkedList {
 
 void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode);
 void GetWorkingGraph(Graph *graph, WVLinkedList *head);
-void GetAllExits(Graph *graph, WVLinkedList *workingGraph, WorkVertex **exits);
+void GetAllExits(WVLinkedList *workingGraph, WorkVertex **exits);
 void SetPathsFromWGraph(WorkVertex **exits, int index, int count, SourcePaths *sourcePaths);
 void BacktrackPath(WorkVertex *source, WorkVertex *goal, Path *path);
 void ReversePath(Path *from, Path *to);
 void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mode);
-WVLinkedList *WVLLLookup(WVLinkedList **workingGraph, Vertex *target, WVLinkedList ***previous);
+WVLinkedList **WVLLLookup(WVLinkedList **workingGraph, Vertex *target);
 WVLinkedList *WVLLSearch(WVLinkedList *workingGraph);
-void WVLLDelete(WVLinkedList *target, WVLinkedList **previous);
+void WVLLDelete(WVLinkedList **targetPtr);
