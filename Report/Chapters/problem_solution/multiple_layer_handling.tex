@@ -13,13 +13,15 @@ When using A* to find a path, the use of a euclidean heuristic becomes problemat
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\textwidth]{buildingastar_paint}
-    \caption{How many vertices the A* algorithm would expand, if using the euclidean distance as heuristic}
+    \caption{How the A* algorithm would expand, if using the euclidean distance as heuristic}
     \label{fig:buildingAstar}
   \end{figure}
 
 The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in \cref{fig:flawless1,fig:flawless2,fig:flawless3}. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the optimal route between the initial and final floor, the paths from exit vertex to exit vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
 
 When using this approach, the precalculation is executed at system startup using Dijkstra's algorithm, in order to get the optimal connections between all exit vertices. There is no need for a faster algorithm, since there is no user communication during this calculation.
+
+%\input{Chapters/theory/flowchart.tex}
 
 \begin{figure}[ht!]
     \centering
