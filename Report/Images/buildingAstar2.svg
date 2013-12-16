@@ -14,7 +14,7 @@
    id="svg4659"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="buildingAstar2.svg">
+   sodipodi:docname="buildingAstar2.eps">
   <defs
      id="defs4661">
     <marker
@@ -99,7 +99,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
