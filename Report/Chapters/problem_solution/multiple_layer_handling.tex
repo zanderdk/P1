@@ -8,14 +8,32 @@ The Dijkstra algorithm is proven by mathematics, to always find the shortest rou
 
 \subsection{Multiple Layer Handling through FLAWLESS} \label{multlayhan}
 
-When using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. Figure \ref{fig:buildingAstar} helps illustrate this. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the vertex (b) that is directly below the desired goal (a), regardless of whether it is an exit vertex or not. See \cref{e_vertex}. After this point has been reached, the A* algorithm will expand the search from this vertex. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstra's algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
+When using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. \Cref{fig:buildingAstar1} helps illustrate this. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the coordinate that is directly below the desired goal (the red dot), regardless of whether it is an exit vertex or not. See \cref{e_vertex}. After this point has been reached \cref{fig:buildingAstar2}, the A* algorithm will expand the search from this vertex \cref{fig:buildingAstar3}. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstra's algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
 
-\begin{figure}[ht!]
+\begin{figure}
+\centering
+  \begin{minipage}{0.45\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{buildingastar_paint}
-    \caption{How the A* algorithm would expand, if using the euclidean distance as heuristic}
-    \label{fig:buildingAstar}
+    \includegraphics[width=\textwidth]{buildingAstar}
+    \caption{Step 1: How the A* algorithm would expand, if using the euclidean distance as heuristic}
+    \label{fig:buildingAstar1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{buildingAstar2}
+    \caption{The A* algorithm will expand the search from this vertex}
+    \label{fig:buildingAstar2}
+  \end{minipage}
   \end{figure}
+  
+\begin{figure}[ht!]
+\raggedright
+  \includegraphics[width=0.5\textwidth]{buildingAstar3}
+  \caption{The A* algorithm have reached a vertex that goes to the next floor}
+  \label{fig:buildingAstar3}
+\end{figure}
+
 
 The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in \cref{fig:flawless1,fig:flawless2,fig:flawless3}. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the optimal route between the initial and final floor, the paths from exit vertex to exit vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
 
