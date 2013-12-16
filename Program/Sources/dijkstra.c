@@ -2,15 +2,7 @@
 #include <stdio.h>
 
 #include "graph.h"
-/*#include "dijkstra.h"*/
 #include "privdijkstra.h"
-
-void printasd(WVLinkedList *head) {
-    WVLinkedList *temp = head;
-    do {
-        printf("%d:%d - edge: %d - %u - %u - %p\n", temp->workVertex.vertex->vertexId, temp->workVertex.vertex->type, temp->workVertex.vertex->ep->edge->edgeId,  temp->workVertex.dist, temp->workVertex.visited, temp->workVertex.previous);
-    } while ((temp = temp->next));
-}
 
 void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) {
     int i, i2;
@@ -134,33 +126,17 @@ void ReversePath(Path *from, Path *to) {
 }
 
 void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode) {
-    printasd(workingGraph);
     WorkVertex *current = source;
     current->dist = 0;
     WVLinkedList **tempPtr, *tempPtr2;
     do {
         current->visited = 1;
-        printf("\n");
-        printf("current %d\n", current->vertex->vertexId);
         tempPtr2 = WVLLLookup(workingGraph, current->vertex, &tempPtr);
-        printf("%p %p %p %p %p\n", tempPtr, *tempPtr, (**tempPtr).workVertex.vertex, (**tempPtr).workVertex.previous, (**tempPtr).next);
-        //printf("%d\n", tempPtr2->workVertex.vertex->vertexId);
-        //printf("%d\n", (*tempPtr)->workVertex.vertex->vertexId);
         WVLLInsertSort(&workingGraph, tempPtr2, &tempPtr);
         SetNeighborWeights(current, &workingGraph, mode);
         printasd(workingGraph);
         current = &(workingGraph->workVertex);
     } while (!workingGraph->workVertex.visited);
-}
-
-void WVLLInsertSort(WVLinkedList **workingGraph, WVLinkedList *target, WVLinkedList ***previous) {
-    printf("%p %p %p %p %p\n", *previous, **previous, (* **previous).workVertex.vertex, (* **previous).workVertex.previous, (* **previous).next);
-    WVLLDelete(&target, *previous);
-    WVLinkedList **wvllPtr = workingGraph;
-    while (*wvllPtr && Comparer(target, *wvllPtr) > 0) {
-        wvllPtr = &((*wvllPtr)->next);
-    }
-    WVLLInsert(&target, wvllPtr);
 }
 
 void SetNeighborWeights(WorkVertex *current, WVLinkedList **workingGraph, int mode) {
@@ -201,30 +177,7 @@ WVLinkedList *WVLLLookup(WVLinkedList *workingGraph, Vertex *target, WVLinkedLis
     return current;
 }
 
-int Comparer(WVLinkedList *wvll1, WVLinkedList *wvll2) {
-    if (wvll1->workVertex.visited != wvll2->workVertex.visited) {
-        return (wvll1->workVertex.visited) ? 1 : -1;
-    } else if (wvll1->workVertex.dist != wvll2->workVertex.dist) {
-        return (wvll1->workVertex.dist > wvll2->workVertex.dist) ? 1 : -1;
-    } else {
-        return -1;
-    }
-}
-
-
 void WVLLDelete(WVLinkedList **target, WVLinkedList **previous) {
     *previous = (*target)->next;
 }
 
-void WVLLInsert(WVLinkedList **target, WVLinkedList **previous) {
-    (*target)->next = *previous;
-    *previous = *target;
-}
-
-void ResetWorkingGraph(WVLinkedList *workingGraph) {
-    WVLinkedList *tempPtr = workingGraph;
-    do {
-        tempPtr->workVertex.dist = -1;
-        tempPtr->workVertex.visited = 0;
-    } while ((tempPtr = tempPtr->next));
-}
