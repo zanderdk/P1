@@ -43,7 +43,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="63.693988"
+     inkscape:cx="149.27071"
      inkscape:cy="561.92839"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -359,36 +359,44 @@
     <text
        xml:space="preserve"
        style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="213.15213"
-       y="302.24747"
+       x="195.07986"
+       y="292.14594"
        id="text4419"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4421"
-         x="213.15213"
-         y="302.24747">Dijkstra</tspan></text>
+         x="195.07986"
+         y="292.14594"
+         style="font-size:24px">Precomputed</tspan><tspan
+         sodipodi:role="line"
+         x="195.07986"
+         y="322.14594"
+         id="tspan5615"
+         style="font-size:24px">routes</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="71.317627"
-       y="304.90927"
+       x="34.391846"
+       y="306.935"
        id="text4419-2"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4421-0"
-         x="71.317627"
-         y="304.90927">A*</tspan></text>
+         x="34.391846"
+         y="306.935"
+         style="font-size:24px">A* routes</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:32px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="441.03348"
-       y="303.76263"
+       x="404.1077"
+       y="306.935"
        id="text4419-5"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan4421-8"
-         x="441.03348"
-         y="303.76263">A*</tspan></text>
+         x="404.1077"
+         y="306.935"
+         style="font-size:24px">A* routes</tspan></text>
     <path
        sodipodi:type="arc"
        style="fill:#ea72f2;fill-opacity:1;fill-rule:evenodd;stroke:#5ca7e0;stroke-width:6.50500019;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
