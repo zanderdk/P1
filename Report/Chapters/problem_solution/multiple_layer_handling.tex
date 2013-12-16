@@ -1,54 +1,69 @@
 %!TEX root = ../../Master.tex
-\section{A* in a Multistory Building Complex}
+\subsection{Multiple Layer Navigation through FLAWLESS} \label{multlayhan}
 
-In this section the A* algorithm will be explained, and discussed why it is not sufficient on its own. Throughout this chapter, solutions to the various problems will be elaborated. These collective solutions are the foundation for an algorithm FLAWLESS, designed by a group of students, SW1-B2-6 at Aalborg University. 
+The Dijkstra algorithm is proven by mathematics, to always find the shortest route between two vertices. But because Dijkstra always calculates every possible path until it gets to the desired destination, a lot of calculations are necessary. If some of these calculations could be avoided, the runtime would be lowered which would suite the usage requirement\cref{irm_tid}. By using A*, the amount of calculations can be reduced because of the logic the algorithm uses, when admissible values are applied correctly.
 
-\subsection{Reasoning Behind the use of A*}
-The Dijkstra algorithm is proven by mathematics, to always find the shortest route between two verticess. But because Dijkstra always calculates every possible path until it gets to the desired destination, a lot of calculations are necessary. If some of these calculations could be avoided, the runtime would be lowered which would suite the usage requirement\cref{irm_tid}. By using A*, the amount of calculations can be reduced because of the logic the algorithm uses, when admissible values are applied correctly.
+But when using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. \Cref{fig:buildingAstar1} helps illustrate this. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the coordinate that is directly below the desired goal (the red dot), regardless of whether it is an exit vertex or not. See \cref{e_vertex}. After this point has been reached \cref{fig:buildingAstar2}, the A* algorithm will expand the search from this vertex \cref{fig:buildingAstar3}. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstra's algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
 
-\subsection{Multiple Layer Handling through FLAWLESS} \label{multlayhan}
 
-When using A* to find a path, the use of a euclidean heuristic becomes problematic when traversing multiple floors in a building. Figure \ref{fig:buildingAstar} helps illustrate this. If a euclidean heuristic is used, the algorithm will, whenever it enters a new floor, move towards the vertex (b) that is directly below the desired goal (a), regardless of whether it is an exit vertex or not. See \cref{e_vertex}. After this point has been reached, the A* algorithm will expand the search from this vertex. This will immensely decrease the usefulness of the euclidean heuristic, to a point where the A* might no longer preferable to Dijkstra's algorithm. Because a low runtime is required for the solution, a better way of traversing floors must be employed.
-
-\begin{figure}[ht!]
+\begin{figure}
+\centering
+  \begin{minipage}{0.45\textwidth}
     \centering
-    \includegraphics[width=0.5\textwidth]{buildingastar_paint}
-    \caption{How the A* algorithm would expand, if using the euclidean distance as heuristic}
-    \label{fig:buildingAstar}
-  \end{figure}
+    \includegraphics[width=\textwidth]{buildingAstar}
+    \caption{Step 1: How the A* algorithm would expand, if using the euclidean distance as heuristic}
+    \label{fig:buildingAstar1}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{0.45\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{buildingAstar2}
+    \caption{The A* algorithm will expand the search from this vertex}
+    \label{fig:buildingAstar2}
+  \end{minipage}
+\end{figure}
+  
+\begin{figure}[ht!]
+\raggedright
+  \includegraphics[width=0.5\textwidth]{buildingAstar3}
+  \caption{The A* algorithm have reached a vertex that goes to the next floor}
+  \label{fig:buildingAstar3}
+\end{figure}
 
-The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in \cref{fig:flawless1,fig:flawless2,fig:flawless3}. Using the fact that the optimal route from one exit vertex to any other exit vertex is static, and only the choice of exit vertices varies when finding the optimal route between the initial and final floor, the paths from exit vertex to exit vertex can be precomputed. By computing and storing these routes when initializing the program, the response time when prompted for a path, will be lowered significantly.
+
+The solution to this problem lies in a tripartitioning of the pathfinding process, and is illustrated in \cref{fig:flawless1,fig:flawless2,fig:flawless3} which will be explained in detail later on. This method of handing multiple floors in a building is named fused locale A* with level-calculation executed at system startup, and shortened to FLAWLESS. This algorithm combination is designed by student group SW1-B2-6 of 2013 at Aalborg University.
+
+Because of building layouts normally having a low level of exit vertices, it is possible to keep a precalculated record of the optimal routes between these. This method can be used to reduce the response time when prompted for a route significantly.
+After this all that is needed to be done, is to calculate the route to all the exit vertices on the initial floor, and again on the destination floor. Finally the best combination of routes from these three steps is returned as the optimal path from start to destination.
 
 When using this approach, the precalculation is executed at system startup using Dijkstra's algorithm, in order to get the optimal connections between all exit vertices. There is no need for a faster algorithm, since there is no user communication during this calculation.
 
-%\input{Chapters/theory/flowchart.tex}
+\cref{fig:flawless1} is an illustration of a navigation problem. Shown on the illustration are the intial vertex, the destination vertex, and the exit vertices on each floor. The darker grey layer in the middel is representing the precalculated area between the floors exit vertices. The user will then prompt for a route from the initial vertex to the destination vertex.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\textwidth]{flawless1}
-    \caption{Illustration of the precomputation of routes between the floors}
+    \includegraphics[width=0.75\textwidth]{flawless1.eps}
+    \caption{Illustration of precalulated routes}
     \label{fig:flawless1}
   \end{figure}
 
-The runtime will consist of a round of A* runs done on both the initial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors. 
+In \cref{flawless2} the runtime is showing to consist of a round of A* runs done on both the initial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\textwidth]{flawless3}
+    \includegraphics[width=0.5\textwidth]{flawless3.eps}
     \caption{Illustration of the A* runs}
     \label{fig:flawless2}
   \end{figure}
 
-When this has been computed, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will determine the optimal path across the multiple floors. 
+When this has been computed, all the possible combinations of paths will have their individual evaluation values added, and a comparison between the total evaluation values will determine the optimal path across the multiple floors as shown in \cref{fig:flawless3}.
 
 \begin{figure}[ht!]
     \centering
-    \includegraphics[width=0.5\textwidth]{flawless4}
+    \includegraphics[width=0.5\textwidth]{flawless4.eps}
     \caption{Illustration of the added evaluation values, and the route that is chosen}
     \label{fig:flawless3}
   \end{figure}
-
-This method of handing multiple floors in a building is named fused locale A* with level-calculation executed at system startup, and shortened to FLAWLESS.
 
 
 \subsection{Choosing Stairs or the Elevator}
@@ -64,7 +79,7 @@ When the algorithm decides whether to choose stairs over elevators when travelli
 
 In \cref{sec:interusers} different people have been described each with their own characteristics, and as concluded, some people don't have the opportunity to take the elevators or the stairs. 
 
-To avoid adding a specific vertex such as an elevator or a stair, the weight connecting this specific vertex is mulitplied with an extremely high number. This means that when the search algorithm travels through the graph, it will not consider e.g. the stairs.
+To avoid adding a specific vertex such as an elevator or a stair, the weight connecting this specific vertex is multiplied with an extremely high number. This means that when the search algorithm travels through the graph, it will not consider e.g. the stairs.
 Another way of resolving the problem is to stop the algorithm from considering the specified vertex is by disabling it. That way the algorithm will never visit this vertex. A problem with this is if the disabled vertex is the only way to the destination.
 
 

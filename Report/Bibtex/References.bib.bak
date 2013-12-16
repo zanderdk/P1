@@ -1013,17 +1013,11 @@
   author = {Viscomvibz},
   month = {March 17},
   year = {2012},
+  title = {The Pros \& Cons of Choropleth maps (Blot maps / Patch maps)},
   language = {English},
-  url = {pros_analog_map},
+  url = {http://viscomvibz.wordpress.com/2012/03/17/the-pros-cons-of-choropleth-maps-blot-maps-patch-maps/},
   owner = {AndersBærbar},
   timestamp = {2013.11.04}
-}
-
-@ELECTRONIC{wiki_dijkstra,
-  author = {Wikipedia},
-  url = {http://en.wikipedia.org/wiki/Dijkstra's_algorithm},
-  owner = {Simon},
-  timestamp = {2013.12.16}
 }
 
 @ELECTRONIC{wiki_graph_glos,
@@ -1223,20 +1217,6 @@
   url = {http://www.version2.dk/artikel/wifi-pejling-paa-mobilen-skal-forhindre-patienter-i-fare-vild-paa-supersygehus-i-aarhus},
   owner = {Carsten},
   timestamp = {2013.12.12}
-}
-
-@ELECTRONIC{wiki_euclidean,
-  title = {Euclidean Distance},
-  url = {http://en.wikipedia.org/wiki/Euclidean_distance},
-  owner = {Simon},
-  timestamp = {2013.12.16}
-}
-
-@ELECTRONIC{wiki_manhattan_distance,
-  title = {Taxicab geometry},
-  url = {http://en.wikipedia.org/wiki/Manhattan_distance},
-  owner = {Simon},
-  timestamp = {2013.12.16}
 }
 
 @comment{jabref-meta: selector_publisher:}

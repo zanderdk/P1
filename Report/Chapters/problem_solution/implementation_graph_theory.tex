@@ -8,10 +8,6 @@ Navigate from a to b using graph theory is one thing, but implementing graph the
 	\item Linked list representation.
 \end{itemize} 
 
-\subsection{Sequentially Representation}
-A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another vertex. 
-this requires less memory than using a linked list, because it is know where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
-
 
 \subsection{Linked List Representation}
 A linked list is defined as "a list implemented by each item having a link to the next item."\cite{linked_list_def}
@@ -42,14 +38,12 @@ This can be done by redirecting a pointer to a element $A$ in the list to a newl
 
 \subsection{Sequentially Representation}
 A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another vertex. 
+
 This requires less memory than using a linked list, because it is known where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
-
-
-
 
 Adding new elements to the list is relatively easy compared to sequentially stored data.
 It can be done by changing where what the last element of the list is point at, to a new element.
-Removing an item can be done similarly by changing the element pointing to the item that is wanted to be removed, so the list skips a element. This is shown at fig ??. %indsæt 
+Removing an item can be done similarly by changing the element pointing to the item that is wanted to be removed, so the list skips a element. This is shown in \cref{fig:examplegraph}. %indsæt 
 
 % \subsection{data structure}
 % In this section it will be covered how a graph actual can be represented in the memory, using the above methods. To explain this there examples in the following sections will be based on the graph shown at \cref{fig:graph}.
