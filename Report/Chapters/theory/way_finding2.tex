@@ -1,7 +1,11 @@
 %!TEX root = ../../Master.tex
 \section{Algorithms for pathfinding}
 
-Finding the shortest path from one vertex to another, can be defined as a single-pair shortest path problem. Maybe all lowest cost and shortest path to all vertices, single-source shortest path problem, would be another variation of the core shortest path problem. Searching a graph means systematically following edges in a graph thereby visiting vertices in a graph. After searching it is possible to backtrack from a specific vertex back to the source, and always find the shortest path from a start vertex A to a destination vertex B in a graph \cite{Cormen2009}. Graph search algorithms differentiate themselves by their method of searching through a graph. Some graph search algorithms are more effective than others in finding the shortest path connecting two vertices in a graph. This section describes both Dijkstra's algorithm in \cref{subs_dijkstra} and the A* algorithm in \cref{subs_astar}. These algorithms are very much alike, but they each have different assets. For example; Dijkstra's algorithm always finds the shortest path. However it is inefficient in terms of speed in finding the shortest path. The A* algorithm will always find the shortest path, just like Dijkstra, given the heuristic value that is supplied is admissible. This is discussed in \cref{subs_astar}. A* differs from Dijkstra in terms of how fast the shortest path is evaluated.
+Finding the shortest path from one vertex to another, can be defined as a single-pair shortest path (SPSP) problem. Single Source Shortest Path (SSSP) is another type of pathfinding. It finds the shortest paths from a single source vertex to all other vertices.
+
+Searching a graph means systematically following edges in a graph thereby visiting vertices in a graph. After searching it is possible to backtrack from a specific vertex back to the source, and always find the shortest path from a start vertex A to a destination vertex B in a graph \cite{Cormen2009}. Graph search algorithms differentiate themselves by their method of searching through a graph. Some graph search algorithms are more effective than others in finding the shortest path connecting two vertices in a graph. 
+
+This section describes both Dijkstra's algorithm (SSSP) in \cref{subs_dijkstra} and the A* algorithm (SPSP) in \cref{subs_astar}. These algorithms are very much alike, but they each have different assets. For example; Dijkstra's algorithm always finds the shortest path. However it is inefficient in terms of speed in finding the shortest path. The A* algorithm will always find the shortest path, just like Dijkstra, given the heuristic value that is supplied is admissible. This is discussed in \cref{subs_astar}. A* differs from Dijkstra in terms of how fast the shortest path is evaluated.
 
 %   In \cref{sec:specification} we specified that our solution needs to find the shortest weighted path to the destination.
 %   To better understanding pathfinding we examined different algorithms. We discovered that some algorithms have a high accuracy but is slow at finding the path, and conversely.
@@ -23,20 +27,32 @@ Finding the shortest path from one vertex to another, can be defined as a single
   %Path finding algorithms are used for finding a path between two locations, the source and the destination. By searching its way from the source to the destination, until a path is found. These algorithms also make it possible to calculate the optimal path, i.e. the shortest. \cite{Cormen2009}
 
 
-  \begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{Graph}
-    \caption{Weighted graph}
-    \label{fig:graph}
-  \end{figure}
+  % \begin{figure}[ht!]
+  %   \centering
+  %   \includegraphics[width=0.5\textwidth]{Graph}
+  %   \caption{Weighted graph}
+  %   \label{fig:graph}
+  % \end{figure}
 
   %An important factor of a searching algorithm is correctness and also the time required to calculate the optimized path. The algorithms can be rated by their worst-case time, to ensure a responsive performance.
 
   \subsection{Dijkstra's Algorithm}\label{subs_dijkstra}
 
 
-  A commonly used algorithm for finding the shortest path is Dijkstra's algorithm. It loops through steps until all vertices to the target vertex is optimized with the least cost, then points out the shortest path from source vertex, to target vertex. Because of the need of every vertex being evaluated the complexity of the algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result. \cite{Dijkstr1959} For an example of Dijkstra's algorithm in action, see \cref{fig:dijkstra}. Grey blocks are obstacles such as walls. White blocks are unvisited vertices. S marks the start and G the goal. Blue blocks mark vertices that were added to closed set (were visited) and green blocks mark vertices that were added to open set (were considered to be added to closed set).  A marks a point that illustrates how many unnecessary vertices are being calculated using Dijkstra's algorithm. B marks a point that shows that does not take into account in which direction the goal is. It just keeps searching the graph blindly until it finds the desired goal.
+  A commonly used algorithm for finding SSSP problem is Dijkstra's algorithm. This means that it finds the shortest path from a source to every other vertex. Because of the need of every vertex being evaluated the complexity of the algorithm is proportional to the number of vertices, which means that a lot of computational power is required to calculate the result \cite{Dijkstr1959}.
 
+  For an example of Dijkstra's algorithm in action, see \cref{fig:dijkstra}. Grey blocks are obstacles such as walls. White blocks are unvisited vertices. S marks the start and G the goal. Blue blocks mark vertices that were added to closed set (were visited) and green blocks mark vertices that were added to open set (were considered to be added to closed set).  A marks a point that illustrates how many unnecessary vertices are being calculated using Dijkstra's algorithm. B marks a point that shows that does not take into account in which direction the goal is. It just keeps searching the graph blindly until it is finished finding all other vertices than the start vertex.
+
+The following steps describe Dijkstra's algorithm.
+
+\begin{enumerate}
+  \item For every vertex in the graph, set the temporary distance to infinity. The starting vertex should however be set to zero.
+  \item For every vertex in the graph, mark all vertices as unvisited. Mark the starting vertex as current. Add every vertex to a set called unvisited vertices.
+  \item Calculate temporary distances for every neighbour of the current vertex. This distance is the distance of current plus the weight of the edge connecting the neighbour.
+  \item When all neighbours have been considered, mark the current node as visited, thereby removing it from the set unvisited vertices. This visited vertex will then never be checked again.
+  \item If the destination vertex has been marked visited or the smallest temporary distance in the unvisited vertices set is infinity, stop the algorithm. The smallest temporary distance in unvisted vertices set should only be infinity if there is no connecting from starting vertex to destination vertex.
+  \item From the unvisited vertices set, select the vertex with the smallest temporary vertex as the current vertex. Repeat step 3 and onwards.
+\end{enumerate}
 
   \begin{figure}[ht!]
     \centering
@@ -45,7 +61,9 @@ Finding the shortest path from one vertex to another, can be defined as a single
     \label{fig:dijkstra}
   \end{figure}
 
-  This is a pseudocode example of Dijkstra's algorithm.
+\subsubsection{Pseudocode}
+
+This is a pseudocode example of Dijkstra's algorithm \cite{wiki_dijkstra}. See \cref{algo:Dij}.
 
 \begin{algorithm}
   \caption{Dijkstra's Algorithm}\label{algo:Dij}
@@ -95,7 +113,7 @@ Finding the shortest path from one vertex to another, can be defined as a single
   }
 \end{algorithm}
 
-After finding a all $parent$'s a function for back tracing the optimal path can be induced. In the example only return from one vertex to another.
+When Dijkstra's algorithm has been performed, the optimal paths can be induced by backtracking. See \cref{algo:FindPath}.
 
 \begin{algorithm} \label{algo:FindPath}
   \caption{Find path to target}
@@ -164,10 +182,10 @@ After finding a all $parent$'s a function for back tracing the optimal path can 
   \subsection{A* Algorithm}\label{subs_astar}
 
 
-  The A* algorithm is an extension to Dijkstra's algorithm described in \cref{subs_dijkstra} providing better performance in terms of speed, while still maintaining the correctness of Dijkstra's algorithm.
+  The A* algorithm is an extension to Dijkstra's algorithm described in \cref{subs_dijkstra} providing better performance in terms of speed, while still maintaining the correctness of Dijkstra's algorithm, given the heuristic value is admissible. An admissible heuristic value is explained below.
 
   \subsubsection{Cost function}
-  The cost function $g(x)$ is simply calculated by adding the g value of the previous vertex to the g value of the current vertex.
+  The cost function $g(x)$ is simply calculated by adding the g value of the previous vertex to the g value of the current vertex. The $g$ value describes the weight to get to a specific vertex. This weight could be a distance or a time metric. The $g$ value is used when calculating the evaluation function explained below.
 
   \subsubsection{Heuristic function and evaluation function}
   A* introduces a heuristic value. In pathfinding the heuristic value is commonly based on the distance from the current vertex A* is checking to the goal vertex. Many different methods of finding this distance exists. Some of the typically used distance functions are the Manhattan distance and the Euclidean distance. The heuristic value is used when determining the evaluation function $f(x) = g(x) + h(x)$, where $g(x)$ describes the cost from the start to the vertex being evaluated, and $h(x)$ is the heuristic function. The evaluation function is the value used when determining if a vertex is in the shortest path. When comparing two vertices for shortest path, the vertex with the lowest f value is always chosen \cite{Patel2013}.
@@ -179,7 +197,7 @@ After finding a all $parent$'s a function for back tracing the optimal path can 
 
     \item If $h(x) < g(x)$, the algorithm will guaranteed find the shortest path from source to target but at a slow running time. This is because if the heuristic value is small, it does not affect the evaluation function and A* would traverse the graph in the wrong way relative to the goal.
 
-    \item $h(x) = g(x)$, the algorithm will only extract the best path if there are no obstacles blocking the shortest path. If there are obstacles, A* will not be able to search the graph for paths around the obstacles.
+    \item $h(x) = g(x)$, the algorithm will only extract the best path if there are no obstacles blocking the shortest path. If there are obstacles, A* will not be able to search the graph for paths around the obstacles. Obstacles are objects blocking the direct path to the destination.
 
     \item If $h(x) > g(x)$, the algorithm will find a path very fast but not always the shortest path, because A* will depend too much on the heuristic value to give a qualified shortest path.
   \end{itemize}
@@ -207,6 +225,12 @@ After finding a all $parent$'s a function for back tracing the optimal path can 
 
   % If you would combine Dijkstra's algorithm with Best-First-Search algorithm, you would get the A* algorithm which also utilises the principle of a heuristic estimation to determine which vertex to test next. It uses a evaluation function $f(x) = g(x) + h(x)$, where $g(x)$ describes the cost from the start to the vertex being evaluated, and $h(x)$ is a heuristic function that estimates the cost from the evaluating vertex to the target vertex. \cite{Patel2013}
 
+
+\subsubsection{Pseudocode}
+
+A* works by maintaining a priority queue of vertices that need to be examined. This is called the open set. The lower the f value of a vertex is, the higher is its priority in the open set. The current vertex is chosen as the vertex with the highest priority in the open set. This vertex is then removed from the open set and its neighbours' f and g values are updated. The neighbor's parent is marked as current vertex. These neighbours are then added to the open set. The algorithm stops when either the open set is empty or the goal vertex has a lower f value than any other vertex in the open set. If this happens the shortest path to the goal vertex has been found.
+
+The shortest path is then backtracked by starting from the goal vertex and then traversing the goal's parent until the start vertex has been met. These vertices mark the shortest path.
 
 \begin{algorithm} \label{algo:A*}
   \caption{A* Algorithm}
@@ -325,7 +349,6 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
       \textbf{Algorithm} & \textbf{Advantages} & \textbf{Disadvantages} \\
       \hline
       Dijkstra's & Always optimal path & Slow calculation \\
-      Best-First-Search & Fast calculation & Not always optimal path \\
       A* & Optimal path if $h(x)<g(x)$, Fast calculation & Not always optimal path \\
       \hline
     \end{tabular}

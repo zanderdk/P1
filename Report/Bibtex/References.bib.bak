@@ -775,6 +775,18 @@
   timestamp = {2013.11.29}
 }
 
+@ELECTRONIC{diss_tss,
+  author = {Margaret Rouse},
+  month = {May},
+  year = {2007},
+  title = {text-to-speech (TTS)},
+  language = {English},
+  organization = {SearchMobilecCmputing},
+  url = {http://searchmobilecomputing.techtarget.com/definition/text-to-speech},
+  owner = {AndersBærbar},
+  timestamp = {2013.12.16}
+}
+
 @ARTICLE{visual_impairment,
   author = {J.B. Rousek and M.S. Hallbeck},
   title = {The use of simulated visual impairment to identify hospital design
@@ -1007,6 +1019,13 @@
   timestamp = {2013.11.04}
 }
 
+@ELECTRONIC{wiki_dijkstra,
+  author = {Wikipedia},
+  url = {http://en.wikipedia.org/wiki/Dijkstra's_algorithm},
+  owner = {Simon},
+  timestamp = {2013.12.16}
+}
+
 @ELECTRONIC{wiki_graph_glos,
   author = {Wikipedia},
   title = {Graph theory},
@@ -1204,6 +1223,20 @@
   url = {http://www.version2.dk/artikel/wifi-pejling-paa-mobilen-skal-forhindre-patienter-i-fare-vild-paa-supersygehus-i-aarhus},
   owner = {Carsten},
   timestamp = {2013.12.12}
+}
+
+@ELECTRONIC{wiki_euclidean,
+  title = {Euclidean Distance},
+  url = {http://en.wikipedia.org/wiki/Euclidean_distance},
+  owner = {Simon},
+  timestamp = {2013.12.16}
+}
+
+@ELECTRONIC{wiki_manhattan_distance,
+  title = {Taxicab geometry},
+  url = {http://en.wikipedia.org/wiki/Manhattan_distance},
+  owner = {Simon},
+  timestamp = {2013.12.16}
 }
 
 @comment{jabref-meta: selector_publisher:}
