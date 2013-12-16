@@ -6,14 +6,12 @@ In this section the method on how to represent a complicated building complex wi
 
 \subsection{Representing a Floor}
 
-Every point where a user is presented with a choice of changing direction, is represented with is a vertex in the graph, and any connection between these are represented with an edge. \label{e_vertex} Any vertex that connects a floor with another, is called an exit vertex, and can be classified as stairs, elevators or 'others', which could be ground floor entrances or second floor walkways. Vertices that does not classify as one of the previously mentioned are doors, intersection and other positions where a change of direction can occur. Connecting the vertices are edges with a weight, which could be weighted with the distance in meters from one vertex to another. Figure \ref{fig:floorplan_graf} illustrates how the graph will look like on a floor plan for a existing building. The circles are vertices and lines are edges.
-
-\kanote{representér de forskellige knuder i grafen. evt. farvekode eller figur kode}
+Every point where a user is presented with a choice of changing direction, is represented with is a vertex in the graph, and any connection between these are represented with an edge. \label{e_vertex} Any vertex that connects a floor with another, is called an exit vertex, and can be classified as stairs, elevators or 'others', which could be ground floor entrances or second floor walkways. Vertices that does not classify as one of the previously mentioned, are doors, intersections and other positions where a change of direction can occur. Connecting the vertices are edges with a weight, which could be weighted with the distance in meters from one vertex to another. Figure \ref{fig:floorplan_graf} illustrates how the graph will look like on a floor plan for a existing building. The circles are vertices and lines are edges.
 
 \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\textwidth]{floorplan_graf}
-    \caption{representation of a graph on a floor plan. \cite{billedafbygningudengraf}, Red Circles are Exits, Blue Circles are Elevators and Black Circles are Normals vertex'es}
+    \caption{Representation of a graph for a floor. \cite{billedafbygningudengraf}, red dots are stairs, green dots are exits, blue dots are elevators and black are normal vertices}
     \label{fig:floorplan_graf}
   \end{figure}
 
