@@ -48,8 +48,6 @@ int PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) 
         WVLinkedList *workingGraph = calloc(graph->numOfVertices, sizeof(WVLinkedList));;
         GetWorkingGraph(graph, workingGraph);
 
-        //printasd(workingGraph);
-
         /* Get pointers to all exit nodes in the graph */
         WorkVertex *exits[2048];
         GetAllExits(workingGraph, exits);
@@ -59,7 +57,6 @@ int PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) 
         SetPathsFromWGraph(exits, i, count, *sourcePaths);
         free(workingGraph);
     }
-
     return count;
 }
 
