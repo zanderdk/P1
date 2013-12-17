@@ -23,7 +23,7 @@ This is the main struct containing information of one building complex.
 The struct have a pointer called floors that points to the first floor struct that contains information about one floor. All floors is sequentially stored in the memory so by incrementing the pointer it is possible to access the next element. How we represent another building is described in \cref{multlayhan}. The element numOfVertices contains how many vertices this graph have in total, and numOfFloors is how many floors this graph have.
 
 
-\lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/graph.c} \label{Graph_struct}
+\lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/graph.c} \label{Graph_struct}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
@@ -31,7 +31,7 @@ The struct have a pointer called floors that points to the first floor struct th
 This struct reasonably simple the functionality of it, is to separate vertices so a floor only contains a vertices that is located a the same floor. The $floorId$ is an identifier to keep track of which floor that are in use.
 $amountOfVertecies$ is a values telling how many vertices this floor have. Vp is a pointer to the first vertex in this floor.
 
-\lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/Floor.c} \label{Floor_struct}
+\lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/Floor.c} \label{Floor_struct}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
@@ -56,8 +56,10 @@ All vertecies on in the same floor is connected using a linked list. This makes 
 
 \begin{minipage}{\linewidth}
 \subsection{Edge Pointer}
+
 The edge pointer struct have two elements one pointing to the $edge$ containing information about the cost of the edge and which vertices it is connected to. And the other element $nextEp$ points to the next edge pointer this Vertex is connected to. When a $nextEp$ is pointing to $NULL$ the end of the list is reached.
 \lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/ep.c} \label{ep_struct}
+
 \end{minipage}
 
 
@@ -67,11 +69,12 @@ The edge pointer struct have two elements one pointing to the $edge$ containing 
 The last struct is the $edge$ struct, this struct is pointed to by two vertices using a $edge$ pointer. The same to vertices is pointed to by the $edge$, using the two $Vertex$ pointers. This represent with vertices is connected.
 The $edgeId$ used while parsing XML code, to keep track of which vertex is connected to which vertex.
 This is is done because a pointer to an edge cant be stored in files, so ids is used to represent a pointer. 
-\lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/edge.c} \label{edge_struct}
+\lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/edge.c} \label{edge_struct}
 \end{minipage}
 
 
 \subsection{Summary of Graph Theory}
+
 
 The sequentially representation requires less memory, and adding or removing elements is also easier compared to a linked list representation, which have meant that the sequentially representation have been chosen for representing a graph 
 
