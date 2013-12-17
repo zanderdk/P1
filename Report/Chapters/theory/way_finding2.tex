@@ -60,23 +60,23 @@ This section describes both Dijkstra's algorithm , which is used for solving SSS
   \caption{Dijkstra's Algorithm}\label{algo:Dij}
   \KwResult{Finds the shortest path from start vertex to vertices}
   \KwData{\\
-  graph \tcc*{graph being searched}
-  source \tcc*{the source vertex}
-  dist \tcc*{list of distances from source}
-  visited \tcc*{list of visited vertices}
-  parent \tcc*{list of parents. The parent of a given vertex, is another vertex that provides the shortest current path to the given vertex}
+  graph \tcc*{Graph being searched}
+  source \tcc*{The source vertex}
+  dist \tcc*{List of distances from source}
+  visited \tcc*{List of visited vertices}
+  parent \tcc*{List of parents. The parent of a given vertex, is another vertex that provides the shortest current path to the given vertex}
   E-list \tcc*{A list of vertices to be evaluated}
-  E-vertex \tcc*{vertex being evaluated}
-  C-vertex \tcc*{current vertex}
-  Temp \tcc*{a temporary variable}
+  E-vertex \tcc*{Vertex being evaluated}
+  C-vertex \tcc*{Current vertex}
+  Temp \tcc*{A temporary variable}
   }
 
   \SetKwFunction{Dijkstra}{Dijkstra}
   \SetKwProg{KwFn}{Function}{}{}
 
-  \KwFn{\Dijkstra{graph, source}}{
+  \KwFn{\Dijkstra{Graph, source}}{
 
-    \For{\textbf{each} vertex v in graph}{
+    \For{\textbf{each} Vertex v in graph}{
       dist[E-vertex] $= \infty$\tcc*{Assign distance from source to as infinite}
       visited[E-vertex] $=$ false\tcc*{Boolean to false for not visited}
       parent[E-vertex] $=$ undefined\tcc*{Assign parent all as undefined}
@@ -190,7 +190,7 @@ From the unvisited vertices set, select the vertex with the smallest temporary v
   \subsubsection{Heuristic value and evaluation value}
   A* introduces a heuristic value, which is an estimation of total cost from the source to the destination. For it to be admissible, the heuristic value must be exactly equal to or lower than the actual total cost from the source to the destination. If the heuristic value overestimates the cost, A* is not guaranteed to find the shortest path. The lower the heuristic value is compared to the cost value, the less influential the heuristic value is. If the heuristic value is completely without influence, A* performs like Dijkstra's algorithm.
 
-  There are many different methods used to find a heuristic. Two commonly used methods are the Manhattan method and the Euclidean method. These methods typically calculates its result on coordinates. This means that the vertices passed to these methods has to have coordinates describing how the vertices are positioned relative to each other.
+  There are many different methods used to find a heuristic. Two commonly used methods are the Manhattan method and the Euclidean method. These methods typically calculates its results on coordinates. This means that the vertices passed to these methods has to have coordinates describing how the vertices are positioned relative to each other.
 
     \paragraph{Euclidean distance}\cite{wiki_euclidean}
 
@@ -238,17 +238,17 @@ The shortest path is then backtracked by starting from the goal vertex and then 
   \caption{A* Algorithm}\label{algo:A*}
   \KwResult{Finds the shortest path from start vertex to goal vertex}
   \KwData{ \\
-    source  \tcc*{the source vertex to start evaluating from} 
-    goal \tcc*{the goal vertex to find path to} 
-    closedSet = \{ \} \tcc*{set of visited vertices} 
-    openSet = \{ start \} \tcc*{the set of vertices to be evaluated} 
-    cameFrom = \{ \} \tcc*{list of navigated vertices} 
-    gScore[] = \tcc*{array containing every g value for every vertex} 
-    fScore[] = \tcc*{array containing every f value for every vertex} 
-    current = \tcc*{current vertex being evaluated} 
-    neighborNodes(vertex) = \tcc*{set of neighbors for every vertex}
-    hEstimate(vertex1,vertex2) \tcc*{function that calculates heuristic value from vertex1 to vertex2. Could use euclidean distance}
-    distBetween(vertex1,vertex2) \tcc*{gets cost from vertex1 to vertex2}
+    source  \tcc*{The source vertex to start evaluating from} 
+    goal \tcc*{The goal vertex to find path to} 
+    closedSet = \{ \} \tcc*{Set of visited vertices} 
+    openSet = \{ start \} \tcc*{The set of vertices to be evaluated} 
+    cameFrom = \{ \} \tcc*{List of navigated vertices} 
+    gScore[] = \tcc*{Array containing every g value for every vertex} 
+    fScore[] = \tcc*{Array containing every f value for every vertex} 
+    current = \tcc*{Current vertex being evaluated} 
+    neighborNodes(vertex) = \tcc*{Set of neighbors for every vertex}
+    hEstimate(vertex1,vertex2) \tcc*{Function that calculates heuristic value from vertex1 to vertex2. Could use euclidean distance}
+    distBetween(vertex1,vertex2) \tcc*{Gets cost from vertex1 to vertex2}
     }
 
   \SetKwFunction{Astar}{Astar}
@@ -267,7 +267,7 @@ The shortest path is then backtracked by starting from the goal vertex and then 
       \If{current $=$ goal}{ 
 
 
-        return reconstructPath(cameFrom, goal) \tcc*{goal is reached so reconstruct path and return it}
+        return reconstructPath(cameFrom, goal) \tcc*{Goal is reached so reconstruct path and return it}
         }
       }
     
@@ -280,12 +280,12 @@ The shortest path is then backtracked by starting from the goal vertex and then 
 
       tempGScore $\gets$ tempGScore + hEstimate(neighbor,goal)\;
 
-      \tcc{if neighbor is in closedSet and tempFScore $>=$ f value of neighbor, continue}
+      \tcc{If neighbor is in closedSet and tempFScore $>=$ f value of neighbor, continue}
       \If{neighbor in closedSet and tempFScore $>=$ fScore[neighbor]}{
         continue\;
       }
 
-      \If{neighbor not in openSet or tempFScore $<$ fScore[neighbor]}{
+      \If{Neighbor not in openSet or tempFScore $<$ fScore[neighbor]}{
         cameFrom[neighbor] $\gets$ current\;
         gScore[neighbor] $\gets$ tempGScore\;
         fScore[neighbor] $\gets$ tempFScore\;
@@ -295,7 +295,7 @@ The shortest path is then backtracked by starting from the goal vertex and then 
       }
     }
 
-return failure\tcc*{if this point is reached, the goal vertex is never reached}
+return failure\tcc*{If this point is reached, the goal vertex is never reached}
   }
 
 \end{algorithm}
@@ -314,11 +314,11 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
   \KwFn{\ReconstructPath{cameFrom, currentVertex}}{
 
     \tcc{If the currentNode being checked is inside cameFrom list, call reconstructPath recursively and return the path from reconstructPath + the current node}
-    \If{currentNode in cameFrom}{
+    \If{CurrentNode in cameFrom}{
       p $\gets$ reconstructPath(cameFrom, cameFrom[currentVertex])\;
       return (p $+$ currentNode)\;
     }
-    \tcc{currentNode is not in cameFrom list, so no action other than returning currentNode should happen}
+    \tcc{CurrentNode is not in cameFrom list, so no action other than returning currentNode should happen}
     \Else{
       return currentNode\;
     }
