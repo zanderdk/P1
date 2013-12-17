@@ -1,23 +1,25 @@
 %!TEX root = ../../Master.tex
 
-\subsection{Data Structure} % (fold)
+\subsection{Data Structure}
 \label{sub:data_structure}
 
-This section will cover which way of representing a graph that has been chosen. The solution was to break the graph in to small pieces of information, this made it easier to keep track of the program. It was chosen to split the datasets in to 5 structs.
-\begin{itemize}[noitemsep]
+This subsection will cover which way of representing a graph that has been chosen. The solution was to break the graph in to small pieces of information, this made it easier to keep track of the program. It was chosen to split the datasets in to 5 structs.
+\begin{minipage}{\linewidth}
+\begin{itemize} [noitemsep]
 	\item Graph
 	\item Floor
 	\item Vertex
 	\item Edge Pointer
 	\item Edge
 \end{itemize}
+\end{minipage}
 
 These structs will be explained in the following sections. 
 
 %In \cref{Implementing}, the advantages and disadvantages of a linked list and a array was described.
 \begin{minipage}{\linewidth}
 \subsection{Graph} 
-This is the main struct contaning information of one building complex.
+This is the main struct containing information of one building complex.
 The struct have a pointer called floors that points to the first floor struct that contains information about one floor. All floors is sequentially stored in the memory so by incrementing the pointer it is possible to access the next element. How we represent another building is described in \cref{multlayhan}. The element numOfVertices contains how many vertecies this graph have in total, and numOfFloors is how many floors this graph have.
 
 
@@ -71,6 +73,7 @@ This is is done because a pointer to an edge cant be stored in files, so ids is 
 
 \subsection{Summary of Graph Theory}
 
+The sequentially representation requires less memory, and adding or removing elements is also easier compared to a linked list representation, which have meant that the sequentially representation  have been chosen for representing a graph 
 
 
 \begin{figure}[h]
