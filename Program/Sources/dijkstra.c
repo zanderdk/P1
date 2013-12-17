@@ -164,9 +164,9 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mod
 
         /* Calculate the tentative distance to the vertex taking mode and special vertices into account */
         temp += epPtr->edge->weight + current->dist;
-        if (wvllPtr->workVertex.vertex->type == 3 && current->vertex->type == 1) {
+        if ((*wvllPtr)->workVertex.vertex->type == 3 && current->vertex->type == 1) {
             temp += INITIAL_COST;
-        } else if (wvllPtr->workVertex.vertex->type == 2 && current->vertex->type == 2) {
+        } else if ((*wvllPtr)->workVertex.vertex->type == 2 && current->vertex->type == 2) {
             counter++;
             tempPtr = current;
             while (tempPtr->previous->vertex->type == 2) {
