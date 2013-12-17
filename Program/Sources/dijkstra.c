@@ -172,6 +172,7 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mod
                 counter++;
             } while ((tempPtr = tempPtr->previous) && tempPtr->vertex->type == 2);
             temp += epPtr->edge->weight * (counter - 1);
+            counter = 0;
         }
         if (mode == 1 && (*wvllPtr)->workVertex.vertex->type - 1 == 1) {
             temp *= 100;
