@@ -40,20 +40,20 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     /* Allocate current neighbors array */
     curNeighbors = workVertices + numVertices;
 
-    /* create WorkVertex instance of start vertex and set to open list */
+    /* Create WorkVertex instance of start vertex and set to open list */
     wvStart = CreateWorkVertex(start, &createdWorkVertices);
     SetSetMode(OPEN_SET, wvStart);
     AddToWorkVertices(wvStart, workVertices, numVertices);
 
 
-    /* calculate and set f value for start to destination vertex */
+    /* Calculate and set f value for start to destination vertex */
     SetFValue(CalcFValue(wvStart, dest), wvStart);
 
     while (GetVerticesInSet(OPEN_SET, workVertices, numVertices) != 0) {
-        /* set current vertex to the vertex in open set with lowest f value */
+        /* Set current vertex to the vertex in open set with lowest f value */
         current = GetVertexLowestFOpenSet(workVertices, numVertices);
 
-        /* is at destination? if so, recontruct the path to get from start to destination */
+        /* Is at destination? if so, recontruct the path to get from start to destination */
         if (current->originVertex->vertexId == dest->vertexId) {
             path =  ReconstructPath(current,
                                     numVertices);
@@ -176,7 +176,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
 
         existingWV = GetFromWorkVertices(vertexFound->vertexId, workVertices, numVertices);
         if (existingWV != NULL && existingWV->setMode == CLOSED_SET) {
-            /* before we continue, set next ep */
+            /* Before we continue, set next ep */
             flag = 1;
 
         } else if (existingWV != NULL
@@ -186,7 +186,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
             outNeighborWorkVertex[numNeighbors] = existingWV;
             numNeighbors++;
         } else if (existingWV != NULL && existingWV->setMode == OPEN_SET) {
-            //
+            /* Do not do anything */
         } else {
             existingWV = CreateWorkVertex(vertexFound, createdWorkVertices);
 
@@ -199,7 +199,7 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
             numNeighbors++;
         }
 
-        /* get next ep */
+        /* Get next ep */
         ep = ep->nextEp;
 
     } while (ep != NULL);
