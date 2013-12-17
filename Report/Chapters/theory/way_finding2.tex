@@ -154,7 +154,7 @@ Set the temporary distance of every vertex in the graph to infinity. The startin
     \paragraph{Step 2}
 Add every vertex to a set called unvisited vertices. Mark the starting vertex as current.
 
-    \paragraph{Step 3}
+    \paragraph{Step 3}\label{par:dij_step3}
 Calculate temporary distances for every neighbour of the current vertex. This is done by adding the distance of the current vertex and the weight of the edge connecting it to the neighbour. See \cref{fig:dij_step2-3}.
 
   \begin{figure}[ht!]
@@ -168,7 +168,7 @@ Calculate temporary distances for every neighbour of the current vertex. This is
 When all neighbours have been considered, mark the current vertex as visited, thereby removing it from the set unvisited vertices. This visited vertex will then never be checked again. 
 
 \paragraph{Step 5}
-If the destination vertex has been marked visited or the smallest temporary distance in the unvisited vertices set is infinity, stop the algorithm. The smallest temporary distance in unvisited vertices set should only be infinity if there is no connecting from starting vertex to destination vertex.
+If all vertices have been marked visited or the smallest temporary distance in the unvisited vertices set is infinity, stop the algorithm. The smallest temporary distance in the unvisited vertices set should only be infinity if there is no connecting from starting vertex to destination vertex.
 
 \paragraph{Step 6}
 From the unvisited vertices set, select the vertex with the smallest temporary vertex as the current vertex. Repeat step 3 and onwards. See \cref{fig:dij_step4-5-6}.
@@ -176,7 +176,7 @@ From the unvisited vertices set, select the vertex with the smallest temporary v
   \begin{figure}[ht!]
     \centering
     \includegraphics[width=0.5\textwidth]{dij_step4-5-6.eps}
-    \caption{Step 4,5 \& 6 of Dijkstra. c marks the current vertex. u marks unvisited vertices.}
+    \caption{Step 4, 5 \& 6 of Dijkstra. c marks the current vertex. u marks unvisited vertices.}
     \label{fig:dij_step4-5-6}
   \end{figure}
 
@@ -188,7 +188,9 @@ From the unvisited vertices set, select the vertex with the smallest temporary v
 
  
   \subsubsection{Heuristic value and evaluation value}
-  A* introduces a heuristic value, which is an estimation of total cost from the source to the destination. For it to be admissible it must never overestimate the cost. There are many different methods used to find a heuristic. Two commonly used methods are the Manhattan method and the Euclidean method. 
+  A* introduces a heuristic value, which is an estimation of total cost from the source to the destination. For it to be admissible, the heuristic value must be exactly equal to the actual total cost from the source to the destination. If the heuristic value overestimates the cost, A* is not guaranteed to find the shortest path. As the heuristic value approaches 0 from the admissible value, A* begins to perform like Dijkstra's algorithm.
+
+  There are many different methods used to find a heuristic. Two commonly used methods are the Manhattan method and the Euclidean method. 
 
     \paragraph{Euclidean distance}\cite{wiki_euclidean}
 
@@ -210,38 +212,25 @@ From the unvisited vertices set, select the vertex with the smallest temporary v
   The heuristic value is used to determine the evaluation value, which provides the cost from the start to the vertex being evaluated, added to the heuristic value. The cost is the total sum of weights of edges visited to the vertex being evaluated. The evaluation value is used when determining if a vertex is in the shortest path. When comparing two vertices, the vertex with the lowest evaluation value is always chosen for the shortest path \cite{Patel2013}.
 
 
-  \sinote{omskriv scenarios asdlajsldjlasjdlasjdlasdlnasndlasndnnnnnnnnnnnnnnnn}
-
-
-
-  When calculating the heuristic function, 4 situations can occur which affects the performance of A*.
-
-    \begin{itemize}
-    \item If $h(x)$ is zero, then only $g$ affects the result essentially making it work like Dijkstra's algorithm.
-
-    \item If $h(x) < g(x)$, the algorithm will guaranteed find the shortest path from source to target but at a slow running time. This is because if the heuristic value is small, it does not affect the evaluation function and A* would traverse the graph in the wrong way relative to the goal. \kanote{er den helt udenfor påvirkning?}
-
-    \item $h(x) = g(x)$, the heuristic value is admissible, meaning the shortest path will always be found in the fastest running time.
-
-    \item If $h(x) > g(x)$, the algorithm will find a path very fast but not always the shortest path, because A* will depend too much on the heuristic value to give a qualified shortest path.
-  \end{itemize}
-
-  When considering these 4 situations, $h(x)$ should be admissible, meaning that the heuristic value should never overestimate the distance between the evaluating vertex and the target vertex. In contrast it should be just right for the final chosen path to be the optimal path and for the complexity of the algorithm to be at a minimum.
-
-  \kanote{overvej at fjerne g(x) og giv navne i stedet} 
-
   For an example of an A* calculation, see \cref{fig:astar}. 
   Grey blocks are obstacles such as walls. White blocks are unvisited vertices. S marks the start and G the goal. Blue blocks mark vertices that were added to closed set (were visited) and green blocks mark vertices that were added to open set (were considered to be added to closed set). A marks a point where the heuristic value increases because the distance to G increases, causing the evaluation value to rise above the threshold for when A* considers another path. Point B marks a point where A* chooses a path around an obstacle.
+
+    \begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{AstarHlow_kopi.png}
+    \caption{Example on an A* algorithm algorithm}
+    \label{fig:astar}
+  \end{figure}
 
 
 
   % If you would combine Dijkstra's algorithm with Best-First-Search algorithm, you would get the A* algorithm which also utilises the principle of a heuristic estimation to determine which vertex to test next. It uses a evaluation function $f(x) = g(x) + h(x)$, where $g(x)$ describes the cost from the start to the vertex being evaluated, and $h(x)$ is a heuristic function that estimates the cost from the evaluating vertex to the target vertex. \cite{Patel2013}
 
-\kanote{A WILD DESCRIPTION APPEARS! (referer!)}
+%\kanote{A WILD DESCRIPTION APPEARS! (referer!)}
 
 \subsubsection{Pseudocode}
 
-A* works by maintaining a priority queue of vertices that need to be examined. This is called the open set. The lower the f value of a vertex is, the higher is its priority in the open set. The current vertex is chosen as the vertex with the highest priority in the open set. This vertex is then removed from the open set and its neighbours' f and g values are updated. The neighbor's parent is marked as current vertex. These neighbours are then added to the open set. The algorithm stops when either the open set is empty or the goal vertex has a lower f value than any other vertex in the open set. If this happens the shortest path to the goal vertex has been found.
+A* works by maintaining a priority queue of vertices that need to be examined. This is called the open set. The lower the evaluation value of a vertex is, the higher the priority in the open set. The current vertex is chosen as the vertex with the highest priority in the open set. This vertex is then removed from the open set and its neighbours' evaluation and closedSet values are updated. The neighbor's parent is marked as the current vertex. These neighbours are then added to the open set. The algorithm stops when either the open set is empty or the goal vertex has a lower evaluation value than any other vertex in the open set. If this happens the shortest path to the goal vertex has been found.
 
 The shortest path is then backtracked by starting from the goal vertex and then traversing the goal's parent until the start vertex has been met. These vertices mark the shortest path.
 
@@ -337,12 +326,7 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
 \end{algorithm}
 
 
-  \begin{figure}[ht!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{AstarHlow_kopi.png}
-    \caption{A* algorithm with an admissible heuristic value. }
-    \label{fig:astar}
-  \end{figure}
+
 
   % There are multiple ways to calculate the heuristic value(estimated cost) to the target vertex, but an ideal choice would be the Euclidean \cref{equation:Euclidean} distance, as no path can be shorter than the direct distance between two vertices.
   % \begin{equation} \label{equation:Euclidean}
@@ -351,7 +335,7 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
 
   \subsubsection{An example of A* algorithm in use}
 
-  The only notable difference between Dijkstra's algorithm and A* is the use of a heuristic value. The steps 1-6 from \cref{subss_dij_ex} are nearly identical. See \cref{fig:astar_h_explained}. \kanote{Jim and Jack were nearly friends.. but what is the difference}
+  The only notable difference between Dijkstra's algorithm and A* is the use of a heuristic value. The steps 1-6 from \cref{subss_dij_ex} are nearly identical. In step 3 in \cref{subs_dijkstra}, the evaluation value is calculated instead of just the distance.  See \cref{fig:astar_h_explained}.
 
     \begin{figure}[ht!]
     \centering
@@ -362,7 +346,7 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
 
   \subsection{Summary of Algorithms}
 
-  Path algorithms searches for a path to target. Some focuses on finding a path fast, others finding the most optimal path. Using the A* algorithm with a heuristic model that is admissible, which underestimates the cost to the target path, assure an optimal path without calculating every vertex. See \cref{tbl:scheme}. \kanote{det her beskriver.. det opsumerer ikke}
+  There are different kinds of pathfinding problems. These include SSSP and SPSP problems. Dijkstra's algorithm solves SSSP problems and the A* algorithm solves SPSP problems. Dijkstra and A* each have different assets. These are summarized in \cref{tbl:scheme}.
   
   \begin{table}[ht!]
     \centering
