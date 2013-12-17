@@ -38,7 +38,7 @@ After this all that is needed to be done, is to calculate the route to all the e
 
 When using this approach, the precalculation is executed at system startup using Dijkstra's algorithm, in order to get the optimal connections between all exit vertices. There is no need for a faster algorithm, since there is no user communication during this calculation.
 
-\cref{fig:flawless1} is an illustration of a navigation problem. Shown on the illustration are the initial vertex, the destination vertex, and the exit vertices on each floor. The darker grey layer in the middle is representing the precalculated area between the floors exit vertices. The user will then prompt for a route from the initial vertex to the destination vertex.
+\Cref{fig:flawless1} is an illustration of a navigation problem. Shown on the illustration are the initial vertex, the destination vertex, and the exit vertices on each floor. The darker grey layer in the middle is representing the precalculated area between the floors exit vertices. The user will then prompt for a route from the initial vertex to the destination vertex.
 
 \begin{figure}[ht!]
     \centering
@@ -47,7 +47,7 @@ When using this approach, the precalculation is executed at system startup using
     \label{fig:flawless1}
   \end{figure}
 
-In \cref{flawless2} the runtime is showing to consist of a round of A* runs done on both the initial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors.
+In \cref{fig:flawless2} the runtime is showing to consist of a round of A* runs done on both the initial floor and the destination floor. These runs are done from the start vertex and the destination vertex to all exit vertices on their respective floors.
 
 \begin{figure}[ht!]
     \centering
