@@ -41,8 +41,14 @@ void printPath(Path *path) {
     }
 }
 
-Path *recreconstruct(Path *p1, Path *p2, Path *p3) {
-    int ids = p1->numVertices + p2->numVertices + p3->numVertices - 1;
+Path *recreconstruct(Path *p1, Path *p2, Path *p3, int t) {
+    int ids;
+
+    if (t)
+        ids = p1->numVertices + p2->numVertices + p3->numVertices - 1;
+    else
+        ids = p1->numVertices + p2->numVertices;
+
     int size = ids * sizeof(int) + sizeof(Path);
     Path *ret = malloc(size);
     int *weights = (int *)(ret + 1);
@@ -53,7 +59,12 @@ Path *recreconstruct(Path *p1, Path *p2, Path *p3) {
 
     ret->numVertices = ids;
     ret->targetId = p1->targetId;
-    ret->weight = p1->weight + p2->weight + p3->weight;
+
+    if (t)
+        ret->weight = p1->weight + p2->weight + p3->weight;
+    else
+        ret->weight = p1->weight + p2->weight;
+
     ret->pathVerticeIds = weights;
 
     for (i = 0; i < p1->numVertices; i++) {
@@ -64,18 +75,23 @@ Path *recreconstruct(Path *p1, Path *p2, Path *p3) {
 
     for (i = 0; i < p2->numVertices; i++) {
         weights[tcount + i] = p2->pathVerticeIds[i];
+        //printf("%d\n", tcount + i);
         count++;
     }
 
     tcount = count;
 
-    for (i = 0, j = p3->numVertices - 2; j >= 0; i++, j--) {
-        weights[tcount + i] = p3->pathVerticeIds[j];
-        count++;
+    if (t) {
+        for (i = 0, j = p3->numVertices - 2; j >= 0; i++, j--) {
+            weights[tcount + i] = p3->pathVerticeIds[j];
+            count++;
+        }
     }
 
     free(p1);
-    free(p3);
+
+    if (t)
+        free(p3);
 
     return ret;
 }
@@ -107,6 +123,9 @@ Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor, Graph *
         int startFloor = scr->floorId - 1;
         int endFloor = dst->floorId - 1;
         //printf("%d \n", endFloor);
+
+
+
         for (i = 0; i < paths; i++) {
             sp = &srcPath[i];
             if (GetFloor(sp->sourceId) - 1 == startFloor) {
@@ -119,6 +138,14 @@ Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor, Graph *
 
                 for (j = 0; j < sp->numPaths; j++) {
                     Vertex *source = GetVertexFromIdInt(sp->paths->targetId, graph);
+
+                    if (source->vertexId == dst->vertexId) {
+                        recPath1 = buf;
+                        recPath2 = &(sp->paths[j]);
+                        recPath3 = NULL;
+                        return recreconstruct(recPath1, recPath2, recPath3, 0);
+                    }
+
                     Lbuf = AStar(dst, source, graph->floors[endFloor].amountOfVertecies);
 
                     currentCost += Lbuf->weight;
@@ -136,7 +163,7 @@ Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor, Graph *
             }
         }
 
-        return recreconstruct(recPath1, recPath2, recPath3);
+        return recreconstruct(recPath1, recPath2, recPath3, 1);
 
     }
 
@@ -153,6 +180,12 @@ int main(int argc, char const *argv[]) {
     char idStr1[10], idStr2[10];
 
     FILE *fp = fopen(argv[1], "r");
+
+    if (fp == NULL) {
+        printf("Cant read file.\n");
+        exit(1);
+    }
+
     graph = readXml(fp);
     fclose(fp);
 

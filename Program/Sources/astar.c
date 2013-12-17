@@ -85,6 +85,8 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
 
         }
     }
+
+    printf("FATAL ERROR\n");
     /* this is only returned if failure */
     printf("reached null final. EROOROR");
     return NULL;
@@ -290,7 +292,6 @@ int IsInWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertices)
 
 void AddToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertices) {
     int i;
-
     for (i = 0; i < numVertices; i++) {
         /* If an entry in array is 0, nothing at that position has been set
          Therefore, set it */

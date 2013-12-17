@@ -137,6 +137,7 @@ struct SourcePaths {
 };
 
 Vertex *GetVertexFromId(char *idStr, Graph *graph);
+Vertex *GetVertexFromIdInt(int id, Graph *graph);
 int CountVertices(int floorId, Graph *graph);
 int GetFloor(int vertedId);
 Vertex *NextVertex(Vertex *vp, int id);
