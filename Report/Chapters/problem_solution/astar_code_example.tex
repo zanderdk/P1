@@ -32,7 +32,7 @@ When the goal has been reached in the main A* function, the calculated path must
 
 \lstinputlisting[style=customc, language=C, firstline=89, lastline=127, caption={ReconstructPath function}, label=list:recon]{../Program/Sources/astar.c}
 
-It simply starts at the destination WorkVertex and follows the parentVertex pointer until it is NULL. When that happens, the start WorkVertex has been reached and the path is reconstructed. The ids of the Vertices in the path is stored in the Path struct and returned a pointer to this Path is returned. By returning the pointer to the Path, the caller of AStar function can simply free the path pointer when it is done with it.
+It starts at the destination WorkVertex and follows the parentVertex pointer until it is NULL. When that happens, the start WorkVertex has been reached and the path is reconstructed. The ids of the Vertices in the path is stored in the Path struct and returned a pointer to this Path is returned. By returning the pointer to the Path, the caller of AStar function can simply free the path pointer when it is done with it.
 
 \subsubsection{Clean Up}
 
