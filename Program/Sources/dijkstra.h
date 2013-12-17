@@ -1,1 +1,1 @@
-void PreComputePaths(Graph *graph, SourcePaths **paths, unsigned int mode);
+int PreComputePaths(Graph *graph, SourcePaths **paths, unsigned int mode);

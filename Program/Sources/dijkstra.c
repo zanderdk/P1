@@ -11,7 +11,7 @@ void printasd(WVLinkedList *head) {
     } while ((temp = temp->next));
 }
 
-void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) {
+int PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) {
     int i, i2;
     int unsigned count = 0, ids[2048];
     Vertex *tempPtr;
@@ -38,13 +38,14 @@ void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode)
             (*sourcePaths)[i].paths[i2].pathVerticeIds = malloc(1024 * sizeof(unsigned int));
         }
     }
-    printf("%d\n", count);
 
     /* APSP */
     for (i = 0; i < count; i++) {
         /* Allocate memory for the work vertices and setup the linked list */
         WVLinkedList *workingGraph = calloc(graph->numOfVertices, sizeof(WVLinkedList));;
         GetWorkingGraph(graph, workingGraph);
+
+        //printasd(workingGraph);
 
         /* Get pointers to all exit nodes in the graph */
         WorkVertex *exits[2048];
@@ -55,6 +56,8 @@ void PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode)
         SetPathsFromWGraph(exits, i, count, *sourcePaths);
         free(workingGraph);
     }
+
+    return count;
 }
 
 void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
@@ -67,9 +70,16 @@ void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
         do {
             tempPtr2->workVertex.vertex = tempPtr;
             tempPtr2->workVertex.dist = -1;
-            tempPtr2->next = tempPtr2 + 1;
 
-        } while ((tempPtr = tempPtr->nextVp) && (1, tempPtr2 = tempPtr2->next));
+            if (tempPtr->nextVp == NULL && i == graph->numOfFloors - 1) {
+                break;
+            }
+
+            tempPtr2->next = tempPtr2 + 1;
+            tempPtr2 = tempPtr2->next;
+
+
+        } while ((tempPtr = tempPtr->nextVp));
         tempPtr2->next = NULL;
     }
 }
@@ -88,7 +98,7 @@ void GetAllExits(WVLinkedList *workingGraph, WorkVertex **exits) {
 
 void SetPathsFromWGraph(WorkVertex **exits, int index, int count, SourcePaths *sourcePaths) {
     int i, i2;
-    for (i = 0, i2 = 0; i < count - 1; ++i, ++i2) {
+    for (i = 0, i2 = 0; i < count - 1; i++, i2++) {
         if (index == i2) {
             i2++;
         }
