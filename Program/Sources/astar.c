@@ -11,10 +11,10 @@
 
 void CleanUp(WorkVertex **workVertices, int numVertices) {
     int i;
-    printf("num of vertices in clanup %d \n", numVertices);
+    //printf("num of vertices in clanup %d \n", numVertices);
 
     for (i = 0; i < numVertices; i++) {
-        printf("trying to free position %d out of %d\n", i, numVertices - 1);
+        //printf("trying to free position %d out of %d\n", i, numVertices - 1);
         free(workVertices[i]);
     }
 
@@ -87,8 +87,6 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     }
 
     printf("FATAL ERROR\n");
-    /* this is only returned if failure */
-    printf("reached null final. EROOROR");
     return NULL;
 }
 
@@ -217,7 +215,7 @@ WorkVertex *CreateWorkVertex(Vertex *src, int *createdWorkVertices) {
     }
     wv->originVertex = src;
     (*createdWorkVertices)++;
-    printf("created %d\n", wv->originVertex->vertexId);
+    //printf("created %d\n", wv->originVertex->vertexId);
 
     return wv;
 }
@@ -297,8 +295,8 @@ void AddToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertice
          Therefore, set it */
         if (workVertices[i] == NULL) {
             workVertices[i] = wv;
-            printf("added %d in AddToWorkVertices to workvertices in position %d out of %d\n",
-                   wv->originVertex->vertexId, i, numVertices - 1);
+            //printf("added %d in AddToWorkVertices to workvertices in position %d out of %d\n",
+            //wv->originVertex->vertexId, i, numVertices - 1);
             break;
         }
     }
