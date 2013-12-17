@@ -17,22 +17,27 @@ Usage requirements are needs that must be met, before the solution can be consid
 				\item Should the route be fastest in time, shortest in distance, or the least physical strenuous?
 			\end{itemize}
 \end{itemize}
-In order to optimize navigation, the limits of systems in current use must be considered. See \cref{sec:anal_nav}. A system that does not take personalized input from a user, will not be able to consider the needs for that particular user. As described in \cref{sec:interusers} these needs can differs immensely across usergroups, and therefore it is important to be able to personalize the generated route.
-The first three parameters are able to establish most boundaries the users might have, whether it is physical or psychological, while still keeping it to a minimum, this is another requirement we will expand on later. The last parameter is less essential, since all usergroups could always use the least physical strenuous, however in order to optimize the route specifically for the user, this option should be given as well. This last parameter could also be an indirect input, based on other input, such as the travelling speed of the user and previous choices. In any way, the program should be able to choose different criterias for the choice of optimal route.
+
+In order to optimize navigation, the limits of systems in current use must be considered. See \cref{sec:anal_nav}. A system that does not take personalized input from a user, will not be able to consider the needs for that particular user. As described in \cref{sec:interusers} these needs can differs immensely across user groups, and therefore it is important to be able to personalize the generated route.
+
+The first three parameters are able to establish most boundaries the users might have, whether it is physical or psychological, while still keeping it to a minimum, this is another requirement we will expand on later. The last parameter is less essential, since all user groups could always use the least physical strenuous, however in order to optimize the route specifically for the user, this option should be given as well. This last parameter could also be an indirect input, based on other input, such as the traveling speed of the user and previous choices. In any way, the program should be able to choose different criteria for the choice of optimal route.
 
 \begin{itemize}
 	\item The user interface must be intuitive, simple and still give a quick overview of data representation.
 \end{itemize}
-It is essential to display all the necessary information, and nothing more. However, if the information is displayed statically, this can prove to be impossible, since the criterias for 'necessary information' changes with the user. See both \cref{sec:anal_nav} and \cref{sec:interusers} The advantage of a software solution in this regard, is the ability to shift the information displayed, based on the users current situation. In order to fully optimize, this must be incorporated into a solution.
+
+It is essential to display all the necessary information, and nothing more. However, if the information is displayed statically, this can prove to be impossible, since the criterias for necessary information changes with the user. See both \cref{sec:anal_nav} and \cref{sec:interusers} The advantage of a software solution in this regard, is the ability to shift the information displayed, based on the users current situation. In order to fully optimize, this must be incorporated into a solution.
 
 \begin{itemize}
 	\item The maximum wait during route generation should not under normal conditions exceed 2 seconds.\label{irm_tid}
 \end{itemize}
+
 Studies have shown that the patience of a user, is fairly low. See \cref{sec:interusers}. The user must experience that the solution better than the alternatives, before agreeing with that statement. It therefore become important to relay information before the user feels that time is being used inefficiently.
 
 \begin{itemize}
 	\item The program must represent the route instructions either as text, audio or pictographic.
 \end{itemize}
+
 Since the solution will be dealing with a wide variety of users (See \cref{sec:interusers}), the means of relaying information to the user, should cater to the different needs of the users.
 
 
@@ -43,26 +48,31 @@ Technical requirements are all the requirements that will only indirectly affect
 \begin{itemize}
 	\item The program must be able to generate the optimal route to a given destination.
 \end{itemize}
+
 Problems with current navigation systems, include relying on the users ability to figure out the optimal route with sometimes confusing information displayed by a stationary map. See \cref{sub:map}. In a software solution this could, and should, be handled by the system.
 
 \begin{itemize}
-	\item The program must be able to position the user through the use of a wireless transmitation technology.
+	\item The program must be able to position the user through the use of a wireless transmitting technology.
 \end{itemize}
+
 The ability to position the user, is the first step required in order to establish a route to any desired location. The position should be done wirelessly, since it is already an integrated part of the infrastructure, and would allow for optimal mobility. See \cref{sec:organization}
 
 \begin{itemize}
 	\item The user's movements must be traced even without communicating with external factors.
 \end{itemize}
+
 Because of the indoor environment present at a hospital, the user might momentarily loose a connection to a given positioning system. Therefore any device in charge of positioning the user, should be able to do this to a certain extend, without communicating with external factors. See \cref{wifitech} and \cref{subs_acel}
 
 \begin{itemize}
 	\item The program must be able to detect deviation from the route, and recalculate accordingly.
 \end{itemize}
+
 This requirement springs from a need to comply with the basics of navigation. Since we want to rely as little as possible on the users abilities, we want the solution to be able to handle this as well. See \cref{intro}
 
 \begin{itemize}
 	\item The program must be able to support different building complexes.
 \end{itemize}
+
 Any kind of tool takes a bit of effort to understand at first, and this solution will be no different. If the solution however was to be applied in multiple places, chances are that the user might already have had dealings with it. This could reducing the users need to familiarize with the solution, and will create a more pleasant user experience. See \cref{sec:interusers}
 
 % section specification (end)
