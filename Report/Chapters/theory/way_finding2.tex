@@ -190,7 +190,7 @@ From the unvisited vertices set, select the vertex with the smallest temporary v
   \subsubsection{Heuristic value and evaluation value}
   A* introduces a heuristic value, which is an estimation of total cost from the source to the destination. For it to be admissible, the heuristic value must be exactly equal to or lower than the actual total cost from the source to the destination. If the heuristic value overestimates the cost, A* is not guaranteed to find the shortest path. The lower the heuristic value is compared to the cost value, the less influential the heuristic value is. If the heuristic value is completely without influence, A* performs like Dijkstra's algorithm.
 
-  There are many different methods used to find a heuristic. Two commonly used methods are the Manhattan method and the Euclidean method. 
+  There are many different methods used to find a heuristic. Two commonly used methods are the Manhattan method and the Euclidean method. These methods typically calculates its result on coordinates. This means that the vertices passed to these methods has to have coordinates describing how the vertices are positioned relative to each other.
 
     \paragraph{Euclidean distance}\cite{wiki_euclidean}
 
@@ -363,5 +363,3 @@ return failure\tcc*{if this point is reached, the goal vertex is never reached}
     \caption{Table of advantages/disadvantages of different algorithms}
     \label{tbl:scheme}
   \end{table}
-
-  \kanote{indsæt koordinate shizzle}
