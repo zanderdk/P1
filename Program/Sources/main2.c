@@ -116,7 +116,6 @@ Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor, Graph *
     SourcePaths *sp;
     Path *Lbuf;
 
-
     int count = 0;
     int i, j, k;
     int state = 1;
@@ -164,7 +163,6 @@ Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor, Graph *
                         Vertex *source = GetVertexFromIdInt(sp->paths[j].targetId, graph);
 
                         if (source->vertexId == dst->vertexId && state != 3) {
-                            printf("dfsfghgfdh\n");
                             recPath1 = buf;
                             recPath2 = &(sp->paths[j]);
                             recPath3 = NULL;
@@ -181,9 +179,6 @@ Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor, Graph *
                             recPath1 = buf;
                             recPath2 = &(sp->paths[j]);
                             recPath3 = Lbuf;
-                        } else {
-                            free(buf);
-                            free(Lbuf);
                         }
                     }
                 }
@@ -207,6 +202,7 @@ int main(int argc, char const *argv[]) {
     int mode = 0;
     Path *route;
     char idStr1[10], idStr2[10];
+    int flag = 0;
 
     FILE *fp = fopen(argv[1], "r");
 
@@ -218,36 +214,6 @@ int main(int argc, char const *argv[]) {
     graph = readXml(fp);
     fclose(fp);
 
-    if (argc < 5) {
-        printf("Enter first verted id: \n");
-        scanf("%9s", idStr1);
-        printf("Enter Next verted id: \n");
-        scanf("%9s", idStr2);
-        success = validate(idStr1, idStr2, &scr, &dst, graph);
-    } else {
-        strncpy(idStr1, argv[2], 10);
-        strncpy(idStr2, argv[3], 10);
-    }
-
-    sscanf(argv[4], "%d", &mode);
-
-    Vertex *vp = graph->floors[2].vp;
-    EdgePointer *ep;
-
-    while (vp != NULL) {
-        ep = vp->ep;
-        printf("-----%d\n", vp->vertexId);
-        while (ep != NULL) {
-            if (ep->edge->vertex1->vertexId != vp->vertexId)
-                printf("edge %d :%d\n", ep->edge->edgeId , ep->edge->vertex1->vertexId);
-            else
-                printf("edge %d :%d\n", ep->edge->edgeId , ep->edge->vertex2->vertexId);
-            ep = ep->nextEp;
-        }
-        vp = vp->nextVp;
-    }
-
-
     printf("Graph has: \n Floors: %d\n Vertices: %d\n",
            graph->numOfFloors,
            graph->numOfVertices);
@@ -256,20 +222,44 @@ int main(int argc, char const *argv[]) {
     countNoSrairs = PreComputePaths(graph, &noStairs, 1);
     countNoElevators = PreComputePaths(graph, &noElevators, 2);
 
-    success = validate(argv[2], argv[3], &scr, &dst, graph);
 
-    if (success >= 1)
-        printf("Getting most optimal path from %s to %s \n", idStr1, idStr2);
-    else {
-        printf("route cant be found, check Vertex ids.\n");
-        exit(1);
-    }
+    do {
+        if (argc < 5 || flag) {
+            printf("Enter first verted id: \n");
+            scanf("%s", idStr1);
+            printf("Enter Next verted id: \n");
+            scanf("%s", idStr2);
+            printf("Enter mode: \n");
+            scanf("%d", &mode);
+            success = validate(idStr1, idStr2, &scr, &dst, graph);
+        } else {
+            strncpy(idStr1, argv[2], 10);
+            strncpy(idStr2, argv[3], 10);
+            sscanf(argv[4], "%d", &mode);
+            success = validate(argv[2], argv[3], &scr, &dst, graph);
+            flag = 1;
+        }
 
-    route = findOptimalPath(scr, dst, mode, success, graph, All, countAll);
+        if (success >= 1) {
+            printf("Getting most optimal path from %s to %s \n", idStr1, idStr2);
 
-    printPath(route);
+            if (mode == 0)
+                route = findOptimalPath(scr, dst, mode, success, graph, All, countAll);
+            else if (mode == 1)
+                route = findOptimalPath(scr, dst, mode, success, graph, noStairs, countNoSrairs);
+            else
+                route = findOptimalPath(scr, dst, mode, success, graph, noElevators, countNoElevators);
 
-    free(route);
+            printPath(route);
+
+            //free(route);
+
+        } else {
+            printf("route cant be found, check Vertex ids.\n");
+        }
+
+
+    } while (1);
 
     return 0;
 }
