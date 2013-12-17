@@ -42,6 +42,24 @@
 			<vertexId1>10026</vertexId1>
 			<vertexId2>10027</vertexId2>
 		</edge>
+		<edge>
+			<edgeId>50008</edgeId>
+			<weight>3</weight>
+			<vertexId1>20025</vertexId1>
+			<vertexId2>20038</vertexId2>
+		</edge>
+		<edge>
+			<edgeId>50009</edgeId>
+			<weight>5</weight>
+			<vertexId1>20038</vertexId1>
+			<vertexId2>10039</vertexId2>
+		</edge>
+		<edge>
+			<edgeId>500010</edgeId>
+			<weight>4</weight>
+			<vertexId1>10039</vertexId1>
+			<vertexId2>100310</vertexId2>
+		</edge>
 	</edges>
 	<vertices>
 		<vertex>
@@ -119,6 +137,38 @@
 			</coord>
 			<edges>
 				<edgeId>50007</edgeId>
+			</edges>
+		</vertex>
+		<vertex>
+			<vertexId>20038</vertexId>
+			<coord>
+				<x>8</x>
+				<y>3</y>
+			</coord>
+			<edges>
+				<edgeId>50008</edgeId>
+				<edgeId>50009</edgeId>
+			</edges>
+		</vertex>
+		<vertex>
+			<vertexId>10039</vertexId>
+			<coord>
+				<x>10</x>
+				<y>5</y>
+			</coord>
+			<edges>
+				<edgeId>50009</edgeId>
+				<edgeId>500010</edgeId>
+			</edges>
+		</vertex>
+		<vertex>
+			<vertexId>100310</vertexId>
+			<coord>
+				<x>11</x>
+				<y>7</y>
+			</coord>
+			<edges>
+				<edgeId>500010</edgeId>
 			</edges>
 		</vertex>
 	</vertices>
