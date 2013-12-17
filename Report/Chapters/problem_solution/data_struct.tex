@@ -20,7 +20,7 @@ These structs will be explained in the following sections.
 \begin{minipage}{\linewidth}
 \subsection{Graph} 
 This is the main struct containing information of one building complex.
-The struct have a pointer called floors that points to the first floor struct that contains information about one floor. All floors is sequentially stored in the memory so by incrementing the pointer it is possible to access the next element. How we represent another building is described in \cref{multlayhan}. The element numOfVertices contains how many vertecies this graph have in total, and numOfFloors is how many floors this graph have.
+The struct have a pointer called floors that points to the first floor struct that contains information about one floor. All floors is sequentially stored in the memory so by incrementing the pointer it is possible to access the next element. How we represent another building is described in \cref{multlayhan}. The element numOfVertices contains how many vertices this graph have in total, and numOfFloors is how many floors this graph have.
 
 
 \lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/graph.c} \label{Graph_struct}
@@ -28,15 +28,15 @@ The struct have a pointer called floors that points to the first floor struct th
 
 \begin{minipage}{\linewidth}
 \subsection{Floor} \label{subsub:floor}
-This struct reasonably simple the functionality of it, is to separate vertecies so a floor only contains a vertecies that is located a the same floor. The $floorId$ is an identifier to keep track of which floor that are in use.
-$amountOfVertecies$ is a values telling how many vertecies this floor have. Vp is a pointer to the first vertex in this floor.
+This struct reasonably simple the functionality of it, is to separate vertices so a floor only contains a vertices that is located a the same floor. The $floorId$ is an identifier to keep track of which floor that are in use.
+$amountOfVertecies$ is a values telling how many vertices this floor have. Vp is a pointer to the first vertex in this floor.
 
 \lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/Floor.c} \label{Floor_struct}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
 \subsection{Vertex}\label{data_struct:vertex}
-A vertex struct holds information about where it is located relative to other vertecies using a cordinat set $x$ and $y$. Vertecies can be identified using the $vertexId$, the $floorId$ is used to tell whether to vertecies is at the same layer.
+A vertex struct holds information about where it is located relative to other vertices using a coordinate set $x$ and $y$. Vertices can be identified using the $vertexId$, the $floorId$ is used to tell whether to vertices is at the same layer.
 
  The $type$ can represent:
 \begin{itemize}[noitemsep]
@@ -48,7 +48,7 @@ A vertex struct holds information about where it is located relative to other ve
 The $ep$ is a pointer to the first element in a linked list row, each element is contains a pointer to the next $Edge pointer$ that this vertex is connected to. The benefits of this representations method is described in \cref{sub:list} and makes it possible to add edges to this vertex after initialization.
 
 
-All vertecies on in the same floor is connected using a linked list. This makes it possible to dynamic add new vertecies to the floor as described in \cref{sub:list}. The start of the list is pointed to by the floor struct. It is important to mention that the order of the list plays no role.   
+All vertecies on in the same floor is connected using a linked list. This makes it possible to dynamic add new vertices to the floor as described in \cref{sub:list}. The start of the list is pointed to by the floor struct. It is important to mention that the order of the list plays no role.   
 
 
 \lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/vertex.c} \label{vertex_struct}
@@ -56,7 +56,7 @@ All vertecies on in the same floor is connected using a linked list. This makes 
 
 \begin{minipage}{\linewidth}
 \subsection{Edge Pointer}
-The edge pointer struct have two elements one pointing to the $edge$ containing information about the cost of the edge and which vetecies it is connected to. And the other element $nextEp$ points to the next edge pointer this Vertex is connected to. When a $nextEp$ is pointing to $NULL$ the end of the list is reached.
+The edge pointer struct have two elements one pointing to the $edge$ containing information about the cost of the edge and which vertices it is connected to. And the other element $nextEp$ points to the next edge pointer this Vertex is connected to. When a $nextEp$ is pointing to $NULL$ the end of the list is reached.
 \lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/ep.c} \label{ep_struct}
 \end{minipage}
 
@@ -64,7 +64,7 @@ The edge pointer struct have two elements one pointing to the $edge$ containing 
 
 \begin{minipage}{\linewidth}
 \subsection{Edge}
-The last struct is the $edge$ struct, this struct is pointed to by two vertecies using a $edge$ pointer. The same to vertecies is pointed to by the $edge$, using the two $Vertex$ pointers. This represent with vertices is connected.
+The last struct is the $edge$ struct, this struct is pointed to by two vertices using a $edge$ pointer. The same to vertices is pointed to by the $edge$, using the two $Vertex$ pointers. This represent with vertices is connected.
 The $edgeId$ used while parsing XML code, to keep track of which vertex is connected to which vertex.
 This is is done because a pointer to an edge cant be stored in files, so ids is used to represent a pointer. 
 \lstinputlisting[language=C, frame=single, numbers=left]{Chapters/problem_solution/edge.c} \label{edge_struct}
@@ -73,7 +73,7 @@ This is is done because a pointer to an edge cant be stored in files, so ids is 
 
 \subsection{Summary of Graph Theory}
 
-The sequentially representation requires less memory, and adding or removing elements is also easier compared to a linked list representation, which have meant that the sequentially representation  have been chosen for representing a graph 
+The sequentially representation requires less memory, and adding or removing elements is also easier compared to a linked list representation, which have meant that the sequentially representation have been chosen for representing a graph 
 
 
 \begin{figure}[h]
