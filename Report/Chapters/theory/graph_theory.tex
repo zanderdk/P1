@@ -7,7 +7,7 @@ In graph theory objects are called \enquote{nodes} or \enquote{vertices}. The tw
 
 For an example of a weighted graph, see \cref{fig:graph}. All letters mark vertex ids. So circles are vertices. Edges are represented by lines connecting circles. The weight of the edge is represented by the numbers next to the line.
 
-We can describe these definitions formally.\cite{MIT2012}
+We can describe these definitions formally \cite{MIT2012}.
 \begin{mydef}
 	A graph $G$ is a pair of sets $(V,E)$ where $V$ is a non-empty set of items called vertices or nodes. $E$ is a set of 2-item subsets of $V$ called edges.
 \end{mydef}
@@ -36,7 +36,7 @@ Two standard ways of representing a graph exists: as a collection of adjacency l
 Adjacency lists provide a very compact way to represent sparse graphs, with the keyword being sparse. Adjacency lists are only compact and the preferred representation of graphs if the number of edges in a graph is much less than the number of vertices squared. \Cref{fig:graph,fig:labeled_Directed_undirected} are represented as a collection of adjacency lists.
 
 \subsubsection{Adjacency matrix}
-Adjacency matrices are usually the representation of choice when the graph is dense. This means that adjacency matrices should be used when the number of edges is close to the number of vertices squared. Adjacency matrices also has the merit of providing quick lookup of which vertices are connected. See \cref{fig:adjacency_matrix} for an example. Row and column numbers are vertex ids. The contents of the matrix represents the weights in the graph. So when finding the weight connecting vertex 3 and 4, one would look in row 4 column 3. The weight would then be 1. If the weight is 0, the two vertices are not connected.
+Adjacency matrices are usually the representation of choice when the graph is dense. This means that adjacency matrices should be used when the number of edges is close to the number of vertices squared. Adjacency matrices also has the merit of providing quick lookup of which vertices are connected. See \cref{fig:adjacency_matrix} for an example. Row and column numbers are vertex id's. The contents of the matrix represents the weights in the graph. So when finding the weight connecting vertex 3 and 4, one would look in row 4 column 3. The weight would then be 1. If the weight is 0, the two vertices are not connected.
 
 \begin{figure}[ht!]
     \centering
@@ -44,5 +44,3 @@ Adjacency matrices are usually the representation of choice when the graph is de
     \caption{An example of an adjacency matrix \cite{Cormen2009}.}
     \label{fig:adjacency_matrix}
   \end{figure}
-
-
