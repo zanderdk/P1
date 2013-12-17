@@ -9,24 +9,33 @@ The A* algorithm as described in \cref{subs_astar} was implemented in C in the f
 
 \lstinputlisting[style=customc, language=C, firstline=3, lastline=24, caption={WorkVertex struct}, label=list:workstruct]{../Program/Sources/astar.h}
 
-A WorkVertex struct is an extension to a Vertex struct in \cref{data_struct:vertex}, providing extra temporary \enquote{work} data. Doing this means that the original Vertex struct is not modified. In addition to a g (cost value), f (evaluation value), setMode and parentVertex a WorkVertex also has a originVertex member. This is being set to the Vertex pointer the WorkVertex is based upon. ParentVertex is used for \chnote{To determine} determining the final path. The arrays gScore, fScore, cameFrom as described in \cref{algo:A*}, are dealt with by setting these values directly to a WorkVertex struct. cameFrom is equivalent of the parentVertex member of the WorkVertex struct. See \cref{list:workstruct}.
+A WorkVertex struct is an extension to a Vertex struct in \cref{data_struct:vertex}, providing extra temporary \enquote{work} data. Doing this means that the original Vertex struct is not modified. In addition to a g (cost value), f (evaluation value), setMode and parentVertex a WorkVertex also has a originVertex member. This is being set to the Vertex pointer the WorkVertex is based upon. ParentVertex is used to determine the final path. The arrays gScore, fScore, cameFrom as described in \cref{algo:A*}, are dealt with by setting these values directly to a WorkVertex struct. cameFrom is equivalent of the parentVertex member of the WorkVertex struct. See \cref{list:workstruct}.
+
+\subsubsection{Allocation}
+
+\lstinputlisting[style=customc, language=C, firstline=23, lastline=41, caption={Allocations in function AStar}, label=list:astar_allocate]{../Program/Sources/astar.c}
+
+All workVertices are stored in the pointer to pointer variable workVertices. This is simply an array of pointers to all WorkVertex structs created. The memory allocated for this pointer is the size of 2 times the number of vertices on the floor, A* is evaluating on. One half of the memory allocated, is for workVertices and the other half is for the curNeighbors array, containing neighbors of a given WorkVertex.  This way it is possible to allocate all needed memory in one call to calloc, which eases the freeing of memory later. See \cref{list:astar_allocate}.
 
 
+\subsubsection{Get Neighbours}
 
-\lstinputlisting[style=customc, language=C, firstline=24, lastline=43, caption={Allocations in function AStar}, label=list:astar_allocate]{../Program/Sources/astar.c}
+Part of the main A* function is finding the neighbours of a specific vertex. This is done in \cref{list:get_neighbours}.
 
+The function looks at every EdgePointer connected the specified vertex. The number of neighbours is the exact number of neighbours.
 
+\lstinputlisting[style=customc, language=C, firstline=148, lastline=201, caption={Get neighbours function}, label=list:get_neighbours]{../Program/Sources/astar.c}
 
-All workVertices are stored in the pointer to pointer variable workVertices. This is simply an array of pointers to all WorkVertex structs created. The memory allocated for this pointer is the size of 2 times the number of vertices on the floor, A* is evaluating on. One half of the memory allocated is for workVertices and the other half is for the curNeighbors array, containing neighbors of a given WorkVertex.  This way it is possible to allocate all needed memory in one call to calloc, which eases the freeing of memory later. See \cref{list:astar_allocate}.
+\subsubsection{Reconstruct Path}
 
+When the goal has been reached in the main A* function, the calculated path must be reconstructed. See \cref{list:recon}.
 
-The main function AStar takes as input a start Vertex pointer, a destination Vertex pointer and the number of vertices on the start floor.
-
- This member is being used when the destination has been found and the path needs to be reconstructed. The function reconstructPath takes care of this. See \cref{list:recon}.
-
-\lstinputlisting[style=customc, language=C, firstline=90, lastline=126, caption={ReconstructPath function}, label=list:recon]{../Program/Sources/astar.c}
+\lstinputlisting[style=customc, language=C, firstline=89, lastline=127, caption={ReconstructPath function}, label=list:recon]{../Program/Sources/astar.c}
 
 It simply starts at the destination WorkVertex and follows the parentVertex pointer until it is NULL. When that happens, the start WorkVertex has been reached and the path is reconstructed. The ids of the Vertices in the path is stored in the Path struct and returned a pointer to this Path is returned. By returning the pointer to the Path, the caller of AStar function can simply free the path pointer when it is done with it.
+
+\subsubsection{Clean Up}
+
 
 Just before the main AStar function returns it cleans up itself by freeing all allocated WorkVertices. This happens in the CleanUp function. See \cref{list:cleanup}.
 

@@ -45,7 +45,6 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
     SetSetMode(OPEN_SET, wvStart);
     AddToWorkVertices(wvStart, workVertices, numVertices);
 
-
     /* Calculate and set f value for start to destination vertex */
     SetFValue(CalcFValue(wvStart, dest), wvStart);
 
@@ -80,7 +79,6 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
                     SetSetMode(OPEN_SET, curNeighbor);
                 }
             }
-
         }
     }
 
@@ -94,7 +92,6 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
     int numsinpath = 0;
     parent = end->parentVertex;
     numsinpath++;
-
 
     do {
         parent = parent->parentVertex;
@@ -154,7 +151,6 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
     Vertex *origin = wv->originVertex;
     int srcId = origin->vertexId;
 
-
     EdgePointer *ep = origin->ep;
 
     do {
@@ -189,13 +185,11 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
             /* Do not do anything */
         } else {
             existingWV = CreateWorkVertex(vertexFound, createdWorkVertices);
-
         }
 
         if (!flag) {
             outNeighborWorkVertex[numNeighbors] = existingWV;
             AddToWorkVertices(existingWV, workVertices, numVertices);
-
             numNeighbors++;
         }
 
