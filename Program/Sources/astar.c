@@ -11,10 +11,8 @@
 
 void CleanUp(WorkVertex **workVertices, int numVertices) {
     int i;
-    //printf("num of vertices in clanup %d \n", numVertices);
 
     for (i = 0; i < numVertices; i++) {
-        //printf("trying to free position %d out of %d\n", i, numVertices - 1);
         free(workVertices[i]);
     }
 
@@ -103,6 +101,9 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
         numsinpath++;
     } while (parent != NULL);
 
+    /* A* should not output the src vertex in the final path, so subtract by 1 */
+    numsinpath--;
+
     Path *path;
     path = (Path *) malloc(sizeof(Path) + numsinpath * sizeof(unsigned int));
     if (path == NULL) {
@@ -119,7 +120,7 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
 
     i--;
 
-    while (parent != NULL) {
+    while (i >= 0) {
         path->pathVerticeIds[i] = parent->originVertex->vertexId;
         parent = parent->parentVertex;
         i--;
@@ -163,7 +164,6 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
         if (e->vertex1->floorId != e->vertex2->floorId) {
             ep = ep->nextEp;
             continue;
-            //flag = 1;
         }
 
         if (e->vertex1->vertexId != srcId) {
@@ -215,7 +215,6 @@ WorkVertex *CreateWorkVertex(Vertex *src, int *createdWorkVertices) {
     }
     wv->originVertex = src;
     (*createdWorkVertices)++;
-    //printf("created %d\n", wv->originVertex->vertexId);
 
     return wv;
 }
@@ -295,8 +294,6 @@ void AddToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertice
          Therefore, set it */
         if (workVertices[i] == NULL) {
             workVertices[i] = wv;
-            //printf("added %d in AddToWorkVertices to workvertices in position %d out of %d\n",
-            //wv->originVertex->vertexId, i, numVertices - 1);
             break;
         }
     }
