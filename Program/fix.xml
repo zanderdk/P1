@@ -1,4 +1,4 @@
-<graph edges="7" floors="2" vertices="7">
+<graph edges="10" floors="3" vertices="10">
 	<edges>
 		<edge>
 			<edgeId>50001</edgeId>
@@ -116,6 +116,7 @@
 			<edges>
 				<edgeId>50005</edgeId>
 				<edgeId>50006</edgeId>
+				<edgeId>50008</edgeId>
 			</edges>
 		</vertex>
 		<vertex>
