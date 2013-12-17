@@ -1,21 +1,28 @@
 %!TEX root = ../../Master.tex
 \subsection{A*}
 
-
+\sinote{husk simon at kigge om astar.c har ændret sig}
 
 The A* algorithm as described in \cref{subs_astar} was implemented in C in the following way. The design choices will follow below.
 
-\lstinputlisting[style=customc, language=C, firstline=22, lastline=88, caption={Main function AStar}]{../Program/Sources/astar.c}
-
-The main function AStar takes as input a start Vertex pointer, a destination Vertex pointer and the number of vertices on the start floor. In order to not modify these input Vertex pointers, whenever a g, f, setMode or parentVertex of a vertex needs to be stored, a WorkVertex struct is created. It is an extension to a Vertex struct, providing extra \enquote{work} data. Doing this means that the origininal Vertex is not modified. See \cref{list:workstruct}.
+\subsubsection{WorkVertex}
 
 \lstinputlisting[style=customc, language=C, firstline=3, lastline=24, caption={WorkVertex struct}, label=list:workstruct]{../Program/Sources/astar.h}
 
-In addition to a g, f, setMode and parentVertex a WorkVertex also has a originVertex member. This is being set to the Vertex pointer the WorkVertex is based upon. ParentVertex is used for determining the final path.
+A WorkVertex struct is an extension to a Vertex struct in \cref{data_struct:vertex}, providing extra temporary \enquote{work} data. Doing this means that the original Vertex struct is not modified. In addition to a g (cost value), f (evaluation value), setMode and parentVertex a WorkVertex also has a originVertex member. This is being set to the Vertex pointer the WorkVertex is based upon. ParentVertex is used for determining the final path. The arrays gScore, fScore, cameFrom as described in \cref{algo:A*}, are dealt with by setting these values directly to a WorkVertex struct. cameFrom is equivalent of the parentVertex member of the WorkVertex struct. See \cref{list:workstruct}.
 
-All workVertices are stored in the pointer to pointer variable workVertices. This is simply an array of pointers to all WorkVertex structs created. This implementation means that there are no closed and open sets, just a flag on each WorkVertex describing which set that particular WorkVertex is in. For example, 0 means WorkVertex is not in a set, 1 means WorkVertex is in closed set and 2 means WorkVertex is in open set.
 
-The arrays gScore, fScore, cameFrom as described in \cref{algo:A*}, are dealt with by setting these values directly to a WorkVertex struct. cameFrom is equivalent of the parentVertex member of the WorkVertex struct. This member is being used when the destination has been found and the path needs to be reconstructed. The function reconstructPath takes care of this. See \cref{list:recon}.
+
+\lstinputlisting[style=customc, language=C, firstline=24, lastline=43, caption={Allocations in function AStar}, label=list:astar_allocate]{../Program/Sources/astar.c}
+
+
+
+All workVertices are stored in the pointer to pointer variable workVertices. This is simply an array of pointers to all WorkVertex structs created. The memory allocated for this pointer is the size of 2 times the number of vertices on the floor, A* is evaluating on. One half of the memory allocated is for workVertices and the other half is for the curNeighbors array, containing neighbors of a given WorkVertex.  This way it is possible to allocate all needed memory in one call to calloc, which eases the freeing of memory later. See \cref{list:astar_allocate}.
+
+
+The main function AStar takes as input a start Vertex pointer, a destination Vertex pointer and the number of vertices on the start floor.
+
+ This member is being used when the destination has been found and the path needs to be reconstructed. The function reconstructPath takes care of this. See \cref{list:recon}.
 
 \lstinputlisting[style=customc, language=C, firstline=90, lastline=126, caption={ReconstructPath function}, label=list:recon]{../Program/Sources/astar.c}
 
