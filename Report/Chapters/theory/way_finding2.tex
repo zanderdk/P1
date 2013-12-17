@@ -188,7 +188,7 @@ From the unvisited vertices set, select the vertex with the smallest temporary v
 
  
   \subsubsection{Heuristic value and evaluation value}
-  A* introduces a heuristic value, which is an estimation of total cost from the source to the destination. For it to be admissible, the heuristic value must be exactly equal to the actual total cost from the source to the destination. If the heuristic value overestimates the cost, A* is not guaranteed to find the shortest path. As the heuristic value approaches 0 from the admissible value, A* begins to perform like Dijkstra's algorithm.
+  A* introduces a heuristic value, which is an estimation of total cost from the source to the destination. For it to be admissible, the heuristic value must be exactly equal to or lower than the actual total cost from the source to the destination. If the heuristic value overestimates the cost, A* is not guaranteed to find the shortest path. The lower the heuristic value is compared to the cost value, the less influential the heuristic value is. If the heuristic value is completely without influence, A* performs like Dijkstra's algorithm.
 
   There are many different methods used to find a heuristic. Two commonly used methods are the Manhattan method and the Euclidean method. 
 
@@ -209,7 +209,7 @@ From the unvisited vertices set, select the vertex with the smallest temporary v
   Where $p$ and $q$ both are vertices in a graph. $p_{n}$ and $q_{n}$ are the coordinates of each vertices. For example $p_{1}$ is the $x$ coordinate of vertex $p$.
 
 
-  The heuristic value is used to determine the evaluation value, which provides the cost from the start to the vertex being evaluated, added to the heuristic value. The cost is the total sum of weights of edges visited to the vertex being evaluated. The evaluation value is used when determining if a vertex is in the shortest path. When comparing two vertices, the vertex with the lowest evaluation value is always chosen for the shortest path \cite{Patel2013}.
+  The heuristic value is used to determine the evaluation value. The evaluation value is found by adding the cost from the start vertex to the vertex being evaluated, to the heuristic value. The cost is the total sum of weights of edges visited to the vertex being evaluated. The evaluation value is used when determining if a vertex is in the shortest path. When comparing two vertices, the vertex with the lowest evaluation value is always chosen for the shortest path \cite{Patel2013}.
 
 
   For an example of an A* calculation, see \cref{fig:astar}. 
