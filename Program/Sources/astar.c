@@ -11,8 +11,10 @@
 
 void CleanUp(WorkVertex **workVertices, int numVertices) {
     int i;
+    printf("num of vertices in clanup %d \n", numVertices);
 
     for (i = 0; i < numVertices; i++) {
+        printf("trying to free position %d out of %d\n", i, numVertices - 1);
         free(workVertices[i]);
     }
 
@@ -84,6 +86,7 @@ Path *AStar(Vertex *start, Vertex *dest, int numVertices) {
         }
     }
     /* this is only returned if failure */
+    printf("reached null final. EROOROR");
     return NULL;
 }
 
@@ -107,7 +110,7 @@ Path *ReconstructPath(WorkVertex *end, int numVertices) {
     }
 
     int i = numsinpath - 1;
-    path->pathVerticeIds =  (unsigned int *)(path+1);
+    path->pathVerticeIds =  (unsigned int *)(path + 1);
     path->numVertices = numsinpath;
     parent = end->parentVertex;
 
@@ -156,6 +159,13 @@ int GetNeighbors(WorkVertex *wv, WorkVertex **workVertices, int numVertices,
     do {
         int flag = 0;
         Edge *e = ep->edge;
+
+        if (e->vertex1->floorId != e->vertex2->floorId) {
+            ep = ep->nextEp;
+            continue;
+            //flag = 1;
+        }
+
         if (e->vertex1->vertexId != srcId) {
             vertexFound = e->vertex1;
         } else if (e->vertex2->vertexId != srcId) {
@@ -205,6 +215,7 @@ WorkVertex *CreateWorkVertex(Vertex *src, int *createdWorkVertices) {
     }
     wv->originVertex = src;
     (*createdWorkVertices)++;
+    printf("created %d\n", wv->originVertex->vertexId);
 
     return wv;
 }
@@ -285,6 +296,8 @@ void AddToWorkVertices(WorkVertex *wv, WorkVertex **workVertices, int numVertice
          Therefore, set it */
         if (workVertices[i] == NULL) {
             workVertices[i] = wv;
+            printf("added %d in AddToWorkVertices to workvertices in position %d out of %d\n",
+                   wv->originVertex->vertexId, i, numVertices - 1);
             break;
         }
     }
