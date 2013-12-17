@@ -11,8 +11,8 @@ Navigate from a to b using graph theory is one thing, but implementing graph the
 
 \subsection{Linked List Representation}
 \label{sub:list}
-A linked list is defined as "a list implemented by each item having a link to the next item."\cite{linked_list_def}
-This means that every item in the list has a element pointing to the next item in the list. This way of structuring the data makes it possible to dynamic manipulate the list.\cite{Linked_List}
+A linked list is defined as "a list implemented by each item having a link to the next item" \cite{linked_list_def}.
+This means that every item in the list has a element pointing to the next item in the list. This way of structuring the data makes it possible to dynamic manipulate the list \cite{Linked_List}.
 
 Inserting new items to a linked list is relatively easy, compared to a sequentially representation of graph. 
 This can be done by redirecting a pointer to a element $A$ in the list to a newly created element $B$, and make the the new element point at location where the first element was pointing to $C$. This example is shown at \cref{fig:link}.
@@ -38,12 +38,12 @@ This can be done by redirecting a pointer to a element $A$ in the list to a newl
 \end{figure}
 
 \subsection{Sequentially Representation}
-A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another vertex. 
+A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another. 
 
 This requires less memory than using a linked list, because it is known where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
 
 Adding new elements to the list is relatively easy compared to sequentially stored data.
-It can be done by changing where what the last element of the list is point at, to a new element.
+It can be done by changing what the last element of the list is pointing at, to a new element.
 Removing an item can be done similarly by changing the element pointing to the item that is wanted to be removed, so the list skips a element. This is shown in \cref{fig:examplegraph}. %indsæt 
 
 \sinote{fix ny figur}
@@ -106,6 +106,6 @@ Removing an item can be done similarly by changing the element pointing to the i
 
 \subsection{Representing a Graph as XML}
 
-In order to search through a graph in a C program, the graph needs to be read by the C program. XML was chosen as the markup language for representing a graph, because of it is easy to read for both humans and computers. An example of how a graph is represented as XML is seen in \cref{list:xml_demo}.
+In order to search through a graph in a C program, the graph needs to be read by the C program. XML was chosen as the markup language for representing a graph, because of its readability for both humans and computers. An example of how a graph is represented as XML is seen in \cref{list:xml_demo}.
 
 \lstinputlisting[language=XML, label=list:xml_demo, caption={An example of a graph represented as XML}]{Chapters/problem_solution/demo_xml.xml}
