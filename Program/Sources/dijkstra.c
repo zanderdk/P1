@@ -1,8 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 #include "graph.h"
 #include "privdijkstra.h"
+
+#define INITIAL_COST 5
 
 void printasd(WVLinkedList *head) {
     WVLinkedList *temp = head;
@@ -70,14 +73,11 @@ void GetWorkingGraph(Graph *graph, WVLinkedList *head) {
         do {
             tempPtr2->workVertex.vertex = tempPtr;
             tempPtr2->workVertex.dist = -1;
-
             if (tempPtr->nextVp == NULL && i == graph->numOfFloors - 1) {
                 break;
             }
-
             tempPtr2->next = tempPtr2 + 1;
             tempPtr2 = tempPtr2->next;
-
 
         } while ((tempPtr = tempPtr->nextVp));
         tempPtr2->next = NULL;
@@ -148,9 +148,10 @@ void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode) {
 }
 
 void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mode) {
-    int temp = 0;
+    int temp = 0, counter = 0;
     EdgePointer *epPtr = current->vertex->ep;
     WVLinkedList **wvllPtr;
+    WorkVertex *tempPtr;
     do {
         /* Find the WVLinkedList element corresponding to the vertex pointed to by the edge */
         if (epPtr->edge->vertex1 != current->vertex) {
@@ -158,16 +159,26 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mod
         } else if (epPtr->edge->vertex2 != current->vertex) {
             wvllPtr = WVLLLookup(&workingGraph, epPtr->edge->vertex2);
         } else {
-            printf("FATAL ERROR!\n");
+            printf("FATAL DIJKSTRA ERROR!\n");
         }
 
-        /* Calculate the tentative distance to the vertex taking the mode into account */
-        if (mode == 0) {
-            temp = epPtr->edge->weight + current->dist;
-        } else if (mode == 1 && (*wvllPtr)->workVertex.vertex->type - 1 == 1) {
-            temp = epPtr->edge->weight + current->dist * 100;
+        /* Calculate the tentative distance to the vertex taking mode and special vertices into account */
+        temp += epPtr->edge->weight + current->dist;
+        if (wvllPtr->workVertex.vertex->type == 3 && current->vertex->type == 1) {
+            temp += INITIAL_COST;
+        } else if (wvllPtr->workVertex.vertex->type == 2 && current->vertex->type == 2) {
+            counter++;
+            tempPtr = current;
+            while (tempPtr->previous->vertex->type == 2) {
+                counter++;
+                tempPtr = tempPtr->previous;
+            }
+            temp += epPtr->edge->weight * (counter - 1);
+        }
+        if (mode == 1 && (*wvllPtr)->workVertex.vertex->type - 1 == 1) {
+            temp *= 100;
         } else if (mode == 2 && (*wvllPtr)->workVertex.vertex->type - 1 == 2) {
-            temp = epPtr->edge->weight + current->dist * 100;
+            temp *= 100;
         }
 
         /* Check if the calculated tentative distance is lower than the currently saved tentative distance.

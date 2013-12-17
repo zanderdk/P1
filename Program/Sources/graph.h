@@ -62,7 +62,7 @@ struct Vertex {
     unsigned int y;
 
     /**
-     * Describes the vertex' type ie. 1 for stairs, 2 for elevator etc.
+     * Describes the vertex' type ie. 2 for stairs, 3 for elevator etc.
      */
     unsigned int type;
 
