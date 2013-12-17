@@ -161,6 +161,9 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mod
         } else {
             printf("FATAL DIJKSTRA ERROR!\n");
         }
+        if (!wvllPtr) {
+            continue;
+        }
 
         /* Calculate the tentative distance to the vertex taking mode and special vertices into account */
         temp += epPtr->edge->weight + current->dist;
@@ -187,14 +190,18 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mod
             (*wvllPtr)->workVertex.previous = current;
         }
     } while ((epPtr = epPtr->nextEp));
+    printf("\n");
 }
 
 WVLinkedList **WVLLLookup(WVLinkedList **workingGraph, Vertex *target) {
     WVLinkedList **current = workingGraph;
-    while ((*current)->workVertex.vertex != target && (*current)->next) {
+    while (*current) {
+        if ((*current)->workVertex.vertex == target) {
+            return current;
+        }
         current = &((*current)->next);
     }
-    return current;
+    return NULL;
 }
 
 void WVLLDelete(WVLinkedList **targetPtr) {
