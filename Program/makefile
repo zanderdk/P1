@@ -1,8 +1,8 @@
 CC = gcc
-CFLAGS = -lm -Wall
+CFLAGS = -lm -Wall -O3
 DEPDIR = deps
 DF = $(DEPDIR)/$(*F)
-SRCS = FLAWLESS.c XML.c graph.c astar.c dijkstra.c 
+SRCS = FLAWLESS.c main_help.c XML.c graph.c astar.c dijkstra.c 
 VPATH = Sources
 OUTPUT = FLAWLESS
 
