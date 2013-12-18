@@ -20,5 +20,5 @@ void BacktrackPath(WorkVertex *source, WorkVertex *goal, Path *path);
 void ReversePath(Path *from, Path *to);
 void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mode);
 WVLinkedList **WVLLLookup(WVLinkedList **workingGraph, Vertex *target);
-WVLinkedList *WVLLSearch(WVLinkedList *workingGraph);
+WVLinkedList *WVLLGetLowest(WVLinkedList *workingGraph);
 void WVLLDelete(WVLinkedList **targetPtr);

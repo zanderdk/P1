@@ -7,13 +7,6 @@
 
 #define INITIAL_COST 5
 
-void printasd(WVLinkedList *head) {
-    WVLinkedList *temp = head;
-    do {
-        printf("%d:%d - %u - %p\n", temp->workVertex.vertex->vertexId, temp->workVertex.vertex->type, temp->workVertex.dist, temp->workVertex.previous);
-    } while ((temp = temp->next));
-}
-
 int PreComputePaths(Graph *graph, SourcePaths **sourcePaths, unsigned int mode) {
     int i, i2;
     int unsigned count = 0, ids[2048];
@@ -140,12 +133,12 @@ void Dijkstra(WVLinkedList *workingGraph, WorkVertex *source, int mode) {
         SetNeighborWeights(current, workingGraph, mode);
         tempPtr = WVLLLookup(&workingGraph, current->vertex);
         WVLLDelete(tempPtr);
-        current = &WVLLSearch(workingGraph)->workVertex;
+        current = &WVLLGetLowest(workingGraph)->workVertex;
     } while (workingGraph);
 }
 
 void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mode) {
-    int temp = 0, counter = 0;
+    int temp, counter = 0;
     EdgePointer *epPtr = current->vertex->ep;
     WVLinkedList **wvllPtr;
     WorkVertex *tempPtr;
@@ -163,21 +156,23 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mod
         }
 
         /* Calculate the tentative distance to the vertex taking mode and special vertices into account */
-        temp += epPtr->edge->weight + current->dist;
         if ((*wvllPtr)->workVertex.vertex->type == 3 && current->vertex->type == 1) {
-            temp += INITIAL_COST;
+            temp = epPtr->edge->weight + current->dist + INITIAL_COST;
         } else if ((*wvllPtr)->workVertex.vertex->type == 2 && current->vertex->type == 2) {
             tempPtr = current;
             do {
                 counter++;
             } while ((tempPtr = tempPtr->previous) && tempPtr->vertex->type == 2);
-            temp += epPtr->edge->weight * (counter - 1);
+            temp = epPtr->edge->weight * counter + current->dist;
             counter = 0;
+        } else {
+            temp = epPtr->edge->weight + current->dist;
         }
+
         if (mode == 1 && (*wvllPtr)->workVertex.vertex->type - 1 == 1) {
-            temp *= 100;
+            temp += 100 * epPtr->edge->weight;
         } else if (mode == 2 && (*wvllPtr)->workVertex.vertex->type - 1 == 2) {
-            temp *= 100;
+            temp += 100 * epPtr->edge->weight;
         }
 
         /* Check if the calculated tentative distance is lower than the currently saved tentative distance.
@@ -187,7 +182,6 @@ void SetNeighborWeights(WorkVertex *current, WVLinkedList *workingGraph, int mod
             (*wvllPtr)->workVertex.previous = current;
         }
     } while ((epPtr = epPtr->nextEp));
-    printf("\n");
 }
 
 WVLinkedList **WVLLLookup(WVLinkedList **workingGraph, Vertex *target) {
@@ -205,7 +199,7 @@ void WVLLDelete(WVLinkedList **targetPtr) {
     *targetPtr = (*targetPtr)->next;
 }
 
-WVLinkedList *WVLLSearch(WVLinkedList *workingGraph) {
+WVLinkedList *WVLLGetLowest(WVLinkedList *workingGraph) {
     WVLinkedList *tempPtr = workingGraph, *retPtr = workingGraph;
     while (tempPtr) {
         if (tempPtr->workVertex.dist < retPtr->workVertex.dist) {
