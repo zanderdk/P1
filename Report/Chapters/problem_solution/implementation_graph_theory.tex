@@ -97,6 +97,8 @@ Inserting new items to a linked list is relatively easy, compared to sequentiall
 
 In order to search through a graph in a C program, the graph needs to be read by the C program. XML was chosen as the markup language for representing a graph, because of its readability for both humans and computers. An example of how a graph is represented as XML is seen in \cref{list:xml_demo}.
 
+The XML file has the floors divided into vertices with x and y coordinates. These coordinates are used to calculate the heuristic values, as described in \cref{subs_astar}, of the various vertices. The coordinate can never be a negative value. The coordinates have origo in the lower left corner of a floor.
+
 \lstinputlisting[language=XML, label=list:xml_demo, caption={An example of a graph represented as XML}]{Chapters/problem_solution/demo_xml.xml}
 
 \input{Chapters/problem_solution/data_struct.tex}
