@@ -113,7 +113,8 @@ Path *recreconstruct(Path *p1, Path *p2, Path *p3, int t) {
     return ret;
 }
 
-Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor, Graph *graph, SourcePaths *srcPath, int paths) {
+Path *findOptimalPath(Vertex *scr, Vertex *dst, int mode, int sameFloor,
+                      Graph *graph, SourcePaths *srcPath, int paths) {
     Path *buf;
     Vertex *bufVp;
     SourcePaths *sp;
@@ -228,11 +229,14 @@ int main(int argc, char const *argv[]) {
 
     do {
         if (argc < 5 || flag) {
-            printf("Enter first verted id: \n");
+            printf("Enter start vertex id: \n");
             scanf("%s", idStr1);
-            printf("Enter Next verted id: \n");
+            printf("Enter destination vertex id: \n");
             scanf("%s", idStr2);
-            printf("Enter mode: \n");
+            printf("Enter mode.\n"
+                   "0: path may contain both stairs and elevators.\n"
+                   "1: path may not contain stairs.\n"
+                   "2: path may not contain elevators.\n");
             scanf("%d", &mode);
             success = validate(idStr1, idStr2, &scr, &dst, graph);
         } else {
@@ -251,7 +255,8 @@ int main(int argc, char const *argv[]) {
             else if (mode == 1)
                 route = findOptimalPath(scr, dst, mode, success, graph, noStairs, countNoSrairs);
             else
-                route = findOptimalPath(scr, dst, mode, success, graph, noElevators, countNoElevators);
+                route = findOptimalPath(scr, dst, mode, success, graph, noElevators,
+                                        countNoElevators);
 
             printPath(route);
 
