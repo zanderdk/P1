@@ -1,10 +1,10 @@
 CC = gcc
-CFLAGS = -lm -g -Wall
+CFLAGS = -lm -Wall
 DEPDIR = deps
 DF = $(DEPDIR)/$(*F)
-SRCS = main.c
+SRCS = FLAWLESS.c XML.c graph.c astar.c dijkstra.c 
 VPATH = Sources
-OUTPUT = Program
+OUTPUT = FLAWLESS
 
 .PHONY: all
 all: $(OUTPUT)
@@ -26,7 +26,7 @@ $(DEPDIR):
 
 .PHONY: cleanall
 cleanall: cleanobjs cleandeps
-	rm Program
+	rm $(OUTPUT)
 
 .PHONY: cleanobjs
 cleanobjs:
