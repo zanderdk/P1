@@ -104,7 +104,7 @@ Path *recreconstruct(Path *p1, Path *p2, Path *p3, int t) {
         }
     }
 
-    if (t != 2)
+    if (t != 2 && t != 3)
         free(p1);
 
     if (t != 3 && t != 0)
