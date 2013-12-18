@@ -1,0 +1,201 @@
+%!TEX root = ../Master.tex
+\documentclass[a4paper,12pt,twoside,openright]{memoir}
+
+\newcommand{\subject}{From Existing Software to Models}
+
+
+
+%%%% PACKAGES %%%%
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fourier}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[table]{xcolor}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[short]{datetime}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\newtheorem{mydef}{Definition}
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric,arrows,shapes.misc}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{verbatim}
+\usepackage{listings}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  numbers=left,
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+}
+
+\lstset{
+  basicstyle=\ttfamily,
+  numbers=left,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape
+}
+ 
+\lstdefinelanguage{XML}
+{
+  basicstyle=\footnotesize\ttfamily\color{blue}\bfseries,
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  numbers=left,
+  stringstyle=\color{black},
+  identifierstyle=\color{blue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
+}
+
+% stop floats from floating path the next subsection
+\usepackage{placeins}
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\section\expandafter
+    {\expandafter\@fb@secFB\section}%
+  \newcommand\@fb@secFB{\FloatBarrier
+    \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}%
+  \g@addto@macro\@afterheading{\@fb@afterHHook}%
+  \gdef\@fb@afterHHook{}%
+}
+\makeatother
+
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsection\expandafter
+    {\expandafter\@fb@subsecFB\subsection}%
+  \newcommand\@fb@subsecFB{\FloatBarrier
+    \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}%
+  \g@addto@macro\@afterheading{\@fb@afterHHook}%
+  \gdef\@fb@afterHHook{}%
+}
+\makeatother
+
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\subsubsection\expandafter
+    {\expandafter\@fb@subsubsecFB\subsubsection}%
+  \newcommand\@fb@subsubsecFB{\FloatBarrier
+    \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}%
+  \g@addto@macro\@afterheading{\@fb@afterHHook}%
+  \gdef\@fb@afterHHook{}%
+}
+\makeatother
+
+\makeatletter
+\AtBeginDocument{%
+  \expandafter\renewcommand\expandafter\paragraph\expandafter
+    {\expandafter\@fb@parFB\paragraph}%
+  \newcommand\@fb@parFB{\FloatBarrier
+    \gdef\@fb@afterHHook{\@fb@topbarrier \gdef\@fb@afterHHook{}}}%
+  \g@addto@macro\@afterheading{\@fb@afterHHook}%
+  \gdef\@fb@afterHHook{}%
+}
+\makeatother
+
+ %Algorithm
+\usepackage{epstopdf}
+\usepackage[linesnumbered,ruled,vlined]{algorithm2e}
+\usepackage{algorithmicx}
+\usepackage[noend]{algpseudocode}
+
+ % support for sidste side page number
+\usepackage{totpages}
+\usepackage{intcalc}
+\usepackage{refcount}
+
+
+% ¤¤ Referencer, bibtex og url'er ¤¤ %
+\usepackage[hyphens]{url}
+
+\usepackage[english]{varioref}
+\usepackage[colorlinks]{hyperref} 
+\hypersetup{                            % Opsætning af hyperlinks
+    colorlinks = false,
+    linkcolor = black,
+    anchorcolor = black,
+    citecolor = black,
+    breaklinks = true,
+    pdfkeywords = {indoor, navigation, hospital, algorithms, positioning},
+    pdfsubject = {\subject}
+}
+\usepackage{cleveref}						% Giver flere bedre mulighed for at lave krydshenvisninger
+%\usepackage{natbib}											% Litteraturliste med forfatter-år og nummererede referencer
+
+
+\usepackage[marginclue,final,inline,mode=multiuser,silent]{fixme}
+\FXRegisterAuthor{si}{asi}{Simon}
+\FXRegisterAuthor{jo}{ajo}{Jonas}
+\FXRegisterAuthor{ka}{aka}{Kasper}
+\FXRegisterAuthor{an}{aan}{Anders}
+\FXRegisterAuthor{ca}{aca}{Carsten}
+\FXRegisterAuthor{al}{aal}{Alexander}
+\FXRegisterAuthor{ch}{ach}{Christian}
+
+\newcommand{\appendixpages}[0]{
+     \intcalcAdd
+      {1}
+      {
+        \intcalcSub
+        {\getpagerefnumber{TotPages}}
+        {\getpagerefnumber{appendix_start}}
+        }
+    }
+\newcommand{\numberpages}[0]{
+  \intcalcSub{\getpagerefnumber{TotPages}}{\appendixpages}
+}
+
+%%%% CUSTOM SETTINGS %%%%
+
+% ¤¤ Marginer ¤¤ %
+\setlrmarginsandblock{3.5cm}{2.5cm}{*}	% \setlrmarginsandblock{Indbinding}{Kant}{Ratio}
+\setulmarginsandblock{2.5cm}{3.0cm}{*}	% \setulmarginsandblock{Top}{Bund}{Ratio}
+\checkandfixthelayout 									% Laver forskellige beregninger og sætter de almindelige længder op til brug ikke memoir pakker
+
+%	¤¤ Afsnitsformatering ¤¤ %
+\setlength{\parindent}{0mm}           	% Størrelse af indryk
+\setlength{\parskip}{3mm}          			% Afstand mellem afsnit ved brug af double Enter
+\linespread{1,2}												% Linie afstand
+% length of abstract indentations
+\setlength{\absleftindent}{0mm}
+\setlength{\absrightindent}{0mm} 
+
+
+
+\usepackage[
+    bibencoding=utf8,
+    hyperref=true,
+    backend=biber,
+    sorting=none
+]{biblatex}
+\addbibresource{Bibtex/References.bib}
+
+% ¤¤ Indholdsfortegnelse ¤¤ %
+\setsecnumdepth{subsection}		 			% Dybden af nummerede overkrifter (part/chapter/section/subsection)
+%\maxsecnumdepth{subsubsection}					% Ændring af dokumentklassens grænse for nummereringsdybde
+\settocdepth{subsection} 								% Dybden af indholdsfortegnelsen
+
+\pagestyle{plain}
+
+% ¤¤ Kapiteludssende ¤¤ %
+
+\chapterstyle{ger}
+\setlength{\afterchapskip}{0pt}
+\setlength{\beforechapskip}{0pt}
