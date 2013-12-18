@@ -6,12 +6,31 @@ The following is a series of excerpts detailing how we implemented Dijkstra's al
 
 \lstinputlisting[style=customc, language=C, firstline=4, lastline=13, caption={WorkVertex and its linked list}, label=list:djstruct]{../Program/Sources/privdijkstra.h}
 
-\textbf{Note: Despite the name clash, the above WorkVertex struct is not the same as the one being used in the A* algorithm}
+\textbf{Note: Despite the name clash, the above WorkVertex struct is not the same as the one being used in the A* algorithm}\\
 The two structs shown in the above code listing are used for storing the values computed by Dijkstra's algorithm so that they may be accessed at a later point in time. The reasoning behind using a separate WorkVertex struct is that the values computed by Dijkstra's algorithm depend on the source vertex, therefore saving it directly to the Vertex struct would mean overwriting it every time the calculation is started with a new starting Vertex. It is also be possible to create a new set of Vertex structs, copies of the original structs, however that will greatly increase the memory usage for no reason, as all the static values would exist twice in the memory.\\
 The vertex member in the WorkVertex struct is a pointer to the WorkVertex' corresponding Vertex and is used for looking up values specific to the Vertex. The dist member will hold the calculated cost to travel from the start to the vertex. Lastly the previous member is used for reconstructing the route which gives the cost saved in dist.\\
 The WVLinkedList struct is a struct used for ordering the WorkVertex structs in a linked list fashion. The workVertex member contains the actual WorkVertex and the next member points to the next member in the list and is NULL on end of list.
 
 \subsubsection{Allocating Memory for the Paths}
 
-\lstinputlisting[style=customc, language=C, firstline=15, lastline=36, caption={WorkVertex and the its linked list}, label=list:djstruct]{../Program/Sources/dijkstra.c}
+\lstinputlisting[style=customc, language=C, firstline=10, lastline=13, caption={PreComputePaths prototype}, label=list:djprot]{../Program/Sources/dijkstra.c}
 
+PreComputePaths is the only function called outside of the dijkstra.c file. It takes as input a Graph struct on which the calculations will be based. It also takes a mode as input, it is used to specify the users choice to avoid stairs etc. The sourcePaths parameter is used for outputting the computed paths to the calling function.
+
+\lstinputlisting[style=customc, language=C, firstline=15, lastline=24, caption={Counting the number of exits}, label=list:djcount]{../Program/Sources/dijkstra.c}
+
+First the function counts the total number of exit-type vertices in the graph and extracts the Ids of the exit-type vertices. It stores this count in the count variable and the Ids are stored in the Ids array at their corresponding index.
+
+\lstinputlisting[style=customc, language=C, firstline=27, lastline=35, caption={Allocating memory for the paths}, label=list:djalloc]{../Program/Sources/dijkstra.c}
+
+Afterwards the function uses the stored count and ids to allocate sufficient memory to hold all the paths to be computed. It also assigns the Id of the source Vertex to each SourcePaths struct.
+
+\subsubsection{Calculating the Paths}
+
+\lstinputlisting[style=customc, language=C, firstline=39, lastline=52, caption={Running Dijkstra from each exit-type vertex}, label=list:djcalc]{../Program/Sources/dijkstra.c}
+
+The above excerpt is what does all the work when it comes to calculating the paths.\\
+First it allocates sufficient memory to hold the working graph (contains all the corresponding WorkVertex structs), the pointer is then passed to GetWorkingGraph which will crawl through the entire Graph and create a WorkVertex struct for each Vertex.\\
+The working graph is then passed to GetAllExits which crawls through the working graph and extracts pointers to all the WorkVertex structs which corresponds to exit-type vertices.\\
+After acquiring all nescessary data it calls Dijkstra with the currently selected index. Dijkstra does its calculations and sets the dist and previous members of all the WorkVertex structs in the working graph.\\
+After Dijkstra finishes SetPathsFromWGraph is called. It will backtrack from all exits until it reaches the source vertex and then it assigns the found path to earlier mentioned struct 
