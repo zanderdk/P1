@@ -4,9 +4,14 @@ The following is a series of excerpts detailing how we implemented Dijkstra's al
 
 \subsubsection{Working Set}
 
-\lstinputlisting[style=customc, language=C, firstline=4, lastline=13, caption={WorkVertex and the its linked list}, label=list:workstruct]{../Program/Sources/privdijkstra.h}
+\lstinputlisting[style=customc, language=C, firstline=4, lastline=13, caption={WorkVertex and its linked list}, label=list:djstruct]{../Program/Sources/privdijkstra.h}
 
 \textbf{Note: Despite the name clash, the above WorkVertex struct is not the same as the one being used in the A* algorithm}
 The two structs shown in the above code listing are used for storing the values computed by Dijkstra's algorithm so that they may be accessed at a later point in time. The reasoning behind using a separate WorkVertex struct is that the values computed by Dijkstra's algorithm depend on the source vertex, therefore saving it directly to the Vertex struct would mean overwriting it every time the calculation is started with a new starting Vertex. It is also be possible to create a new set of Vertex structs, copies of the original structs, however that will greatly increase the memory usage for no reason, as all the static values would exist twice in the memory.\\
 The vertex member in the WorkVertex struct is a pointer to the WorkVertex' corresponding Vertex and is used for looking up values specific to the Vertex. The dist member will hold the calculated cost to travel from the start to the vertex. Lastly the previous member is used for reconstructing the route which gives the cost saved in dist.\\
 The WVLinkedList struct is a struct used for ordering the WorkVertex structs in a linked list fashion. The workVertex member contains the actual WorkVertex and the next member points to the next member in the list and is NULL on end of list.
+
+\subsubsection{Allocating Memory for the Paths}
+
+\lstinputlisting[style=customc, language=C, firstline=15, lastline=36, caption={WorkVertex and the its linked list}, label=list:djstruct]{../Program/Sources/dijkstra.c}
+
