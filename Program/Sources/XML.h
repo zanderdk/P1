@@ -1,3 +1,8 @@
+#define SMALL_BUFFER 8
+#define MEDIUM_BUFFER 16
+#define ID_CHAR_SIZE 10
+#define BIG_BUFFER 1024
+
 Graph *readXml(FILE *fp);
 int readAtribute(char *name, FILE *fp);
 void readDefaultAtributes(int *edges, int *vertices, int *floors, FILE *fp);

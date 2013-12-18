@@ -4,371 +4,343 @@
 #include "graph.h"
 #include "XML.h"
 
-Graph *readXml(FILE *fp)
-{
-	Floor *floors;
-	char c = 0;
-	char buf[8];
-	int edgesCount, verticesCount, floorsCount;
+#define SMALL_BUFFER 8
+#define MEDIUM_BUFFER 16
+#define ID_CHAR_SIZE 10
+#define BIG_BUFFER 1024
 
 
-	while((c = getc(fp)) != EOF)
-	{
-		if(c == '<')
-			break;
-	}
-	fscanf(fp, "%6s", buf);
-	if(strcmp(buf, "graph"))
-	{
-		error();
-		return NULL;
-	}
+Graph *readXml(FILE *fp) {
+    Floor *floors;
+    char c = 0;
+    char buf[SMALL_BUFFER];
+    int edgesCount, verticesCount, floorsCount;
 
-	readDefaultAtributes(&edgesCount, &verticesCount, &floorsCount, fp);
-	unsigned long amountToAlloc = sizeof(Graph) + floorsCount * sizeof(Floor) +
-		verticesCount * sizeof(Vertex) +	
-		edgesCount * sizeof(Edge) + 
-		edgesCount * 2 * sizeof(EdgePointer);
 
-	Graph *graph = malloc(amountToAlloc);
-	memset(graph, 0, amountToAlloc);
+    while ((c = getc(fp)) != EOF) {
+        if (c == '<')
+            break;
+    }
+    fscanf(fp, "%6s", buf);
+    if (strcmp(buf, "graph")) {
+        error();
+        return NULL;
+    }
 
-	floors = (void *)(graph+1);
+    readDefaultAtributes(&edgesCount, &verticesCount, &floorsCount, fp);
+    unsigned long amountToAlloc = sizeof(Graph) + floorsCount * sizeof(Floor) +
+                                  verticesCount * sizeof(Vertex) +
+                                  edgesCount * sizeof(Edge) +
+                                  edgesCount * 2 * sizeof(EdgePointer);
 
-	Edge *edges = (Edge *)(floors+floorsCount);
-	Vertex *vertices = (Vertex *)(edges+edgesCount); 
+    Graph *graph = malloc(amountToAlloc);
+    memset(graph, 0, amountToAlloc);
 
-	reachChar('>', fp);
+    floors = (void *)(graph + 1);
 
-	readEdges(fp, edges, edgesCount);
-	readvertices(fp, vertices, verticesCount, edges, edgesCount);
+    Edge *edges = (Edge *)(floors + floorsCount);
+    Vertex *vertices = (Vertex *)(edges + edgesCount);
 
-	nextElement(buf, fp);
+    reachChar('>', fp);
 
-	if(strcmp(buf,"graph"))
-		error();
+    readEdges(fp, edges, edgesCount);
+    readvertices(fp, vertices, verticesCount, edges, edgesCount);
 
-	crawlEdges(&edges, vertices, edgesCount, verticesCount);
-	crawVertices(&vertices, verticesCount, &floors);
-	crawlFloors(&floors, vertices, floorsCount, verticesCount);
+    nextElement(buf, fp);
 
-	graph->numOfVertices = verticesCount;
-	graph->numOfFloors = floorsCount;
-	graph->floors = floors;
+    if (strcmp(buf, "graph"))
+        error();
 
-	return graph;
+    crawlEdges(&edges, vertices, edgesCount, verticesCount);
+    crawVertices(&vertices, verticesCount, &floors);
+    crawlFloors(&floors, vertices, floorsCount, verticesCount);
+
+    graph->numOfVertices = verticesCount;
+    graph->numOfFloors = floorsCount;
+    graph->floors = floors;
+
+    return graph;
 }
 
-void crawlFloors(Floor **floors, Vertex *vertices, int numberOfFloors, int numberOfvertices)
-{
-	int i, j; 
-	for(i = 0; i < numberOfFloors; i++)
-	{
-		(*floors)[i].floorId = i+1;
-		for(j = 0; j < numberOfvertices; j++)
-		{
-			if((vertices)[j].floorId == i+1){
-				((*floors)[i].vp = &(vertices)[j]);
-				break;
-			}
-		}
-	}
+void crawlFloors(Floor **floors, Vertex *vertices, int numberOfFloors, int numberOfvertices) {
+    int i, j;
+    for (i = 0; i < numberOfFloors; i++) {
+        (*floors)[i].floorId = i + 1;
+        for (j = 0; j < numberOfvertices; j++) {
+            if ((vertices)[j].floorId == i + 1) {
+                ((*floors)[i].vp = &(vertices)[j]);
+                break;
+            }
+        }
+    }
 }
 
 
-void crawVertices(Vertex **vertices, int last, Floor **floors)
-{
-	int i;
+void crawVertices(Vertex **vertices, int last, Floor **floors) {
+    int i;
     int flId;
-	for(i = 0; i < last-1; i++){
-        flId = (*vertices)[i].floorId-1;
+    for (i = 0; i < last - 1; i++) {
+        flId = (*vertices)[i].floorId - 1;
         (*floors)[flId].amountOfVertecies++;
 
-		if(flId == (*vertices)[i+1].floorId-1){
-			(*vertices)[i].nextVp = &(*vertices)[i+1];
-		}
-		else{
-			(*vertices)[i].nextVp = NULL; 
+        if (flId == (*vertices)[i + 1].floorId - 1) {
+            (*vertices)[i].nextVp = &(*vertices)[i + 1];
+        } else {
+            (*vertices)[i].nextVp = NULL;
         }
-	}
+    }
 
-    flId = (*vertices)[i].floorId-1;
+    flId = (*vertices)[i].floorId - 1;
     (*floors)[flId].amountOfVertecies++;
 
-	(*vertices)[last-1].nextVp = NULL;
-	getFloorAndtype((*vertices)[last-1].vertexId, (int *) &((*vertices)[last-1].floorId) , (int *) &(*vertices)[last-1].type);	
+    (*vertices)[last - 1].nextVp = NULL;
+    getFloorAndtype((*vertices)[last - 1].vertexId, (int *) & ((*vertices)[last - 1].floorId) , (int *) & (*vertices)[last - 1].type);
 }
 
-void getFloorAndtype(int id, int *floor, int *type)
-{
-	char str[11]; //int max char size + \0.
-	char floorStr[4]; //max floor id size + \0.
-	memset(str, 0, 11);
-	sprintf(str, "%d", id);
+void getFloorAndtype(int id, int *floor, int *type) {
+    char str[ID_CHAR_SIZE]; //int max char size + \0.
+    char floorStr[4]; //max floor id size + \0.
+    memset(str, 0, ID_CHAR_SIZE);
+    sprintf(str, "%d", id);
 
-	*type = str[0] - '0';
-	strncpy(floorStr, &str[1], 3);
-	floorStr[3] = 0;
-	sscanf(floorStr, "%d", floor);
+    *type = str[0] - '0';
+    strncpy(floorStr, &str[1], 3);
+    floorStr[3] = 0;
+    sscanf(floorStr, "%d", floor);
 }
 
-void crawlEdges(Edge **edges, Vertex *vertices, int numberOfEdges, int numberOfvertices)
-{
-	int i, j, k;
-	long vId1, vId2;
+void crawlEdges(Edge **edges, Vertex *vertices, int numberOfEdges, int numberOfvertices) {
+    int i, j, k;
+    long vId1, vId2;
 
-	for(i = 0; i < numberOfEdges; i++)
-	{
-		k = 0;
-		vId1 = (long)(*edges)[i].vertex1;
-		vId2 = (long)(*edges)[i].vertex2;
-		
-		for(j = 0; j < numberOfvertices; j++)
-		{
-			if((vertices)[j].vertexId == (int)vId1){
-				(*edges)[i].vertex1 = &(vertices)[j];
-				k++;
-			}
-			if((vertices)[j].vertexId == (int)vId2){
-				(*edges)[i].vertex2 = &(vertices)[j];
-				k++;
-			}
+    for (i = 0; i < numberOfEdges; i++) {
+        k = 0;
+        vId1 = (long)(*edges)[i].vertex1;
+        vId2 = (long)(*edges)[i].vertex2;
 
-			if(k == 2)
-				break;	
-		}
+        for (j = 0; j < numberOfvertices; j++) {
+            if ((vertices)[j].vertexId == (int)vId1) {
+                (*edges)[i].vertex1 = &(vertices)[j];
+                k++;
+            }
+            if ((vertices)[j].vertexId == (int)vId2) {
+                (*edges)[i].vertex2 = &(vertices)[j];
+                k++;
+            }
 
-	}
+            if (k == 2)
+                break;
+        }
+
+    }
 }
 
-void readvertices(FILE *fp, Vertex *vertices, int numberOfvertices, Edge *ep, int numberOfEdges) 
-{
-	char buf[16];
-	memset(buf, 0, 16);
-	nextElement(buf, fp);
-	int i;
-	
-	EdgePointer *EdgePointerStart = (EdgePointer *)(vertices+numberOfvertices);
+void readvertices(FILE *fp, Vertex *vertices, int numberOfvertices, Edge *ep, int numberOfEdges) {
+    char buf[MEDIUM_BUFFER];
+    memset(buf, 0, MEDIUM_BUFFER);
+    nextElement(buf, fp);
+    int i;
 
-	if(strcmp(buf,"vertices"))
-		error();
+    EdgePointer *EdgePointerStart = (EdgePointer *)(vertices + numberOfvertices);
 
-	for(i = 0; i < numberOfvertices; i++)
-	{
-		vertices[i] = readVertex(fp, ep, numberOfEdges, EdgePointerStart);
-	}
+    if (strcmp(buf, "vertices"))
+        error();
 
-	nextElement(buf, fp);
+    for (i = 0; i < numberOfvertices; i++) {
+        vertices[i] = readVertex(fp, ep, numberOfEdges, EdgePointerStart);
+    }
+
+    nextElement(buf, fp);
 
 }
 
-Vertex readVertex(FILE *fp, Edge *ep, int numberOfEdges,  EdgePointer *EdgePointerStart)
-{
-	static int EdgePointerCount = 0;
-	Vertex v;
-	memset(&v, 0, sizeof(v));
-	char buf[128];
-	memset(buf, 0, 128);
-	int value;
+Vertex readVertex(FILE *fp, Edge *ep, int numberOfEdges,  EdgePointer *EdgePointerStart) {
+    static int EdgePointerCount = 0;
+    Vertex v;
+    memset(&v, 0, sizeof(v));
+    char buf[BIG_BUFFER];
+    memset(buf, 0, BIG_BUFFER);
+    int value;
 
-	nextElement(buf, fp);
+    nextElement(buf, fp);
 
-	if(strcmp(buf,"vertex"))
-		error();
+    if (strcmp(buf, "vertex"))
+        error();
 
-	v.vertexId = nextElementValue(buf, fp);
-	memset(buf, 0 , 128);
+    v.vertexId = nextElementValue(buf, fp);
+    memset(buf, 0 , BIG_BUFFER);
 
-	nextElement(buf, fp);
+    nextElement(buf, fp);
 
-	if(strcmp(buf,"coord"))
-		error();
+    if (strcmp(buf, "coord"))
+        error();
 
-	v.x = nextElementValue(buf, fp);
-	v.y = nextElementValue(buf, fp);
+    v.x = nextElementValue(buf, fp);
+    v.y = nextElementValue(buf, fp);
 
-	nextElement(buf, fp);
+    nextElement(buf, fp);
 
 
-	memset(buf, 0, 128);
-	nextElement(buf, fp);
+    memset(buf, 0, BIG_BUFFER);
+    nextElement(buf, fp);
 
-	if(strcmp(buf,"edges"))
-		error();	
+    if (strcmp(buf, "edges"))
+        error();
 
-	while(1){
-		memset(buf, 0, 128);
-		value = nextElementValue(buf, fp);
-		if(strcmp(buf, "edgeId") == 0){
-				Edge *edgeP = getEp(ep, value, numberOfEdges);	
-				assignEdge(&(v.ep), &EdgePointerStart[EdgePointerCount++], edgeP);
-		}
-		else
-			break;
-		}
+    while (1) {
+        memset(buf, 0, BIG_BUFFER);
+        value = nextElementValue(buf, fp);
+        if (strcmp(buf, "edgeId") == 0) {
+            Edge *edgeP = getEp(ep, value, numberOfEdges);
+            assignEdge(&(v.ep), &EdgePointerStart[EdgePointerCount++], edgeP);
+        } else
+            break;
+    }
 
-	getFloorAndtype(v.vertexId , (int *) &(v.floorId) , (int *) &(v.type));
+    getFloorAndtype(v.vertexId , (int *) & (v.floorId) , (int *) & (v.type));
 
-	return v;	
+    return v;
 }
 
 
-void assignEdge(EdgePointer **ep, EdgePointer *setEp, Edge *edge)
-{
-	if(*ep == NULL)
-	{
-		*ep = setEp;
-		setEp->edge = edge; 
-	}
-	else{
-		assignEdge(&((*ep)->nextEp), setEp, edge);
-	}
+void assignEdge(EdgePointer **ep, EdgePointer *setEp, Edge *edge) {
+    if (*ep == NULL) {
+        *ep = setEp;
+        setEp->edge = edge;
+    } else {
+        assignEdge(&((*ep)->nextEp), setEp, edge);
+    }
 
 }
 
-void readEdges(FILE *fp, Edge *edges, int numberOfEdges)
-{
-	char buf[16];
-	memset(buf, 0, 16);
-	nextElement(buf, fp);
-	int i;
+void readEdges(FILE *fp, Edge *edges, int numberOfEdges) {
+    char buf[MEDIUM_BUFFER];
+    memset(buf, 0, MEDIUM_BUFFER);
+    nextElement(buf, fp);
+    int i;
 
-	if(strcmp(buf,"edges"))
-		error();
+    if (strcmp(buf, "edges"))
+        error();
 
 
-	for(i = 0; i < numberOfEdges; i++)
-	{
-		edges[i] = readEdge(fp);
-	}
+    for (i = 0; i < numberOfEdges; i++) {
+        edges[i] = readEdge(fp);
+    }
 
-	nextElement(buf, fp);
+    nextElement(buf, fp);
 
 }
 
-Edge readEdge(FILE *fp)
-{
-	Edge ed;
-	unsigned int value, i;
-	char buf[128];
-	nextElement(buf, fp);
+Edge readEdge(FILE *fp) {
+    Edge ed;
+    unsigned int value, i;
+    char buf[BIG_BUFFER];
+    nextElement(buf, fp);
 
-	for(i = 0; i < 4; i++)
-	{
-		memset(buf, 0, 128);
-		value = nextElementValue(buf, fp);
+    for (i = 0; i < 4; i++) {
+        memset(buf, 0, BIG_BUFFER);
+        value = nextElementValue(buf, fp);
 
-		if(strcmp(buf, "edgeId") == 0)
-			ed.edgeId = value;
-		if(strcmp(buf, "weight") == 0)
-			ed.weight = value;
-		if(strcmp(buf, "vertexId1") == 0)
-			ed.vertex1 = (Vertex *)(long)value;
-		if(strcmp(buf, "vertexId2") == 0)
-			ed.vertex2 = (Vertex *)(long)value;
-	}
+        if (strcmp(buf, "edgeId") == 0)
+            ed.edgeId = value;
+        if (strcmp(buf, "weight") == 0)
+            ed.weight = value;
+        if (strcmp(buf, "vertexId1") == 0)
+            ed.vertex1 = (Vertex *)(long)value;
+        if (strcmp(buf, "vertexId2") == 0)
+            ed.vertex2 = (Vertex *)(long)value;
+    }
 
-	reachChar('>', fp);
+    reachChar('>', fp);
 
-	return ed;
+    return ed;
 }
 
-Edge *getEp(Edge *ep, unsigned int id, int numberOfEdges)
-{
-	int i;
-	for(i = 0; i < numberOfEdges; i++){
-		if(ep[i].edgeId == id)
-			return &ep[i];
-	}
-	return NULL;
+Edge *getEp(Edge *ep, unsigned int id, int numberOfEdges) {
+    int i;
+    for (i = 0; i < numberOfEdges; i++) {
+        if (ep[i].edgeId == id)
+            return &ep[i];
+    }
+    return NULL;
 }
 
-int nextElementValue(char *name, FILE *fp)
-{
-	unsigned int value;
-	nextElement(name, fp);
-	fscanf(fp, "%u", &value);
-	reachChar('>', fp);
-	return value;
+int nextElementValue(char *name, FILE *fp) {
+    unsigned int value;
+    nextElement(name, fp);
+    fscanf(fp, "%u", &value);
+    reachChar('>', fp);
+    return value;
 }
 
-void nextElement(char *name, FILE *fp)
-{
-	reachChar('<', fp);
-	readToChar(name, '>', fp);
+void nextElement(char *name, FILE *fp) {
+    reachChar('<', fp);
+    readToChar(name, '>', fp);
 }
 
-int readToChar(char *name, char t, FILE *fp)
-{	
-	int i = 0;
-	char c;
-	while((c = getc(fp)) != EOF)
-	{
-		if(i > 128 - 1)
-			return 0;
+int readToChar(char *name, char t, FILE *fp) {
+    int i = 0;
+    char c;
+    while ((c = getc(fp)) != EOF) {
+        if (i > BIG_BUFFER - 1)
+            return 0;
 
-		if(c == t)
-			return 1;
+        if (c == t)
+            return 1;
 
-		if(c != '/')
-			name[i++] = c;
-	}
-	return 0;
+        if (c != '/')
+            name[i++] = c;
+    }
+    return 0;
 }
 
-int reachChar(char t, FILE *fp)
-{
-	char c;
-	while((c = getc(fp)) != EOF)
-	{
-		if(c == t)
-			return 1;
-	}
-	return 0;
+int reachChar(char t, FILE *fp) {
+    char c;
+    while ((c = getc(fp)) != EOF) {
+        if (c == t)
+            return 1;
+    }
+    return 0;
 }
 
-void readDefaultAtributes(int *edges, int *vertices, int *floors, FILE *fp)
-{
-	int i;
-	int x;
-	char buf[128];
-	for(i = 0; i < 3; i++){
-		memset(buf, 0, 128);
-		x = readAtribute(buf, fp);
+void readDefaultAtributes(int *edges, int *vertices, int *floors, FILE *fp) {
+    int i;
+    int x;
+    char buf[BIG_BUFFER];
+    for (i = 0; i < 3; i++) {
+        memset(buf, 0, BIG_BUFFER);
+        x = readAtribute(buf, fp);
 
-		if(strcmp(buf, "edges") == 0)
-			*edges = x;
-		else if(strcmp(buf, "vertices") == 0)
-			*vertices = x;
-		else if(strcmp(buf, "floors") == 0)
-			*floors = x;
-	}
+        if (strcmp(buf, "edges") == 0)
+            *edges = x;
+        else if (strcmp(buf, "vertices") == 0)
+            *vertices = x;
+        else if (strcmp(buf, "floors") == 0)
+            *floors = x;
+    }
 }
 
-int readAtribute(char *name, FILE *fp)
-{
-	int i = 0, value;
-	char c;
-	while((c = getc(fp)) != '"'){
-		if(i == 128 - 1)
-		{
-			error();
-			break;
-		}
+int readAtribute(char *name, FILE *fp) {
+    int i = 0, value;
+    char c;
+    while ((c = getc(fp)) != '"') {
+        if (i == BIG_BUFFER - 1) {
+            error();
+            break;
+        }
 
-		if(c != ' ' && c != '=' && c != '/')
-			name[i++] = c;
-	}
+        if (c != ' ' && c != '=' && c != '/')
+            name[i++] = c;
+    }
 
-	fscanf(fp, "%d", &value);
-	getc(fp);
+    fscanf(fp, "%d", &value);
+    getc(fp);
 
-	return value;
+    return value;
 
 }
 
-void error()
-{
-	printf("Error reading XML file. \n");
-	exit(1);
+void error() {
+    printf("Error reading XML file. \n");
+    exit(1);
 }
