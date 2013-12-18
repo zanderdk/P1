@@ -63,11 +63,26 @@ The edge pointer struct has two elements. One pointing to the $edge$ containing 
 \end{minipage}
 
 
+
 \begin{minipage}{\linewidth}
 \subsection{Edge}
 The last struct is the $edge$ struct. An edge struct contains information about which two vertices are connected, using the two $Vertex$ pointers. This allows for a representation of with vertices are connected. The $edgeId$ is used while parsing XML code, to keep track of which vertex is connected to which vertex.
 
 \lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/edge.c} \label{edge_struct}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\subsection{Path}
+This struct is used when dealing with calculated paths. This struct is mainly used in the A* computation. The targetId is the destination of the path. The weight is the total weight of the path. The pathVerticeIds is an array containing all the ids of the vertices in the path. The numVertices member contains how many vertices the path contains.
+
+\lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/path.c} \label{path_struct}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\subsection{SourcePaths}
+This struct is also used when dealing with calculated paths. This struct is used when returning calculated Dijkstra paths. The sourceId is where to calculate paths from. NumPaths is how many paths this SourcePaths struct describes. Paths is an array containing all the paths possible from sourceId to all other vertices.
+
+\lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/sourcePaths.c} \label{path_struct}
 \end{minipage}
 
 \subsection{Summary}
