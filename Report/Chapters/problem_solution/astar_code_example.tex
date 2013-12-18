@@ -1,8 +1,6 @@
 %!TEX root = ../../Master.tex
 \subsection{A*}
 
-\sinote{husk simon at kigge om astar.c har ændret sig}
-
 The A* algorithm as described in \cref{subs_astar} was implemented in C in the following way. The design choices will follow below.
 
 \subsubsection{WorkVertex}
@@ -13,7 +11,7 @@ A WorkVertex struct is an extension to a Vertex struct in \cref{data_struct:vert
 
 \subsubsection{Allocation}
 
-\lstinputlisting[style=customc, language=C, firstline=23, lastline=41, caption={Allocations in function AStar}, label=list:astar_allocate]{../Program/Sources/astar.c}
+\lstinputlisting[style=customc, language=C, firstline=22, lastline=41, caption={Allocations in function AStar}, label=list:astar_allocate]{../Program/Sources/astar.c}
 
 All workVertices are stored in the pointer to pointer variable workVertices. This is simply an array of pointers to all WorkVertex structs created. The memory allocated for this pointer is the size of 2 times the number of vertices on the floor, A* is evaluating on. One half of the memory allocated, is for workVertices and the other half is for the curNeighbors array, containing neighbors of a given WorkVertex.  This way it is possible to allocate all needed memory in one call to calloc, which eases the freeing of memory later. See \cref{list:astar_allocate}.
 
@@ -24,7 +22,7 @@ Part of the main A* function is finding the neighbours of a specific vertex. Thi
 
 The function looks at every EdgePointer connected the specified vertex. The number of neighbours is the exact number of neighbours.
 
-\lstinputlisting[style=customc, language=C, firstline=148, lastline=201, caption={Get neighbours function}, label=list:get_neighbours]{../Program/Sources/astar.c}
+\lstinputlisting[style=customc, language=C, firstline=146, lastline=201, caption={Get neighbours function}, label=list:get_neighbours]{../Program/Sources/astar.c}
 
 \subsubsection{Reconstruct Path}
 

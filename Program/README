@@ -1,6 +1,6 @@
-MAKE USAGE
+Compiling:
+Run "make" in the directory containing the makefile. The final executable will be named FLAWLESS.
 
-Sources:
-    Configure sources by changing the SRCS variable in the makefile, or run make with -e SRCS=">>sourcefiles.c<<". Multiple source files should be separated by a space.
-
-make -e SRCS="testAstar.c XML.c graph.c astar.c" OUTPUT="astartest"
+Running:
+Run the FLAWLESS executable with the parameter test.xml, which is the XML containing information about the test graph.
+The program will prompt you for the required information.
