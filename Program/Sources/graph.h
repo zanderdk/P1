@@ -1,3 +1,8 @@
+#define NO_MODE 0
+#define NO_STAIRS 1
+#define NO_ELEVATORS 2
+#define ID_CHAR_SIZE 10
+
 typedef struct Floor Floor;
 typedef struct Vertex Vertex;
 typedef struct EdgePointer EdgePointer;
