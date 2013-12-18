@@ -1,3 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "graph.h"
+#include "astar.h"
+#include "dijkstra.h"
 /**
 return 0 for no valid route.
 return 1 for a route can be found using one floor
