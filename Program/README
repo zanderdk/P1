@@ -4,3 +4,4 @@ Run "make" in the directory containing the makefile. The final executable will b
 Running:
 Run the FLAWLESS executable with the parameter test.xml, which is the XML containing information about the test graph.
 The program will prompt you for the required information.
+Vertex ids can be found in FloorplanExample.png
