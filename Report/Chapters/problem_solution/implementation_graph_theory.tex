@@ -1,30 +1,22 @@
 %!TEX root = ../../Master.tex
 \section{Storing A Graph}
 
-This chapter will discuss separate methods of storing a graph in memory for a C program to interpret and compute. Furthermore how to read a model of a hospital from a XML document.
-
-\begin{itemize}
-	\item Sequential representation.
-	\item Linked list representation.
-\end{itemize} 
-
+This chapter will discuss different methods of storing a graph in memory for a C program to interpret and compute. Furthermore how to read a model of a hospital from a XML document.
 
 \subsection{Sequentially Representation}
-A Sequential representation means that the data describing the vertices is placed sequential sequentially in the memory, one vertex after another. 
-This requires less memory than using a linked list, because it is known where all the vertices is located relative to each other, in the memory. And this does not apply to a linked list, because all elements in the linked list need to store information about where the next element is located.
+A Sequential representation means that the data describing the vertices is placed sequentially in the memory, one vertex after another. The overhead of storing the memory sequentially is very small. Appending a new element to the list is very easy, because the exact location in memory is known. However when inserting an element in the middle of a sequentially list, up to half of the elements need to be moved by 1 position. 
 
-Adding new elements to the list is relatively easy compared to sequentially stored data.
-It can be done by changing what the last element of the list is pointing at, to a new element.
-Removing an item can be done similarly by changing the element pointing to the item that is wanted to be removed, so the list skips a element. This is shown in \cref{fig:examplegraph}.
+
+
+% It can be done by changing what the last element of the list is pointing at, to a new element.
+% Removing an item can be done similarly by changing the element pointing to the item that is wanted to be removed, so the list skips a element. This is shown in \cref{fig:examplegraph}.
 
 
 \subsection{Linked List Representation}
 \label{sub:list}
-A linked list is defined as "a list implemented by each item having a link to the next item" \cite{linked_list_def}.
-This means that every item in the list has a element pointing to the next item in the list. This way of structuring the data makes it possible to dynamic manipulate the list \cite{Linked_List}.
+A linked list is defined as \enquote{a list implemented by each item having a link to the next item} \cite{linked_list_def}. This means that every item in the list has a element pointing to the next item in the list. This way of structuring the data makes it possible to dynamic manipulate the list \cite{Linked_List}.  Doing this means that the overhead of storing a linked list is a little bigger than storing a list sequential, because of the next pointers also consume memory. 
 
-Inserting new items to a linked list is relatively easy, compared to a sequentially representation of graph. 
-This can be done by redirecting a pointer to a element $A$ in the list to a newly created element $B$, and make the the new element point at location where the first element was pointing to $C$. This example is shown at \cref{fig:link}.
+Inserting new items to a linked list is relatively easy, compared to sequentially storing memory. This can be done by redirecting a pointer to an element $A$ in the list to a newly created element $B$, and make the the new element point at location where the first element was pointing to $C$. This example is shown at \cref{fig:link}.
 
 \begin{figure}[h]
  \centering
@@ -101,11 +93,12 @@ This can be done by redirecting a pointer to a element $A$ in the list to a newl
 % \caption{example graph} \label{fig:examplegraph}
 % \end{figure}
 
-\input{Chapters/problem_solution/data_struct.tex}
-
-
 \subsection{Representing a Graph as XML}
 
 In order to search through a graph in a C program, the graph needs to be read by the C program. XML was chosen as the markup language for representing a graph, because of its readability for both humans and computers. An example of how a graph is represented as XML is seen in \cref{list:xml_demo}.
 
 \lstinputlisting[language=XML, label=list:xml_demo, caption={An example of a graph represented as XML}]{Chapters/problem_solution/demo_xml.xml}
+
+\input{Chapters/problem_solution/data_struct.tex}
+
+

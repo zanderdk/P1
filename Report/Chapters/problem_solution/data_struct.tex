@@ -1,9 +1,9 @@
 %!TEX root = ../../Master.tex
 \begin{minipage}{\linewidth}
-\section{Data Structure}
+\subsection{Implementing the data structure in C}
 \label{sub:data_structure}
 
-This subsection will cover which way of representing a graph that has been chosen. The solution was to break the graph in to small pieces of information, this made it easier to keep track of the program. It was chosen to split the datasets in to 5 structs.
+This subsection will cover how a graph is represented in our C program. The solution was to break the graph into small pieces of information, making it easier to manage the program. It was chosen to split the graph into 5 C structs:
 
 
 \begin{itemize} [noitemsep]
@@ -14,15 +14,13 @@ This subsection will cover which way of representing a graph that has been chose
 	\item Edge
 \end{itemize}
 
-
 These structs will be explained in the following sections.
 \end{minipage} 
 
 %In \cref{Implementing}, the advantages and disadvantages of a linked list and a array was described.
 \begin{minipage}{\linewidth}
 \subsection{Graph} 
-This is the main struct containing information of one building complex.
-The struct have a pointer called floors that points to the first floor struct that contains information about one floor. All floors is sequentially stored in the memory so by incrementing the pointer it is possible to access the next element. How we represent another building is described in \cref{multlayhan}. The element numOfVertices contains how many vertices this graph have in total, and numOfFloors is how many floors this graph have.
+This is the main struct containing information of one building complex. The struct has a pointer called floors, that points to the first floor struct that contains information about the given floor. All floors are sequentially stored in memory so by incrementing the floors pointer it is possible to access the next floor. How we represent another building is described in \cref{multlayhan}. The element numOfVertices contains how many vertices this graph has in total, and numOfFloors is how many floors this graph has.
 
 
 \lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/graph.c} \label{Graph_struct}
@@ -30,15 +28,14 @@ The struct have a pointer called floors that points to the first floor struct th
 
 \begin{minipage}{\linewidth}
 \subsection{Floor} \label{subsub:floor}
-This struct reasonably simple the functionality of it, is to separate vertices so a floor only contains a vertices that is located a the same floor. The $floorId$ is an identifier to keep track of which floor that are in use.
-$amountOfVertecies$ is a values telling how many vertices this floor have. Vp is a pointer to the first vertex in this floor.
+The intention of the floor struct, is to only contain the vertices that are located on the specific floor. The $floorId$ is an identifier that keeps track of which floor it is. $amountOfVertecies$ is a values telling how many vertices this floor has. Vp is a pointer to the first vertex in this floor. All vertices on the same floor are connected using a linked list. This makes it possible to dynamic add new vertices to the floor as described in \cref{sub:list}. The start of the list is pointed to by the floor struct. The ordering of the list of vertices does not matter.
 
 \lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/Floor.c} \label{Floor_struct}
 \end{minipage}
 
 \begin{minipage}{\linewidth}
 \subsection{Vertex}\label{data_struct:vertex}
-A vertex struct holds information about where it is located relative to other vertices using a coordinate set $x$ and $y$. Vertices can be identified using the $vertexId$, the $floorId$ is used to tell whether to vertices is at the same layer.
+A vertex struct stores information about where it is located relative to other vertices using a coordinate set $x$ and $y$. Vertices can be identified using the $vertexId$ and the $floorId$ is used to tell whether two vertices are on the same floor.
 
  The $type$ can represent:
 \begin{itemize}[noitemsep]
@@ -47,10 +44,9 @@ A vertex struct holds information about where it is located relative to other ve
 	\item \textbf{3}: Elevator vertex.
 \end{itemize}
 
-The $ep$ is a pointer to the first element in a linked list row, each element is contains a pointer to the next $Edge pointer$ that this vertex is connected to. The benefits of this representations method is described in \cref{sub:list} and makes it possible to add edges to this vertex after initialization.
+$ep$ is a pointer to the first element in a linked list. Each element contains a pointer to the next $Edge pointer$ this vertex is connected to. The benefits of this representations method is described in \cref{sub:list}. It makes it possible to add edges dynamically to a vertex.
 
 
-All vertecies on in the same floor is connected using a linked list. This makes it possible to dynamic add new vertices to the floor as described in \cref{sub:list}. The start of the list is pointed to by the floor struct. It is important to mention that the order of the list plays no role.   
 
 
 \lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/vertex.c} \label{vertex_struct}
@@ -59,7 +55,9 @@ All vertecies on in the same floor is connected using a linked list. This makes 
 \begin{minipage}{\linewidth}
 \subsection{Edge Pointer}
 
-The edge pointer struct have two elements one pointing to the $edge$ containing information about the cost of the edge and which vertices it is connected to. And the other element $nextEp$ points to the next edge pointer this Vertex is connected to. When a $nextEp$ is pointing to $NULL$ the end of the list is reached.
+The edge pointer struct has two elements. One pointing to the $edge$ containing information about the cost of the edge and which vertices it is connected to, and the other element $nextEp$ points to the next edge pointer this Vertex is connected to. When a $nextEp$ is pointing to $NULL$ the end of the list is reached. The edgePointer struct was designed to minimize the instances of edges that needs to be created. Without edgePointers, an instance edge had to be created for every vertex.
+
+
 \lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/ep.c} \label{ep_struct}
 
 \end{minipage}
@@ -67,11 +65,13 @@ The edge pointer struct have two elements one pointing to the $edge$ containing 
 
 \begin{minipage}{\linewidth}
 \subsection{Edge}
-The last struct is the $edge$ struct, this struct is pointed to by two vertices using a $edge$ pointer. The same to vertices is pointed to by the $edge$, using the two $Vertex$ pointers. This represent with vertices is connected.
-The $edgeId$ used while parsing XML code, to keep track of which vertex is connected to which vertex.
-This is is done because a pointer to an edge cant be stored in files, so Ids is used to represent a pointer. 
+The last struct is the $edge$ struct. An edge struct contains information about which two vertices are connected, using the two $Vertex$ pointers. This allows for a representation of with vertices are connected. The $edgeId$ is used while parsing XML code, to keep track of which vertex is connected to which vertex.
+
 \lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/edge.c} \label{edge_struct}
 \end{minipage}
+
+\subsection{Summary}
+When storing a graph in memory, 5 structs are used. The combination of these structs provides the base representation of a graph in a C program. It is visualized in \cref{fig:examplegraph}.
 
 
 \begin{figure}[h]
