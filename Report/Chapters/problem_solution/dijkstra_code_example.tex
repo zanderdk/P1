@@ -39,4 +39,4 @@ The working graph is then passed to GetAllExits which crawls through the working
 
 After acquiring all necessary data it calls Dijkstra with the currently selected index. Dijkstra does its calculations and sets the dist and previous members of all the WorkVertex structs in the working graph.
 
-After Dijkstra finishes SetPathsFromWGraph is called. It will backtrack from all exits until it reaches the source vertex and then it assigns the found path to earlier mentioned struct 
+After Dijkstra finishes SetPathsFromWGraph is called. It will backtrack from all exits until it reaches the source vertex and then it assigns the found path to the previously allocated structs.
