@@ -1,11 +1,11 @@
 %!TEX root = ../../Master.tex
-
-\subsection{Data Structure}
+\begin{minipage}{\linewidth}
+\section{Data Structure}
 \label{sub:data_structure}
 
 This subsection will cover which way of representing a graph that has been chosen. The solution was to break the graph in to small pieces of information, this made it easier to keep track of the program. It was chosen to split the datasets in to 5 structs.
 
-\begin{minipage}{\linewidth}
+
 \begin{itemize} [noitemsep]
 	\item Graph
 	\item Floor
@@ -13,9 +13,10 @@ This subsection will cover which way of representing a graph that has been chose
 	\item Edge Pointer
 	\item Edge
 \end{itemize}
-\end{minipage}
 
-These structs will be explained in the following sections. 
+
+These structs will be explained in the following sections.
+\end{minipage} 
 
 %In \cref{Implementing}, the advantages and disadvantages of a linked list and a array was described.
 \begin{minipage}{\linewidth}
@@ -64,7 +65,6 @@ The edge pointer struct have two elements one pointing to the $edge$ containing 
 \end{minipage}
 
 
-
 \begin{minipage}{\linewidth}
 \subsection{Edge}
 The last struct is the $edge$ struct, this struct is pointed to by two vertices using a $edge$ pointer. The same to vertices is pointed to by the $edge$, using the two $Vertex$ pointers. This represent with vertices is connected.
@@ -73,4 +73,33 @@ This is is done because a pointer to an edge cant be stored in files, so Ids is 
 \lstinputlisting[style=customc, language=C, frame=single, numbers=left]{Chapters/problem_solution/edge.c} \label{edge_struct}
 \end{minipage}
 
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,thick,main node/.style={fill=blue!20,draw,font=\sffamily\Large\bfseries}]
+
+  \tikzset{mystyle/.style={->,relative=false,in=0,out=0,bend left=100,looseness=3}}
+
+  \node[main node] at (0,-2) (2) {$V_1$};
+  \node[main node] at (2,-2) (3) {$V_2$};
+  \node[main node] at (4,-2) (4) {$V_3$};
+  \node[main node] at (0,-4) (5) {$EP_1$};
+  \node[main node] at (2,-4) (7) {$EP_2$};
+  \node[main node,label=below:$1$] at (0,-6) (6) {$E_1$};
+  \node[main node,label=below:$1$] at (2,-6) (8) {$E_2$};
+
+   \path[->]
+    (2) edge node {VP} (3)
+    (3) edge node {VP} (4)
+    (2) edge node {EP} (5)
+    (5) edge node {EP} (6)
+    (5) edge node {EP} (7)
+    (7) edge node {EP} (8)
+    (6) edge [bend left=60] node { } (2)
+    (6) edge [bend left=100,looseness=2.3] node { }(3)
+    (8) edge [bend right=30,label=right] node { }(4)
+    (8) edge [bend right=100,looseness=3] node { }(2);
+\end{tikzpicture}
+\caption{Visual representation of how a graph is implemented in C} \label{fig:examplegraph}
+\end{figure}
 
